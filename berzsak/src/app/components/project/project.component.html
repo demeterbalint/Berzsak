@@ -1,1 +1,27 @@
-<p>project works!</p>
+<div class="container">
+  <!-- Sidebar -->
+  <div class="sidebar" *ngIf="selectedProject" [@sidebarSlide]>
+    <button class="close-btn" (click)="closeSidebar()">✕</button>
+    <h2>{{ selectedProject.name }}</h2>
+    <p>{{ selectedProject.description }}</p>
+
+    <div class="sidebar-main">
+      <img [src]="selectedProject.mainImgUrl" [alt]="selectedProject.name">
+    </div>
+
+    <div class="gallery">
+      <img *ngFor="let img of selectedProject.imageUrls" [src]="img" [alt]="selectedProject.name">
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid" [@gridSlide]="gridState"
+       (mousedown)="startDrag($event)"
+       (mouseup)="endDrag($event)"
+       (mouseleave)="endDrag($event)"
+       (mousemove)="onDrag($event)">
+    <div *ngFor="let project of projects" class="grid-item">
+      <img [src]="project.mainImgUrl" [alt]="project.name" (click)="viewProject(project)" draggable="false">
+    </div>
+  </div>
+</div>
