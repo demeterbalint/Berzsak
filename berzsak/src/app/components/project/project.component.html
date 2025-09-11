@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [class.sidebar-open]="selectedProject">
   <!-- Sidebar -->
   <div class="sidebar" *ngIf="selectedProject" [@sidebarSlide]>
     <button class="close-btn" (click)="closeSidebar()">✕</button>
@@ -6,7 +6,7 @@
     <p>{{ selectedProject.description }}</p>
 
     <div class="sidebar-main">
-      <img [src]="selectedProject.mainImgUrl" [alt]="selectedProject.name">
+      <img [src]="selectedProject.mainImgUrl" [alt]="selectedProject.name" [attr.data-project-name]="selectedProject.name">
     </div>
 
     <div class="gallery">
@@ -15,13 +15,13 @@
   </div>
 
   <!-- Grid -->
-  <div class="grid" [@gridSlide]="gridState"
-       (mousedown)="startDrag($event)"
+  <div class="grid" #grid [@gridSlide]="gridState"
+       (mousedown)="handleGridInteraction($event)"
        (mouseup)="endDrag($event)"
        (mouseleave)="endDrag($event)"
        (mousemove)="onDrag($event)">
     <div *ngFor="let project of projects" class="grid-item">
-      <img [src]="project.mainImgUrl" [alt]="project.name" (click)="flyToSidebar($event, project)" draggable="false">
+      <img [src]="project.mainImgUrl" [alt]="project.name" [attr.data-project-name]="project.name" (click)="onImageClick($event, project)" draggable="false">
     </div>
   </div>
 </div>
