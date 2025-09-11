@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  flex-direction: row;
   height: 100vh;
   width: 100vw; /* use full viewport width */
   position: relative;
@@ -10,19 +9,18 @@
 .sidebar {
   width: 300px; /* optional: limit on larger screens */
   height: 100%;
-  position: absolute; /* keep grid independent */
-  left: 0;
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  position: fixed; /* keep grid independent */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sidebar-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  visibility: visible; /* default, TS overrides during animation */
 }
 
 .close-btn {
@@ -37,14 +35,11 @@
 
 /* Grid */
 .grid {
-  flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-columns: repeat(4, 300px);
   gap: 5px;
-  height: 100%;
-  transform: translateX(0); /* animation-friendly */
-  cursor: grab;
   overflow: auto;
+  cursor: grab;
   user-select: none;
 }
 
@@ -62,7 +57,7 @@
 }
 
 .grid-item:nth-child(2n) {
-
+  transform: translateY(150px)
 }
 
 .grid-item img {

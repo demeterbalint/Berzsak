@@ -21,7 +21,7 @@
        (mouseleave)="endDrag($event)"
        (mousemove)="onDrag($event)">
     <div *ngFor="let project of projects" class="grid-item">
-      <img [src]="project.mainImgUrl" [alt]="project.name" (click)="viewProject(project)" draggable="false">
+      <img [src]="project.mainImgUrl" [alt]="project.name" (click)="flyToSidebar($event, project)" draggable="false">
     </div>
   </div>
 </div>

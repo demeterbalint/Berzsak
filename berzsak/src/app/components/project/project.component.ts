@@ -33,7 +33,9 @@ import { trigger, style, transition, animate, state } from '@angular/animations'
 export class ProjectComponent implements OnInit {
   projects: ProjectDetails[] = [];
   selectedProject?: ProjectDetails;
+
   dragging = false;
+  moved = false;
   startX = 0;
   startY = 0;
   scrollLeft = 0;
@@ -43,15 +45,64 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.projects = this.projectService.getAllProjects();
-
-    window.addEventListener('mouseup', () => {
-      this.dragging = false;
-    });
   }
 
-  viewProject(project: ProjectDetails) {
-    this.selectedProject = project;
+  flyToSidebar(event: MouseEvent, project: ProjectDetails) {
+
+    if (!this.moved) {
+      const img = event.currentTarget as HTMLElement;
+
+      // 1️⃣ Hide the clicked image in the grid
+      img.style.visibility = 'hidden';
+
+      // 2️⃣ Temporarily set selectedProject so sidebar exists
+      this.selectedProject = project;
+
+      // 3️⃣ Wait for sidebar to render
+      setTimeout(() => {
+        const sidebarImg = document.querySelector('.sidebar img') as HTMLElement;
+        if (!sidebarImg) return;
+
+        // Hide the sidebar image initially
+        sidebarImg.style.visibility = 'hidden';
+
+        // 4️⃣ Get first position of the grid image
+        const firstRect = img.getBoundingClientRect();
+
+        // 5️⃣ Create a clone to animate
+        const clone = img.cloneNode(true) as HTMLElement;
+        clone.style.position = 'fixed';
+        clone.style.top = firstRect.top + 'px';
+        clone.style.left = firstRect.left + 'px';
+        clone.style.width = firstRect.width + 'px';
+        clone.style.height = firstRect.height + 'px';
+        clone.style.transition = 'all 0.6s ease-in-out';
+        clone.style.zIndex = '1000';
+        clone.style.pointerEvents = 'none';
+        clone.style.visibility = 'visible';
+        document.body.appendChild(clone);
+
+        // 6️⃣ Force reflow
+        clone.getBoundingClientRect();
+
+        // 7️⃣ Animate to sidebar position
+        const lastRect = sidebarImg.getBoundingClientRect();
+        clone.style.top = lastRect.top + 'px';
+        clone.style.left = lastRect.left + 'px';
+        clone.style.width = lastRect.width + 'px';
+        clone.style.height = lastRect.height + 'px';
+
+        // 8️⃣ After animation ends
+        clone.addEventListener('transitionend', () => {
+          document.body.removeChild(clone);
+          // Show the image in the sidebar
+          sidebarImg.style.visibility = 'visible';
+        });
+      }, 0);
+    }
   }
+
+
 
   closeSidebar() {
     this.selectedProject = undefined;
@@ -63,6 +114,7 @@ export class ProjectComponent implements OnInit {
 
   startDrag(event: MouseEvent) {
     this.dragging = true;
+    this.moved = false;
     const el = event.currentTarget as HTMLElement;
 
     // Save both X and Y starting points
@@ -91,6 +143,10 @@ export class ProjectComponent implements OnInit {
 
     const walkX = this.startX - x; // horizontal distance moved
     const walkY = this.startY - y; // vertical distance moved
+
+    if (Math.abs(walkX) > 5 || Math.abs(walkY) > 5) {
+      this.moved = true; // mark as actual drag
+    }
 
     el.scrollLeft = this.scrollLeft + walkX;
     el.scrollTop = this.scrollTop + walkY;
