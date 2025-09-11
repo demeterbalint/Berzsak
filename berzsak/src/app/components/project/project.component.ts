@@ -23,7 +23,7 @@ import {trigger, style, transition, animate, state} from '@angular/animations';
     ]),
     // Grid slide right when sidebar is open
     trigger('gridSlide', [
-      state('open', style({transform: 'translateX(300px)'})), // same width as sidebar
+      state('open', style({transform: 'translateX(500px)'})), // same width as sidebar
       state('closed', style({transform: 'translateX(0)'})),
       transition('closed => open', [animate('1s ease-out')]),
       transition('open => closed', [animate('1s ease-in')])
@@ -96,7 +96,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       clone.style.visibility = 'visible';
       document.body.appendChild(clone);
 
-      const sidebarWidth = 300; // must match your CSS
+      const sidebarWidth = 500; // must match your CSS
       const sidebarRect = sidebarImg.getBoundingClientRect();
       const finalTop = sidebarRect.top;
       const finalLeft = sidebarRect.left + sidebarWidth; // move clone horizontally along with sidebar
@@ -114,6 +114,23 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         sidebarImg.style.visibility = 'visible';
       });
     }, 0); // next tick
+
+    const sidebarDuration = 1000; // 1s
+
+    setTimeout(() => {
+      const name = document.querySelector('.sidebar-name') as HTMLElement;
+      if (name) name.style.opacity = '1';
+    }, sidebarDuration + 300);
+
+    setTimeout(() => {
+      const description = document.querySelector('.sidebar-description') as HTMLElement;
+      if (description) description.style.opacity = '1';
+    }, sidebarDuration + 800);
+
+    setTimeout(() => {
+      const gallery = document.querySelector('.gallery') as HTMLElement;
+      if (gallery) gallery.style.opacity = '1';
+    }, sidebarDuration + 1300);
   }
 
 

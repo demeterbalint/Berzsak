@@ -7,7 +7,7 @@
 }
 
 .sidebar {
-  width: 300px; /* optional: limit on larger screens */
+  width: 500px; /* optional: limit on larger screens */
   height: 100%;
   position: fixed; /* keep grid independent */
   overflow: hidden;
@@ -15,6 +15,13 @@
   flex-direction: column;
   align-items: center;
   border-right: 1px solid black;
+}
+
+.sidebar h2 {
+  font-style: italic;
+  width: 100%;
+  text-align: left;
+  margin-left: 15%;
 }
 
 .sidebar-main {
@@ -25,7 +32,7 @@
 }
 
 .sidebar-main img {
-  width: 255px;
+  width:  100%;
   height: auto;
 }
 
@@ -55,6 +62,13 @@
   background: none;
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+.sidebar-name,
+.sidebar-description,
+.gallery {
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }
 
 /* Grid */
