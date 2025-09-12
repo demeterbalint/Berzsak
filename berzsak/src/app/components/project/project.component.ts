@@ -2,7 +2,8 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {ProjectDetails} from '../../models/project-details';
 import {ProjectService} from '../../services/project.service';
 import {CommonModule} from '@angular/common';
-import {trigger, style, transition, animate, state} from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ViewStatus} from '../../enum/view-status';
 
 @Component({
   selector: 'app-project',
@@ -43,6 +44,11 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   scrollLeft = 0;
   scrollTop = 0;
 
+  view = {
+    status: ViewStatus.EXPERIENCE,
+    value: 'Experience view'
+  };
+
   constructor(private projectService: ProjectService) {
   }
 
@@ -56,6 +62,16 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     // Scroll to the center
     gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
     gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
+  }
+
+  viewChange() {
+    if (this.view.status === ViewStatus.EXPERIENCE) {
+      this.view.status = ViewStatus.GRID;
+      this.view.value = 'Grid view';
+    } else {
+      this.view.status = ViewStatus.EXPERIENCE;
+      this.view.value = 'Experience view';
+    }
   }
 
   onImageClick(event: MouseEvent, project: ProjectDetails) {
@@ -237,5 +253,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   get canDrag(): boolean {
     return !this.selectedProject; // draggable only when sidebar is closed
+  }
+
+  showContact() {
+    return;
   }
 }

@@ -1,4 +1,22 @@
 <div class="container" [class.sidebar-open]="selectedProject">
+
+  <!-- brand name -->
+  <div class="brand-name">
+    <button class="brand-name-button" (click)="showContact()">BERZSAK.</button>
+  </div>
+
+  <!-- Grid/Experience button -->
+  <div class="view-button">
+    <button class="view-btn" (click)="viewChange()">
+    <span class="view-icon">
+      <!-- use a grid/list icon based on status -->
+      <i *ngIf="view.value === 'Grid view'" class="fa fa-th"></i>
+      <i *ngIf="view.value === 'Experience view'" class="fa fa-list"></i>
+    </span>
+      <span class="view-text">{{view.value}}</span>
+    </button>
+  </div>
+
   <!-- Sidebar -->
   <div class="sidebar" *ngIf="selectedProject" [@sidebarSlide]>
     <button class="close-btn" (click)="closeSidebar()">✕</button>
