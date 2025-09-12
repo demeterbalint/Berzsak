@@ -43,6 +43,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   startY = 0;
   scrollLeft = 0;
   scrollTop = 0;
+  targetScrollLeft = 0;
+  targetScrollTop = 0;
+  animating = false;
 
   view = {
     status: ViewStatus.EXPERIENCE,
@@ -247,8 +250,13 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       this.moved = true; // mark as actual drag
     }
 
-    el.scrollLeft = this.scrollLeft + walkX;
-    el.scrollTop = this.scrollTop + walkY;
+    this.targetScrollLeft = this.scrollLeft + walkX;
+    this.targetScrollTop = this.scrollTop + walkY;
+
+    if (!this.animating) {
+      this.animating = true;
+      this.animateScroll(el);
+    }
   }
 
   get canDrag(): boolean {
@@ -257,5 +265,24 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   showContact() {
     return;
+  }
+
+  private animateScroll(el: HTMLElement) {
+    const lag = 0.1; // adjust 0.1–0.25 for how much lag (≈0.2 sec)
+
+    const step = () => {
+      // Interpolate current -> target
+      el.scrollLeft += (this.targetScrollLeft - el.scrollLeft) * lag;
+      el.scrollTop += (this.targetScrollTop - el.scrollTop) * lag;
+
+      // Keep animating while dragging
+      if (this.dragging || Math.abs(this.targetScrollLeft - el.scrollLeft) > 0.5 || Math.abs(this.targetScrollTop - el.scrollTop) > 0.5) {
+        requestAnimationFrame(step);
+      } else {
+        this.animating = false;
+      }
+    };
+
+    requestAnimationFrame(step);
   }
 }
