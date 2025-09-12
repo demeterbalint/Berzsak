@@ -84,12 +84,17 @@
   border-right: 1px solid black;
 }
 
-.sidebar h2 {
+.sidebar-name {
   font-style: italic;
   width: 100%;
   text-align: left;
   margin-left: 15%;
   margin-top: 60px;
+  color: white;
+}
+
+.sidebar-description {
+  color: #DDDDDD;
 }
 
 .sidebar-main {
