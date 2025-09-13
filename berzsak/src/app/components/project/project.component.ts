@@ -251,7 +251,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     gridImg.style.visibility = 'hidden';
 
     this.selectedProject = project;
-    this.registerSidebar();
+    setTimeout(() => {
+      this.registerSidebar();
+    }, 0);
 
     // Wait for Angular to render the sidebar
     setTimeout(() => {
