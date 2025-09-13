@@ -46,6 +46,17 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   private onDragBound = (event: MouseEvent) => this.onDrag(event);
   private endDragBound = (event: MouseEvent) => this.endDrag(event);
+  private onWindowMouseOutBound = (event: MouseEvent) => {
+    // relatedTarget/toElement null => pointer left the document (window)
+    if (!event.relatedTarget && !(event as any).toElement) {
+      this.endDrag();
+    }
+  };
+  private onWindowBlurBound = () => this.endDrag();
+  private onVisibilityChangeBound = () => {
+    if (document.hidden) this.endDrag();
+  };
+  private onPointerCancelBound = () => this.endDrag();
 
   private scrollables: {
     el: HTMLElement;
@@ -68,17 +79,12 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const gridEl = this.gridRef.nativeElement;
-    const sidebarEl = document.querySelector('.sidebar') as HTMLElement;
 
     if (gridEl) {
       this.scrollables.push({ el: gridEl, targetScrollTop: gridEl.scrollTop, targetScrollLeft: gridEl.scrollLeft, animating: false });
       // Optional: center grid initially
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
-    }
-
-    if (sidebarEl) {
-      this.scrollables.push({ el: sidebarEl, targetScrollTop: sidebarEl.scrollTop, targetScrollLeft: 0, animating: false });
     }
   }
 
@@ -95,19 +101,36 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   @HostListener('window:wheel', ['$event'])
   onWheel(event: WheelEvent) {
     const grid = this.scrollables.find(s => s.el === this.gridRef.nativeElement);
-    const sidebar = this.scrollables.find(s => s.el.classList.contains('sidebar'));
-
+    const sidebar = this.scrollables.find(s => s.el.matches('.sidebar'));
 
     if (this.selectedProject && sidebar) {
       event.preventDefault();
+      sidebar.targetScrollTop = sidebar.el.scrollTop;
       sidebar.targetScrollTop += event.deltaY;
       sidebar.targetScrollTop = Math.max(0, Math.min(sidebar.targetScrollTop, sidebar.el.scrollHeight - sidebar.el.clientHeight));
       this.animateScrollable(sidebar);
     } else if (!this.selectedProject && grid) {
       event.preventDefault();
+      grid.targetScrollTop = grid.el.scrollTop;
+      grid.targetScrollLeft = grid.el.scrollLeft;
       grid.targetScrollTop += event.deltaY;
-      grid.targetScrollLeft += event.deltaX; // optional horizontal scroll
+      grid.targetScrollLeft += event.deltaX;
       this.animateScrollable(grid);
+    }
+  }
+
+  private registerSidebar() {
+    const sidebarEl = document.querySelector('.sidebar') as HTMLElement;
+    if (!sidebarEl) return;
+
+    // only add once
+    if (!this.scrollables.find(s => s.el === sidebarEl)) {
+      this.scrollables.push({
+        el: sidebarEl,
+        targetScrollTop: sidebarEl.scrollTop,
+        targetScrollLeft: sidebarEl.scrollLeft,
+        animating: false
+      });
     }
   }
 
@@ -131,7 +154,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     if (!this.canDrag) return;
     this.dragging = true;
     this.moved = false;
-    const el = event.currentTarget as HTMLElement;
+    const el = this.gridRef.nativeElement;
 
     // Save both X and Y starting points
     this.startX = event.pageX - el.offsetLeft;
@@ -142,8 +165,15 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
     el.style.cursor = 'grabbing';
 
+    // Global listeners so drag ends even if pointer leaves the element or window
     window.addEventListener('mousemove', this.onDragBound);
     window.addEventListener('mouseup', this.endDragBound);
+
+    // Robustly catch "pointer left the window" and other aborts:
+    window.addEventListener('mouseout', this.onWindowMouseOutBound); // relatedTarget == null when leaving window
+    window.addEventListener('blur', this.onWindowBlurBound);         // window lost focus (alt-tab)
+    document.addEventListener('visibilitychange', this.onVisibilityChangeBound); // tab hidden
+    window.addEventListener('pointercancel', this.onPointerCancelBound); // pointer aborted (touch)
   }
 
   onDrag(event: MouseEvent) {
@@ -171,11 +201,18 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   endDrag(_event?: MouseEvent) {
     this.dragging = false;
-    this.gridRef.nativeElement.style.cursor = 'grab';
+    // Restore cursor
+    if (this.gridRef && this.gridRef.nativeElement) {
+      this.gridRef.nativeElement.style.cursor = 'grab';
+    }
 
     // Remove global listeners
     window.removeEventListener('mousemove', this.onDragBound);
     window.removeEventListener('mouseup', this.endDragBound);
+    window.removeEventListener('mouseout', this.onWindowMouseOutBound);
+    window.removeEventListener('blur', this.onWindowBlurBound);
+    document.removeEventListener('visibilitychange', this.onVisibilityChangeBound);
+    window.removeEventListener('pointercancel', this.onPointerCancelBound);
   }
 
   private animateScrollable(scrollable: { el: HTMLElement; targetScrollTop: number; targetScrollLeft: number; animating: boolean }) {
@@ -214,6 +251,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     gridImg.style.visibility = 'hidden';
 
     this.selectedProject = project;
+    this.registerSidebar();
 
     // Wait for Angular to render the sidebar
     setTimeout(() => {
