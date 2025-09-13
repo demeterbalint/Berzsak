@@ -34,8 +34,8 @@ import {ViewStatus} from '../../enum/view-status';
 export class ProjectComponent implements OnInit, AfterViewInit {
   @ViewChild('grid') gridRef!: ElementRef<HTMLDivElement>;
 
-  projects: ProjectDetails[] = [];
-  selectedProject?: ProjectDetails;
+  protected projects: ProjectDetails[] = [];
+  protected selectedProject?: ProjectDetails;
 
   private dragging = false;
   private moved = false;
