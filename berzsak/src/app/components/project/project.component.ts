@@ -4,6 +4,7 @@ import {ProjectService} from '../../services/project.service';
 import {CommonModule} from '@angular/common';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ViewStatus} from '../../enum/view-status';
+import {DragScrollService} from '../../services/drag-scroll.service';
 
 @Component({
   selector: 'app-project',
@@ -37,40 +38,12 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   protected projects: ProjectDetails[] = [];
   protected selectedProject?: ProjectDetails;
 
-  private dragging = false;
-  private moved = false;
-  private startX = 0;
-  private startY = 0;
-  private scrollLeft = 0;
-  private scrollTop = 0;
-
-  private onDragBound = (event: MouseEvent) => this.onDrag(event);
-  private endDragBound = (event: MouseEvent) => this.endDrag(event);
-  private onWindowMouseOutBound = (event: MouseEvent) => {
-    // relatedTarget/toElement null => pointer left the document (window)
-    if (!event.relatedTarget && !(event as any).toElement) {
-      this.endDrag();
-    }
-  };
-  private onWindowBlurBound = () => this.endDrag();
-  private onVisibilityChangeBound = () => {
-    if (document.hidden) this.endDrag();
-  };
-  private onPointerCancelBound = () => this.endDrag();
-
-  private scrollables: {
-    el: HTMLElement;
-    targetScrollTop: number;
-    targetScrollLeft: number;
-    animating: boolean;
-  }[] = [];
-
   protected view = {
     status: ViewStatus.EXPERIENCE,
     value: 'Experience view'
   };
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private dragScrollService: DragScrollService) {
   }
 
   ngOnInit(): void {
@@ -79,10 +52,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const gridEl = this.gridRef.nativeElement;
+    this.dragScrollService.registerScrollable(gridEl)
 
     if (gridEl) {
-      this.scrollables.push({ el: gridEl, targetScrollTop: gridEl.scrollTop, targetScrollLeft: gridEl.scrollLeft, animating: false });
-      // Optional: center grid initially
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
     }
@@ -98,48 +70,47 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     }
   }
 
+  @HostListener('window:mouseup', ['$event'])
+  onMouseUp(event: MouseEvent) {
+    const gridEl = this.gridRef.nativeElement;
+    this.dragScrollService.endDrag(event, gridEl);
+  }
+
+  @HostListener('window:mouseleave', ['$event'])
+  onMouseLeave(event: MouseEvent) {
+    const gridEl = this.gridRef.nativeElement;
+    this.dragScrollService.endDrag(event, gridEl);
+  }
+
   @HostListener('window:wheel', ['$event'])
   onWheel(event: WheelEvent) {
-    const grid = this.scrollables.find(s => s.el === this.gridRef.nativeElement);
-    const sidebar = this.scrollables.find(s => s.el.matches('.sidebar'));
+    const grid = this.dragScrollService.scrollables.find(s => s.el === this.gridRef.nativeElement);
+    const sidebar = this.dragScrollService.scrollables.find(s => s.el.matches('.sidebar'));
 
     if (this.selectedProject && sidebar) {
       event.preventDefault();
       sidebar.targetScrollTop = sidebar.el.scrollTop;
       sidebar.targetScrollTop += event.deltaY;
       sidebar.targetScrollTop = Math.max(0, Math.min(sidebar.targetScrollTop, sidebar.el.scrollHeight - sidebar.el.clientHeight));
-      this.animateScrollable(sidebar);
+      this.dragScrollService.animateScrollable(sidebar);
     } else if (!this.selectedProject && grid) {
       event.preventDefault();
       grid.targetScrollTop = grid.el.scrollTop;
       grid.targetScrollLeft = grid.el.scrollLeft;
       grid.targetScrollTop += event.deltaY;
       grid.targetScrollLeft += event.deltaX;
-      this.animateScrollable(grid);
+      this.dragScrollService.animateScrollable(grid);
     }
   }
 
   private registerSidebar() {
     const sidebarEl = document.querySelector('.sidebar') as HTMLElement;
     if (!sidebarEl) return;
-
-    // only add once
-    if (!this.scrollables.find(s => s.el === sidebarEl)) {
-      this.scrollables.push({
-        el: sidebarEl,
-        targetScrollTop: sidebarEl.scrollTop,
-        targetScrollLeft: sidebarEl.scrollLeft,
-        animating: false
-      });
-    }
+    this.dragScrollService.registerScrollable(sidebarEl);
   }
 
   get gridState() {
     return this.selectedProject ? 'open' : 'closed';
-  }
-
-  get canDrag(): boolean {
-    return !this.selectedProject; // draggable only when sidebar is closed
   }
 
   handleGridInteraction(event: MouseEvent) {
@@ -147,93 +118,13 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     if (this.selectedProject) {
       this.closeSidebar();
     }
-    this.startDrag(event);
-  }
-
-  startDrag(event: MouseEvent) {
-    if (!this.canDrag) return;
-    this.dragging = true;
-    this.moved = false;
-    const el = this.gridRef.nativeElement;
-
-    // Save both X and Y starting points
-    this.startX = event.pageX - el.offsetLeft;
-    this.startY = event.pageY - el.offsetTop;
-
-    this.scrollLeft = el.scrollLeft;
-    this.scrollTop = el.scrollTop;
-
-    el.style.cursor = 'grabbing';
-
-    // Global listeners so drag ends even if pointer leaves the element or window
-    window.addEventListener('mousemove', this.onDragBound);
-    window.addEventListener('mouseup', this.endDragBound);
-
-    // Robustly catch "pointer left the window" and other aborts:
-    window.addEventListener('mouseout', this.onWindowMouseOutBound); // relatedTarget == null when leaving window
-    window.addEventListener('blur', this.onWindowBlurBound);         // window lost focus (alt-tab)
-    document.addEventListener('visibilitychange', this.onVisibilityChangeBound); // tab hidden
-    window.addEventListener('pointercancel', this.onPointerCancelBound); // pointer aborted (touch)
+    const gridEl = this.gridRef.nativeElement;
+    this.dragScrollService.startDrag(event, gridEl, this.selectedProject);
   }
 
   onDrag(event: MouseEvent) {
-    if (!this.dragging) return;
-
-    event.preventDefault(); // prevent text/image selection
-
-    const el = this.gridRef.nativeElement;
-    const x = event.pageX - el.offsetLeft;
-    const y = event.pageY - el.offsetTop;
-
-    const walkX = this.startX - x; // horizontal distance moved
-    const walkY = this.startY - y; // vertical distance moved
-
-    if (Math.abs(walkX) > 5 || Math.abs(walkY) > 5) {
-      this.moved = true; // mark as actual drag
-    }
-    const grid = this.scrollables.find(s => s.el === el);
-    if (grid) {
-      grid.targetScrollLeft = this.scrollLeft + walkX;
-      grid.targetScrollTop = this.scrollTop + walkY;
-      this.animateScrollable(grid);
-    }
-  }
-
-  endDrag(_event?: MouseEvent) {
-    this.dragging = false;
-    // Restore cursor
-    if (this.gridRef && this.gridRef.nativeElement) {
-      this.gridRef.nativeElement.style.cursor = 'grab';
-    }
-
-    // Remove global listeners
-    window.removeEventListener('mousemove', this.onDragBound);
-    window.removeEventListener('mouseup', this.endDragBound);
-    window.removeEventListener('mouseout', this.onWindowMouseOutBound);
-    window.removeEventListener('blur', this.onWindowBlurBound);
-    document.removeEventListener('visibilitychange', this.onVisibilityChangeBound);
-    window.removeEventListener('pointercancel', this.onPointerCancelBound);
-  }
-
-  private animateScrollable(scrollable: { el: HTMLElement; targetScrollTop: number; targetScrollLeft: number; animating: boolean }) {
-    const lag = 0.1;
-
-    const step = () => {
-      scrollable.el.scrollTop += (scrollable.targetScrollTop - scrollable.el.scrollTop) * lag;
-      scrollable.el.scrollLeft += (scrollable.targetScrollLeft - scrollable.el.scrollLeft) * lag;
-
-      if (Math.abs(scrollable.el.scrollTop - scrollable.targetScrollTop) > 0.5 ||
-        Math.abs(scrollable.el.scrollLeft - scrollable.targetScrollLeft) > 0.5) {
-        requestAnimationFrame(step);
-      } else {
-        scrollable.animating = false;
-      }
-    };
-
-    if (!scrollable.animating) {
-      scrollable.animating = true;
-      requestAnimationFrame(step);
-    }
+    const gridEl = this.gridRef.nativeElement;
+    this.dragScrollService.onDrag(event, gridEl);
   }
 
   onImageClick(event: MouseEvent, project: ProjectDetails) {
@@ -241,7 +132,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       this.closeSidebar();
       return;
     }
-    if (!this.moved) {
+    if (!this.dragScrollService.moved) {
       this.flyToSidebar(event, project);
     }
   }
