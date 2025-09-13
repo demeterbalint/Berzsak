@@ -6,12 +6,12 @@
   </div>
 
   <!-- Grid/Experience button -->
-  <div class="view-button">
+  <div class="view-button" [hidden]="selectedProject">
     <button class="view-btn" (click)="viewChange()">
     <span class="view-icon">
       <!-- use a grid/list icon based on status -->
-      <i *ngIf="view.value === 'Grid view'" class="fa fa-th"></i>
-      <i *ngIf="view.value === 'Experience view'" class="fa fa-list"></i>
+      <i *ngIf="view.value === 'Grid view'" class="fa fa-grip"></i>
+      <i *ngIf="view.value === 'Experience view'" class="fa fa-arrows"></i>
     </span>
       <span class="view-text">{{view.value}}</span>
     </button>
