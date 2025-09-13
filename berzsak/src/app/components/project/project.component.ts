@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ProjectDetails} from '../../models/project-details';
 import {ProjectService} from '../../services/project.service';
 import {CommonModule} from '@angular/common';
@@ -24,7 +24,7 @@ import {ViewStatus} from '../../enum/view-status';
     ]),
     // Grid slide right when sidebar is open
     trigger('gridSlide', [
-      state('open', style({transform: 'translateX(500px)'})), // same width as sidebar
+      state('open', style({transform: 'translateX(40%)'})), // same width as sidebar
       state('closed', style({transform: 'translateX(0)'})),
       transition('closed => open', [animate('1s ease-out')]),
       transition('open => closed', [animate('1s ease-in')])
@@ -74,6 +74,17 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     } else {
       this.view.status = ViewStatus.EXPERIENCE;
       this.view.value = 'Experience view';
+    }
+  }
+
+  @HostListener('window:wheel', ['$event'])
+  onWheel(event: WheelEvent) {
+    if (this.selectedProject) {
+      const sidebar = document.querySelector('.sidebar') as HTMLElement;
+      if (sidebar) {
+        sidebar.scrollTop += event.deltaY;
+        event.preventDefault(); // stop normal scrolling
+      }
     }
   }
 
