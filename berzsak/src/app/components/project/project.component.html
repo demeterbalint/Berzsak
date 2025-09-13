@@ -41,8 +41,6 @@
   <!-- Grid -->
   <div class="grid" #grid [@gridSlide]="gridState"
        (mousedown)="handleGridInteraction($event)"
-       (mouseup)="endDrag($event)"
-       (mouseleave)="endDrag($event)"
        (mousemove)="onDrag($event)">
     <div *ngFor="let project of projects" class="grid-item">
       <img [src]="project.mainImgUrl" [alt]="project.name" [attr.data-project-name]="project.name" (click)="onImageClick($event, project)" draggable="false">

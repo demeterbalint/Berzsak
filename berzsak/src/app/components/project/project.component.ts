@@ -37,17 +37,24 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   projects: ProjectDetails[] = [];
   selectedProject?: ProjectDetails;
 
-  dragging = false;
-  moved = false;
-  startX = 0;
-  startY = 0;
-  scrollLeft = 0;
-  scrollTop = 0;
-  targetScrollLeft = 0;
-  targetScrollTop = 0;
-  animating = false;
+  private dragging = false;
+  private moved = false;
+  private startX = 0;
+  private startY = 0;
+  private scrollLeft = 0;
+  private scrollTop = 0;
 
-  view = {
+  private onDragBound = (event: MouseEvent) => this.onDrag(event);
+  private endDragBound = (event: MouseEvent) => this.endDrag(event);
+
+  private scrollables: {
+    el: HTMLElement;
+    targetScrollTop: number;
+    targetScrollLeft: number;
+    animating: boolean;
+  }[] = [];
+
+  protected view = {
     status: ViewStatus.EXPERIENCE,
     value: 'Experience view'
   };
@@ -61,10 +68,18 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const gridEl = this.gridRef.nativeElement;
+    const sidebarEl = document.querySelector('.sidebar') as HTMLElement;
 
-    // Scroll to the center
-    gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
-    gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
+    if (gridEl) {
+      this.scrollables.push({ el: gridEl, targetScrollTop: gridEl.scrollTop, targetScrollLeft: gridEl.scrollLeft, animating: false });
+      // Optional: center grid initially
+      gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
+      gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
+    }
+
+    if (sidebarEl) {
+      this.scrollables.push({ el: sidebarEl, targetScrollTop: sidebarEl.scrollTop, targetScrollLeft: 0, animating: false });
+    }
   }
 
   viewChange() {
@@ -79,12 +94,108 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:wheel', ['$event'])
   onWheel(event: WheelEvent) {
+    const grid = this.scrollables.find(s => s.el === this.gridRef.nativeElement);
+    const sidebar = this.scrollables.find(s => s.el.classList.contains('sidebar'));
+
+
+    if (this.selectedProject && sidebar) {
+      event.preventDefault();
+      sidebar.targetScrollTop += event.deltaY;
+      sidebar.targetScrollTop = Math.max(0, Math.min(sidebar.targetScrollTop, sidebar.el.scrollHeight - sidebar.el.clientHeight));
+      this.animateScrollable(sidebar);
+    } else if (!this.selectedProject && grid) {
+      event.preventDefault();
+      grid.targetScrollTop += event.deltaY;
+      grid.targetScrollLeft += event.deltaX; // optional horizontal scroll
+      this.animateScrollable(grid);
+    }
+  }
+
+  get gridState() {
+    return this.selectedProject ? 'open' : 'closed';
+  }
+
+  get canDrag(): boolean {
+    return !this.selectedProject; // draggable only when sidebar is closed
+  }
+
+  handleGridInteraction(event: MouseEvent) {
+    // If sidebar is open, close it immediately
     if (this.selectedProject) {
-      const sidebar = document.querySelector('.sidebar') as HTMLElement;
-      if (sidebar) {
-        sidebar.scrollTop += event.deltaY;
-        event.preventDefault(); // stop normal scrolling
+      this.closeSidebar();
+    }
+    this.startDrag(event);
+  }
+
+  startDrag(event: MouseEvent) {
+    if (!this.canDrag) return;
+    this.dragging = true;
+    this.moved = false;
+    const el = event.currentTarget as HTMLElement;
+
+    // Save both X and Y starting points
+    this.startX = event.pageX - el.offsetLeft;
+    this.startY = event.pageY - el.offsetTop;
+
+    this.scrollLeft = el.scrollLeft;
+    this.scrollTop = el.scrollTop;
+
+    el.style.cursor = 'grabbing';
+
+    window.addEventListener('mousemove', this.onDragBound);
+    window.addEventListener('mouseup', this.endDragBound);
+  }
+
+  onDrag(event: MouseEvent) {
+    if (!this.dragging) return;
+
+    event.preventDefault(); // prevent text/image selection
+
+    const el = this.gridRef.nativeElement;
+    const x = event.pageX - el.offsetLeft;
+    const y = event.pageY - el.offsetTop;
+
+    const walkX = this.startX - x; // horizontal distance moved
+    const walkY = this.startY - y; // vertical distance moved
+
+    if (Math.abs(walkX) > 5 || Math.abs(walkY) > 5) {
+      this.moved = true; // mark as actual drag
+    }
+    const grid = this.scrollables.find(s => s.el === el);
+    if (grid) {
+      grid.targetScrollLeft = this.scrollLeft + walkX;
+      grid.targetScrollTop = this.scrollTop + walkY;
+      this.animateScrollable(grid);
+    }
+  }
+
+  endDrag(_event?: MouseEvent) {
+    this.dragging = false;
+    this.gridRef.nativeElement.style.cursor = 'grab';
+
+    // Remove global listeners
+    window.removeEventListener('mousemove', this.onDragBound);
+    window.removeEventListener('mouseup', this.endDragBound);
+  }
+
+  private animateScrollable(scrollable: { el: HTMLElement; targetScrollTop: number; targetScrollLeft: number; animating: boolean }) {
+    const lag = 0.1;
+
+    const step = () => {
+      scrollable.el.scrollTop += (scrollable.targetScrollTop - scrollable.el.scrollTop) * lag;
+      scrollable.el.scrollLeft += (scrollable.targetScrollLeft - scrollable.el.scrollLeft) * lag;
+
+      if (Math.abs(scrollable.el.scrollTop - scrollable.targetScrollTop) > 0.5 ||
+        Math.abs(scrollable.el.scrollLeft - scrollable.targetScrollLeft) > 0.5) {
+        requestAnimationFrame(step);
+      } else {
+        scrollable.animating = false;
       }
+    };
+
+    if (!scrollable.animating) {
+      scrollable.animating = true;
+      requestAnimationFrame(step);
     }
   }
 
@@ -210,75 +321,11 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     });
   }
 
-  get gridState() {
-    return this.selectedProject ? 'open' : 'closed';
-  }
-
-  handleGridInteraction(event: MouseEvent) {
-    // If sidebar is open, close it immediately
-    if (this.selectedProject) {
-      this.closeSidebar();
-    }
-
-    // Start drag as usual
-    this.startDrag(event);
-  }
-
-  startDrag(event: MouseEvent) {
-    if (!this.canDrag) return;
-    this.dragging = true;
-    this.moved = false;
-    const el = event.currentTarget as HTMLElement;
-
-    // Save both X and Y starting points
-    this.startX = event.pageX - el.offsetLeft;
-    this.startY = event.pageY - el.offsetTop;
-
-    this.scrollLeft = el.scrollLeft;
-    this.scrollTop = el.scrollTop;
-
-    el.style.cursor = 'grabbing';
-  }
-
-  endDrag(event: MouseEvent) {
-    this.dragging = false;
-    (event.currentTarget as HTMLElement).style.cursor = 'grab';
-  }
-
-  onDrag(event: MouseEvent) {
-    if (!this.dragging) return;
-
-    event.preventDefault(); // prevent text/image selection
-
-    const el = event.currentTarget as HTMLElement;
-    const x = event.pageX - el.offsetLeft;
-    const y = event.pageY - el.offsetTop;
-
-    const walkX = this.startX - x; // horizontal distance moved
-    const walkY = this.startY - y; // vertical distance moved
-
-    if (Math.abs(walkX) > 5 || Math.abs(walkY) > 5) {
-      this.moved = true; // mark as actual drag
-    }
-
-    this.targetScrollLeft = this.scrollLeft + walkX;
-    this.targetScrollTop = this.scrollTop + walkY;
-
-    if (!this.animating) {
-      this.animating = true;
-      this.animateScroll(el);
-    }
-  }
-
-  get canDrag(): boolean {
-    return !this.selectedProject; // draggable only when sidebar is closed
-  }
-
   showContact() {
     return;
   }
 
-  private animateScroll(el: HTMLElement) {
+  /*private animateScroll(el: HTMLElement) {
     const lag = 0.1; // adjust 0.1–0.25 for how much lag (≈0.2 sec)
 
     const step = () => {
@@ -295,5 +342,5 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     };
 
     requestAnimationFrame(step);
-  }
+  }*/
 }
