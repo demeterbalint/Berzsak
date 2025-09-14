@@ -5,6 +5,7 @@ import {CommonModule} from '@angular/common';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ViewStatus} from '../../enum/view-status';
 import {DragScrollService} from '../../services/drag-scroll.service';
+import {SidebarAnimationService} from '../../services/sidebar-animation.service';
 
 @Component({
   selector: 'app-project',
@@ -33,7 +34,8 @@ import {DragScrollService} from '../../services/drag-scroll.service';
   ]
 })
 export class ProjectComponent implements OnInit, AfterViewInit {
-  @ViewChild('grid') gridRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('gridExp') gridExpRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('gridCol3') gridCol3Ref!: ElementRef<HTMLDivElement>;
 
   protected projects: ProjectDetails[] = [];
   protected selectedProject?: ProjectDetails;
@@ -43,7 +45,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     value: 'Experience view'
   };
 
-  constructor(private projectService: ProjectService, private dragScrollService: DragScrollService) {
+  constructor(private projectService: ProjectService, private dragScrollService: DragScrollService, private sidebarAnimation: SidebarAnimationService) {
   }
 
   ngOnInit(): void {
@@ -51,9 +53,14 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const gridEl = this.gridRef.nativeElement;
-    this.dragScrollService.registerScrollable(gridEl)
+    const gridEl = this.gridExpRef.nativeElement;
+    const gridCol3 = this.gridCol3Ref.nativeElement;
 
+    // Register both scrollables so animateScrollable can find them
+    this.dragScrollService.registerScrollable(gridEl);
+    this.dragScrollService.registerScrollable(gridCol3);
+
+    // center experience grid
     if (gridEl) {
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
@@ -72,187 +79,98 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:mouseup', ['$event'])
   onMouseUp(event: MouseEvent) {
-    const gridEl = this.gridRef.nativeElement;
+    const gridEl = this.gridExpRef.nativeElement;
     this.dragScrollService.endDrag(event, gridEl);
   }
 
   @HostListener('window:mouseleave', ['$event'])
   onMouseLeave(event: MouseEvent) {
-    const gridEl = this.gridRef.nativeElement;
+    const gridEl = this.gridExpRef.nativeElement;
     this.dragScrollService.endDrag(event, gridEl);
   }
 
   @HostListener('window:wheel', ['$event'])
   onWheel(event: WheelEvent) {
-    const grid = this.dragScrollService.scrollables.find(s => s.el === this.gridRef.nativeElement);
-    const sidebar = this.dragScrollService.scrollables.find(s => s.el.matches('.sidebar'));
+    // find registered scrollables
+    const expScrollable = this.dragScrollService.scrollables.find(s => s.el === this.gridExpRef?.nativeElement);
+    const sidebarScrollable = this.dragScrollService.scrollables.find(s => s.el.classList && s.el.classList.contains('sidebar'));
 
-    if (this.selectedProject && sidebar) {
+    // Sidebar scroll (when open)
+    if (this.selectedProject && sidebarScrollable) {
       event.preventDefault();
-      sidebar.targetScrollTop = sidebar.el.scrollTop;
-      sidebar.targetScrollTop += event.deltaY;
-      sidebar.targetScrollTop = Math.max(0, Math.min(sidebar.targetScrollTop, sidebar.el.scrollHeight - sidebar.el.clientHeight));
-      this.dragScrollService.animateScrollable(sidebar);
-    } else if (!this.selectedProject && grid) {
-      event.preventDefault();
-      grid.targetScrollTop = grid.el.scrollTop;
-      grid.targetScrollLeft = grid.el.scrollLeft;
-      grid.targetScrollTop += event.deltaY;
-      grid.targetScrollLeft += event.deltaX;
-      this.dragScrollService.animateScrollable(grid);
+      sidebarScrollable.targetScrollTop = Math.max(0, Math.min(sidebarScrollable.el.scrollTop + event.deltaY, sidebarScrollable.el.scrollHeight - sidebarScrollable.el.clientHeight));
+      this.dragScrollService.animateScrollable(sidebarScrollable);
+      return;
     }
-  }
 
-  private registerSidebar() {
-    const sidebarEl = document.querySelector('.sidebar') as HTMLElement;
-    if (!sidebarEl) return;
-    this.dragScrollService.registerScrollable(sidebarEl);
+    // Experience view: intercept and animate scrolling
+    if (!this.selectedProject && this.view.status === ViewStatus.EXPERIENCE && expScrollable) {
+      event.preventDefault();
+      expScrollable.targetScrollTop = expScrollable.el.scrollTop + event.deltaY;
+      expScrollable.targetScrollLeft = expScrollable.el.scrollLeft + event.deltaX;
+      this.dragScrollService.animateScrollable(expScrollable);
+      return;
+    }
   }
 
   get gridState() {
     return this.selectedProject ? 'open' : 'closed';
   }
 
-  handleGridInteraction(event: MouseEvent) {
+  handleExperienceInteraction(event: MouseEvent) {
     // If sidebar is open, close it immediately
     if (this.selectedProject) {
       this.closeSidebar();
     }
-    const gridEl = this.gridRef.nativeElement;
+    const gridEl = this.gridExpRef.nativeElement;
     this.dragScrollService.startDrag(event, gridEl, this.selectedProject);
   }
 
-  onDrag(event: MouseEvent) {
-    const gridEl = this.gridRef.nativeElement;
+  onExperienceDrag(event: MouseEvent) {
+    const gridEl = this.gridExpRef.nativeElement;
     this.dragScrollService.onDrag(event, gridEl);
+
   }
 
-  onImageClick(event: MouseEvent, project: ProjectDetails) {
+  async onImageClick(event: MouseEvent, project: ProjectDetails) {
+    const gridImg = event.currentTarget as HTMLElement;
     if (this.selectedProject) {
-      this.closeSidebar();
+      await this.closeSidebar();
       return;
     }
     if (!this.dragScrollService.moved) {
-      this.flyToSidebar(event, project);
+      this.selectedProject = project;
+      setTimeout(async () => {
+        await this.sidebarAnimation.flyToSidebar(gridImg, project);
+      }, 0);
     }
   }
 
-  flyToSidebar(event: MouseEvent, project: ProjectDetails) {
-    const gridImg = event.currentTarget as HTMLElement;
-    gridImg.style.visibility = 'hidden';
-
-    this.selectedProject = project;
-    setTimeout(() => {
-      this.registerSidebar();
-    }, 0);
-
-    // Wait for Angular to render the sidebar
-    setTimeout(() => {
-      const sidebarImg = document.querySelector(
-        '.sidebar img[data-project-name="' + project.name + '"]'
-      ) as HTMLElement;
-      if (!sidebarImg) return;
-      sidebarImg.style.visibility = 'hidden';
-
-      const clone = gridImg.cloneNode(true) as HTMLElement;
-      const startRect = gridImg.getBoundingClientRect();
-
-      clone.style.position = 'fixed';
-      clone.style.top = `${startRect.top}px`;
-      clone.style.left = `${startRect.left}px`;
-      clone.style.width = `${startRect.width}px`;
-      clone.style.height = `${startRect.height}px`;
-      clone.style.transition = 'all 1000ms ease-out';
-      clone.style.zIndex = '9999';
-      clone.style.pointerEvents = 'none';
-      clone.style.visibility = 'visible';
-      document.body.appendChild(clone);
-
-      const sidebarWidth = 500; // must match your CSS
-      const sidebarRect = sidebarImg.getBoundingClientRect();
-      const finalTop = sidebarRect.top;
-      const finalLeft = sidebarRect.left + sidebarWidth; // move clone horizontally along with sidebar
-
-      // Animate the clone in sync with the sidebar slide
-      requestAnimationFrame(() => {
-        clone.style.top = `${finalTop}px`;
-        clone.style.left = `${finalLeft}px`;
-        clone.style.width = `${sidebarRect.width}px`;
-        clone.style.height = `${sidebarRect.height}px`;
-      });
-
-      clone.addEventListener('transitionend', () => {
-        clone.remove();
-        sidebarImg.style.visibility = 'visible';
-      });
-    }, 0); // next tick
-
-    const sidebarDuration = 1000; // 1s
-
-    setTimeout(() => {
-      const name = document.querySelector('.sidebar-name') as HTMLElement;
-      if (name) name.style.opacity = '1';
-    }, sidebarDuration + 300);
-
-    setTimeout(() => {
-      const description = document.querySelector('.sidebar-description') as HTMLElement;
-      if (description) description.style.opacity = '1';
-    }, sidebarDuration + 800);
-
-    setTimeout(() => {
-      const gallery = document.querySelector('.gallery') as HTMLElement;
-      if (gallery) gallery.style.opacity = '1';
-    }, sidebarDuration + 1300);
-  }
-
-
-  closeSidebar() {
+  async closeSidebar() {
     if (!this.selectedProject) return;
-
-    const sidebarImg = document.querySelector('.sidebar img[data-project-name="' + this.selectedProject.name + '"]') as HTMLElement;
-    const gridImg = document.querySelector('.grid-item img[data-project-name="' + this.selectedProject.name + '"]') as HTMLElement;
-    if (!sidebarImg || !gridImg) {
+    const gridImg = document.querySelector(`.grid-item img[data-project-name="${this.selectedProject.name}"]`) as HTMLElement;
+    if (!gridImg) {
       this.selectedProject = undefined;
       return;
     }
 
-    // Clone the sidebar image
-    const clone = sidebarImg.cloneNode(true) as HTMLElement;
-    const sidebarRect = sidebarImg.getBoundingClientRect();
-    clone.style.position = 'fixed';
-    clone.style.top = sidebarRect.top + 'px';
-    clone.style.left = sidebarRect.left + 'px';
-    clone.style.width = sidebarRect.width + 'px';
-    clone.style.height = sidebarRect.height + 'px';
-    clone.style.transition = 'all 1000ms ease-in';
-    clone.style.zIndex = '9999';
-    clone.style.pointerEvents = 'none';
-    document.body.appendChild(clone);
+    await this.sidebarAnimation.closeSidebar(gridImg, this.selectedProject);
+    this.selectedProject = undefined;
+  }
 
-    // Hide sidebar and grid images during animation
-    sidebarImg.style.visibility = 'hidden';
-    gridImg.style.visibility = 'hidden';
+  handleCol3Interaction(event: MouseEvent) {
+    const gridCol3 = event.currentTarget as HTMLElement;
+    this.dragScrollService.startDragOnCol3(event, gridCol3, this.selectedProject);
+  }
 
-    // Force reflow
-    clone.getBoundingClientRect();
-
-    // Animate clone back to grid
-    const gridRect = gridImg.getBoundingClientRect();
-    requestAnimationFrame(() => {
-      clone.style.top = gridRect.top + 'px';
-      clone.style.left = gridRect.left + 'px';
-      clone.style.width = gridRect.width + 'px';
-      clone.style.height = gridRect.height + 'px';
-    });
-
-    clone.addEventListener('transitionend', () => {
-      clone.remove();
-      gridImg.style.visibility = 'visible';
-      this.selectedProject = undefined;
-    });
+  onCol3Drag(event: MouseEvent) {
+    const gridCol3 = event.currentTarget as HTMLElement;
+    this.dragScrollService.onDragCol3(event, gridCol3);
   }
 
   showContact() {
     return;
   }
+
+  protected readonly ViewStatus = ViewStatus;
 }

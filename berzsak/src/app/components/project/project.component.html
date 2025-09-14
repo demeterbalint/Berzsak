@@ -39,11 +39,21 @@
   </div>
 
   <!-- Grid -->
-  <div class="grid" #grid [@gridSlide]="gridState"
-       (mousedown)="handleGridInteraction($event)"
-       (mousemove)="onDrag($event)">
+  <div *ngIf="view.status === ViewStatus.EXPERIENCE" class="grid-experience" #gridExp [@gridSlide]="gridState"
+       (mousedown)="handleExperienceInteraction($event)"
+       (mousemove)="onExperienceDrag($event)">
     <div *ngFor="let project of projects" class="grid-item">
       <img [src]="project.mainImgUrl" [alt]="project.name" [attr.data-project-name]="project.name" (click)="onImageClick($event, project)" draggable="false">
+    </div>
+  </div>
+
+  <div *ngIf="view.status === ViewStatus.GRID" class="grid-col3" #gridCol3>
+    <div *ngFor="let project of projects" class="grid-item">
+      <div class="item-gallery"
+           (mousedown)="handleCol3Interaction($event)"
+           (mousemove)="onCol3Drag($event)">
+        <img *ngFor="let img of project.imageUrls" [src]="img" draggable="false">
+      </div>
     </div>
   </div>
 </div>
