@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <!-- Grid -->
+  <!-- Grid-Experience -->
   <div *ngIf="view.status === ViewStatus.EXPERIENCE" class="grid-experience" #gridExp [@gridSlide]="gridState"
        (mousedown)="handleExperienceInteraction($event)"
        (mousemove)="onExperienceDrag($event)">
@@ -47,6 +47,7 @@
     </div>
   </div>
 
+  <!-- Grid-Col3 -->
   <div *ngIf="view.status === ViewStatus.GRID" class="grid-col3" #gridCol3>
     <div *ngFor="let project of projects" class="grid-item">
       <div class="item-gallery"
