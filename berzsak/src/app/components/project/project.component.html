@@ -48,13 +48,17 @@
   </div>
 
   <!-- Grid-Col3 -->
-  <div *ngIf="view.status === ViewStatus.GRID" class="grid-col3" #gridCol3>
-    <div *ngFor="let project of projects" class="grid-item">
-      <div class="item-gallery"
-           (mousedown)="handleCol3Interaction($event)"
-           (mousemove)="onCol3Drag($event)">
-        <img *ngFor="let img of project.imageUrls" [src]="img" draggable="false">
+  <div class="grid-container" *ngIf="view.status === ViewStatus.GRID">
+    <div class="fade-div"></div>
+    <div class="grid-col3" #gridCol3>
+      <div *ngFor="let project of projects" class="grid-item">
+        <div class="item-gallery"
+             (mousedown)="handleCol3Interaction($event)"
+             (mousemove)="onCol3Drag($event)">
+          <img *ngFor="let img of project.imageUrls" [src]="img" draggable="false">
+        </div>
       </div>
     </div>
   </div>
+
 </div>
