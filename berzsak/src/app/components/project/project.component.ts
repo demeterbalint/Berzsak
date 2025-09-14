@@ -45,6 +45,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     value: 'Experience view'
   };
 
+  private sidebarClosing = false;
+
   constructor(private projectService: ProjectService, private dragScrollService: DragScrollService, private sidebarAnimation: SidebarAnimationService) {
   }
 
@@ -147,7 +149,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   async closeSidebar() {
-    if (!this.selectedProject) return;
+    if (!this.selectedProject || this.sidebarClosing) return;
+
+    this.sidebarClosing = true;
+
     const gridImg = document.querySelector(`.grid-item img[data-project-name="${this.selectedProject.name}"]`) as HTMLElement;
     if (!gridImg) {
       this.selectedProject = undefined;
@@ -156,6 +161,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
     await this.sidebarAnimation.closeSidebar(gridImg, this.selectedProject);
     this.selectedProject = undefined;
+    this.sidebarClosing = false;
   }
 
   handleCol3Interaction(event: MouseEvent) {
