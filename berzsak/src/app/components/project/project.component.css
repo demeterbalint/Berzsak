@@ -82,6 +82,7 @@
   height: 100%;
   position: fixed; /* keep grid independent */
   overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-width: none;
   display: flex;
   flex-direction: column;
@@ -101,7 +102,11 @@
 }
 
 .sidebar-description {
+  width: 100%;
+  font-weight: 300;
   color: black;
+  margin-left: 15%;
+  text-align: left
 }
 
 .sidebar-main {
@@ -119,12 +124,12 @@
 /* Gallery inside sidebar */
 .gallery {
   display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
+  flex-direction: row;
   margin-top: 1vw;
   margin-bottom: 1vw;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  gap: 1vw;
+  width: 85%;
 }
 
 .gallery img {

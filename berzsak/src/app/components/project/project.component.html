@@ -20,13 +20,7 @@
   <!-- Sidebar -->
   <div class="sidebar" *ngIf="selectedProject" [@sidebarSlide]>
     <h2 class="sidebar-name">{{ selectedProject.name }}</h2>
-    <br>
-    <br>
-    <br>
-    <p class="sidebar-description">{{ selectedProject.description }}</p>
-    <br>
-    <br>
-    <br>
+    <h3 class="sidebar-description">{{ selectedProject.description }}</h3>
 
     <div class="sidebar-main">
       <img [src]="selectedProject.mainImgUrl" [alt]="selectedProject.name"

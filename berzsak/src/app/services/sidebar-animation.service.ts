@@ -41,7 +41,7 @@ export class SidebarAnimationService {
 
       // Compute final position after sidebar slides 40%
       const sidebarFinalRect = sidebarImg.getBoundingClientRect();
-      const finalLeft = container.getBoundingClientRect().left; // sidebar slide
+      const finalLeft = container.getBoundingClientRect().width*0.4*0.075; // sidebar slide
 
       // Animate clone to sidebar
       requestAnimationFrame(() => {
