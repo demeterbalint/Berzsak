@@ -233,7 +233,7 @@
   width: 80%;
   height: 80%;
   scrollbar-width: none;
-  justify-content: left;
+  justify-content: flex-start;
   align-items: center;
   cursor: grab;
   user-select: none;
@@ -248,9 +248,9 @@
 }
 
 .item-gallery img {
-  width: 100%;
+  min-width: 100%;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 4px;
   user-select: none;
   pointer-events: auto;
