@@ -192,8 +192,8 @@
 }
 
 .grid-experience .grid-item img {
-  max-height: 80%;
-  max-width: 80%;
+  height: auto;
+  width: 80%;
   object-fit: contain;
   user-select: none;
   pointer-events: auto;
