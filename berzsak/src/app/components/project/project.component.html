@@ -13,13 +13,12 @@
       <i *ngIf="view.value === 'Grid view'" class="fa fa-grip"></i>
       <i *ngIf="view.value === 'Experience view'" class="fa fa-arrows"></i>
     </span>
-      <span class="view-text">{{view.value}}</span>
+      <span class="view-text">{{ view.value }}</span>
     </button>
   </div>
 
   <!-- Sidebar -->
   <div class="sidebar" *ngIf="selectedProject" [@sidebarSlide]>
-    <button class="close-btn" (click)="closeSidebar()">✕</button>
     <h2 class="sidebar-name">{{ selectedProject.name }}</h2>
     <br>
     <br>
@@ -30,20 +29,24 @@
     <br>
 
     <div class="sidebar-main">
-      <img [src]="selectedProject.mainImgUrl" [alt]="selectedProject.name" [attr.data-project-name]="selectedProject.name">
+      <img [src]="selectedProject.mainImgUrl" [alt]="selectedProject.name"
+           [attr.data-project-name]="selectedProject.name">
     </div>
 
     <div class="gallery">
       <img *ngFor="let img of selectedProject.imageUrls" [src]="img" [alt]="selectedProject.name">
     </div>
   </div>
+  <button *ngIf="selectedProject" class="close-btn" (click)="closeSidebar()">✕</button>
+
 
   <!-- Grid-Experience -->
   <div *ngIf="view.status === ViewStatus.EXPERIENCE" class="grid-experience" #gridExp [@gridSlide]="gridState"
        (mousedown)="handleExperienceInteraction($event)"
        (mousemove)="onExperienceDrag($event)">
     <div *ngFor="let project of projects" class="grid-item">
-      <img [src]="project.mainImgUrl" [alt]="project.name" [attr.data-project-name]="project.name" (click)="onImageClick($event, project)" draggable="false">
+      <img [src]="project.mainImgUrl" [alt]="project.name" [attr.data-project-name]="project.name"
+           (click)="onImageClick($event, project)" draggable="false">
     </div>
   </div>
 
