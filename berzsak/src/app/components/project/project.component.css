@@ -54,14 +54,16 @@
   font-family: 'Montserrat', sans-serif;
   cursor: pointer;
   border-radius: 6px;
-  border: 0.1rem solid #333333;
+  border: 0.1rem solid black;
   transition: background 0.3s, transform 0.2s;
 }
 
 .view-btn:hover {
-  background-color: #666666;
+  background-color: #f1f1f1;
   transform: scale(1.02);
 }
+
+.view-btn:active { background-color: #f1f1f1; }
 
 .view-icon {
   display: flex;
