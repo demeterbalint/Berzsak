@@ -18,7 +18,7 @@
   </div>
 
   <!-- Sidebar -->
-  <div class="sidebar" *ngIf="selectedProject" [@sidebarSlide]>
+  <div class="sidebar" *ngIf="selectedProject" [@sidebarSlide] (@sidebarSlide.done)="onSidebarAnimDone($event)">
     <h2 class="sidebar-name">{{ selectedProject.name }}</h2>
     <h3 class="sidebar-description">{{ selectedProject.description }}</h3>
 
@@ -35,7 +35,7 @@
 
 
   <!-- Grid-Experience -->
-  <div *ngIf="view.status === ViewStatus.EXPERIENCE" class="grid-experience" #gridExp [@gridSlide]="gridState"
+  <div *ngIf="view.status === ViewStatus.EXPERIENCE" class="grid-experience" #gridExp [@gridSlide]="gridState" (@gridSlide.done)="onGridAnimDone($event)"
        (mousedown)="handleExperienceInteraction($event)"
        (mousemove)="onExperienceDrag($event)">
     <div *ngFor="let project of projects" class="grid-item">

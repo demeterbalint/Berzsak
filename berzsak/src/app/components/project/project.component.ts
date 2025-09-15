@@ -45,7 +45,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     value: 'Experience view'
   };
 
-  private sidebarClosing = false;
+  private sidebarBusy = false;
+  private pendingSidebarAnimRes?: () => void;
+  private pendingGridAnimRes?: () => void;
 
   constructor(private projectService: ProjectService, private dragScrollService: DragScrollService, private sidebarAnimation: SidebarAnimationService) {
   }
@@ -120,8 +122,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   handleExperienceInteraction(event: MouseEvent) {
-    // If sidebar is open, close it immediately
-    if (this.selectedProject) {
+    if (!this.sidebarBusy && this.selectedProject) {
       this.closeSidebar();
     }
     const gridEl = this.gridExpRef.nativeElement;
@@ -131,37 +132,58 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   onExperienceDrag(event: MouseEvent) {
     const gridEl = this.gridExpRef.nativeElement;
     this.dragScrollService.onDrag(event, gridEl);
-
   }
 
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
-    const gridImg = event.currentTarget as HTMLElement;
-    if (this.selectedProject) {
-      await this.closeSidebar();
-      return;
-    }
-    if (!this.dragScrollService.moved) {
-      this.selectedProject = project;
-      setTimeout(async () => {
-        await this.sidebarAnimation.flyToSidebar(gridImg, project);
-      }, 0);
-    }
+    if (this.sidebarBusy || this.dragScrollService.moved || this.selectedProject) return;
+
+    this.sidebarBusy = true;
+
+    // set selected project so the sidebar renders, then run the animation
+    this.selectedProject = project;
+    await this.sidebarAnimation.flyToSidebar(event.currentTarget as HTMLElement, project);
+
+    this.sidebarBusy = false;
   }
 
-  async closeSidebar() {
-    if (!this.selectedProject || this.sidebarClosing) return;
 
-    this.sidebarClosing = true;
+  async closeSidebar() {
+    if (!this.selectedProject || this.sidebarBusy) return;
+
+    this.sidebarBusy = true;
 
     const gridImg = document.querySelector(`.grid-item img[data-project-name="${this.selectedProject.name}"]`) as HTMLElement;
     if (!gridImg) {
       this.selectedProject = undefined;
+      this.sidebarBusy = false;
       return;
     }
 
     await this.sidebarAnimation.closeSidebar(gridImg, this.selectedProject);
+    // trigger Angular remove which starts ':leave' for sidebar and 'open => closed' for grid
     this.selectedProject = undefined;
-    this.sidebarClosing = false;
+
+    // wait for both Angular animations to finish before clearing busy
+    await Promise.all([
+      new Promise<void>(res => this.pendingSidebarAnimRes = res),
+      new Promise<void>(res => this.pendingGridAnimRes = res)
+    ]);
+
+    this.sidebarBusy = false;
+  }
+
+  onSidebarAnimDone(event: any) {
+    if (event.toState === 'void' && this.pendingSidebarAnimRes) {
+      this.pendingSidebarAnimRes();
+      this.pendingSidebarAnimRes = undefined;
+    }
+  }
+
+  onGridAnimDone(event: any) {
+    if (event.toState === 'closed' && this.pendingGridAnimRes) {
+      this.pendingGridAnimRes();
+      this.pendingGridAnimRes = undefined;
+    }
   }
 
   handleCol3Interaction(event: MouseEvent) {

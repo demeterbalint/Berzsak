@@ -12,64 +12,75 @@ export class SidebarAnimationService {
   }
 
   async flyToSidebar(gridImg: HTMLElement, project: ProjectDetails): Promise<void> {
-    gridImg.style.visibility = 'hidden';
+    return await new Promise<void>(resolve => {
+      gridImg.style.visibility = 'hidden';
 
-    // Wait for Angular to render the sidebar
-    setTimeout(() => {
-      const sidebarEl = document.querySelector('.sidebar') as HTMLElement;
-      const container = document.querySelector('.container') as HTMLElement;
-      if (!sidebarEl || !container) return;
+      // Wait for Angular to render the sidebar in the DOM
+      setTimeout(() => {
+        const sidebarEl = document.querySelector('.sidebar') as HTMLElement;
+        const container = document.querySelector('.container') as HTMLElement;
+        if (!sidebarEl || !container) {
+          resolve();
+          return;
+        }
 
-      const sidebarImg = sidebarEl.querySelector(`img[data-project-name="${project.name}"]`) as HTMLElement;
-      if (!sidebarImg) return;
-      sidebarImg.style.visibility = 'hidden';
+        const sidebarImg = sidebarEl.querySelector(`img[data-project-name="${project.name}"]`) as HTMLElement;
+        if (!sidebarImg) {
+          resolve();
+          return;
+        }
+        sidebarImg.style.visibility = 'hidden';
 
-      // Clone the grid image
-      const clone = gridImg.cloneNode(true) as HTMLElement;
-      const startRect = gridImg.getBoundingClientRect();
+        // Clone the grid image
+        const clone = gridImg.cloneNode(true) as HTMLElement;
+        const startRect = gridImg.getBoundingClientRect();
 
-      clone.style.position = 'fixed';
-      clone.style.top = `${startRect.top}px`;
-      clone.style.left = `${startRect.left}px`;
-      clone.style.width = `${startRect.width}px`;
-      clone.style.height = `${startRect.height}px`;
-      clone.style.transition = `all ${this.sidebarDuration}ms ease-out`;
-      clone.style.zIndex = '9999';
-      clone.style.pointerEvents = 'none';
-      clone.style.visibility = 'visible';
-      document.body.appendChild(clone);
+        clone.style.position = 'fixed';
+        clone.style.top = `${startRect.top}px`;
+        clone.style.left = `${startRect.left}px`;
+        clone.style.width = `${startRect.width}px`;
+        clone.style.height = `${startRect.height}px`;
+        clone.style.transition = `all ${this.sidebarDuration}ms ease-out`;
+        clone.style.zIndex = '9999';
+        clone.style.pointerEvents = 'none';
+        clone.style.visibility = 'visible';
+        document.body.appendChild(clone);
 
-      // Compute final position after sidebar slides 40%
-      const sidebarFinalRect = sidebarImg.getBoundingClientRect();
-      const finalLeft = container.getBoundingClientRect().width*0.4*0.075; // sidebar slide
+        // Compute final position after sidebar slides in
+        const sidebarFinalRect = sidebarImg.getBoundingClientRect();
+        const finalLeft = container.getBoundingClientRect().width * 0.4 * 0.075;
 
-      // Animate clone to sidebar
-      requestAnimationFrame(() => {
-        clone.style.top = `${sidebarFinalRect.top}px`;
-        clone.style.left = `${finalLeft}px`;
-        clone.style.width = `${sidebarFinalRect.width}px`;
-        clone.style.height = `${sidebarFinalRect.height}px`;
-      });
+        // Animate clone to sidebar
+        requestAnimationFrame(() => {
+          clone.style.top = `${sidebarFinalRect.top}px`;
+          clone.style.left = `${finalLeft}px`;
+          clone.style.width = `${sidebarFinalRect.width}px`;
+          clone.style.height = `${sidebarFinalRect.height}px`;
+        });
 
-      // When clone animation ends, remove it and show sidebar image
-      clone.addEventListener('transitionend', () => {
-        clone.remove();
-        sidebarImg.style.visibility = 'visible';
-      });
-      const fadeElements: { selector: string, delay: number }[] = [
-        {selector: '.sidebar-name', delay: 300},
-        {selector: '.sidebar-description', delay: 800},
-        {selector: '.gallery', delay: 1300},
-        {selector: '.close-btn', delay: 0}
-      ];
+        // When clone animation ends, remove it, reveal sidebar image and resolve
+        clone.addEventListener('transitionend', () => {
+          clone.remove();
+          sidebarImg.style.visibility = 'visible';
 
-      fadeElements.forEach(item => {
-        setTimeout(() => {
-          const el = document.querySelector(item.selector) as HTMLElement;
-          if (el) el.style.opacity = '1';
-        }, this.sidebarDuration + item.delay);
-      });
-    }, 0); // Next tick
+          const fadeElements: { selector: string, delay: number }[] = [
+            { selector: '.sidebar-name', delay: 300 },
+            { selector: '.sidebar-description', delay: 800 },
+            { selector: '.gallery', delay: 1300 },
+            { selector: '.close-btn', delay: 0 }
+          ];
+
+          fadeElements.forEach(item => {
+            setTimeout(() => {
+              const el = document.querySelector(item.selector) as HTMLElement;
+              if (el) el.style.opacity = '1';
+            }, item.delay);
+          });
+
+          resolve();
+        }, { once: true });
+      }, 0);
+    });
   }
 
   async closeSidebar(gridImg: HTMLElement, project: ProjectDetails): Promise<void> {
