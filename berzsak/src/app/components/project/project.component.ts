@@ -57,17 +57,23 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const gridEl = this.gridExpRef.nativeElement;
-    const gridCol3 = this.gridCol3Ref.nativeElement;
+    const gridEl = this.gridExpRef?.nativeElement;
+    const gridCol3 = this.gridCol3Ref?.nativeElement;
 
     // Register both scrollables so animateScrollable can find them
-    this.dragScrollService.registerScrollable(gridEl);
-    this.dragScrollService.registerScrollable(gridCol3);
+    if (gridEl) this.dragScrollService.registerScrollable(gridEl);
+    if (gridCol3) this.dragScrollService.registerScrollable(gridCol3);
+
+    console.log(gridEl);
 
     // center experience grid
     if (gridEl) {
+      console.log('Scroll width: ', gridEl.scrollWidth,'client width: ' , gridEl.clientWidth);
+      console.log('Scroll height: ', gridEl.scrollHeight,'client height: ' , gridEl.clientHeight);
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
+    } else {
+      console.log('hello')
     }
   }
 
@@ -79,18 +85,29 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       this.view.status = ViewStatus.EXPERIENCE;
       this.view.value = 'Experience view';
     }
+    // After view toggles, the other grid is created by *ngIf on next tick
+    setTimeout(() => {
+      const gridEl = this.gridExpRef?.nativeElement;
+      const gridCol3 = this.gridCol3Ref?.nativeElement;
+      if (gridEl) {
+        this.dragScrollService.registerScrollable(gridEl);
+        gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
+        gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
+      }
+      if (gridCol3) this.dragScrollService.registerScrollable(gridCol3);
+    }, 0);
   }
 
   @HostListener('window:mouseup', ['$event'])
   onMouseUp(event: MouseEvent) {
-    const gridEl = this.gridExpRef.nativeElement;
-    this.dragScrollService.endDrag(event, gridEl);
+    const gridEl = this.gridExpRef?.nativeElement;
+    if (gridEl) this.dragScrollService.endDrag(event, gridEl);
   }
 
   @HostListener('window:mouseleave', ['$event'])
   onMouseLeave(event: MouseEvent) {
-    const gridEl = this.gridExpRef.nativeElement;
-    this.dragScrollService.endDrag(event, gridEl);
+    const gridEl = this.gridExpRef?.nativeElement;
+    if (gridEl) this.dragScrollService.endDrag(event, gridEl);
   }
 
   @HostListener('window:wheel', ['$event'])
@@ -125,13 +142,13 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     if (!this.sidebarBusy && this.selectedProject) {
       this.closeSidebar();
     }
-    const gridEl = this.gridExpRef.nativeElement;
-    this.dragScrollService.startDrag(event, gridEl, this.selectedProject);
+    const gridEl = this.gridExpRef?.nativeElement;
+    if (gridEl) this.dragScrollService.startDrag(event, gridEl, this.selectedProject);
   }
 
   onExperienceDrag(event: MouseEvent) {
-    const gridEl = this.gridExpRef.nativeElement;
-    this.dragScrollService.onDrag(event, gridEl);
+    const gridEl = this.gridExpRef?.nativeElement;
+    if (gridEl) this.dragScrollService.onDrag(event, gridEl);
   }
 
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
