@@ -18,18 +18,18 @@ import {SidebarAnimationService} from '../../services/sidebar-animation.service'
     trigger('sidebarSlide', [
       transition(':enter', [
         style({transform: 'translateX(-100%)', opacity: 0}),
-        animate('1s ease-out', style({transform: 'translateX(0)', opacity: 1}))
+        animate('600ms ease-out', style({transform: 'translateX(0)', opacity: 1}))
       ]),
       transition(':leave', [
-        animate('1s ease-in', style({transform: 'translateX(-100%)', opacity: 0}))
+        animate('600ms ease-in', style({transform: 'translateX(-100%)', opacity: 0}))
       ])
     ]),
     // Grid slide right when sidebar is open
     trigger('gridSlide', [
       state('open', style({transform: 'translateX(40%)'})), // same width as sidebar
       state('closed', style({transform: 'translateX(0)'})),
-      transition('closed => open', [animate('1s ease-out')]),
-      transition('open => closed', [animate('1s ease-in')])
+      transition('closed => open', [animate('600ms ease-out')]),
+      transition('open => closed', [animate('600ms ease-in')])
     ])
   ]
 })
@@ -64,16 +64,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     if (gridEl) this.dragScrollService.registerScrollable(gridEl);
     if (gridCol3) this.dragScrollService.registerScrollable(gridCol3);
 
-    console.log(gridEl);
-
     // center experience grid
     if (gridEl) {
-      console.log('Scroll width: ', gridEl.scrollWidth,'client width: ' , gridEl.clientWidth);
-      console.log('Scroll height: ', gridEl.scrollHeight,'client height: ' , gridEl.clientHeight);
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
-    } else {
-      console.log('hello')
     }
   }
 
@@ -99,7 +93,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('window:mouseup', ['$event'])
-  onMouseUp(event: MouseEvent) {
+  @HostListener('window:pointerup', ['$event'])
+  @HostListener('window:touchend', ['$event'])
+  onMouseUp(event: MouseEvent | PointerEvent | TouchEvent) {
     const gridEl = this.gridExpRef?.nativeElement;
     if (gridEl) this.dragScrollService.endDrag(event, gridEl);
   }
@@ -138,7 +134,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     return this.selectedProject ? 'open' : 'closed';
   }
 
-  handleExperienceInteraction(event: MouseEvent) {
+  handleExperienceInteraction(event: MouseEvent | PointerEvent | TouchEvent) {
     if (!this.sidebarBusy && this.selectedProject) {
       this.closeSidebar();
     }
@@ -146,7 +142,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     if (gridEl) this.dragScrollService.startDrag(event, gridEl, this.selectedProject);
   }
 
-  onExperienceDrag(event: MouseEvent) {
+  onExperienceDrag(event: MouseEvent | PointerEvent | TouchEvent) {
     const gridEl = this.gridExpRef?.nativeElement;
     if (gridEl) this.dragScrollService.onDrag(event, gridEl);
   }
@@ -203,12 +199,12 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     }
   }
 
-  handleCol3Interaction(event: MouseEvent) {
+  handleCol3Interaction(event: MouseEvent | PointerEvent | TouchEvent) {
     const gridCol3 = event.currentTarget as HTMLElement;
     this.dragScrollService.startDragOnCol3(event, gridCol3, this.selectedProject);
   }
 
-  onCol3Drag(event: MouseEvent) {
+  onCol3Drag(event: MouseEvent | PointerEvent | TouchEvent) {
     const gridCol3 = event.currentTarget as HTMLElement;
     this.dragScrollService.onDragCol3(event, gridCol3);
   }

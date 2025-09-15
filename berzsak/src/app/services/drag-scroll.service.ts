@@ -17,7 +17,7 @@ export class DragScrollService {
   private scrollTop = 0;
 
   // per-element listeners so we can remove them reliably
-  private listeners = new Map<HTMLElement, { move?: (e: MouseEvent) => void; up?: (e: MouseEvent) => void }>();
+  private listeners = new Map<HTMLElement, { move?: (e: MouseEvent | PointerEvent | TouchEvent) => void; up?: (e: MouseEvent | PointerEvent | TouchEvent) => void }>();
 
   // per-element RAF ids so we can cancel/track animations
   private rafMap = new Map<HTMLElement, number>();
@@ -37,14 +37,17 @@ export class DragScrollService {
   constructor() { }
 
   /* ----------------------- START Drag (experience) ----------------------- */
-  startDrag(event: MouseEvent, el: HTMLElement, selectedProject: any) {
+  startDrag(event: MouseEvent | PointerEvent | TouchEvent, el: HTMLElement, selectedProject: any) {
     if (!this.canDrag(selectedProject)) return;
+    // Ensure no previous drag remains active (prevents multiple elements from responding)
+    this.endDrag();
 
     this.dragging = true;
     this._moved = false;
 
-    this.startX = event.pageX - el.offsetLeft;
-    this.startY = event.pageY - el.offsetTop;
+    const point = this.getPoint(event);
+    this.startX = point.x - el.offsetLeft;
+    this.startY = point.y - el.offsetTop;
 
     this.scrollLeft = el.scrollLeft;
     this.scrollTop = el.scrollTop;
@@ -52,11 +55,15 @@ export class DragScrollService {
     el.style.cursor = 'grabbing';
 
     // create listeners and store them so we can remove them later
-    const move = (e: MouseEvent) => this.onDrag(e, el);
-    const up = (e: MouseEvent) => this.endDrag(e, el);
+    const move = (e: MouseEvent | PointerEvent | TouchEvent) => this.onDrag(e, el);
+    const up = (e: MouseEvent | PointerEvent | TouchEvent) => this.endDrag(e, el);
 
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', up);
+    window.addEventListener('mousemove', move as any, { passive: false });
+    window.addEventListener('mouseup', up as any, { passive: true });
+    window.addEventListener('pointermove', move as any, { passive: false });
+    window.addEventListener('pointerup', up as any, { passive: true });
+    window.addEventListener('touchmove', move as any, { passive: false });
+    window.addEventListener('touchend', up as any, { passive: true });
 
     // keep track so we can remove these specific handlers later
     this.listeners.set(el, { move, up });
@@ -73,13 +80,14 @@ export class DragScrollService {
     this.registerScrollable(el);
   }
 
-  onDrag(event: MouseEvent, el: HTMLElement) {
+  onDrag(event: MouseEvent | PointerEvent | TouchEvent, el: HTMLElement) {
     if (!this.dragging) return;
 
-    event.preventDefault();
+    if ('preventDefault' in event) event.preventDefault();
 
-    const x = event.pageX - el.offsetLeft;
-    const y = event.pageY - el.offsetTop;
+    const point = this.getPoint(event);
+    const x = point.x - el.offsetLeft;
+    const y = point.y - el.offsetTop;
 
     const walkX = this.startX - x; // horizontal
     const walkY = this.startY - y; // vertical
@@ -97,22 +105,29 @@ export class DragScrollService {
   }
 
   /* -------------------- START Drag (col3 horizontal only) -------------------- */
-  startDragOnCol3(event: MouseEvent, el: HTMLElement, selectedProject: any) {
+  startDragOnCol3(event: MouseEvent | PointerEvent | TouchEvent, el: HTMLElement, selectedProject: any) {
     if (!this.canDrag(selectedProject)) return;
+    // Ensure no previous drag remains active (prevents multiple galleries from responding)
+    this.endDrag();
 
     this.dragging = true;
     this._moved = false;
 
-    this.startX = event.pageX - el.offsetLeft;
+    const point = this.getPoint(event);
+    this.startX = point.x - el.offsetLeft;
     this.scrollLeft = el.scrollLeft;
 
     el.style.cursor = 'grabbing';
 
-    const move = (e: MouseEvent) => this.onDragCol3(e, el);
-    const up = (e: MouseEvent) => this.endDrag(e, el);
+    const move = (e: MouseEvent | PointerEvent | TouchEvent) => this.onDragCol3(e, el);
+    const up = (e: MouseEvent | PointerEvent | TouchEvent) => this.endDrag(e, el);
 
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', up);
+    window.addEventListener('mousemove', move as any, { passive: false });
+    window.addEventListener('mouseup', up as any, { passive: true });
+    window.addEventListener('pointermove', move as any, { passive: false });
+    window.addEventListener('pointerup', up as any, { passive: true });
+    window.addEventListener('touchmove', move as any, { passive: false });
+    window.addEventListener('touchend', up as any, { passive: true });
 
     this.listeners.set(el, { move, up });
 
@@ -127,12 +142,13 @@ export class DragScrollService {
     this.registerScrollable(el);
   }
 
-  onDragCol3(event: MouseEvent, el: HTMLElement) {
+  onDragCol3(event: MouseEvent | PointerEvent | TouchEvent, el: HTMLElement) {
     if (!this.dragging) return;
 
-    event.preventDefault();
+    if ('preventDefault' in event) event.preventDefault();
 
-    const x = event.pageX - el.offsetLeft;
+    const point = this.getPoint(event);
+    const x = point.x - el.offsetLeft;
     const walkX = this.startX - x;
 
     if (Math.abs(walkX) > 5) {
@@ -148,7 +164,7 @@ export class DragScrollService {
   }
 
   /* ----------------------------- END Drag ----------------------------- */
-  endDrag(_event?: MouseEvent, el?: HTMLElement) {
+  endDrag(_event?: MouseEvent | PointerEvent | TouchEvent, el?: HTMLElement) {
     // turning dragging off
     this.dragging = false;
 
@@ -161,15 +177,31 @@ export class DragScrollService {
     if (el) {
       const stored = this.listeners.get(el);
       if (stored) {
-        if (stored.move) window.removeEventListener('mousemove', stored.move);
-        if (stored.up) window.removeEventListener('mouseup', stored.up);
+        if (stored.move) {
+          window.removeEventListener('mousemove', stored.move as any);
+          window.removeEventListener('pointermove', stored.move as any);
+          window.removeEventListener('touchmove', stored.move as any);
+        }
+        if (stored.up) {
+          window.removeEventListener('mouseup', stored.up as any);
+          window.removeEventListener('pointerup', stored.up as any);
+          window.removeEventListener('touchend', stored.up as any);
+        }
         this.listeners.delete(el);
       }
     } else {
       // no el specified: remove all stored listeners
       for (const [element, stored] of this.listeners.entries()) {
-        if (stored.move) window.removeEventListener('mousemove', stored.move);
-        if (stored.up) window.removeEventListener('mouseup', stored.up);
+        if (stored.move) {
+          window.removeEventListener('mousemove', stored.move as any);
+          window.removeEventListener('pointermove', stored.move as any);
+          window.removeEventListener('touchmove', stored.move as any);
+        }
+        if (stored.up) {
+          window.removeEventListener('mouseup', stored.up as any);
+          window.removeEventListener('pointerup', stored.up as any);
+          window.removeEventListener('touchend', stored.up as any);
+        }
       }
       this.listeners.clear();
     }
@@ -182,6 +214,15 @@ export class DragScrollService {
       window.removeEventListener('pointercancel', this.onPointerCancelBound);
       this.globalListenersAdded = false;
     }
+  }
+
+  private getPoint(event: MouseEvent | PointerEvent | TouchEvent): { x: number; y: number } {
+    if ((event as TouchEvent).touches && (event as TouchEvent).touches.length) {
+      const t = (event as TouchEvent).touches[0];
+      return { x: t.pageX, y: t.pageY };
+    }
+    const e = event as MouseEvent | PointerEvent;
+    return { x: e.pageX, y: e.pageY };
   }
 
   /* -------------------------- animateScrollable -------------------------- */

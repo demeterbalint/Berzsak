@@ -6,7 +6,7 @@ import {ProjectDetails} from '../models/project-details';
 })
 export class SidebarAnimationService {
 
-  private sidebarDuration = 1000; // 1s
+  private sidebarDuration = 600; // 600ms
 
   constructor() {
   }
@@ -46,11 +46,11 @@ export class SidebarAnimationService {
         clone.style.visibility = 'visible';
         document.body.appendChild(clone);
 
-        // Compute final position after sidebar slides in
+        // Compute final position after sidebar slides in (batch DOM reads first)
         const sidebarFinalRect = sidebarImg.getBoundingClientRect();
         const finalLeft = container.getBoundingClientRect().width * 0.4 * 0.075;
 
-        // Animate clone to sidebar
+        // Animate clone to sidebar (batch writes in one RAF)
         requestAnimationFrame(() => {
           clone.style.top = `${sidebarFinalRect.top}px`;
           clone.style.left = `${finalLeft}px`;
@@ -96,7 +96,7 @@ export class SidebarAnimationService {
     clone.style.left = `${sidebarRect.left}px`;
     clone.style.width = `${sidebarRect.width}px`;
     clone.style.height = `${sidebarRect.height}px`;
-    clone.style.transition = 'all 1000ms ease-in';
+    clone.style.transition = `all ${this.sidebarDuration}ms ease-in`;
     clone.style.zIndex = '9999';
     clone.style.pointerEvents = 'none';
     clone.style.visibility = 'visible';

@@ -37,7 +37,11 @@
   <!-- Grid-Experience -->
   <div *ngIf="view.status === ViewStatus.EXPERIENCE" class="grid-experience" #gridExp [@gridSlide]="gridState" (@gridSlide.done)="onGridAnimDone($event)"
        (mousedown)="handleExperienceInteraction($event)"
-       (mousemove)="onExperienceDrag($event)">
+       (mousemove)="onExperienceDrag($event)"
+       (pointerdown)="handleExperienceInteraction($event)"
+       (pointermove)="onExperienceDrag($event)"
+       (touchstart)="handleExperienceInteraction($event)"
+        (touchmove)="onExperienceDrag($event)">
     <div *ngFor="let project of projects" class="grid-item">
       <img [src]="project.mainImgUrl" [alt]="project.name" [attr.data-project-name]="project.name"
            (click)="onImageClick($event, project)" draggable="false">
@@ -51,7 +55,11 @@
       <div *ngFor="let project of projects" class="grid-item">
         <div class="item-gallery"
              (mousedown)="handleCol3Interaction($event)"
-             (mousemove)="onCol3Drag($event)">
+             (mousemove)="onCol3Drag($event)"
+             (pointerdown)="handleCol3Interaction($event)"
+             (pointermove)="onCol3Drag($event)"
+             (touchstart)="handleCol3Interaction($event)"
+             (touchmove)="onCol3Drag($event)">
           <img *ngFor="let img of project.imageUrls" [src]="img" draggable="false">
         </div>
       </div>

@@ -167,9 +167,10 @@
 
 /* Grid */
 .grid-experience {
+  --tile: clamp(180px, 24vw, 300px);
   display: grid;
-  grid-template-columns: repeat(5, 300px);
-  gap: 50px;
+  grid-template-columns: repeat(5, var(--tile));
+  gap: clamp(16px, 4vw, 50px);
   overflow: auto;
   cursor: grab;
   user-select: none;
@@ -178,8 +179,8 @@
 }
 
 .grid-experience .grid-item {
-  height: 300px;
-  width: 300px;
+  width: var(--tile);
+  height: var(--tile);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,12 +189,12 @@
 
 .grid-experience .grid-item:nth-child(5n+2),
 .grid-experience .grid-item:nth-child(5n+4) {
-  transform: translateY(150px);
+  transform: translateY(calc(var(--tile) * 0.5));
 }
 
 .grid-experience .grid-item img {
   height: auto;
-  width: 80%;
+  width: clamp(150px, 80%, 90%);
   object-fit: contain;
   user-select: none;
   pointer-events: auto;
