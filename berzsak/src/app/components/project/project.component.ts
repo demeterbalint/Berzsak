@@ -49,6 +49,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   private pendingSidebarAnimRes?: () => void;
   private pendingGridAnimRes?: () => void;
 
+  imageWidths = [2400, 1800, 1200, 600, 300];
+
   constructor(private projectService: ProjectService, private dragScrollService: DragScrollService, private sidebarAnimation: SidebarAnimationService) {
   }
 
@@ -68,6 +70,35 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     if (gridEl) {
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
+    }
+  }
+
+  getSrcset(imageArray: string[]): string {
+    return imageArray
+      .map((url, i) => `${url} ${this.imageWidths[i]}w`)
+      .join(', ');
+  }
+
+  getGallerySizes(numImages: number): string {
+    // sidebar = 40% of viewport, gallery = 85% of sidebar
+    const galleryWidthVW = 0.85 * 40; // 34vw
+    const imageWidthVW = galleryWidthVW / numImages;
+    return `${imageWidthVW}vw`;
+  }
+
+  gridImageSizes(): string {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    if (w < h) {
+      // portrait
+      return "40vw";
+    } else if (h <= 900) {
+      // small landscape
+      return "20vw";
+    } else {
+      // normal landscape
+      return "26vw";
     }
   }
 

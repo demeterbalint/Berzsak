@@ -23,12 +23,18 @@
     <h3 class="sidebar-description">{{ selectedProject.description }}</h3>
 
     <div class="sidebar-main">
-      <img [src]="selectedProject.mainImgUrl" [alt]="selectedProject.name"
+      <img [src]="selectedProject.mainImgUrl[3]" [alt]="selectedProject.name"
+           [srcset]="getSrcset(selectedProject.mainImgUrl)"
+           sizes="34vw"
            [attr.data-project-name]="selectedProject.name">
     </div>
 
     <div class="gallery">
-      <img *ngFor="let img of selectedProject.imageUrls" [src]="img" [alt]="selectedProject.name">
+      <img *ngFor="let imgVariants of selectedProject.imageUrls"
+           [src]="imgVariants[3]"
+           [srcset]="getSrcset(imgVariants)"
+           sizes="{{ getGallerySizes(selectedProject.imageUrls.length) }}"
+           [alt]="selectedProject.name">
     </div>
   </div>
   <button *ngIf="selectedProject" class="close-btn" (click)="closeSidebar()">✕</button>
@@ -43,7 +49,11 @@
        (touchstart)="handleExperienceInteraction($event)"
         (touchmove)="onExperienceDrag($event)">
     <div *ngFor="let project of projects" class="grid-item">
-      <img [src]="project.mainImgUrl" [alt]="project.name" [attr.data-project-name]="project.name"
+      <img [src]="project.mainImgUrl[3]"
+           [srcset]="getSrcset(project.mainImgUrl)"
+           [sizes]="gridImageSizes()"
+           [alt]="project.name"
+           [attr.data-project-name]="project.name"
            (click)="onImageClick($event, project)" draggable="false">
     </div>
   </div>
@@ -60,7 +70,12 @@
              (pointermove)="onCol3Drag($event)"
              (touchstart)="handleCol3Interaction($event)"
              (touchmove)="onCol3Drag($event)">
-          <img *ngFor="let img of project.imageUrls" [src]="img" draggable="false">
+          <img *ngFor="let imgVariants of project.imageUrls"
+               [src]="imgVariants[3]"
+               [srcset]="getSrcset(imgVariants)"
+               sizes="(max-width: 400px) 90vw, (max-width: 700px) 40vw, 28vw"
+               [alt]="project.name"
+               draggable="false">
         </div>
       </div>
     </div>
