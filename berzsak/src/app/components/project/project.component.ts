@@ -6,11 +6,12 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ViewStatus} from '../../enum/view-status';
 import {DragScrollService} from '../../services/drag-scroll.service';
 import {SidebarAnimationService} from '../../services/sidebar-animation.service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css'],
   animations: [
@@ -51,11 +52,17 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   imageWidths = [2400, 1800, 1200, 600, 300];
 
-  constructor(private projectService: ProjectService, private dragScrollService: DragScrollService, private sidebarAnimation: SidebarAnimationService) {
+  windowWidth: number = window.innerWidth;
+  sidebarDisabled: boolean = false;
+
+  constructor(private projectService: ProjectService,
+              private dragScrollService: DragScrollService,
+              private sidebarAnimation: SidebarAnimationService) {
   }
 
   ngOnInit(): void {
     this.projects = this.projectService.getAllProjects();
+    this.checkSidebar();
   }
 
   ngAfterViewInit() {
@@ -121,6 +128,21 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       }
       if (gridCol3) this.dragScrollService.registerScrollable(gridCol3);
     }, 0);
+  }
+
+  checkSidebar() {
+    if (this.windowWidth < 800) {
+      this.sidebarDisabled = true;
+      this.selectedProject = undefined; // close sidebar if open
+    } else {
+      this.sidebarDisabled = false;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.windowWidth = event.target.innerWidth;
+    this.checkSidebar();
   }
 
   @HostListener('window:mouseup', ['$event'])
@@ -245,4 +267,5 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   protected readonly ViewStatus = ViewStatus;
+  protected readonly window = window;
 }

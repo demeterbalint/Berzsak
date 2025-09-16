@@ -10,6 +10,7 @@ export class ProjectService {
     {
       name: 'Gyógyteás készlet',
       description: 'Ép testben ép lélek',
+      slug: 'gyogyteas-keszlet',
       mainImgUrl: ['/1-gyogytea/2400/main_qt_2400.webp', '/1-gyogytea/1800/main_qt_1800.webp', '/1-gyogytea/1200/main_qt_1200.webp', "/1-gyogytea/600/main_qt_600.webp", '/1-gyogytea/300/main_qt_300.webp'],
       imageUrls: [['/1-gyogytea/2400/main_qt_2400.webp', '/1-gyogytea/1800/main_qt_1800.webp', '/1-gyogytea/1200/main_qt_1200.webp', "/1-gyogytea/600/main_qt_600.webp", '/1-gyogytea/300/main_qt_300.webp'],
         ['/1-gyogytea/2400/1_qt_2400.webp', '/1-gyogytea/1800/1_qt_1800.webp', '/1-gyogytea/1200/1_qt_1200.webp', "/1-gyogytea/600/1_qt_600.webp", '/1-gyogytea/300/1_qt_300.webp'],
@@ -20,90 +21,105 @@ export class ProjectService {
     },
     {
       name: 'BMW e46',
+      slug: 'bmw-e46',
       description: 'This is bmw e46',
       mainImgUrl: ['/bmw-e46/main.jfif'],
       imageUrls: [['/bmw-e46/main.jfif'], ['/bmw-e46/download.jfif'], ['/bmw-e46/images.jfif']]
     },
     {
       name: 'BMW i3',
+      slug: 'bmw-i3',
       description: 'This is bmw i3',
       mainImgUrl: ['/bmw-i3/main.jfif'],
       imageUrls: [['/bmw-i3/main.jfif', '/bmw-i3/download (1).jfif', '/bmw-i3/download (2).jfif', '/bmw-i3/download (3).jfif']]
     },
     {
       name: 'BMW i8',
+      slug: 'bmw-i8',
       description: 'This is bmw i8',
       mainImgUrl: ['/bmw-i8/main.jfif'],
       imageUrls: [['/bmw-i8/main.jfif', '/bmw-i8/download (1).jfif', '/bmw-i8/download.jfif', '/bmw-i8/images.jfif']]
     },
     {
       name: 'BMW m1 hommage',
+      slug: 'bmw-m1-hommage',
       description: 'This is bmw m1 hommage',
       mainImgUrl: ['/bmw-m1-hommage/main.jfif'],
       imageUrls: [['/bmw-m1-hommage/main.jfif', '/bmw-m1-hommage/download (1).jfif', '/bmw-m1-hommage/download (2).jfif', '/bmw-m1-hommage/download.jfif']]
     },
     {
       name: 'BMW m3',
+      slug: 'bmw-m3',
       description: 'This is bmw m3',
       mainImgUrl: ['/bmw-m3/main.jfif'],
       imageUrls: [['/bmw-m3/main.jfif', '/bmw-m3/download (1).jfif', '/bmw-m3/download.jfif']]
     },
     {
       name: 'BMW x5',
+      slug: 'bmw-x5',
       description: 'This is bmw x5',
       mainImgUrl: ['/bmw-x5/main.jfif'],
       imageUrls: [['/bmw-x5/main.jfif', '/bmw-x5/download (1).jfif', '/bmw-x5/download.jfif']]
     },
     {
       name: 'BMW ix6',
+      slug: 'bmw-ix6',
       description: 'This is bmw ix6',
       mainImgUrl: ['/bmw-ix6/main.jfif'],
       imageUrls: [['/bmw-ix6/main.jfif', '/bmw-ix6/download.jfif', '/bmw-ix6/download (1).jfif']]
     },
     {
       name: 'BMW s1000 rr',
+      slug: 'bmw-s1000-rr',
       description: 'This is bmw s1000 rr',
       mainImgUrl: ['/bmw-s1000-rr/main.jfif'],
       imageUrls: [['/bmw-s1000-rr/main.jfif', '/bmw-s1000-rr/download.jfif', '/bmw-s1000-rr/download (1).jfif']]
     },
     {
       name: 'BMW old m5',
+      slug: 'bmw-old-m5',
       description: 'This is bmw old m5',
       mainImgUrl: ['/bmw-old-m5/main.jfif'],
       imageUrls: [['/bmw-old-m5/main.jfif', '/bmw-old-m5/download.jfif', '/bmw-old-m5/download (1).jfif']]
     },
     {
       name: 'Lada',
+      slug: 'lada',
       description: 'This is lada',
       mainImgUrl: ['/lada/main.jfif'],
       imageUrls: [['/lada/main.jfif', 'lada/download.jfif']]
     },
     {
       name: 'BMW m8',
+      slug: 'bmw-m8',
       description: 'This is bmw m8',
       mainImgUrl: ['/bmw-m8/main.jfif'],
       imageUrls: [['/bmw-m8/main.jfif', '/bmw-m8/download.jfif', '/bmw-m8/download (1).jfif']]
     },
     {
       name: 'BMW x6',
+      slug: 'bmw-x6',
       description: 'This is bmw x6',
       mainImgUrl: ['/bmw-x6/main.jfif'],
       imageUrls: [['/bmw-x6/main.jfif', '/bmw-x6/download.jfif', '/bmw-x6/download (1).jfif', '/bmw-x6/download (2).jfif']]
     },
     {
       name: 'BMW x1',
+      slug: 'bmw-x1',
       description: 'This is bmw x1',
       mainImgUrl: ['/bmw-x1/main.jfif'],
       imageUrls: [['/bmw-x1/main.jfif', '/bmw-x1/download.jfif']]
     },
     {
       name: 'BMW vision m next',
+      slug: 'bmw-vision-m-next',
       description: 'This is bmw vision m next',
       mainImgUrl: ['/bmw-vision-m-next/main.jfif'],
       imageUrls: [['/bmw-vision-m-next/main.jfif', '/bmw-vision-m-next/download.jfif', '/bmw-vision-m-next/download (1).jfif']]
     },
     {
       name: 'BMW skytop',
+      slug: 'bmw-skytop',
       description: 'This is bmw skytop',
       mainImgUrl: ['/bmw-skytop/main.jfif'],
       imageUrls: [['/bmw-skytop/main.jfif', '/bmw-skytop/download.jfif', '/bmw-skytop/download (1).jfif', '/bmw-skytop/download (2).jfif']]
@@ -113,6 +129,10 @@ export class ProjectService {
 
   getAllProjects(): ProjectDetails[] {
     return this.projectList;
+  }
+
+  getProject(slug: string): ProjectDetails {
+    return <ProjectDetails>this.projectList.find((p) => p.slug === slug);
   }
 
   constructor() {

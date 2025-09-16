@@ -18,7 +18,7 @@
   </div>
 
   <!-- Sidebar -->
-  <div class="sidebar" *ngIf="selectedProject" [@sidebarSlide] (@sidebarSlide.done)="onSidebarAnimDone($event)">
+  <div class="sidebar" *ngIf="selectedProject && !sidebarDisabled" [@sidebarSlide] (@sidebarSlide.done)="onSidebarAnimDone($event)">
     <h2 class="sidebar-name">{{ selectedProject.name }}</h2>
     <h3 class="sidebar-description">{{ selectedProject.description }}</h3>
 
@@ -36,6 +36,7 @@
            sizes="{{ getGallerySizes(selectedProject.imageUrls.length) }}"
            [alt]="selectedProject.name">
     </div>
+    <a [routerLink]="['/main', selectedProject.slug]">Take me to project</a>
   </div>
   <button *ngIf="selectedProject" class="close-btn" (click)="closeSidebar()">✕</button>
 

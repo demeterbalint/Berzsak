@@ -5,5 +5,5 @@ import {ProjectPageComponent} from './components/project-page/project-page.compo
 export const routes: Routes = [
   {path: '', redirectTo: '/main', pathMatch: 'full'},
   {path: 'main', component: ProjectComponent},
-  {path: 'project-page', component: ProjectPageComponent}
+  {path: 'main/:slug', component: ProjectPageComponent}
 ];
