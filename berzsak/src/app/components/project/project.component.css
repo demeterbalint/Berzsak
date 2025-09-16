@@ -63,7 +63,9 @@
   transform: scale(1.02);
 }
 
-.view-btn:active { background-color: #f1f1f1; }
+.view-btn:active {
+  background-color: #f1f1f1;
+}
 
 .view-icon {
   display: flex;
@@ -129,7 +131,7 @@
 }
 
 .sidebar-main img {
-  width:  100%;
+  width: 100%;
   height: auto;
 }
 
@@ -139,17 +141,19 @@
   flex-direction: row;
   margin-top: 1vw;
   margin-bottom: 1vw;
-  justify-content: left;
-  gap: 1vw;
   width: 85%;
+  max-height: 100px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
 }
 
 .gallery img {
-  width: 60px;
-  height: 60px;
-  align-self: center;
+  flex: 1 1 0;
+  height: 100%;
   object-fit: cover;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .close-btn {
@@ -179,49 +183,83 @@
 
 /* Grid */
 .grid-experience {
-  --tile: clamp(180px, 24vw, 300px);
   display: grid;
-  grid-template-columns: repeat(5, var(--tile));
-  gap: clamp(16px, 4vw, 50px);
   overflow: auto;
   cursor: grab;
   user-select: none;
-  scrollbar-width: none;  /* Firefox */
+  scrollbar-width: none;
   -ms-overflow-style: none;
-}
-
-/* Make tiles 30% larger on non-desktop widths */
-@media (max-width: 1024px) {
-  .grid-experience {
-    --tile: clamp(234px, 31.2vw, 390px);
-  }
+  padding: 5%;
 }
 
 .grid-experience .grid-item {
   width: var(--tile);
-  height: var(--tile);
+  height: calc(var(--tile) * 3897 / 5846);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  padding-bottom: 5vw;
+  align-self: start;
+  margin-top: 0;
 }
 
-.grid-experience .grid-item:nth-child(5n+2),
-.grid-experience .grid-item:nth-child(5n+4) {
-  transform: translateY(calc(var(--tile) * 0.5));
-}
-
+/* Ensure images stay centered and scale properly */
 .grid-experience .grid-item img {
-  height: auto;
-  width: clamp(150px, 80%, 90%);
+  width: auto;
+  height: 100%;
   object-fit: contain;
   user-select: none;
   pointer-events: auto;
 }
 
+/* Portrait mode (height > width) */
+@media (orientation: portrait) {
+  .grid-experience {
+    --tile: clamp(220px, 40vw, 600px);
+    grid-template-columns: repeat(4, var(--tile));
+    gap: clamp(20px, 20vw, 300px);
+  }
+
+  /* stagger every 2nd item for checkerboard */
+  .grid-experience .grid-item:nth-child(2n) {
+    transform: translateY(calc(50% + (clamp(20px, 20vw, 300px) / 2)));
+  }
+}
+
+/* Landscape mode (width > height) */
+@media (orientation: landscape) {
+  .grid-experience {
+    --tile: clamp(220px, 26vw, 340px);
+    grid-template-columns: repeat(5, var(--tile));
+    gap: clamp(24px, 8vw, 150px);
+  }
+
+  /* stagger 2nd and 4th items for checkerboard */
+  .grid-experience .grid-item:nth-child(5n+2),
+  .grid-experience .grid-item:nth-child(5n+4) {
+    transform: translateY(calc(50% + (clamp(24px, 8vw, 150px) / 2)));
+  }
+}
+
+@media (orientation: landscape) and (max-height: 900px) {
+  .grid-experience {
+    --tile: clamp(220px, 20vw, 340px);
+    grid-template-columns: repeat(5, var(--tile));
+    gap: clamp(24px, 8vw, 150px);
+  }
+
+  /* stagger 2nd and 4th items for checkerboard */
+  .grid-experience .grid-item:nth-child(5n+2),
+  .grid-experience .grid-item:nth-child(5n+4) {
+    transform: translateY(calc(50% + (clamp(24px, 8vw, 150px) / 2)));
+  }
+}
+
 .grid-experience::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
+
 .grid-experience:active {
   cursor: grabbing;
 }
@@ -244,7 +282,7 @@
   width: 100vw;
   height: 5%; /* adjust as needed */
   pointer-events: none; /* allows interaction with grid behind */
-  background: linear-gradient(to bottom, rgba(241,241,241,1), rgba(241,241,241,0));
+  background: linear-gradient(to bottom, rgba(241, 241, 241, 1), rgba(241, 241, 241, 0));
   z-index: 1;
 }
 
@@ -316,6 +354,7 @@
     height: 100vh; /* enable scrolling */
     overflow-y: auto; /* allow vertical scroll */
   }
+
   .grid-col3 .grid-item {
     width: 40vw;
     height: 40vw;
@@ -329,6 +368,7 @@
     height: 100vh; /* enable scrolling */
     overflow-y: auto; /* allow vertical scroll */
   }
+
   .grid-col3 .grid-item {
     width: 90vw;
     height: 90vw;

@@ -8,6 +8,12 @@ export class ProjectService {
 
   private projectList: ProjectDetails[] = [
     {
+      name: 'Gyógyteás készlet',
+      description: 'Ép testben ép lélek',
+      mainImgUrl: '/1-gyogytea/main_qt.jpg',
+      imageUrls: ['/1-gyogytea/main_qt.jpg', '/1-gyogytea/1_qt.jpg', '/1-gyogytea/2_qt.jpg', '/1-gyogytea/3_qt.jpg', '/1-gyogytea/4_qt.jpg', '/1-gyogytea/5_qt.jpg']
+    },
+    {
       name: 'BMW e46',
       description: 'This is bmw e46',
       mainImgUrl: '/bmw-e46/main.jfif',
