@@ -50,7 +50,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   private pendingSidebarAnimRes?: () => void;
   private pendingGridAnimRes?: () => void;
 
-  imageWidths = [2400, 1800, 1200, 600, 300];
+  imageWidths = [5846, 2400, 1800, 1200, 600, 300];
 
   windowWidth: number = window.innerWidth;
   sidebarDisabled: boolean = false;

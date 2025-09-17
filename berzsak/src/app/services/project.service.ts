@@ -11,13 +11,13 @@ export class ProjectService {
       name: 'Gyógyteás készlet',
       description: 'Ép testben ép lélek',
       slug: 'gyogyteas-keszlet',
-      mainImgUrl: ['/1-gyogytea/2400/main_qt_2400.webp', '/1-gyogytea/1800/main_qt_1800.webp', '/1-gyogytea/1200/main_qt_1200.webp', "/1-gyogytea/600/main_qt_600.webp", '/1-gyogytea/300/main_qt_300.webp'],
-      imageUrls: [['/1-gyogytea/2400/main_qt_2400.webp', '/1-gyogytea/1800/main_qt_1800.webp', '/1-gyogytea/1200/main_qt_1200.webp', "/1-gyogytea/600/main_qt_600.webp", '/1-gyogytea/300/main_qt_300.webp'],
-        ['/1-gyogytea/2400/1_qt_2400.webp', '/1-gyogytea/1800/1_qt_1800.webp', '/1-gyogytea/1200/1_qt_1200.webp', "/1-gyogytea/600/1_qt_600.webp", '/1-gyogytea/300/1_qt_300.webp'],
-        ['/1-gyogytea/2400/2_qt_2400.webp', '/1-gyogytea/1800/2_qt_1800.webp', '/1-gyogytea/1200/2_qt_1200.webp', "/1-gyogytea/600/2_qt_600.webp", '/1-gyogytea/300/2_qt_300.webp'],
-        ['/1-gyogytea/2400/3_qt_2400.webp', '/1-gyogytea/1800/3_qt_1800.webp', '/1-gyogytea/1200/3_qt_1200.webp', "/1-gyogytea/600/3_qt_600.webp", '/1-gyogytea/300/3_qt_300.webp'],
-        ['/1-gyogytea/2400/4_qt_2400.webp', '/1-gyogytea/1800/4_qt_1800.webp', '/1-gyogytea/1200/4_qt_1200.webp', "/1-gyogytea/600/4_qt_600.webp", '/1-gyogytea/300/4_qt_300.webp'],
-        ['/1-gyogytea/2400/5_qt_2400.webp', '/1-gyogytea/1800/5_qt_1800.webp', '/1-gyogytea/1200/5_qt_1200.webp', "/1-gyogytea/600/5_qt_600.webp", '/1-gyogytea/300/5_qt_300.webp']]
+      mainImgUrl: ['/1-gyogytea/5846/main_qt_5846.webp', '/1-gyogytea/2400/main_qt_2400.webp', '/1-gyogytea/1800/main_qt_1800.webp', '/1-gyogytea/1200/main_qt_1200.webp', "/1-gyogytea/600/main_qt_600.webp", '/1-gyogytea/300/main_qt_300.webp'],
+      imageUrls: [['/1-gyogytea/5846/main_qt_5846.webp', '/1-gyogytea/2400/main_qt_2400.webp', '/1-gyogytea/1800/main_qt_1800.webp', '/1-gyogytea/1200/main_qt_1200.webp', "/1-gyogytea/600/main_qt_600.webp", '/1-gyogytea/300/main_qt_300.webp'],
+        ['/1-gyogytea/5846/1_qt_5846.webp', '/1-gyogytea/2400/1_qt_2400.webp', '/1-gyogytea/1800/1_qt_1800.webp', '/1-gyogytea/1200/1_qt_1200.webp', "/1-gyogytea/600/1_qt_600.webp", '/1-gyogytea/300/1_qt_300.webp'],
+        ['/1-gyogytea/5846/2_qt_5846.webp', '/1-gyogytea/2400/2_qt_2400.webp', '/1-gyogytea/1800/2_qt_1800.webp', '/1-gyogytea/1200/2_qt_1200.webp', "/1-gyogytea/600/2_qt_600.webp", '/1-gyogytea/300/2_qt_300.webp'],
+        ['/1-gyogytea/5846/3_qt_5846.webp', '/1-gyogytea/2400/3_qt_2400.webp', '/1-gyogytea/1800/3_qt_1800.webp', '/1-gyogytea/1200/3_qt_1200.webp', "/1-gyogytea/600/3_qt_600.webp", '/1-gyogytea/300/3_qt_300.webp'],
+        ['/1-gyogytea/5846/4_qt_5846.webp', '/1-gyogytea/2400/4_qt_2400.webp', '/1-gyogytea/1800/4_qt_1800.webp', '/1-gyogytea/1200/4_qt_1200.webp', "/1-gyogytea/600/4_qt_600.webp", '/1-gyogytea/300/4_qt_300.webp'],
+        ['/1-gyogytea/5846/5_qt_5846.webp', '/1-gyogytea/2400/5_qt_2400.webp', '/1-gyogytea/1800/5_qt_1800.webp', '/1-gyogytea/1200/5_qt_1200.webp', "/1-gyogytea/600/5_qt_600.webp", '/1-gyogytea/300/5_qt_300.webp']]
     },
     {
       name: 'BMW e46',

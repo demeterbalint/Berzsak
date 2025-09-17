@@ -12,6 +12,8 @@ import {ProjectDetails} from '../../models/project-details';
 export class ProjectPageComponent implements OnInit {
 
   protected project!: ProjectDetails;
+  imageWidths = [5846, 2400, 1800, 1200, 600, 300];
+  windowWidth: number = window.innerWidth;
 
   constructor(private activatedRoute: ActivatedRoute,
               private projectService: ProjectService) {}
@@ -27,6 +29,12 @@ export class ProjectPageComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  getSrcset(imageArray: string[]): string {
+    return imageArray
+      .map((url, i) => `${url} ${this.imageWidths[i]}w`)
+      .join(', ');
   }
 
 }
