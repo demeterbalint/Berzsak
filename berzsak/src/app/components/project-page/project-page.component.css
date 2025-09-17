@@ -37,6 +37,7 @@
 
 .brand-name-button {
   color: black;
+  -webkit-text-stroke: 0.01rem #f1f1f1;
   cursor: pointer;
   border: none;
   background-color: transparent;
