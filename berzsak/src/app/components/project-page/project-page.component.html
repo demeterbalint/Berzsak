@@ -21,13 +21,15 @@
   </div>
 
   <div class="project-description">
-    <p>{{project.description}}</p>
+    <p>{{ project.description }}</p>
   </div>
 
-  <div class="project-image-gallery" *ngFor="let imageVariant of project.imageUrls | slice:1">
-    <img [src]="imageVariant[1]"
-    [srcset]="getSrcset(imageVariant)"
-    sizes="95vw">
+  <div class="project-image-gallery-div">
+    <div class="project-image-gallery" *ngFor="let imageVariant of project.imageUrls | slice:1">
+      <img [src]="imageVariant[1]"
+           [srcset]="getSrcset(imageVariant)"
+           sizes="95vw">
+    </div>
   </div>
 
   <div class="contact-div">

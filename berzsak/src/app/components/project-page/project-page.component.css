@@ -82,6 +82,17 @@
   text-align: left;
 }
 
+.project-image-gallery-div {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+
 .project-image-gallery {
   position: relative;
   width: 95%;
