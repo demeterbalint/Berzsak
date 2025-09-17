@@ -36,7 +36,9 @@
            sizes="{{ getGallerySizes(selectedProject.imageUrls.length) }}"
            [alt]="selectedProject.name">
     </div>
-    <a [routerLink]="['/main', selectedProject.slug]">Take me to project</a>
+    <div class="sidebar-navigate-btn">
+      <a [routerLink]="['/main', selectedProject.slug]" draggable="false">Take me to project &minus;&gt;</a>
+    </div>
   </div>
   <button *ngIf="selectedProject" class="close-btn" (click)="closeSidebar()">✕</button>
 
@@ -78,6 +80,7 @@
                [alt]="project.name"
                draggable="false">
         </div>
+        <a class="col3-navigate-btn" [routerLink]="['/main', project.slug]" draggable="false">Take me to project &minus;&gt;</a>
       </div>
     </div>
   </div>

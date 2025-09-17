@@ -182,6 +182,28 @@
   transition: opacity 0.8s ease;
 }
 
+.sidebar-navigate-btn {
+  position: relative;
+  width: 100%;
+}
+
+.sidebar-navigate-btn a{
+  position: absolute;
+  right: 10%;
+  left: 50%;
+  text-align: right;
+  width: auto;
+  max-width: calc(50% - 10%);
+  font-size: 1vw;
+  color: black;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sidebar-navigate-btn a:hover {
+  text-decoration: underline;
+}
+
 /* Grid */
 .grid-experience {
   display: grid;
@@ -301,6 +323,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .item-gallery {
@@ -334,6 +357,24 @@
   pointer-events: auto;
 }
 
+.col3-navigate-btn {
+  position: absolute;
+  top: 83%;   /* adjust spacing from top */
+  right: 10%;
+  left: 50%;
+  text-align: right;
+  width: auto;
+  max-width: calc(50% - 10%);
+  font-size: 1vw;
+  color: black;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.col3-navigate-btn:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 700px) {
   .grid-col3 {
     grid-template-columns: repeat(2, 1fr);
@@ -345,6 +386,10 @@
   .grid-col3 .grid-item {
     width: 40vw;
     height: 40vw;
+  }
+
+  .col3-navigate-btn {
+    font-size: 1.4vw;
   }
 }
 
@@ -359,5 +404,9 @@
   .grid-col3 .grid-item {
     width: 90vw;
     height: 90vw;
+  }
+
+  .col3-navigate-btn {
+    font-size: 3.2vw;
   }
 }
