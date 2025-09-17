@@ -1,0 +1,111 @@
+.project-page-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f1f1f1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  scrollbar-width: none;
+  padding-bottom: 5%;
+}
+
+.navigate-back-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.navigate-back-btn a {
+  text-decoration: none;
+  color: black;
+}
+
+.navigate-back-btn a:hover {
+  text-decoration: underline;
+}
+
+.brand-name {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2000;
+}
+
+.brand-name-button {
+  color: black;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-family: "Monserrat", Arial, sans-serif;
+  transform: rotate(180deg);
+}
+
+.project-mainImage {
+  position: relative;
+  width: 95%;
+  height: auto;
+  margin-top: 10%;
+}
+
+.project-mainImage img {
+  width: 100%;
+  height: auto;
+}
+
+.project-name {
+  position: relative;
+  margin-top: 1rem;
+  width: 95%;
+}
+
+.project-name h1 {
+  font-family: "Monserrat", Arial, sans-serif;
+  color: black;
+  text-align: left;
+}
+
+.project-description {
+  position: relative;
+  width: 95%;
+}
+
+.project-description p {
+  font-family: "Monserrat", Arial, sans-serif;
+  color: black;
+  text-align: left;
+}
+
+.project-image-gallery {
+  position: relative;
+  width: 95%;
+  height: auto;
+}
+
+.project-image-gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.contact-div {
+  position: relative;
+  width: 100%;
+  margin-top: 1rem;
+  padding-bottom: 10%;
+  background-color: lightgray;
+  color: black;
+  align-items: center;
+  justify-content: center;
+}
+
+.socials {
+  font-family: "Monserrat", Arial, sans-serif;
+  color: black;
+  text-align: center;
+}

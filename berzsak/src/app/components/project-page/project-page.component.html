@@ -1,3 +1,39 @@
-<div>
-  {{project.name}}
+<div class="project-page-container">
+
+  <div class="navigate-back-btn">
+    <a [routerLink]="['/']">Take me back</a>
+  </div>
+
+  <!-- brand name -->
+  <div class="brand-name">
+    <button class="brand-name-button" (click)="showContact()">BERZSAK.</button>
+  </div>
+
+  <div class="project-mainImage">
+    <img
+      src="{{project.mainImgUrl[1]}}"
+      [srcset]="getSrcset(project.mainImgUrl)"
+      sizes="95vw">
+  </div>
+
+  <div class="project-name">
+    <h1>{{ project.name }}</h1>
+  </div>
+
+  <div class="project-description">
+    <p>{{project.description}}</p>
+  </div>
+
+  <div class="project-image-gallery" *ngFor="let imageVariant of project.imageUrls | slice:1">
+    <img [src]="imageVariant[1]"
+    [srcset]="getSrcset(imageVariant)"
+    sizes="95vw">
+  </div>
+
+  <div class="contact-div">
+    <div class="socials">
+      Socials
+    </div>
+  </div>
+
 </div>
