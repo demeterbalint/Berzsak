@@ -18,39 +18,43 @@
   </div>
 
   <!-- Sidebar -->
-  <div class="sidebar" *ngIf="selectedProject && !sidebarDisabled" [@sidebarSlide] (@sidebarSlide.done)="onSidebarAnimDone($event)">
-    <h2 class="sidebar-name">{{ selectedProject.name }}</h2>
-    <h3 class="sidebar-description">{{ selectedProject.description }}</h3>
+  <div class="sidebar" *ngIf="selectedProject && !sidebarDisabled" [@sidebarSlide]
+       (@sidebarSlide.done)="onSidebarAnimDone($event)">
+    <div class="sidebar-scroll">
+      <h2 class="sidebar-name">{{ selectedProject.name }}</h2>
+      <h3 class="sidebar-description">{{ selectedProject.description }}</h3>
 
-    <div class="sidebar-main">
-      <img [src]="selectedProject.mainImgUrl[4]" [alt]="selectedProject.name"
-           [srcset]="getSrcset(selectedProject.mainImgUrl)"
-           sizes="34vw"
-           [attr.data-project-name]="selectedProject.name">
-    </div>
+      <div class="sidebar-main">
+        <img [src]="selectedProject.mainImgUrl[4]" [alt]="selectedProject.name"
+             [srcset]="getSrcset(selectedProject.mainImgUrl)"
+             sizes="34vw"
+             [attr.data-project-name]="selectedProject.name">
+      </div>
 
-    <div class="gallery">
-      <img *ngFor="let imgVariants of selectedProject.imageUrls"
-           [src]="imgVariants[4]"
-           [srcset]="getSrcset(imgVariants)"
-           sizes="{{ getGallerySizes(selectedProject.imageUrls.length) }}"
-           [alt]="selectedProject.name">
-    </div>
-    <div class="sidebar-navigate-btn">
-      <a [routerLink]="['/main', selectedProject.slug]" draggable="false">Take me to project &minus;&gt;</a>
+      <div class="gallery">
+        <img *ngFor="let imgVariants of selectedProject.imageUrls"
+             [src]="imgVariants[4]"
+             [srcset]="getSrcset(imgVariants)"
+             sizes="{{ getGallerySizes(selectedProject.imageUrls.length) }}"
+             [alt]="selectedProject.name">
+      </div>
+      <div class="sidebar-navigate-btn">
+        <a [routerLink]="['/main', selectedProject.slug]" draggable="false">Take me to project &minus;&gt;</a>
+      </div>
     </div>
   </div>
   <button *ngIf="selectedProject" class="close-btn" (click)="closeSidebar()">✕</button>
 
 
   <!-- Grid-Experience -->
-  <div *ngIf="view.status === ViewStatus.EXPERIENCE" class="grid-experience" #gridExp [@gridSlide]="gridState" (@gridSlide.done)="onGridAnimDone($event)"
+  <div *ngIf="view.status === ViewStatus.EXPERIENCE" class="grid-experience" #gridExp [@gridSlide]="gridState"
+       (@gridSlide.done)="onGridAnimDone($event)"
        (mousedown)="handleExperienceInteraction($event)"
        (mousemove)="onExperienceDrag($event)"
        (pointerdown)="handleExperienceInteraction($event)"
        (pointermove)="onExperienceDrag($event)"
        (touchstart)="handleExperienceInteraction($event)"
-        (touchmove)="onExperienceDrag($event)">
+       (touchmove)="onExperienceDrag($event)">
     <div *ngFor="let project of projects" class="grid-item">
       <img [src]="project.mainImgUrl[4]"
            [srcset]="getSrcset(project.mainImgUrl)"

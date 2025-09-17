@@ -97,13 +97,22 @@
   position: fixed; /* keep grid independent */
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-width: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   border-right: 1px solid black;
   background-color: #f1f1f1;
   z-index: 1500;
+  scrollbar-width: none;
+}
+
+.sidebar-scroll {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding-bottom: 8%; /* adds extra scrollable space at the bottom */
+  box-sizing: border-box;
+  scrollbar-width: none;
 }
 
 .sidebar-name {
@@ -142,7 +151,6 @@
   margin-top: 1vw;
   margin-bottom: 1vw;
   width: 85%;
-  max-height: 100px;
   overflow: hidden;
   align-items: center;
   justify-content: center;
@@ -188,7 +196,9 @@
 }
 
 .sidebar-navigate-btn a{
-  position: absolute;
+  position: relative;
+  display: block;
+  margin-top: auto;
   right: 10%;
   left: 50%;
   text-align: right;
