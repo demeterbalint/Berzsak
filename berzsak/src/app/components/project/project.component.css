@@ -298,12 +298,12 @@
 @media (orientation: portrait) {
   .grid-experience {
     --tile: clamp(220px, 40vw, 600px);
-    grid-template-columns: repeat(4, var(--tile));
+    grid-template-columns: repeat(3, var(--tile));
     gap: clamp(20px, 20vw, 300px);
   }
 
   /* stagger every 2nd item for checkerboard */
-  .grid-experience .grid-item:nth-child(2n) {
+  .grid-experience .grid-item:nth-child(3n+2) {
     transform: translateY(calc(50% + (clamp(20px, 20vw, 300px) / 2)));
   }
 }
@@ -312,13 +312,13 @@
 @media (orientation: landscape) {
   .grid-experience {
     --tile: clamp(220px, 26vw, 340px);
-    grid-template-columns: repeat(5, var(--tile));
+    grid-template-columns: repeat(4, var(--tile));
     gap: clamp(24px, 8vw, 150px);
   }
 
   /* stagger 2nd and 4th items for checkerboard */
-  .grid-experience .grid-item:nth-child(5n+2),
-  .grid-experience .grid-item:nth-child(5n+4) {
+  .grid-experience .grid-item:nth-child(4n+2),
+  .grid-experience .grid-item:nth-child(4n+4) {
     transform: translateY(calc(50% + (clamp(24px, 8vw, 150px) / 2)));
   }
 }
