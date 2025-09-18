@@ -159,10 +159,10 @@
 
 .gallery img {
   flex: 1 1 0;
-  height: 100%;
   object-fit: cover;
   border-radius: 4px;
   min-width: 0;
+  max-height: 10vh; /* Limits the maximum height of images to 30% of viewport height */
 }
 
 .close-btn {
