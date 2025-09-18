@@ -25,6 +25,10 @@
       <h3 class="sidebar-description">{{ selectedProject.description }}</h3>
 
       <div class="sidebar-main">
+        <div class="sidebar-gallery-switch-btn">
+          <button>&lt;</button>
+          <button>&gt;</button>
+        </div>
         <img [src]="selectedProject.imageUrls[selectedImageIndex][4]" [alt]="selectedProject.name"
              [srcset]="getSrcset(selectedProject.imageUrls[selectedImageIndex])"
              sizes="34vw"
