@@ -67,7 +67,8 @@ export class SidebarAnimationService {
             { selector: '.sidebar-name', delay: 300 },
             { selector: '.sidebar-description', delay: 800 },
             { selector: '.gallery', delay: 1300 },
-            { selector: '.close-btn', delay: 0 }
+            { selector: '.close-btn', delay: 0 },
+            { selector: '.sidebar-gallery-switch-btn', delay: 0 }
           ];
 
           fadeElements.forEach(item => {
