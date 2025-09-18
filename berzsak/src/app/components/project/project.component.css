@@ -233,6 +233,7 @@
 .sidebar-name,
 .sidebar-description,
 .gallery,
+.sidebar-navigate-btn,
 .sidebar-gallery-switch-btn {
   opacity: 0;
   transition: opacity 0.8s ease;

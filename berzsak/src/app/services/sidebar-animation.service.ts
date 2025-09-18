@@ -68,6 +68,7 @@ export class SidebarAnimationService {
             { selector: '.sidebar-description', delay: 800 },
             { selector: '.gallery', delay: 1300 },
             { selector: '.close-btn', delay: 0 },
+            { selector: '.sidebar-navigate-btn', delay: 1300 },
             { selector: '.sidebar-gallery-switch-btn', delay: 0 }
           ];
 
@@ -107,11 +108,26 @@ export class SidebarAnimationService {
     sidebarImg.style.visibility = 'hidden';
     gridImg.style.visibility = 'hidden';
 
+    const fadeElements: { selector: string}[] = [
+      { selector: '.sidebar-name' },
+      { selector: '.sidebar-description' },
+      { selector: '.gallery' },
+      { selector: '.close-btn' },
+      { selector: '.sidebar-navigate-btn' },
+      { selector: '.sidebar-gallery-switch-btn' }
+    ];
+
+    fadeElements.forEach(item => {
+      const el = document.querySelector(item.selector) as HTMLElement;
+      if (el) el.style.opacity = '0';
+    });
+
     // Force reflow
     clone.getBoundingClientRect();
 
     // Animate clone back to grid
     const gridRect = gridImg.getBoundingClientRect();
+
     requestAnimationFrame(() => {
       clone.style.top = `${gridRect.top}px`;
       clone.style.left = `${gridRect.left}px`;
