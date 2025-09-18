@@ -25,18 +25,20 @@
       <h3 class="sidebar-description">{{ selectedProject.description }}</h3>
 
       <div class="sidebar-main">
-        <img [src]="selectedProject.mainImgUrl[4]" [alt]="selectedProject.name"
-             [srcset]="getSrcset(selectedProject.mainImgUrl)"
+        <img [src]="selectedProject.imageUrls[selectedImageIndex][4]" [alt]="selectedProject.name"
+             [srcset]="getSrcset(selectedProject.imageUrls[selectedImageIndex])"
              sizes="34vw"
              [attr.data-project-name]="selectedProject.name">
       </div>
 
       <div class="gallery">
-        <img *ngFor="let imgVariants of selectedProject.imageUrls"
+        <img *ngFor="let imgVariants of selectedProject.imageUrls; let i = index"
              [src]="imgVariants[4]"
              [srcset]="getSrcset(imgVariants)"
              sizes="{{ getGallerySizes(selectedProject.imageUrls.length) }}"
-             [alt]="selectedProject.name">
+             [alt]="selectedProject.name"
+             (click)="updateSelectedImage(i)"
+             [class.active]="selectedImageIndex === i">
       </div>
       <div class="sidebar-navigate-btn">
         <a [routerLink]="['/main', selectedProject.slug]" draggable="false">Take me to project &minus;&gt;</a>

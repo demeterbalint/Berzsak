@@ -40,6 +40,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   protected projects: ProjectDetails[] = [];
   protected selectedProject?: ProjectDetails;
+  protected selectedImageIndex: number = 0;
 
   protected view = {
     status: ViewStatus.EXPERIENCE,
@@ -205,6 +206,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
     this.sidebarBusy = true;
 
+    // Reset the selected image index when opening a new project
+    this.selectedImageIndex = 0;
+
     // set selected project so the sidebar renders, then run the animation
     this.selectedProject = project;
     await this.sidebarAnimation.flyToSidebar(event.currentTarget as HTMLElement, project);
@@ -264,6 +268,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   showContact() {
     return;
+  }
+
+  updateSelectedImage(index: number): void {
+    this.selectedImageIndex = index;
   }
 
   protected readonly ViewStatus = ViewStatus;
