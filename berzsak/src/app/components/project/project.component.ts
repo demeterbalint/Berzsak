@@ -271,6 +271,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   updateSelectedImage(index: number): void {
+    if (index < 0 || index > this.selectedProject!.imageUrls.length-1) return;
     this.selectedImageIndex = index;
   }
 
