@@ -25,7 +25,7 @@
 }
 
 .navigate-back-btn a:hover {
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 .brand-name {
@@ -52,9 +52,8 @@
 
 .project-mainImage {
   position: relative;
-  width: 95%;
+  width: 100%;
   height: auto;
-  margin-top: 10%;
 }
 
 .project-mainImage img {
@@ -65,22 +64,21 @@
 .project-name {
   position: relative;
   margin-top: 1rem;
-  width: 95%;
+  width: 80%;
+  font-weight: 400;
 }
 
 .project-name h1 {
-  font-family: "Monserrat", Arial, sans-serif;
   color: black;
   text-align: left;
 }
 
 .project-description {
   position: relative;
-  width: 95%;
+  width: 80%;
 }
 
 .project-description p {
-  font-family: "Monserrat", Arial, sans-serif;
   color: black;
   text-align: left;
 }
@@ -93,12 +91,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1px;
   margin-top: 5%;
 }
 
 .project-image-gallery {
   position: relative;
-  width: 95%;
+  width: 80%;
   height: auto;
 }
 
@@ -111,15 +110,13 @@
   position: relative;
   width: 100%;
   margin-top: 1rem;
-  padding-bottom: 10%;
-  background-color: lightgray;
+  padding-bottom: 5%;
   color: black;
   align-items: center;
   justify-content: center;
 }
 
 .socials {
-  font-family: "Monserrat", Arial, sans-serif;
   color: black;
   text-align: center;
 }

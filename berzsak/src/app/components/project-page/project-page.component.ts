@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterLink, RouterOutlet} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
 import {ProjectService} from '../../services/project.service';
 import {ProjectDetails} from '../../models/project-details';
 import {NgForOf, SlicePipe} from '@angular/common';
@@ -21,7 +21,8 @@ export class ProjectPageComponent implements OnInit {
   windowWidth: number = window.innerWidth;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private projectService: ProjectService) {}
+              private projectService: ProjectService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
@@ -42,7 +43,7 @@ export class ProjectPageComponent implements OnInit {
       .join(', ');
   }
 
-  showContact() {
-    return;
+  showMainPage() {
+    this.router.navigate(['/main']);
   }
 }
