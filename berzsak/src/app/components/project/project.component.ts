@@ -266,10 +266,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     this.dragScrollService.onDragCol3(event, gridCol3);
   }
 
-  showContact() {
-    return;
-  }
-
   updateSelectedImage(index: number): void {
     if (index < 0 || index > this.selectedProject!.imageUrls.length-1) return;
     this.selectedImageIndex = index;
