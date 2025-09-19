@@ -20,9 +20,10 @@
   <!-- Sidebar -->
   <div class="sidebar" *ngIf="selectedProject && !sidebarDisabled" [@sidebarSlide]
        (@sidebarSlide.done)="onSidebarAnimDone($event)">
+    <div class="fade-div"></div>
     <div class="sidebar-scroll">
       <h2 class="sidebar-name">{{ selectedProject.name }}</h2>
-      <h3 class="sidebar-description">{{ selectedProject.description }}</h3>
+      <p class="sidebar-description">{{ selectedProject.description }}</p>
 
       <div class="sidebar-main">
         <div class="sidebar-gallery-switch-btn">

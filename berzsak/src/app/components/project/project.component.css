@@ -111,6 +111,15 @@
   scrollbar-width: none;
 }
 
+.sidebar .fade-div {
+  position: fixed;
+  height: 30px;
+  width: 40%;
+  z-index: 1900;
+  background-color: #f1f1f1;
+  opacity: 1;
+}
+
 .sidebar-scroll {
   min-height: 100%;
   width: 100%;
@@ -124,19 +133,20 @@
 }
 
 .sidebar-name {
+  position: relative;
   font-style: italic;
-  width: 100%;
+  width: 85%;
+  top: 10px;
   text-align: left;
-  margin-left: 15%;
-  margin-top: 6vw;
   color: black;
 }
 
 .sidebar-description {
-  width: 100%;
+  position: relative;
+  margin-top: -5px;
+  width: 85%;
   font-weight: 300;
   color: black;
-  margin-left: 15%;
   text-align: left
 }
 
@@ -160,7 +170,7 @@
   right: 2%;
   display: flex;
   justify-content: right;
-  z-index: 2000;
+  z-index: 1800;
 }
 
 .sidebar-gallery-switch-btn button {
@@ -184,6 +194,7 @@
   border-left: 2px solid black;
   height: 1.3vw;
   margin: 0;
+  z-index: 1800;
 }
 
 /* Gallery inside sidebar */
@@ -364,7 +375,7 @@
   position: relative; /* Needed to make fade-div absolute relative to this container */
 }
 
-.fade-div {
+.grid-container .fade-div {
   position: absolute;
   width: 100vw;
   pointer-events: none; /* allows interaction with grid behind */
@@ -452,7 +463,7 @@
 }
 
 @media (orientation: portrait) {
-  .fade-div {
+  .grid-container .fade-div {
     margin-top: 5%;
     height: 5%;
   }
@@ -468,7 +479,7 @@
 }
 
 @media (orientation: landscape) {
-  .fade-div {
+  .grid-container .fade-div {
     margin-top: 3%;
     height: 5%;
   }
