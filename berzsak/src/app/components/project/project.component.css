@@ -11,6 +11,8 @@
   top: 10px;
   left: 10px;
   z-index: 2000;
+  transform: rotateZ(180deg);
+  transition: transform 0.8s ease;
 }
 
 .brand-name-button {
@@ -21,10 +23,10 @@
   font-weight: 700;
   font-size: 1rem;
   letter-spacing: 2px;
-  transform: rotate(180deg);
 }
-.brand-name-button:hover {
-  transform: rotate(0deg);
+
+.brand-name:hover {
+  transform: rotateZ(360deg)
 }
 
 .brand-name-button.exp-view {
