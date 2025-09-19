@@ -25,6 +25,13 @@
   transform: rotate(180deg);
 }
 
+.brand-name-button.exp-view {
+  background-color: rgba(241, 241, 241, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /*Safari*/
+  border-radius: 4px;
+}
+
 .view-button {
   position: absolute;
   top: 20px;
@@ -275,8 +282,6 @@
 }
 
 .grid-experience .grid-item {
-  width: var(--tile);
-  height: calc(var(--tile) * 3897 / 5846);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -297,14 +302,20 @@
 /* Portrait mode (height > width) */
 @media (orientation: portrait) {
   .grid-experience {
-    --tile: clamp(220px, 40vw, 600px);
-    grid-template-columns: repeat(3, var(--tile));
+    --tile: 50vw;
+    grid-template-columns: repeat(2, var(--tile));
+    grid-auto-rows: calc(var(--tile) * 3897 / 5846);
     gap: clamp(20px, 20vw, 300px);
     padding-bottom: calc(var(--tile) * 3897 / 5846); /* Extra padding to accommodate lowered grid items */
   }
 
+  .grid-experience .grid-item {
+    width: 100%;
+    height: 100%;
+  }
+
   /* stagger every 2nd item for checkerboard */
-  .grid-experience .grid-item:nth-child(3n+2) {
+  .grid-experience .grid-item:nth-child(2n+2) {
     transform: translateY(calc(50% + (clamp(20px, 20vw, 300px) / 2)));
   }
 }
@@ -312,16 +323,22 @@
 /* Landscape mode (width > height) */
 @media (orientation: landscape) {
   .grid-experience {
-    --tile: clamp(220px, 26vw, 340px);
+    --tile: 26vw;
     grid-template-columns: repeat(4, var(--tile));
-    gap: clamp(24px, 8vw, 150px);
+    grid-auto-rows: calc(var(--tile) * 3897 / 5846);
+    gap: 8vw;
     padding-bottom: calc(var(--tile) * 3897 / 5846); /* Extra padding to accommodate lowered grid items */
+  }
+
+  .grid-experience .grid-item {
+    width: 100%;
+    height: 100%;
   }
 
   /* stagger 2nd and 4th items for checkerboard */
   .grid-experience .grid-item:nth-child(4n+2),
   .grid-experience .grid-item:nth-child(4n+4) {
-    transform: translateY(calc(50% + (clamp(24px, 8vw, 150px) / 2)));
+    transform: translateY(calc(50% + (8vw / 2)));
   }
 }
 

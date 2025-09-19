@@ -2,7 +2,7 @@
 
   <!-- brand name -->
   <div class="brand-name">
-    <button class="brand-name-button" (click)="showContact()">BERZSAK.</button>
+    <button class="brand-name-button" [class.exp-view]="view.status === ViewStatus.EXPERIENCE" (click)="showContact()">BERZSAK.</button>
   </div>
 
   <!-- Grid/Experience button -->

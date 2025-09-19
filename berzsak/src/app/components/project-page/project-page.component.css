@@ -37,10 +37,12 @@
 
 .brand-name-button {
   color: black;
-  -webkit-text-stroke: 0.01rem #f1f1f1;
   cursor: pointer;
   border: none;
-  background-color: transparent;
+  background-color: rgba(241, 241, 241, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /*Safari*/
+  border-radius: 4px;
   font-weight: 700;
   font-size: 1rem;
   letter-spacing: 2px;
