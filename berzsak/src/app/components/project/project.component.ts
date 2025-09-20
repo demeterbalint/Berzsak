@@ -6,7 +6,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ViewStatus} from '../../enum/view-status';
 import {DragScrollService} from '../../services/drag-scroll.service';
 import {SidebarAnimationService} from '../../services/sidebar-animation.service';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -58,7 +58,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   constructor(private projectService: ProjectService,
               private dragScrollService: DragScrollService,
-              private sidebarAnimation: SidebarAnimationService) {
+              private sidebarAnimation: SidebarAnimationService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -202,7 +203,11 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
-    if (this.sidebarBusy || this.dragScrollService.moved || this.selectedProject || this.sidebarDisabled) return;
+    if (this.sidebarBusy || this.dragScrollService.moved || this.selectedProject ) return;
+    if (this.sidebarDisabled) {
+      this.router.navigate(['/main', project.slug]);
+      return;
+    }
 
     this.sidebarBusy = true;
 
