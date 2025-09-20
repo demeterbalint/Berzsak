@@ -202,7 +202,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
-    if (this.sidebarBusy || this.dragScrollService.moved || this.selectedProject) return;
+    if (this.sidebarBusy || this.dragScrollService.moved || this.selectedProject || this.sidebarDisabled) return;
 
     this.sidebarBusy = true;
 
