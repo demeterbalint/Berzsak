@@ -134,7 +134,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   checkSidebar() {
     if (this.windowWidth < 800) {
       this.sidebarDisabled = true;
-      this.selectedProject = undefined; // close sidebar if open
+      this.closeSidebar() // close sidebar if open
     } else {
       this.sidebarDisabled = false;
     }
