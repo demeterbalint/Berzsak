@@ -131,3 +131,7 @@ hr {
   align-items: center;
   gap: 1rem;
 }
+
+.socials a{
+  font-size: 20px;
+}
