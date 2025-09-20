@@ -465,15 +465,33 @@
 }
 
 @media (orientation: portrait) {
-  .grid-container .fade-div {
-    margin-top: 40px;
-    height: 30px;
-  }
-
   .grid-col3 {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100vw;
+    height: 100vh; /* enable scrolling */
+    overflow-y: auto; /* allow vertical scroll */
     margin-top: 40px;
   }
 
+  .grid-col3 .grid-item {
+    width: 40vw;
+    height: 40vw;
+  }
+
+}
+
+@media (orientation: landscape) and (aspect-ratio < 1.26) {
+  .grid-col3 {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100vw;
+    height: 100vh; /* enable scrolling */
+    overflow-y: auto; /* allow vertical scroll */
+  }
+
+  .grid-col3 .grid-item {
+    width: 40vw;
+    height: 40vw;
+  }
 }
 
 @media (orientation: landscape) {
@@ -487,7 +505,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .grid-col3 {
     grid-template-columns: repeat(2, 1fr);
     width: 100vw;
