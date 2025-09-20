@@ -106,18 +106,24 @@
   height: auto;
 }
 
+hr {
+  border: none;
+  border-top: 2px solid #ccc;
+  margin: 2rem 0;
+  width: 80%;
+  align-self: center;
+}
+
 .contact-div {
   position: relative;
   width: 100%;
   margin-top: 1rem;
   padding-bottom: 5%;
-  color: black;
   align-items: center;
   justify-content: center;
 }
 
 .socials {
-  color: black;
   text-align: center;
   display: flex;
   flex-direction: row;
