@@ -421,7 +421,7 @@
   overflow: hidden;
   gap: 2vw;
   width: 80%;
-  height: 80%;
+  height: auto;
   scrollbar-width: none;
   justify-content: flex-start;
   align-items: center;
@@ -466,36 +466,28 @@
 
 @media (orientation: portrait) {
   .grid-container .fade-div {
-    margin-top: 5%;
-    height: 5%;
+    margin-top: 40px;
+    height: 30px;
   }
 
   .grid-col3 {
-    margin-top: 5%;
-  }
-
-  .grid-col3 .grid-item {
-
+    margin-top: 40px;
   }
 
 }
 
 @media (orientation: landscape) {
   .grid-container .fade-div {
-    margin-top: 3%;
-    height: 5%;
+    margin-top: 40px;
+    height: 30px;
   }
 
   .grid-col3 {
-    margin-top: 3%;
-  }
-
-  .grid-col3 .grid-item {
-
+    margin-top: 40px;
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .grid-col3 {
     grid-template-columns: repeat(2, 1fr);
     width: 100vw;
@@ -513,7 +505,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .grid-col3 {
     grid-template-columns: 1fr;
     width: 100vw;

@@ -115,6 +115,7 @@ export class DragScrollService {
 
     const point = this.getPoint(event);
     this.startX = point.x - el.offsetLeft;
+    this.startY = point.y - el.offsetTop; // Track vertical position too
     this.scrollLeft = el.scrollLeft;
 
     el.style.cursor = 'grabbing';
@@ -145,21 +146,37 @@ export class DragScrollService {
   onDragCol3(event: MouseEvent | PointerEvent | TouchEvent, el: HTMLElement) {
     if (!this.dragging) return;
 
-    if ('preventDefault' in event) event.preventDefault();
-
     const point = this.getPoint(event);
     const x = point.x - el.offsetLeft;
+    const y = point.y - el.offsetTop;
     const walkX = this.startX - x;
+    const walkY = this.startY - y;
 
-    if (Math.abs(walkX) > 5) {
-      this._moved = true;
-    }
+    // Determine if the drag is predominantly horizontal
+    // We consider a drag "quiet horizontal" if the horizontal movement is greater than
+    // the vertical movement by a certain ratio (e.g., 1.5 times)
+    const isHorizontalDrag = Math.abs(walkX) > Math.abs(walkY) * 1.5;
 
-    const scrollable = this.scrollables.find(s => s.el === el);
-    if (scrollable) {
-      // horizontal only
-      scrollable.targetScrollLeft = this.scrollLeft + walkX;
-      this.animateScrollable(scrollable);
+    if (isHorizontalDrag) {
+      // Only prevent default and handle horizontal scrolling if the drag is predominantly horizontal
+      if ('preventDefault' in event) event.preventDefault();
+
+      if (Math.abs(walkX) > 5) {
+        this._moved = true;
+      }
+
+      const scrollable = this.scrollables.find(s => s.el === el);
+      if (scrollable) {
+        // horizontal only
+        scrollable.targetScrollLeft = this.scrollLeft + walkX;
+        this.animateScrollable(scrollable);
+      }
+    } else {
+      // For predominantly vertical drags, don't prevent default
+      // This allows the page to scroll vertically as normal
+      if (Math.abs(walkY) > 5) {
+        this._moved = true;
+      }
     }
   }
 
