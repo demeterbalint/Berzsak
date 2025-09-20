@@ -224,7 +224,8 @@ export class DragScrollService {
     // Apply momentum if we have a valid element
     if (el) {
       const scrollable = this.scrollables.find(s => s.el === el);
-      if (scrollable && (Math.abs(scrollable.velocityX) > 0.05 || Math.abs(scrollable.velocityY) > 0.05)) {
+      // Only apply momentum if enableMomentum is true for this scrollable
+      if (scrollable && scrollable.enableMomentum && (Math.abs(scrollable.velocityX) > 0.05 || Math.abs(scrollable.velocityY) > 0.05)) {
         // Calculate momentum based on velocity
         // The multiplier is dynamic based on velocity - faster swipes result in more momentum
         // This creates a more natural feeling where quick swipes scroll further
@@ -362,7 +363,7 @@ export class DragScrollService {
     this.rafMap.set(scrollable.el, id0);
   }
 
-  registerScrollable(el: HTMLElement) {
+  registerScrollable(el: HTMLElement, enableMomentum: boolean = false) {
     if (!this.scrollables.find(s => s.el === el)) {
       this.scrollables.push({
         el,
@@ -374,7 +375,8 @@ export class DragScrollService {
         lastX: 0,
         lastY: 0,
         lastTimestamp: 0,
-        decelerating: false
+        decelerating: false,
+        enableMomentum: enableMomentum
       });
     }
   }

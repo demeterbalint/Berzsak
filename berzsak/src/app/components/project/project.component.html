@@ -21,7 +21,16 @@
   <div class="sidebar" *ngIf="selectedProject && !sidebarDisabled" [@sidebarSlide]
        (@sidebarSlide.done)="onSidebarAnimDone($event)">
     <div class="fade-div"></div>
-    <div class="sidebar-scroll">
+    <div class="sidebar-scroll"
+         (mousedown)="handleSidebarInteraction($event)"
+         (mousemove)="onSidebarDrag($event)"
+         (mouseup)="onSidebarDragEnd($event)"
+         (pointerdown)="handleSidebarInteraction($event)"
+         (pointermove)="onSidebarDrag($event)"
+         (pointerup)="onSidebarDragEnd($event)"
+         (touchstart)="handleSidebarInteraction($event)"
+         (touchmove)="onSidebarDrag($event)"
+         (touchend)="onSidebarDragEnd($event)">
       <h2 class="sidebar-name">{{ selectedProject.name }}</h2>
       <p class="sidebar-description">{{ selectedProject.description }}</p>
 

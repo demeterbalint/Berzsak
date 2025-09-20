@@ -9,4 +9,5 @@ export interface Scrollable {
   lastY: number;
   lastTimestamp: number;
   decelerating: boolean;
+  enableMomentum: boolean;
 }
