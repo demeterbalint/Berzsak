@@ -100,6 +100,25 @@ export class DragScrollService {
     if (scrollable) {
       scrollable.targetScrollLeft = this.scrollLeft + walkX;
       scrollable.targetScrollTop = this.scrollTop + walkY;
+
+      // Track velocity
+      const now = Date.now();
+      if (scrollable.lastTimestamp > 0) {
+        const deltaTime = now - scrollable.lastTimestamp;
+        if (deltaTime > 0) {
+          // Calculate velocity (pixels per millisecond)
+          const deltaX = x - scrollable.lastX;
+          const deltaY = y - scrollable.lastY;
+          scrollable.velocityX = deltaX / deltaTime;
+          scrollable.velocityY = deltaY / deltaTime;
+        }
+      }
+
+      // Update last position and timestamp
+      scrollable.lastX = x;
+      scrollable.lastY = y;
+      scrollable.lastTimestamp = now;
+
       this.animateScrollable(scrollable);
     }
   }
@@ -169,6 +188,23 @@ export class DragScrollService {
       if (scrollable) {
         // horizontal only
         scrollable.targetScrollLeft = this.scrollLeft + walkX;
+
+        // Track velocity (horizontal only)
+        const now = Date.now();
+        if (scrollable.lastTimestamp > 0) {
+          const deltaTime = now - scrollable.lastTimestamp;
+          if (deltaTime > 0) {
+            // Calculate velocity (pixels per millisecond)
+            const deltaX = x - scrollable.lastX;
+            scrollable.velocityX = deltaX / deltaTime;
+          }
+        }
+
+        // Update last position and timestamp
+        scrollable.lastX = x;
+        scrollable.lastY = y;
+        scrollable.lastTimestamp = now;
+
         this.animateScrollable(scrollable);
       }
     } else {
@@ -184,6 +220,42 @@ export class DragScrollService {
   endDrag(_event?: MouseEvent | PointerEvent | TouchEvent, el?: HTMLElement) {
     // turning dragging off
     this.dragging = false;
+
+    // Apply momentum if we have a valid element
+    if (el) {
+      const scrollable = this.scrollables.find(s => s.el === el);
+      if (scrollable && (Math.abs(scrollable.velocityX) > 0.05 || Math.abs(scrollable.velocityY) > 0.05)) {
+        // Calculate momentum based on velocity
+        // The multiplier is dynamic based on velocity - faster swipes result in more momentum
+        // This creates a more natural feeling where quick swipes scroll further
+        const baseMultiplier = 150;
+        const velocityFactor = Math.max(1, Math.sqrt(
+          Math.abs(scrollable.velocityX) * 10 +
+          Math.abs(scrollable.velocityY) * 10
+        ));
+        const momentumMultiplier = baseMultiplier * velocityFactor;
+
+        // Apply momentum to target scroll positions
+        // The negative sign is because the velocity is calculated as (current - previous)
+        // but scrolling direction is opposite to drag direction
+        scrollable.targetScrollLeft += -scrollable.velocityX * momentumMultiplier;
+        scrollable.targetScrollTop += -scrollable.velocityY * momentumMultiplier;
+
+        // Ensure we don't scroll past boundaries (if possible to detect)
+        if (scrollable.el.scrollLeft === 0 && scrollable.targetScrollLeft < 0) {
+          scrollable.targetScrollLeft = 0;
+        }
+        if (scrollable.el.scrollTop === 0 && scrollable.targetScrollTop < 0) {
+          scrollable.targetScrollTop = 0;
+        }
+
+        // Set decelerating flag to true to enable deceleration in the animation
+        scrollable.decelerating = true;
+
+        // Start the animation with momentum
+        this.animateScrollable(scrollable);
+      }
+    }
 
     // restore cursor for given element
     if (el) {
@@ -243,8 +315,9 @@ export class DragScrollService {
   }
 
   /* -------------------------- animateScrollable -------------------------- */
-  animateScrollable(scrollable: { el: HTMLElement; targetScrollTop: number; targetScrollLeft: number; animating: boolean }) {
-    const lag = 0.12; // smoothing factor
+  animateScrollable(scrollable: Scrollable) {
+    // Base lag factor for normal scrolling
+    const baseLag = 0.12;
 
     // If an animation is already running for this element, keep using it (it will pick up new targets)
     if (scrollable.animating && this.rafMap.has(scrollable.el)) {
@@ -257,9 +330,15 @@ export class DragScrollService {
     const step = () => {
       const el = scrollable.el;
 
+      // Use a different lag factor for deceleration (slower, more gradual)
+      // This creates a more natural feeling deceleration
+      const lag = scrollable.decelerating ? 0.08 : baseLag;
+
+      // Apply the lag factor to move towards the target
       el.scrollTop += (scrollable.targetScrollTop - el.scrollTop) * lag;
       el.scrollLeft += (scrollable.targetScrollLeft - el.scrollLeft) * lag;
 
+      // Determine if we need to continue animating
       const needMore = Math.abs(el.scrollTop - scrollable.targetScrollTop) > 0.5 ||
         Math.abs(el.scrollLeft - scrollable.targetScrollLeft) > 0.5;
 
@@ -267,8 +346,12 @@ export class DragScrollService {
         const id = requestAnimationFrame(step);
         this.rafMap.set(el, id);
       } else {
-        // finished
+        // Animation finished
         scrollable.animating = false;
+        scrollable.decelerating = false; // Reset deceleration flag
+        scrollable.velocityX = 0; // Reset velocity
+        scrollable.velocityY = 0;
+
         const id = this.rafMap.get(el);
         if (id !== undefined) cancelAnimationFrame(id);
         this.rafMap.delete(el);
@@ -286,6 +369,12 @@ export class DragScrollService {
         targetScrollTop: el.scrollTop,
         targetScrollLeft: el.scrollLeft,
         animating: false,
+        velocityX: 0,
+        velocityY: 0,
+        lastX: 0,
+        lastY: 0,
+        lastTimestamp: 0,
+        decelerating: false
       });
     }
   }
