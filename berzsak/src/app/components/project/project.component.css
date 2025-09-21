@@ -280,7 +280,7 @@
 }
 
 .sidebar-navigate-btn a:hover {
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 /* Grid */
@@ -460,7 +460,7 @@
 }
 
 .col3-navigate-btn:hover {
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 @media (orientation: portrait) {
