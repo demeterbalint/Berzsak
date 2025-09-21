@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {ProjectService} from '../../services/project.service';
 import {ProjectDetails} from '../../models/project-details';
-import {NgForOf, SlicePipe} from '@angular/common';
+import {NgForOf, NgIf, SlicePipe} from '@angular/common';
 
 @Component({
   selector: 'app-project-page',
@@ -10,6 +10,7 @@ import {NgForOf, SlicePipe} from '@angular/common';
     RouterLink,
     NgForOf,
     SlicePipe,
+    NgIf,
   ],
   templateUrl: './project-page.component.html',
   styleUrls: ['./project-page.component.css']
@@ -40,6 +41,11 @@ export class ProjectPageComponent implements OnInit {
     return imageArray
       .map((url, i) => `${url} ${this.imageWidths[i]}w`)
       .join(', ');
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.windowWidth = window.innerWidth;
   }
 
   protected readonly window = window;
