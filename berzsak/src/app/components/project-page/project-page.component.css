@@ -33,6 +33,11 @@
   top: 10px;
   left: 10px;
   z-index: 2000;
+  transform: rotateZ(180deg);
+}
+
+.brand-name:hover {
+  transform: rotateZ(0deg);
 }
 
 .brand-name-button {
@@ -47,7 +52,6 @@
   font-size: 1rem;
   letter-spacing: 2px;
   font-family: "Monserrat", Arial, sans-serif;
-  transform: rotate(180deg);
 }
 
 .project-mainImage {
