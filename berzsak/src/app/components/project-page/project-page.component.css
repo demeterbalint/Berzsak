@@ -9,7 +9,6 @@
   justify-content: flex-start;
   align-items: center;
   scrollbar-width: none;
-  padding-bottom: 5%;
 }
 
 .navigate-back-btn {
@@ -121,7 +120,7 @@ hr {
 .contact-div {
   position: relative;
   width: 100%;
-  padding-bottom: 5%;
+  padding-bottom: 3%;
   align-items: center;
   justify-content: center;
 }

@@ -371,7 +371,6 @@
   z-index: 1;
   margin-top: 40px;
   height: 30px;
-
 }
 
 .grid-col3 {
@@ -382,7 +381,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 40px;
-  padding-bottom: 5%;
   position: relative;
   justify-items: center;
   justify-content: center;
@@ -517,4 +515,38 @@
   .col3-navigate-btn {
     font-size: 3.2vw;
   }
+}
+
+hr {
+  position: relative;
+  border: none;
+  border-top: 2px solid #ccc;
+  width: 95%;
+  margin-top: 2%;
+  grid-column: 1 / -1; /* Make hr span all columns */
+  justify-self: center; /* Center hr in the grid */
+}
+
+.contact-div {
+  position: relative;
+  width: 100%;
+  margin-top: 2%;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1; /* Make contact-div span all columns */
+}
+
+.socials {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.socials a{
+  font-size: 20px;
+  color: #ccc;
+  text-decoration: none;
 }
