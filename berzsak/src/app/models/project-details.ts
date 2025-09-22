@@ -2,7 +2,8 @@ export interface ProjectDetails {
 
   name: string;
   slug: string;
-  description: string;
+  shortDescription: string;
+  longDescription: string;
   mainImgUrl: string[];
   imageUrls: string[][];
 }
