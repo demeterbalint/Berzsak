@@ -139,3 +139,7 @@ hr {
   color: #ccc;
   text-decoration: none;
 }
+
+.socials a:hover{
+  color: #555;
+}

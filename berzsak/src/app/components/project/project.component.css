@@ -15,7 +15,6 @@
 }
 
 .brand-name-button {
-  color: black;
   cursor: pointer;
   border: none;
   background-color: transparent;
@@ -26,6 +25,9 @@
 
 .brand-name:hover {
   transform: rotateZ(0);
+  .brand-name-button.exp-view {
+    color: #555;
+  }
 }
 
 .brand-name-button.exp-view {
@@ -33,11 +35,12 @@
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px); /*Safari*/
   border-radius: 4px;
+  color: #ccc;
 }
 
 .view-button {
   position: absolute;
-  top: 20px;
+  top: 15px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2000;
@@ -102,15 +105,12 @@
 
 .experience-socials {
   position: fixed;
-  bottom: 0;
-  right: 1px;
+  bottom: 10px;
+  right: 10px;
   display: flex;
   flex-direction: column;
   flex: 1 1 0;
   gap: 10px;
-  border: #ccc 3px solid;
-  padding: 0.5rem;
-  border-radius: 10px;
   justify-content: center;
   align-items: center;
   z-index: 999;
@@ -120,6 +120,10 @@
   font-size: 1.5rem;
   text-decoration: none;
   color: #ccc;
+}
+
+.experience-socials a:hover {
+  color: #555
 }
 
 .sidebar {
@@ -600,4 +604,8 @@ hr {
   font-size: 20px;
   color: #ccc;
   text-decoration: none;
+}
+
+.socials a:hover{
+  color: #555;
 }
