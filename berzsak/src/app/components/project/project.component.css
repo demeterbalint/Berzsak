@@ -166,11 +166,11 @@
 
 .sidebar-gallery-switch-btn {
   position: absolute;
-  width: 100%;
+  width: 97%;
   top: 3%;
-  right: 2%;
+  left: 1.5%;
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   z-index: 1800;
 }
 
@@ -186,16 +186,6 @@
 
 .sidebar-gallery-switch-btn button:hover {
   transform: scale(1.1);
-}
-
-.sidebar .vertical-bar {
-  display: flex;
-  justify-content: center;
-  background: none;
-  border-left: 2px solid black;
-  height: 1.3vw;
-  margin: 0;
-  z-index: 1800;
 }
 
 /* Gallery inside sidebar */
@@ -261,18 +251,15 @@
 
 .sidebar-navigate-btn {
   position: relative;
-  width: 100%;
+  width: 85%;
 }
 
 .sidebar-navigate-btn a{
   position: relative;
   display: block;
   margin-top: auto;
-  right: 10%;
-  left: 50%;
   text-align: right;
   width: auto;
-  max-width: calc(50% - 10%);
   font-size: 1vw;
   color: black;
   text-decoration: none;
