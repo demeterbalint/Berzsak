@@ -508,6 +508,10 @@
     height: 40vw;
   }
 
+  .grid-col3 hr {
+    width: 90vw;
+  }
+
 }
 
 @media (orientation: landscape) and (aspect-ratio < 1.26) {
@@ -518,6 +522,10 @@
   .grid-col3 .grid-item {
     width: 40vw;
     height: 40vw;
+  }
+
+  .grid-col3 hr {
+    width: 90vw;
   }
 }
 
@@ -534,6 +542,10 @@
   .col3-navigate-btn {
     font-size: 1.4vw;
   }
+
+  .grid-col3 hr {
+    width: 90vw;
+  }
 }
 
 @media (max-width: 500px) {
@@ -549,13 +561,17 @@
   .col3-navigate-btn {
     font-size: 3.2vw;
   }
+
+  .grid-col3 hr {
+    width: 90vw;
+  }
 }
 
 hr {
   position: relative;
   border: none;
   border-top: 2px solid #ccc;
-  width: 90%;
+  width: 95%;
   margin-top: 2%;
   grid-column: 1 / -1; /* Make hr span all columns */
   justify-self: center; /* Center hr in the grid */
