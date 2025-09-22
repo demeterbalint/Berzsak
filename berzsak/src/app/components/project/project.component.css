@@ -59,14 +59,13 @@
 
 .view-btn {
   background-color: #f1f1f1;
-  color: black;
   width: 100%;
   display: flex;
   align-items: center;
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 6px;
-  border: 0.1rem solid black;
+  border: 0.1rem solid #555;
   transition: background 0.3s, transform 0.2s;
 }
 
@@ -86,17 +85,16 @@
   width: 20px;
   height: 20px;
   margin-right: 4px;
-  background-color: #444444;
-  border-radius: 3px;
 }
 
 .view-icon i {
   font-size: 10px;
-  color: white;
+  color: #555;
 }
 
 .view-text {
   width: 100%;
+  color: #555;
   font-size: 0.6rem;
   font-weight: 400;
   align-self: center;
@@ -161,18 +159,18 @@
 
 .sidebar-name {
   position: relative;
-  font-style: italic;
   width: 85%;
-  top: 10px;
+  top: 28px;
   text-align: left;
   color: black;
 }
 
 .sidebar-description {
   position: relative;
-  margin-top: -5px;
+  top: 0;
   width: 85%;
   font-weight: 300;
+  font-size: 0.8rem;
   color: black;
   text-align: left
 }
@@ -181,6 +179,7 @@
   position: relative;
   width: 85%;
   height: auto;
+  top: 13px;
   object-fit: cover;
   visibility: visible; /* default, TS overrides during animation */
 }
@@ -193,7 +192,7 @@
 .sidebar-gallery-switch-btn {
   position: absolute;
   width: 97%;
-  top: 3%;
+  top: 48%;
   left: 1.5%;
   display: flex;
   justify-content: space-between;
