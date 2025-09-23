@@ -35,10 +35,11 @@ export class ProjectService {
         + 'Co-designer: Máté Guthy',
       mainImgUrl: ['/demeter-mixer-grinder/5846/demeter_5846.webp', '/demeter-mixer-grinder/2400/demeter_2400.webp', '/demeter-mixer-grinder/1800/demeter_1800.webp', '/demeter-mixer-grinder/1200/demeter_1200.webp', '/demeter-mixer-grinder/600/demeter_600.webp', '/demeter-mixer-grinder/300/demeter_300.webp'],
       imageUrls: [['/demeter-mixer-grinder/5846/demeter_5846.webp', '/demeter-mixer-grinder/2400/demeter_2400.webp', '/demeter-mixer-grinder/1800/demeter_1800.webp', '/demeter-mixer-grinder/1200/demeter_1200.webp', '/demeter-mixer-grinder/600/demeter_600.webp', '/demeter-mixer-grinder/300/demeter_300.webp'],
-        ['/demeter-mixer-grinder/5846/1_qt_5846.webp', '/demeter-mixer-grinder/2400/1_qt_2400.webp', '/demeter-mixer-grinder/1800/1_qt_1800.webp', '/demeter-mixer-grinder/1200/1_qt_1200.webp', "/demeter-mixer-grinder/600/1_qt_600.webp", '/demeter-mixer-grinder/300/1_qt_300.webp'],
-        ['/demeter-mixer-grinder/5846/2_qt_5846.webp', '/demeter-mixer-grinder/2400/2_qt_2400.webp', '/demeter-mixer-grinder/1800/2_qt_1800.webp', '/demeter-mixer-grinder/1200/2_qt_1200.webp', "/demeter-mixer-grinder/600/2_qt_600.webp", '/demeter-mixer-grinder/300/2_qt_300.webp'],
-        ['/demeter-mixer-grinder/5846/3_qt_5846.webp', '/demeter-mixer-grinder/2400/3_qt_2400.webp', '/demeter-mixer-grinder/1800/3_qt_1800.webp', '/demeter-mixer-grinder/1200/3_qt_1200.webp', "/demeter-mixer-grinder/600/3_qt_600.webp", '/demeter-mixer-grinder/300/3_qt_300.webp'],
-        ['/demeter-mixer-grinder/5846/4_qt_5846.webp', '/demeter-mixer-grinder/2400/4_qt_2400.webp', '/demeter-mixer-grinder/1800/4_qt_1800.webp', '/demeter-mixer-grinder/1200/4_qt_1200.webp', "/demeter-mixer-grinder/600/4_qt_600.webp", '/demeter-mixer-grinder/300/4_qt_300.webp']]
+        ['/demeter-mixer-grinder/5846/1_5846.webp', '/demeter-mixer-grinder/2400/1_2400.webp', '/demeter-mixer-grinder/1800/1_1800.webp', '/demeter-mixer-grinder/1200/1_1200.webp', "/demeter-mixer-grinder/600/1_600.webp", '/demeter-mixer-grinder/300/1_300.webp'],
+        ['/demeter-mixer-grinder/5846/2_5846.webp', '/demeter-mixer-grinder/2400/2_2400.webp', '/demeter-mixer-grinder/1800/2_1800.webp', '/demeter-mixer-grinder/1200/2_1200.webp', "/demeter-mixer-grinder/600/2_600.webp", '/demeter-mixer-grinder/300/2_300.webp'],
+        ['/demeter-mixer-grinder/5846/3_5846.webp', '/demeter-mixer-grinder/2400/3_2400.webp', '/demeter-mixer-grinder/1800/3_1800.webp', '/demeter-mixer-grinder/1200/3_1200.webp', "/demeter-mixer-grinder/600/3_600.webp", '/demeter-mixer-grinder/300/3_300.webp'],
+        ['/demeter-mixer-grinder/5846/4_5846.webp', '/demeter-mixer-grinder/2400/4_2400.webp', '/demeter-mixer-grinder/1800/4_1800.webp', '/demeter-mixer-grinder/1200/4_1200.webp', "/demeter-mixer-grinder/600/4_600.webp", '/demeter-mixer-grinder/300/4_300.webp'],
+        ['/demeter-mixer-grinder/5846/5_5846.webp', '/demeter-mixer-grinder/2400/5_2400.webp', '/demeter-mixer-grinder/1800/5_1800.webp', '/demeter-mixer-grinder/1200/5_1200.webp', "/demeter-mixer-grinder/600/5_600.webp", '/demeter-mixer-grinder/300/5_300.webp']]
     },
     {
       name: 'archproject shoe insole system',
@@ -49,9 +50,9 @@ export class ProjectService {
       projectData: 'Year: 2023\n',
       mainImgUrl: ['/archproject-shoe-insole-system/5846/archproject_5846.webp', '/archproject-shoe-insole-system/2400/archproject_2400.webp', '/archproject-shoe-insole-system/1800/archproject_1800.webp', '/archproject-shoe-insole-system/1200/archproject_1200.webp', '/archproject-shoe-insole-system/600/archproject_600.webp', '/archproject-shoe-insole-system/300/archproject_300.webp'],
       imageUrls: [['/archproject-shoe-insole-system/5846/archproject_5846.webp', '/archproject-shoe-insole-system/2400/archproject_2400.webp', '/archproject-shoe-insole-system/1800/archproject_1800.webp', '/archproject-shoe-insole-system/1200/archproject_1200.webp', '/archproject-shoe-insole-system/600/archproject_600.webp', '/archproject-shoe-insole-system/300/archproject_300.webp'],
-        ['/archproject-shoe-insole-system/5846/1_qt_5846.webp', '/archproject-shoe-insole-system/2400/1_qt_2400.webp', '/archproject-shoe-insole-system/1800/1_qt_1800.webp', '/archproject-shoe-insole-system/1200/1_qt_1200.webp', "/archproject-shoe-insole-system/600/1_qt_600.webp", '/archproject-shoe-insole-system/300/1_qt_300.webp'],
-        ['/archproject-shoe-insole-system/5846/2_qt_5846.webp', '/archproject-shoe-insole-system/2400/2_qt_2400.webp', '/archproject-shoe-insole-system/1800/2_qt_1800.webp', '/archproject-shoe-insole-system/1200/2_qt_1200.webp', "/archproject-shoe-insole-system/600/2_qt_600.webp", '/archproject-shoe-insole-system/300/2_qt_300.webp'],
-        ['/archproject-shoe-insole-system/5846/3_qt_5846.webp', '/archproject-shoe-insole-system/2400/3_qt_2400.webp', '/archproject-shoe-insole-system/1800/3_qt_1800.webp', '/archproject-shoe-insole-system/1200/3_qt_1200.webp', "/archproject-shoe-insole-system/600/3_qt_600.webp", '/archproject-shoe-insole-system/300/3_qt_300.webp']]
+        ['/archproject-shoe-insole-system/5846/1_5846.webp', '/archproject-shoe-insole-system/2400/1_2400.webp', '/archproject-shoe-insole-system/1800/1_1800.webp', '/archproject-shoe-insole-system/1200/1_1200.webp', "/archproject-shoe-insole-system/600/1_600.webp", '/archproject-shoe-insole-system/300/1_300.webp'],
+        ['/archproject-shoe-insole-system/5846/2_5846.webp', '/archproject-shoe-insole-system/2400/2_2400.webp', '/archproject-shoe-insole-system/1800/2_1800.webp', '/archproject-shoe-insole-system/1200/2_1200.webp', "/archproject-shoe-insole-system/600/2_600.webp", '/archproject-shoe-insole-system/300/2_300.webp'],
+        ['/archproject-shoe-insole-system/5846/3_5846.webp', '/archproject-shoe-insole-system/2400/3_2400.webp', '/archproject-shoe-insole-system/1800/3_1800.webp', '/archproject-shoe-insole-system/1200/3_1200.webp', "/archproject-shoe-insole-system/600/3_600.webp", '/archproject-shoe-insole-system/300/3_300.webp']]
     },
     {
       name: 'depresszó coffee glass set',
@@ -64,8 +65,11 @@ export class ProjectService {
         + 'Photo: Barna Berzsák, Milán Rácmolnár',
       mainImgUrl: ['/depresszó-coffee-glass-set/5846/depresszo_5846.webp', '/depresszó-coffee-glass-set/2400/depresszo_2400.webp', '/depresszó-coffee-glass-set/1800/depresszo_1800.webp', '/depresszó-coffee-glass-set/1200/depresszo_1200.webp', '/depresszó-coffee-glass-set/600/depresszo_600.webp', '/depresszó-coffee-glass-set/300/depresszo_300.webp'],
       imageUrls: [['/depresszó-coffee-glass-set/5846/depresszo_5846.webp', '/depresszó-coffee-glass-set/2400/depresszo_2400.webp', '/depresszó-coffee-glass-set/1800/depresszo_1800.webp', '/depresszó-coffee-glass-set/1200/depresszo_1200.webp', '/depresszó-coffee-glass-set/600/depresszo_600.webp', '/depresszó-coffee-glass-set/300/depresszo_300.webp'],
-        ['/depresszó-coffee-glass-set/5846/1_qt_5846.webp', '/depresszó-coffee-glass-set/2400/1_qt_2400.webp', '/depresszó-coffee-glass-set/1800/1_qt_1800.webp', '/depresszó-coffee-glass-set/1200/1_qt_1200.webp', "/depresszó-coffee-glass-set/600/1_qt_600.webp", '/depresszó-coffee-glass-set/300/1_qt_300.webp'],
-        ['/depresszó-coffee-glass-set/5846/2_qt_5846.webp', '/depresszó-coffee-glass-set/2400/2_qt_2400.webp', '/depresszó-coffee-glass-set/1800/2_qt_1800.webp', '/depresszó-coffee-glass-set/1200/2_qt_1200.webp', "/depresszó-coffee-glass-set/600/2_qt_600.webp", '/depresszó-coffee-glass-set/300/2_qt_300.webp']]
+        ['/depresszó-coffee-glass-set/5846/1_5846.webp', '/depresszó-coffee-glass-set/2400/1_2400.webp', '/depresszó-coffee-glass-set/1800/1_1800.webp', '/depresszó-coffee-glass-set/1200/1_1200.webp', "/depresszó-coffee-glass-set/600/1_600.webp", '/depresszó-coffee-glass-set/300/1_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/2_5846.webp', '/depresszó-coffee-glass-set/2400/2_2400.webp', '/depresszó-coffee-glass-set/1800/2_1800.webp', '/depresszó-coffee-glass-set/1200/2_1200.webp', "/depresszó-coffee-glass-set/600/2_600.webp", '/depresszó-coffee-glass-set/300/2_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/3_5846.webp', '/depresszó-coffee-glass-set/2400/3_2400.webp', '/depresszó-coffee-glass-set/1800/3_1800.webp', '/depresszó-coffee-glass-set/1200/3_1200.webp', "/depresszó-coffee-glass-set/600/3_600.webp", '/depresszó-coffee-glass-set/300/3_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/4_5846.webp', '/depresszó-coffee-glass-set/2400/4_2400.webp', '/depresszó-coffee-glass-set/1800/4_1800.webp', '/depresszó-coffee-glass-set/1200/4_1200.webp', "/depresszó-coffee-glass-set/600/4_600.webp", '/depresszó-coffee-glass-set/300/4_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/5_5846.webp', '/depresszó-coffee-glass-set/2400/5_2400.webp', '/depresszó-coffee-glass-set/1800/5_1800.webp', '/depresszó-coffee-glass-set/1200/5_1200.webp', "/depresszó-coffee-glass-set/600/5_600.webp", '/depresszó-coffee-glass-set/300/5_300.webp']]
     },
     {
       name: 'resq avalanche transmitter',
@@ -76,11 +80,11 @@ export class ProjectService {
       projectData: 'Year: 2024\n',
       mainImgUrl: ['/resq-avalanche-transmitter/5846/resq_5846.webp', '/resq-avalanche-transmitter/2400/resq_2400.webp', '/resq-avalanche-transmitter/1800/resq_1800.webp', '/resq-avalanche-transmitter/1200/resq_1200.webp', '/resq-avalanche-transmitter/600/resq_600.webp', '/resq-avalanche-transmitter/300/resq_300.webp'],
       imageUrls: [['/resq-avalanche-transmitter/5846/resq_5846.webp', '/resq-avalanche-transmitter/2400/resq_2400.webp', '/resq-avalanche-transmitter/1800/resq_1800.webp', '/resq-avalanche-transmitter/1200/resq_1200.webp', '/resq-avalanche-transmitter/600/resq_600.webp', '/resq-avalanche-transmitter/300/resq_300.webp'],
-        ['/resq-avalanche-transmitter/5846/1_qt_5846.webp', '/resq-avalanche-transmitter/2400/1_qt_2400.webp', '/5gyogytea/1800/1_qt_1800.webp', '/resq-avalanche-transmitter/1200/1_qt_1200.webp', "/resq-avalanche-transmitter/600/1_qt_600.webp", '/resq-avalanche-transmitter/300/1_qt_300.webp'],
-        ['/resq-avalanche-transmitter/5846/2_qt_5846.webp', '/resq-avalanche-transmitter/2400/2_qt_2400.webp', '/resq-avalanche-transmitter/1800/2_qt_1800.webp', '/resq-avalanche-transmitter/1200/2_qt_1200.webp', "/resq-avalanche-transmitter/600/2_qt_600.webp", '/resq-avalanche-transmitter/300/2_qt_300.webp'],
-        ['/resq-avalanche-transmitter/5846/3_qt_5846.webp', '/resq-avalanche-transmitter/2400/3_qt_2400.webp', '/resq-avalanche-transmitter/1800/3_qt_1800.webp', '/resq-avalanche-transmitter/1200/3_qt_1200.webp', "/resq-avalanche-transmitter/600/3_qt_600.webp", '/resq-avalanche-transmitter/300/3_qt_300.webp'],
-        ['/resq-avalanche-transmitter/5846/4_qt_5846.webp', '/resq-avalanche-transmitter/2400/4_qt_2400.webp', '/resq-avalanche-transmitter/1800/4_qt_1800.webp', '/resq-avalanche-transmitter/1200/4_qt_1200.webp', "/resq-avalanche-transmitter/600/4_qt_600.webp", '/resq-avalanche-transmitter/300/4_qt_300.webp'],
-        ['/resq-avalanche-transmitter/5846/5_qt_5846.webp', '/resq-avalanche-transmitter/2400/5_qt_2400.webp', '/resq-avalanche-transmitter/1800/5_qt_1800.webp', '/resq-avalanche-transmitter/1200/5_qt_1200.webp', "/resq-avalanche-transmitter/600/5_qt_600.webp", '/resq-avalanche-transmitter/300/5_qt_300.webp']]
+        ['/resq-avalanche-transmitter/5846/1_5846.webp', '/resq-avalanche-transmitter/2400/1_2400.webp', '/5gyogytea/1800/1_qt_1800.webp', '/resq-avalanche-transmitter/1200/1_qt_1200.webp', "/resq-avalanche-transmitter/600/1_qt_600.webp", '/resq-avalanche-transmitter/300/1_qt_300.webp'],
+        ['/resq-avalanche-transmitter/5846/2_5846.webp', '/resq-avalanche-transmitter/2400/2_2400.webp', '/resq-avalanche-transmitter/1800/2_1800.webp', '/resq-avalanche-transmitter/1200/2_1200.webp', "/resq-avalanche-transmitter/600/2_600.webp", '/resq-avalanche-transmitter/300/2_300.webp'],
+        ['/resq-avalanche-transmitter/5846/3_5846.webp', '/resq-avalanche-transmitter/2400/3_2400.webp', '/resq-avalanche-transmitter/1800/3_1800.webp', '/resq-avalanche-transmitter/1200/3_1200.webp', "/resq-avalanche-transmitter/600/3_600.webp", '/resq-avalanche-transmitter/300/3_300.webp'],
+        ['/resq-avalanche-transmitter/5846/4_5846.webp', '/resq-avalanche-transmitter/2400/4_2400.webp', '/resq-avalanche-transmitter/1800/4_1800.webp', '/resq-avalanche-transmitter/1200/4_1200.webp', "/resq-avalanche-transmitter/600/4_600.webp", '/resq-avalanche-transmitter/300/4_300.webp'],
+        ['/resq-avalanche-transmitter/5846/5_5846.webp', '/resq-avalanche-transmitter/2400/5_2400.webp', '/resq-avalanche-transmitter/1800/5_1800.webp', '/resq-avalanche-transmitter/1200/5_1200.webp', "/resq-avalanche-transmitter/600/5_600.webp", '/resq-avalanche-transmitter/300/5_300.webp']]
     },
     {
       name: 'chess',
@@ -92,7 +96,8 @@ export class ProjectService {
         + 'Photo: Réka Nyikos',
       mainImgUrl: ['/chess/5846/chess_5846.webp', '/chess/2400/chess_2400.webp', '/chess/1800/chess_1800.webp', '/chess/1200/chess_1200.webp', '/chess/600/chess_600.webp', '/chess/300/chess_300.webp'],
       imageUrls: [['/chess/5846/chess_5846.webp', '/chess/2400/chess_2400.webp', '/chess/1800/chess_1800.webp', '/chess/1200/chess_1200.webp', '/chess/600/chess_600.webp', '/chess/300/chess_300.webp'],
-        ['/chess/5846/chess_5846.webp', '/chess/2400/chess_2400.webp', '/chess/1800/chess_1800.webp', '/chess/1200/chess_1200.webp', '/chess/600/chess_600.webp', '/chess/300/chess_300.webp']]
+        ['/chess/5846/1_5846.webp', '/chess/2400/1_2400.webp', '/chess/1800/1_1800.webp', '/chess/1200/1_1200.webp', '/chess/600/1_600.webp', '/chess/300/1_300.webp'],
+        ['/chess/5846/2_5846.webp', '/chess/2400/2_2400.webp', '/chess/1800/2_1800.webp', '/chess/1200/2_1200.webp', '/chess/600/2_600.webp', '/chess/300/2_300.webp']]
     },
     {
       name: 'flying shark',
@@ -106,7 +111,73 @@ export class ProjectService {
         + 'Photo: Péter Oszkai',
       mainImgUrl: ['/flying-shark/5846/sharky_5846.webp', '/flying-shark/2400/sharky_2400.webp', '/flying-shark/1800/sharky_1800.webp', '/flying-shark/1200/sharky_1200.webp', '/flying-shark/600/sharky_600.webp', '/flying-shark/300/sharky_300.webp'],
       imageUrls: [['/flying-shark/5846/sharky_5846.webp', '/flying-shark/2400/sharky_2400.webp', '/flying-shark/1800/sharky_1800.webp', '/flying-shark/1200/sharky_1200.webp', '/flying-shark/600/sharky_600.webp', '/flying-shark/300/sharky_300.webp'],
-        ['/flying-shark/5846/sharky_5846.webp', '/flying-shark/2400/sharky_2400.webp', '/flying-shark/1800/sharky_1800.webp', '/flying-shark/1200/sharky_1200.webp', '/flying-shark/600/sharky_600.webp', '/flying-shark/300/sharky_300.webp']]
+        ['/flying-shark/5846/1_5846.webp', '/flying-shark/2400/1_2400.webp', '/flying-shark/1800/1_1800.webp', '/flying-shark/1200/1_1200.webp', '/flying-shark/600/1_600.webp', '/flying-shark/300/1_300.webp'],
+        ['/flying-shark/5846/2_5846.webp', '/flying-shark/2400/2_2400.webp', '/flying-shark/1800/2_1800.webp', '/flying-shark/1200/2_1200.webp', '/flying-shark/600/2_600.webp', '/flying-shark/300/2_300.webp'],
+        ['/flying-shark/5846/3_5846.webp', '/flying-shark/2400/3_2400.webp', '/flying-shark/1800/3_1800.webp', '/flying-shark/1200/3_1200.webp', '/flying-shark/600/3_600.webp', '/flying-shark/300/3_300.webp'],
+        ['/flying-shark/5846/4_5846.webp', '/flying-shark/2400/4_2400.webp', '/flying-shark/1800/4_1800.webp', '/flying-shark/1200/4_1200.webp', '/flying-shark/600/4_600.webp', '/flying-shark/300/4_300.webp'],
+        ['/flying-shark/5846/5_5846.webp', '/flying-shark/2400/5_2400.webp', '/flying-shark/1800/5_1800.webp', '/flying-shark/1200/5_1200.webp', '/flying-shark/600/5_600.webp', '/flying-shark/300/5_300.webp']]
+    },
+    {
+      name: 'clock',
+      slug: 'clock',
+      shortDescription: 'Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.',
+      longDescription: ['Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.'],
+      projectData: 'Year: 2022'
+        + '<br>'
+        + 'Co-designers: Virág Oszkai, Róbert Kristóffy, Mátyás Galavits'
+        + '<br>'
+        + 'Photo: Péter Oszkai',
+      mainImgUrl: ['/clock/5846/1_5846.webp', '/clock/2400/1_2400.webp', '/clock/1800/1_1800.webp', '/clock/1200/1_1200.webp', '/clock/600/1_600.webp', '/clock/300/1_300.webp'],
+      imageUrls: [['/clock/5846/1_5846.webp', '/clock/2400/1_2400.webp', '/clock/1800/1_1800.webp', '/clock/1200/1_1200.webp', '/clock/600/1_600.webp', '/clock/300/1_300.webp'],
+        ['/clock/5846/1_5846.webp', '/clock/2400/1_2400.webp', '/clock/1800/1_1800.webp', '/clock/1200/1_1200.webp', '/clock/600/1_600.webp', '/clock/300/1_300.webp'],
+        ['/clock/5846/2_5846.webp', '/clock/2400/2_2400.webp', '/clock/1800/2_1800.webp', '/clock/1200/2_1200.webp', '/clock/600/2_600.webp', '/clock/300/2_300.webp'],
+        ['/clock/5846/3_5846.webp', '/clock/2400/3_2400.webp', '/clock/1800/3_1800.webp', '/clock/1200/3_1200.webp', '/clock/600/3_600.webp', '/clock/300/3_300.webp'],
+        ['/clock/5846/4_5846.webp', '/clock/2400/4_2400.webp', '/clock/1800/4_1800.webp', '/clock/1200/4_1200.webp', '/clock/600/4_600.webp', '/clock/300/4_300.webp'],
+        ['/clock/5846/5_5846.webp', '/clock/2400/5_2400.webp', '/clock/1800/5_1800.webp', '/clock/1200/5_1200.webp', '/clock/600/5_600.webp', '/clock/300/5_300.webp'],
+        ['/clock/5846/6_5846.webp', '/clock/2400/6_2400.webp', '/clock/1800/6_1800.webp', '/clock/1200/6_1200.webp', '/clock/600/6_600.webp', '/clock/300/6_300.webp']]
+    },
+    {
+      name: 'lumen',
+      slug: 'lumen',
+      shortDescription: 'This experimental lumen set explores how form can influence play. Inspired by Victor Vasarely and op-art, the lumenboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
+      longDescription: ['This experimental lumen set explores how form can influence play. Inspired by Victor Vasarely and op-art, the lumenboard alters perception — subtly shaping players’ decisions and the game’s dynamics.'],
+      projectData: 'Year: 2021'
+        + '<br>'
+        + 'Photo: Réka Nyikos',
+      mainImgUrl: ['/lumen/5846/lumen_5846.webp', '/lumen/2400/lumen_2400.webp', '/lumen/1800/lumen_1800.webp', '/lumen/1200/lumen_1200.webp', '/lumen/600/lumen_600.webp', '/lumen/300/lumen_300.webp'],
+      imageUrls: [['/lumen/5846/lumen_5846.webp', '/lumen/2400/lumen_2400.webp', '/lumen/1800/lumen_1800.webp', '/lumen/1200/lumen_1200.webp', '/lumen/600/lumen_600.webp', '/lumen/300/lumen_300.webp'],
+        ['/lumen/5846/1_5846.webp', '/lumen/2400/1_2400.webp', '/lumen/1800/1_1800.webp', '/lumen/1200/1_1200.webp', '/lumen/600/1_600.webp', '/lumen/300/1_300.webp']]
+    },
+    {
+      name: 'mini-market',
+      slug: 'mini-market',
+      shortDescription: 'Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.',
+      longDescription: ['Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.'],
+      projectData: 'Year: 2022'
+        + '<br>'
+        + 'Co-designers: Virág Oszkai, Róbert Kristóffy, Mátyás Galavits'
+        + '<br>'
+        + 'Photo: Péter Oszkai',
+      mainImgUrl: ['/mini-market/5846/1_5846.webp', '/mini-market/2400/1_2400.webp', '/mini-market/1800/1_1800.webp', '/mini-market/1200/1_1200.webp', '/mini-market/600/1_600.webp', '/mini-market/300/1_300.webp'],
+      imageUrls: [['/mini-market/5846/1_5846.webp', '/mini-market/2400/1_2400.webp', '/mini-market/1800/1_1800.webp', '/mini-market/1200/1_1200.webp', '/mini-market/600/1_600.webp', '/mini-market/300/1_300.webp'],
+        ['/mini-market/5846/1_5846.webp', '/mini-market/2400/1_2400.webp', '/mini-market/1800/1_1800.webp', '/mini-market/1200/1_1200.webp', '/mini-market/600/1_600.webp', '/mini-market/300/1_300.webp'],
+        ['/mini-market/5846/2_5846.webp', '/mini-market/2400/2_2400.webp', '/mini-market/1800/2_1800.webp', '/mini-market/1200/2_1200.webp', '/mini-market/600/2_600.webp', '/mini-market/300/2_300.webp'],
+        ['/mini-market/5846/3_5846.webp', '/mini-market/2400/3_2400.webp', '/mini-market/1800/3_1800.webp', '/mini-market/1200/3_1200.webp', '/mini-market/600/3_600.webp', '/mini-market/300/3_300.webp'],
+        ['/mini-market/5846/4_5846.webp', '/mini-market/2400/4_2400.webp', '/mini-market/1800/4_1800.webp', '/mini-market/1200/4_1200.webp', '/mini-market/600/4_600.webp', '/mini-market/300/4_300.webp'],
+        ['/mini-market/5846/5_5846.webp', '/mini-market/2400/5_2400.webp', '/mini-market/1800/5_1800.webp', '/mini-market/1200/5_1200.webp', '/mini-market/600/5_600.webp', '/mini-market/300/5_300.webp'],
+        ['/mini-market/5846/6_5846.webp', '/mini-market/2400/6_2400.webp', '/mini-market/1800/6_1800.webp', '/mini-market/1200/6_1200.webp', '/mini-market/600/6_600.webp', '/mini-market/300/6_300.webp']]
+    },
+    {
+      name: 'tartáska',
+      slug: 'tartáska',
+      shortDescription: 'This experimental tartáska set explores how form can influence play. Inspired by Victor Vasarely and op-art, the tartáskaboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
+      longDescription: ['This experimental tartáska set explores how form can influence play. Inspired by Victor Vasarely and op-art, the tartáskaboard alters perception — subtly shaping players’ decisions and the game’s dynamics.'],
+      projectData: 'Year: 2021'
+        + '<br>'
+        + 'Photo: Réka Nyikos',
+      mainImgUrl: ['/tartáska/5846/tartáska_5846.webp', '/tartáska/2400/tartáska_2400.webp', '/tartáska/1800/tartáska_1800.webp', '/tartáska/1200/tartáska_1200.webp', '/tartáska/600/tartáska_600.webp', '/tartáska/300/tartáska_300.webp'],
+      imageUrls: [['/tartáska/5846/tartáska_5846.webp', '/tartáska/2400/tartáska_2400.webp', '/tartáska/1800/tartáska_1800.webp', '/tartáska/1200/tartáska_1200.webp', '/tartáska/600/tartáska_600.webp', '/tartáska/300/tartáska_300.webp'],
+        ['/tartáska/5846/1_5846.webp', '/tartáska/2400/1_2400.webp', '/tartáska/1800/1_1800.webp', '/tartáska/1200/1_1200.webp', '/tartáska/600/1_600.webp', '/tartáska/300/1_300.webp']]
     }
   ];
 
