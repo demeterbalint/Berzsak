@@ -20,8 +20,13 @@
     <h1>{{ project.name }}</h1>
   </div>
 
-  <div class="project-description">
-    <p>{{ project.longDescription }}</p>
+  <div class="project-description-wrapper">
+    <div class="project-description">
+      <p>{{ project.longDescription[0] }}</p>
+    </div>
+    <div class="project-description">
+      <p>{{ project.longDescription[1] }}</p>
+    </div>
   </div>
 
   <div class="project-data">
