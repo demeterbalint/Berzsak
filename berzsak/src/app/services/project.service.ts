@@ -18,13 +18,13 @@ export class ProjectService {
         'With its clean, minimal form, QT transforms tea preparation into a small ritual of pleasure and presence — turning herbal tea from a rare indulgence into a mindful moment, an inspiring part of everyday life.',
       projectData: 'Year: 2025\n'
                   + 'Photo: Anna Hardy, Balázs Harmathy',
-      mainImgUrl: ['/1-gyogytea/5846/main_qt_5846.webp', '/1-gyogytea/2400/main_qt_2400.webp', '/1-gyogytea/1800/main_qt_1800.webp', '/1-gyogytea/1200/main_qt_1200.webp', "/1-gyogytea/600/main_qt_600.webp", '/1-gyogytea/300/main_qt_300.webp'],
-      imageUrls: [['/1-gyogytea/5846/main_qt_5846.webp', '/1-gyogytea/2400/main_qt_2400.webp', '/1-gyogytea/1800/main_qt_1800.webp', '/1-gyogytea/1200/main_qt_1200.webp', "/1-gyogytea/600/main_qt_600.webp", '/1-gyogytea/300/main_qt_300.webp'],
-        ['/1-gyogytea/5846/1_qt_5846.webp', '/1-gyogytea/2400/1_qt_2400.webp', '/1-gyogytea/1800/1_qt_1800.webp', '/1-gyogytea/1200/1_qt_1200.webp', "/1-gyogytea/600/1_qt_600.webp", '/1-gyogytea/300/1_qt_300.webp'],
-        ['/1-gyogytea/5846/2_qt_5846.webp', '/1-gyogytea/2400/2_qt_2400.webp', '/1-gyogytea/1800/2_qt_1800.webp', '/1-gyogytea/1200/2_qt_1200.webp', "/1-gyogytea/600/2_qt_600.webp", '/1-gyogytea/300/2_qt_300.webp'],
-        ['/1-gyogytea/5846/3_qt_5846.webp', '/1-gyogytea/2400/3_qt_2400.webp', '/1-gyogytea/1800/3_qt_1800.webp', '/1-gyogytea/1200/3_qt_1200.webp', "/1-gyogytea/600/3_qt_600.webp", '/1-gyogytea/300/3_qt_300.webp'],
-        ['/1-gyogytea/5846/4_qt_5846.webp', '/1-gyogytea/2400/4_qt_2400.webp', '/1-gyogytea/1800/4_qt_1800.webp', '/1-gyogytea/1200/4_qt_1200.webp', "/1-gyogytea/600/4_qt_600.webp", '/1-gyogytea/300/4_qt_300.webp'],
-        ['/1-gyogytea/5846/5_qt_5846.webp', '/1-gyogytea/2400/5_qt_2400.webp', '/1-gyogytea/1800/5_qt_1800.webp', '/1-gyogytea/1200/5_qt_1200.webp', "/1-gyogytea/600/5_qt_600.webp", '/1-gyogytea/300/5_qt_300.webp']]
+      mainImgUrl: ['/qt-tea-set-system/5846/main_qt_5846.webp', '/qt-tea-set-system/2400/main_qt_2400.webp', '/qt-tea-set-system/1800/main_qt_1800.webp', '/qt-tea-set-system/1200/main_qt_1200.webp', "/qt-tea-set-system/600/main_qt_600.webp", '/qt-tea-set-system/300/main_qt_300.webp'],
+      imageUrls: [['/qt-tea-set-system/5846/main_qt_5846.webp', '/qt-tea-set-system/2400/main_qt_2400.webp', '/qt-tea-set-system/1800/main_qt_1800.webp', '/qt-tea-set-system/1200/main_qt_1200.webp', "/qt-tea-set-system/600/main_qt_600.webp", '/qt-tea-set-system/300/main_qt_300.webp'],
+        ['/qt-tea-set-system/5846/1_qt_5846.webp', '/qt-tea-set-system/2400/1_qt_2400.webp', '/qt-tea-set-system/1800/1_qt_1800.webp', '/qt-tea-set-system/1200/1_qt_1200.webp', "/qt-tea-set-system/600/1_qt_600.webp", '/qt-tea-set-system/300/1_qt_300.webp'],
+        ['/qt-tea-set-system/5846/2_qt_5846.webp', '/qt-tea-set-system/2400/2_qt_2400.webp', '/qt-tea-set-system/1800/2_qt_1800.webp', '/qt-tea-set-system/1200/2_qt_1200.webp', "/qt-tea-set-system/600/2_qt_600.webp", '/qt-tea-set-system/300/2_qt_300.webp'],
+        ['/qt-tea-set-system/5846/3_qt_5846.webp', '/qt-tea-set-system/2400/3_qt_2400.webp', '/qt-tea-set-system/1800/3_qt_1800.webp', '/qt-tea-set-system/1200/3_qt_1200.webp', "/qt-tea-set-system/600/3_qt_600.webp", '/qt-tea-set-system/300/3_qt_300.webp'],
+        ['/qt-tea-set-system/5846/4_qt_5846.webp', '/qt-tea-set-system/2400/4_qt_2400.webp', '/qt-tea-set-system/1800/4_qt_1800.webp', '/qt-tea-set-system/1200/4_qt_1200.webp', "/qt-tea-set-system/600/4_qt_600.webp", '/qt-tea-set-system/300/4_qt_300.webp'],
+        ['/qt-tea-set-system/5846/5_qt_5846.webp', '/qt-tea-set-system/2400/5_qt_2400.webp', '/qt-tea-set-system/1800/5_qt_1800.webp', '/qt-tea-set-system/1200/5_qt_1200.webp', "/qt-tea-set-system/600/5_qt_600.webp", '/qt-tea-set-system/300/5_qt_300.webp']]
     },
     {
       name: 'demeter mixer grinder',
@@ -33,12 +33,12 @@ export class ProjectService {
       longDescription: 'Let us paint you a picture. It’s Friday afternoon, and you want to make a smoothie, but you are fed up with not knowing which button on your blender does what. You are tired of the mess you keep making in the kitchen with all the dishes, scales, and ingredients. Your blender jar is too big for one serving, so you decide sadly in the end not to make a smoothie at all. That does sound pretty bad, right? All your struggles come to an end with our revolutionary product. Introducing Demeter 2310, the solution to your problems, your companion in the kitchen, now no more confusing knobs, the scale and the blender are two in one. Choose the jar size that fits the purpose. Style, elegance, convenience, Demeter.',
       projectData: 'Year: 2024\n'
         + 'Co-designer: Máté Guthy',
-      mainImgUrl: ['/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg'],
-      imageUrls: [['/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg'],
-        ['/2-gyogytea/5846/1_qt_5846.webp', '/2-gyogytea/2400/1_qt_2400.webp', '/2-gyogytea/1800/1_qt_1800.webp', '/2-gyogytea/1200/1_qt_1200.webp', "/2-gyogytea/600/1_qt_600.webp", '/2-gyogytea/300/1_qt_300.webp'],
-        ['/2-gyogytea/5846/2_qt_5846.webp', '/2-gyogytea/2400/2_qt_2400.webp', '/2-gyogytea/1800/2_qt_1800.webp', '/2-gyogytea/1200/2_qt_1200.webp', "/2-gyogytea/600/2_qt_600.webp", '/2-gyogytea/300/2_qt_300.webp'],
-        ['/2-gyogytea/5846/3_qt_5846.webp', '/2-gyogytea/2400/3_qt_2400.webp', '/2-gyogytea/1800/3_qt_1800.webp', '/2-gyogytea/1200/3_qt_1200.webp', "/2-gyogytea/600/3_qt_600.webp", '/2-gyogytea/300/3_qt_300.webp'],
-        ['/2-gyogytea/5846/4_qt_5846.webp', '/2-gyogytea/2400/4_qt_2400.webp', '/2-gyogytea/1800/4_qt_1800.webp', '/2-gyogytea/1200/4_qt_1200.webp', "/2-gyogytea/600/4_qt_600.webp", '/2-gyogytea/300/4_qt_300.webp']]
+      mainImgUrl: ['/demeter-mixer-grinder/5846/demeter_5846.webp', '/demeter-mixer-grinder/2400/demeter_2400.webp', '/demeter-mixer-grinder/1800/demeter_1800.webp', '/demeter-mixer-grinder/1200/demeter_1200.webp', '/demeter-mixer-grinder/600/demeter_600.webp', '/demeter-mixer-grinder/300/demeter_300.webp'],
+      imageUrls: [['/demeter-mixer-grinder/5846/demeter_5846.webp', '/demeter-mixer-grinder/2400/demeter_2400.webp', '/demeter-mixer-grinder/1800/demeter_1800.webp', '/demeter-mixer-grinder/1200/demeter_1200.webp', '/demeter-mixer-grinder/600/demeter_600.webp', '/demeter-mixer-grinder/300/demeter_300.webp'],
+        ['/demeter-mixer-grinder/5846/1_qt_5846.webp', '/demeter-mixer-grinder/2400/1_qt_2400.webp', '/demeter-mixer-grinder/1800/1_qt_1800.webp', '/demeter-mixer-grinder/1200/1_qt_1200.webp', "/demeter-mixer-grinder/600/1_qt_600.webp", '/demeter-mixer-grinder/300/1_qt_300.webp'],
+        ['/demeter-mixer-grinder/5846/2_qt_5846.webp', '/demeter-mixer-grinder/2400/2_qt_2400.webp', '/demeter-mixer-grinder/1800/2_qt_1800.webp', '/demeter-mixer-grinder/1200/2_qt_1200.webp', "/demeter-mixer-grinder/600/2_qt_600.webp", '/demeter-mixer-grinder/300/2_qt_300.webp'],
+        ['/demeter-mixer-grinder/5846/3_qt_5846.webp', '/demeter-mixer-grinder/2400/3_qt_2400.webp', '/demeter-mixer-grinder/1800/3_qt_1800.webp', '/demeter-mixer-grinder/1200/3_qt_1200.webp', "/demeter-mixer-grinder/600/3_qt_600.webp", '/demeter-mixer-grinder/300/3_qt_300.webp'],
+        ['/demeter-mixer-grinder/5846/4_qt_5846.webp', '/demeter-mixer-grinder/2400/4_qt_2400.webp', '/demeter-mixer-grinder/1800/4_qt_1800.webp', '/demeter-mixer-grinder/1200/4_qt_1200.webp', "/demeter-mixer-grinder/600/4_qt_600.webp", '/demeter-mixer-grinder/300/4_qt_300.webp']]
     },
     {
       name: 'archproject shoe insole system',
@@ -50,11 +50,11 @@ export class ProjectService {
         '\n' +
         'With its refined, modular design, Archproject turns foot health into a simple, empowering, and even engaging part of daily life — promoting better posture, comfort, and long-term well-being.',
       projectData: 'Year: 2023\n',
-      mainImgUrl: ['/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg'],
-      imageUrls: [['/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg'],
-        ['/3-gyogytea/5846/1_qt_5846.webp', '/3-gyogytea/2400/1_qt_2400.webp', '/3-gyogytea/1800/1_qt_1800.webp', '/3-gyogytea/1200/1_qt_1200.webp', "/3-gyogytea/600/1_qt_600.webp", '/3-gyogytea/300/1_qt_300.webp'],
-        ['/3-gyogytea/5846/2_qt_5846.webp', '/3-gyogytea/2400/2_qt_2400.webp', '/3-gyogytea/1800/2_qt_1800.webp', '/3-gyogytea/1200/2_qt_1200.webp', "/3-gyogytea/600/2_qt_600.webp", '/3-gyogytea/300/2_qt_300.webp'],
-        ['/3-gyogytea/5846/3_qt_5846.webp', '/3-gyogytea/2400/3_qt_2400.webp', '/3-gyogytea/1800/3_qt_1800.webp', '/3-gyogytea/1200/3_qt_1200.webp', "/3-gyogytea/600/3_qt_600.webp", '/3-gyogytea/300/3_qt_300.webp']]
+      mainImgUrl: ['/archproject-shoe-insole-system/5846/archproject_5846.webp', '/archproject-shoe-insole-system/2400/archproject_2400.webp', '/archproject-shoe-insole-system/1800/archproject_1800.webp', '/archproject-shoe-insole-system/1200/archproject_1200.webp', '/archproject-shoe-insole-system/600/archproject_600.webp', '/archproject-shoe-insole-system/300/archproject_300.webp'],
+      imageUrls: [['/archproject-shoe-insole-system/5846/archproject_5846.webp', '/archproject-shoe-insole-system/2400/archproject_2400.webp', '/archproject-shoe-insole-system/1800/archproject_1800.webp', '/archproject-shoe-insole-system/1200/archproject_1200.webp', '/archproject-shoe-insole-system/600/archproject_600.webp', '/archproject-shoe-insole-system/300/archproject_300.webp'],
+        ['/archproject-shoe-insole-system/5846/1_qt_5846.webp', '/archproject-shoe-insole-system/2400/1_qt_2400.webp', '/archproject-shoe-insole-system/1800/1_qt_1800.webp', '/archproject-shoe-insole-system/1200/1_qt_1200.webp', "/archproject-shoe-insole-system/600/1_qt_600.webp", '/archproject-shoe-insole-system/300/1_qt_300.webp'],
+        ['/archproject-shoe-insole-system/5846/2_qt_5846.webp', '/archproject-shoe-insole-system/2400/2_qt_2400.webp', '/archproject-shoe-insole-system/1800/2_qt_1800.webp', '/archproject-shoe-insole-system/1200/2_qt_1200.webp', "/archproject-shoe-insole-system/600/2_qt_600.webp", '/archproject-shoe-insole-system/300/2_qt_300.webp'],
+        ['/archproject-shoe-insole-system/5846/3_qt_5846.webp', '/archproject-shoe-insole-system/2400/3_qt_2400.webp', '/archproject-shoe-insole-system/1800/3_qt_1800.webp', '/archproject-shoe-insole-system/1200/3_qt_1200.webp', "/archproject-shoe-insole-system/600/3_qt_600.webp", '/archproject-shoe-insole-system/300/3_qt_300.webp']]
     },
     {
       name: 'depresszó coffee glass set',
@@ -67,10 +67,10 @@ export class ProjectService {
         'The resulting 12-piece glass coffee set embodies this idea: one glass in each pair always stands upside down, so the set can never be completely full. Minimal yet expressive, it blends humor, functionality, and cultural commentary in a single design.',
       projectData: 'Year: 2024\n'
         + 'Photo: Barna Berzsák, Milán Rácmolnár',
-      mainImgUrl: ['/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg'],
-      imageUrls: [['/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg'],
-        ['/4-gyogytea/5846/1_qt_5846.webp', '/4-gyogytea/2400/1_qt_2400.webp', '/4-gyogytea/1800/1_qt_1800.webp', '/4-gyogytea/1200/1_qt_1200.webp', "/4-gyogytea/600/1_qt_600.webp", '/4-gyogytea/300/1_qt_300.webp'],
-        ['/4-gyogytea/5846/2_qt_5846.webp', '/4-gyogytea/2400/2_qt_2400.webp', '/4-gyogytea/1800/2_qt_1800.webp', '/4-gyogytea/1200/2_qt_1200.webp', "/4-gyogytea/600/2_qt_600.webp", '/4-gyogytea/300/2_qt_300.webp']]
+      mainImgUrl: ['/depresszó-coffee-glass-set/5846/depresszo_5846.webp', '/depresszó-coffee-glass-set/2400/depresszo_2400.webp', '/depresszó-coffee-glass-set/1800/depresszo_1800.webp', '/depresszó-coffee-glass-set/1200/depresszo_1200.webp', '/depresszó-coffee-glass-set/600/depresszo_600.webp', '/depresszó-coffee-glass-set/300/depresszo_300.webp'],
+      imageUrls: [['/depresszó-coffee-glass-set/5846/depresszo_5846.webp', '/depresszó-coffee-glass-set/2400/depresszo_2400.webp', '/depresszó-coffee-glass-set/1800/depresszo_1800.webp', '/depresszó-coffee-glass-set/1200/depresszo_1200.webp', '/depresszó-coffee-glass-set/600/depresszo_600.webp', '/depresszó-coffee-glass-set/300/depresszo_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/1_qt_5846.webp', '/depresszó-coffee-glass-set/2400/1_qt_2400.webp', '/depresszó-coffee-glass-set/1800/1_qt_1800.webp', '/depresszó-coffee-glass-set/1200/1_qt_1200.webp', "/depresszó-coffee-glass-set/600/1_qt_600.webp", '/depresszó-coffee-glass-set/300/1_qt_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/2_qt_5846.webp', '/depresszó-coffee-glass-set/2400/2_qt_2400.webp', '/depresszó-coffee-glass-set/1800/2_qt_1800.webp', '/depresszó-coffee-glass-set/1200/2_qt_1200.webp', "/depresszó-coffee-glass-set/600/2_qt_600.webp", '/depresszó-coffee-glass-set/300/2_qt_300.webp']]
     },
     {
       name: 'resq avalanche transmitter',
@@ -82,13 +82,13 @@ export class ProjectService {
         '\n' +
         'With its sleek iris-lock strap system, ResQ stays secure but always within reach, making it easy to grab and use when every second counts. By combining technology, ergonomics, and freerider style, ResQ transforms avalanche rescue from panic into confident, coordinated action.',
       projectData: 'Year: 2024\n',
-      mainImgUrl: ['/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg'],
-      imageUrls: [['/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg'],
-        ['/5-gyogytea/5846/1_qt_5846.webp', '/5-gyogytea/2400/1_qt_2400.webp', '/5gyogytea/1800/1_qt_1800.webp', '/5-gyogytea/1200/1_qt_1200.webp', "/5-gyogytea/600/1_qt_600.webp", '/5-gyogytea/300/1_qt_300.webp'],
-        ['/5-gyogytea/5846/2_qt_5846.webp', '/5-gyogytea/2400/2_qt_2400.webp', '/5-gyogytea/1800/2_qt_1800.webp', '/5-gyogytea/1200/2_qt_1200.webp', "/5-gyogytea/600/2_qt_600.webp", '/5-gyogytea/300/2_qt_300.webp'],
-        ['/5-gyogytea/5846/3_qt_5846.webp', '/5-gyogytea/2400/3_qt_2400.webp', '/5-gyogytea/1800/3_qt_1800.webp', '/5-gyogytea/1200/3_qt_1200.webp', "/5-gyogytea/600/3_qt_600.webp", '/5-gyogytea/300/3_qt_300.webp'],
-        ['/5-gyogytea/5846/4_qt_5846.webp', '/5-gyogytea/2400/4_qt_2400.webp', '/5-gyogytea/1800/4_qt_1800.webp', '/5-gyogytea/1200/4_qt_1200.webp', "/5-gyogytea/600/4_qt_600.webp", '/5-gyogytea/300/4_qt_300.webp'],
-        ['/5-gyogytea/5846/5_qt_5846.webp', '/5-gyogytea/2400/5_qt_2400.webp', '/5-gyogytea/1800/5_qt_1800.webp', '/5-gyogytea/1200/5_qt_1200.webp', "/5-gyogytea/600/5_qt_600.webp", '/5-gyogytea/300/5_qt_300.webp']]
+      mainImgUrl: ['/resq-avalanche-transmitter/5846/resq_5846.webp', '/resq-avalanche-transmitter/2400/resq_2400.webp', '/resq-avalanche-transmitter/1800/resq_1800.webp', '/resq-avalanche-transmitter/1200/resq_1200.webp', '/resq-avalanche-transmitter/600/resq_600.webp', '/resq-avalanche-transmitter/300/resq_300.webp'],
+      imageUrls: [['/resq-avalanche-transmitter/5846/resq_5846.webp', '/resq-avalanche-transmitter/2400/resq_2400.webp', '/resq-avalanche-transmitter/1800/resq_1800.webp', '/resq-avalanche-transmitter/1200/resq_1200.webp', '/resq-avalanche-transmitter/600/resq_600.webp', '/resq-avalanche-transmitter/300/resq_300.webp'],
+        ['/resq-avalanche-transmitter/5846/1_qt_5846.webp', '/resq-avalanche-transmitter/2400/1_qt_2400.webp', '/5gyogytea/1800/1_qt_1800.webp', '/resq-avalanche-transmitter/1200/1_qt_1200.webp', "/resq-avalanche-transmitter/600/1_qt_600.webp", '/resq-avalanche-transmitter/300/1_qt_300.webp'],
+        ['/resq-avalanche-transmitter/5846/2_qt_5846.webp', '/resq-avalanche-transmitter/2400/2_qt_2400.webp', '/resq-avalanche-transmitter/1800/2_qt_1800.webp', '/resq-avalanche-transmitter/1200/2_qt_1200.webp', "/resq-avalanche-transmitter/600/2_qt_600.webp", '/resq-avalanche-transmitter/300/2_qt_300.webp'],
+        ['/resq-avalanche-transmitter/5846/3_qt_5846.webp', '/resq-avalanche-transmitter/2400/3_qt_2400.webp', '/resq-avalanche-transmitter/1800/3_qt_1800.webp', '/resq-avalanche-transmitter/1200/3_qt_1200.webp', "/resq-avalanche-transmitter/600/3_qt_600.webp", '/resq-avalanche-transmitter/300/3_qt_300.webp'],
+        ['/resq-avalanche-transmitter/5846/4_qt_5846.webp', '/resq-avalanche-transmitter/2400/4_qt_2400.webp', '/resq-avalanche-transmitter/1800/4_qt_1800.webp', '/resq-avalanche-transmitter/1200/4_qt_1200.webp', "/resq-avalanche-transmitter/600/4_qt_600.webp", '/resq-avalanche-transmitter/300/4_qt_300.webp'],
+        ['/resq-avalanche-transmitter/5846/5_qt_5846.webp', '/resq-avalanche-transmitter/2400/5_qt_2400.webp', '/resq-avalanche-transmitter/1800/5_qt_1800.webp', '/resq-avalanche-transmitter/1200/5_qt_1200.webp', "/resq-avalanche-transmitter/600/5_qt_600.webp", '/resq-avalanche-transmitter/300/5_qt_300.webp']]
     },
     {
       name: 'chess',
@@ -97,9 +97,9 @@ export class ProjectService {
       longDescription: 'his experimental chess set explores how form can influence play. Inspired by Victor Vasarely and op-art, the chessboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
       projectData: 'Year: 2021\n'
         + 'Photo: Réka Nyikos',
-      mainImgUrl: ['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg'],
-      imageUrls: [['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg'],
-        ['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg']]
+      mainImgUrl: ['/chess/5846/chess_5846.webp', '/chess/2400/chess_2400.webp', '/chess/1800/chess_1800.webp', '/chess/1200/chess_1200.webp', '/chess/600/chess_600.webp', '/chess/300/chess_300.webp'],
+      imageUrls: [['/chess/5846/chess_5846.webp', '/chess/2400/chess_2400.webp', '/chess/1800/chess_1800.webp', '/chess/1200/chess_1200.webp', '/chess/600/chess_600.webp', '/chess/300/chess_300.webp'],
+        ['/chess/5846/chess_5846.webp', '/chess/2400/chess_2400.webp', '/chess/1800/chess_1800.webp', '/chess/1200/chess_1200.webp', '/chess/600/chess_600.webp', '/chess/300/chess_300.webp']]
     },
     {
       name: 'flying shark',
@@ -109,9 +109,9 @@ export class ProjectService {
       projectData: 'Year: 2022\n'
         + 'Co-designers: Virág Oszkai, Róbert Kristóffy, Mátyás Galavits\n'
         + 'Photo: Péter Oszkai',
-      mainImgUrl: ['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg'],
-      imageUrls: [['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg'],
-        ['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg']]
+      mainImgUrl: ['/flying-shark/5846/sharky_5846.webp', '/flying-shark/2400/sharky_2400.webp', '/flying-shark/1800/sharky_1800.webp', '/flying-shark/1200/sharky_1200.webp', '/flying-shark/600/sharky_600.webp', '/flying-shark/300/sharky_300.webp'],
+      imageUrls: [['/flying-shark/5846/sharky_5846.webp', '/flying-shark/2400/sharky_2400.webp', '/flying-shark/1800/sharky_1800.webp', '/flying-shark/1200/sharky_1200.webp', '/flying-shark/600/sharky_600.webp', '/flying-shark/300/sharky_300.webp'],
+        ['/flying-shark/5846/sharky_5846.webp', '/flying-shark/2400/sharky_2400.webp', '/flying-shark/1800/sharky_1800.webp', '/flying-shark/1200/sharky_1200.webp', '/flying-shark/600/sharky_600.webp', '/flying-shark/300/sharky_300.webp']]
     }
   ];
 
