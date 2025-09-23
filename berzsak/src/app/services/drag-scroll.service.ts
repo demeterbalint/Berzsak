@@ -38,7 +38,11 @@ export class DragScrollService {
 
   /* ----------------------- START Drag (experience) ----------------------- */
   startDrag(event: MouseEvent | PointerEvent | TouchEvent, el: HTMLElement, selectedProject: any) {
-    if (!this.canDrag(selectedProject)) return;
+    if ((el.classList.contains('sidebar') || el.classList.contains('sidebar-scroll')) &&
+      !(event instanceof TouchEvent)) {
+      return;
+    }
+    if (!this.canDrag(selectedProject, el)) return;
     // Ensure no previous drag remains active (prevents multiple elements from responding)
     this.endDrag();
 
@@ -52,7 +56,10 @@ export class DragScrollService {
     this.scrollLeft = el.scrollLeft;
     this.scrollTop = el.scrollTop;
 
-    el.style.cursor = 'grabbing';
+    // Only set cursor for touch events
+    if (event instanceof TouchEvent) {
+      el.style.cursor = 'grabbing';
+    }
 
     // create listeners and store them so we can remove them later
     const move = (e: MouseEvent | PointerEvent | TouchEvent) => this.onDrag(e, el);
@@ -83,8 +90,6 @@ export class DragScrollService {
   onDrag(event: MouseEvent | PointerEvent | TouchEvent, el: HTMLElement) {
     if (!this.dragging) return;
 
-    if ('preventDefault' in event) event.preventDefault();
-
     const point = this.getPoint(event);
     const x = point.x - el.offsetLeft;
     const y = point.y - el.offsetTop;
@@ -95,6 +100,8 @@ export class DragScrollService {
     if (Math.abs(walkX) > 5 || Math.abs(walkY) > 5) {
       this._moved = true;
     }
+
+    if (this.moved && 'preventDefault' in event) event.preventDefault();
 
     const scrollable = this.scrollables.find(s => s.el === el);
     if (scrollable) {
@@ -125,7 +132,7 @@ export class DragScrollService {
 
   /* -------------------- START Drag (col3 horizontal only) -------------------- */
   startDragOnCol3(event: MouseEvent | PointerEvent | TouchEvent, el: HTMLElement, selectedProject: any) {
-    if (!this.canDrag(selectedProject)) return;
+    if (!this.canDrag(selectedProject, el)) return;
     // Ensure no previous drag remains active (prevents multiple galleries from responding)
     this.endDrag();
 
@@ -381,8 +388,10 @@ export class DragScrollService {
     }
   }
 
-  canDrag(selectedProject: any): boolean {
-    return !selectedProject;
+  canDrag(selectedProject: any, el?: HTMLElement): boolean {
+    if (el && (el.classList.contains('sidebar') || el.classList.contains('sidebar-scroll'))) return true;
+    if (selectedProject && el && el.classList.contains('grid-experience')) return false;
+    return true;
   }
 
   get moved(): boolean {

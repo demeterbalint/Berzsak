@@ -170,6 +170,8 @@
   padding-bottom: 8%; /* adds extra scrollable space at the bottom */
   box-sizing: border-box;
   scrollbar-width: none;
+  overscroll-behavior: contain;
+  touch-action: none;
 }
 
 .sidebar-name {

@@ -313,7 +313,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     const sidebarEl = event.currentTarget as HTMLElement;
     // Register the sidebar with momentum enabled
     this.dragScrollService.registerScrollable(sidebarEl, true);
-    this.dragScrollService.startDrag(event, sidebarEl, null);
+    this.dragScrollService.startDrag(event, sidebarEl, this.selectedProject);
   }
 
   onSidebarDrag(event: MouseEvent | PointerEvent | TouchEvent) {
