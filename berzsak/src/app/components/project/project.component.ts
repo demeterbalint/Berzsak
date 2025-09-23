@@ -82,18 +82,17 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
     }
 
-    // Set up a MutationObserver to detect when the sidebar is added to the DOM
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'childList') {
-          const sidebarEl = document.querySelector('.sidebar');
-          if (sidebarEl && !this.dragScrollService.scrollables.find(s => s.el === sidebarEl)) {
-            // Register the sidebar with momentum enabled
-            this.dragScrollService.registerScrollable(sidebarEl as HTMLElement, true);
-            observer.disconnect(); // Stop observing once we've found the sidebar
-          }
-        }
-      });
+    // Keep observing for sidebar additions
+    const observer = new MutationObserver(() => {
+      const sidebarEl = document.querySelector('.sidebar');
+      if (sidebarEl) {
+        // Remove any previous sidebar scrollable
+        this.dragScrollService.scrollables = this.dragScrollService.scrollables.filter(
+          s => !(s.el.classList && s.el.classList.contains('sidebar'))
+        );
+        // Register the new sidebar element
+        this.dragScrollService.registerScrollable(sidebarEl as HTMLElement, true);
+      }
     });
 
     // Start observing the document body for changes
