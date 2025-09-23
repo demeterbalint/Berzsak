@@ -16,6 +16,8 @@ export class ProjectService {
         'The QT tea set is a contemporary system that brings new life to the ritual of tea drinking. It respects the cultural roots of herbs while turning them into a modern, intuitive experience that fits seamlessly into today’s fast-paced lifestyle. Beyond home use, the design also aims to elevate the way tea is served and enjoyed in hotels, restaurants, and other hospitality spaces, making the act of drinking tea more engaging and memorable. \n' +
         '\n' +
         'With its clean, minimal form, QT transforms tea preparation into a small ritual of pleasure and presence — turning herbal tea from a rare indulgence into a mindful moment, an inspiring part of everyday life.',
+      projectData: 'Year: 2025\n'
+                  + 'Photo: Anna Hardy, Balázs Harmathy',
       mainImgUrl: ['/1-gyogytea/5846/main_qt_5846.webp', '/1-gyogytea/2400/main_qt_2400.webp', '/1-gyogytea/1800/main_qt_1800.webp', '/1-gyogytea/1200/main_qt_1200.webp', "/1-gyogytea/600/main_qt_600.webp", '/1-gyogytea/300/main_qt_300.webp'],
       imageUrls: [['/1-gyogytea/5846/main_qt_5846.webp', '/1-gyogytea/2400/main_qt_2400.webp', '/1-gyogytea/1800/main_qt_1800.webp', '/1-gyogytea/1200/main_qt_1200.webp', "/1-gyogytea/600/main_qt_600.webp", '/1-gyogytea/300/main_qt_300.webp'],
         ['/1-gyogytea/5846/1_qt_5846.webp', '/1-gyogytea/2400/1_qt_2400.webp', '/1-gyogytea/1800/1_qt_1800.webp', '/1-gyogytea/1200/1_qt_1200.webp', "/1-gyogytea/600/1_qt_600.webp", '/1-gyogytea/300/1_qt_300.webp'],
@@ -29,6 +31,8 @@ export class ProjectService {
       slug: 'demeter-mixer-grinder',
       shortDescription: 'Meet Demeter 2310 — the all-in-one blender and scale that brings style, simplicity, and precision to your kitchen. No more confusing buttons, messy counters, or oversized jars — just effortless smoothies and meals, tailored to you.',
       longDescription: 'Let us paint you a picture. It’s Friday afternoon, and you want to make a smoothie, but you are fed up with not knowing which button on your blender does what. You are tired of the mess you keep making in the kitchen with all the dishes, scales, and ingredients. Your blender jar is too big for one serving, so you decide sadly in the end not to make a smoothie at all. That does sound pretty bad, right? All your struggles come to an end with our revolutionary product. Introducing Demeter 2310, the solution to your problems, your companion in the kitchen, now no more confusing knobs, the scale and the blender are two in one. Choose the jar size that fits the purpose. Style, elegance, convenience, Demeter.',
+      projectData: 'Year: 2024\n'
+        + 'Co-designer: Máté Guthy',
       mainImgUrl: ['/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg'],
       imageUrls: [['/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg', '/2-gyogytea/5846/demeter.jpg'],
         ['/2-gyogytea/5846/1_qt_5846.webp', '/2-gyogytea/2400/1_qt_2400.webp', '/2-gyogytea/1800/1_qt_1800.webp', '/2-gyogytea/1200/1_qt_1200.webp', "/2-gyogytea/600/1_qt_600.webp", '/2-gyogytea/300/1_qt_300.webp'],
@@ -45,6 +49,7 @@ export class ProjectService {
         'Archproject reimagines orthopedic care as something smart, sleek, and stigma-free. This adaptive insole kit uses pressure sensors, IoT technology, and a shape-shifting design to keep up with the natural changes in your feet — ensuring lasting comfort and proper support over time.\n' +
         '\n' +
         'With its refined, modular design, Archproject turns foot health into a simple, empowering, and even engaging part of daily life — promoting better posture, comfort, and long-term well-being.',
+      projectData: 'Year: 2023\n',
       mainImgUrl: ['/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg'],
       imageUrls: [['/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg', '/3-gyogytea/5846/archproject.jpg'],
         ['/3-gyogytea/5846/1_qt_5846.webp', '/3-gyogytea/2400/1_qt_2400.webp', '/3-gyogytea/1800/1_qt_1800.webp', '/3-gyogytea/1200/1_qt_1200.webp', "/3-gyogytea/600/1_qt_600.webp", '/3-gyogytea/300/1_qt_300.webp'],
@@ -60,6 +65,8 @@ export class ProjectService {
         'This project reimagines that story through a fictional Hungarian coffee: the dePresszó — a darkly humorous mix of espresso and Unicum that playfully embraces Hungarian pessimism. Its name nods to the classic question: “Half full or half empty?” — which, for Hungarians, is naturally half empty.\n' +
         '\n' +
         'The resulting 12-piece glass coffee set embodies this idea: one glass in each pair always stands upside down, so the set can never be completely full. Minimal yet expressive, it blends humor, functionality, and cultural commentary in a single design.',
+      projectData: 'Year: 2024\n'
+        + 'Photo: Barna Berzsák, Milán Rácmolnár',
       mainImgUrl: ['/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg'],
       imageUrls: [['/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg', '/4-gyogytea/5846/depresszo.jpg'],
         ['/4-gyogytea/5846/1_qt_5846.webp', '/4-gyogytea/2400/1_qt_2400.webp', '/4-gyogytea/1800/1_qt_1800.webp', '/4-gyogytea/1200/1_qt_1200.webp', "/4-gyogytea/600/1_qt_600.webp", '/4-gyogytea/300/1_qt_300.webp'],
@@ -74,6 +81,7 @@ export class ProjectService {
         'ResQ was designed to change that. This smart avalanche transmitter turns life-saving gear into something intuitive, stylish, and rider-friendly. Its compass-like form and 360° LED ring guide rescuers toward victims with clear visual feedback, while GPS alerts, fall detection, and built-in tutorials keep users prepared and informed in every situation.\n' +
         '\n' +
         'With its sleek iris-lock strap system, ResQ stays secure but always within reach, making it easy to grab and use when every second counts. By combining technology, ergonomics, and freerider style, ResQ transforms avalanche rescue from panic into confident, coordinated action.',
+      projectData: 'Year: 2024\n',
       mainImgUrl: ['/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg'],
       imageUrls: [['/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg', '/5-gyogytea/5846/resq.jpg'],
         ['/5-gyogytea/5846/1_qt_5846.webp', '/5-gyogytea/2400/1_qt_2400.webp', '/5gyogytea/1800/1_qt_1800.webp', '/5-gyogytea/1200/1_qt_1200.webp', "/5-gyogytea/600/1_qt_600.webp", '/5-gyogytea/300/1_qt_300.webp'],
@@ -86,7 +94,21 @@ export class ProjectService {
       name: 'chess',
       slug: 'chess',
       shortDescription: 'This experimental chess set explores how form can influence play. Inspired by Victor Vasarely and op-art, the chessboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
-      longDescription: 'kuki',
+      longDescription: 'his experimental chess set explores how form can influence play. Inspired by Victor Vasarely and op-art, the chessboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
+      projectData: 'Year: 2021\n'
+        + 'Photo: Réka Nyikos',
+      mainImgUrl: ['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg'],
+      imageUrls: [['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg'],
+        ['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg']]
+    },
+    {
+      name: 'flying shark',
+      slug: 'flying-shark',
+      shortDescription: 'Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.',
+      longDescription: 'Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.',
+      projectData: 'Year: 2022\n'
+        + 'Co-designers: Virág Oszkai, Róbert Kristóffy, Mátyás Galavits\n'
+        + 'Photo: Péter Oszkai',
       mainImgUrl: ['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg'],
       imageUrls: [['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg'],
         ['/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg', '/chess/chess.jpg']]
