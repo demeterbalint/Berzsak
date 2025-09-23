@@ -184,6 +184,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   onWheel(event: WheelEvent) {
     // find registered scrollables
     const expScrollable = this.dragScrollService.scrollables.find(s => s.el === this.gridExpRef?.nativeElement);
+    const col3Scrollable = this.dragScrollService.scrollables.find(s => s.el === this.gridCol3Ref?.nativeElement);
     const sidebarScrollable = this.dragScrollService.scrollables.find(s => s.el.classList && s.el.classList.contains('sidebar'));
 
     // Sidebar scroll (when open)
@@ -205,6 +206,15 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       expScrollable.targetScrollTop = expScrollable.el.scrollTop + event.deltaY;
       expScrollable.targetScrollLeft = expScrollable.el.scrollLeft + event.deltaX;
       this.dragScrollService.animateScrollable(expScrollable);
+      return;
+    }
+
+    // Grid-Col3 view: animate scrolling
+    if (!this.selectedProject && this.view.status === ViewStatus.GRID && col3Scrollable) {
+      event.preventDefault();
+      col3Scrollable.targetScrollTop = col3Scrollable.el.scrollTop + event.deltaY;
+      col3Scrollable.targetScrollLeft = col3Scrollable.el.scrollLeft + event.deltaX;
+      this.dragScrollService.animateScrollable(col3Scrollable);
       return;
     }
   }
