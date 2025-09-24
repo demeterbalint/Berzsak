@@ -125,11 +125,7 @@ export class ProjectService {
       shortDescription: 'A wall clock that goes beyond function, serving as a decorative piece that marks not just the hour, but the essence of quality time itself — a reflection of Finnish culture and the serene beauty of its natural landscapes.',
       longDescription: ['The wall clock has shifted from a tool of necessity to a symbol of presence. Once the heartbeat of the household, it set the rhythm of daily life. Today, when time glows from every screen, its practical role has faded — yet its meaning remains. A wall clock now carries memory, atmosphere, and identity: it reminds us of tradition, reflects on the passing of time, and enriches interiors as a quiet statement of taste.',
       'Kuutamo was designed to carry this story forward. Inspired by Finnish nature and the midnight sun, it embraces the stillness of everyday life while celebrating the value of quality time, measured only by the slow movement of the hour hand. With its refined form and natural materials, it honors Finnish traditions and craftsmanship, transforming a familiar object into a poetic companion for modern living.'],
-      projectData: 'Year: 2022'
-        + '<br>'
-        + 'Co-designers: Virág Oszkai, Róbert Kristóffy, Mátyás Galavits'
-        + '<br>'
-        + 'Photo: Péter Oszkai',
+      projectData: 'Year: 2020',
       mainImgUrl: ['/clock/5846/2_5846.webp', '/clock/2400/2_2400.webp', '/clock/1800/2_1800.webp', '/clock/1200/2_1200.webp', '/clock/600/2_600.webp', '/clock/300/2_300.webp'],
       imageUrls: [['/clock/5846/2_5846.webp', '/clock/2400/2_2400.webp', '/clock/1800/2_1800.webp', '/clock/1200/2_1200.webp', '/clock/600/2_600.webp', '/clock/300/2_300.webp'],
         ['/clock/5846/1_5846.webp', '/clock/2400/1_2400.webp', '/clock/1800/1_1800.webp', '/clock/1200/1_1200.webp', '/clock/600/1_600.webp', '/clock/300/1_300.webp'],
@@ -144,9 +140,9 @@ export class ProjectService {
       shortDescription: 'How can we access clean energy anytime, anywhere? While solar panels can generate it, current systems are bulky and complex. Our solution: a modular, all-in-one system that’s easy to transport, simple to maintain, and ready to power life on the move.',
       longDescription: ['Solar energy holds enormous promise, yet it can still feel out of reach. Panels are often seen as costly, complicated technicalities that demand professional expertise. This uncertainty breeds hesitation: what if the system never pays off, or locks you into technology you can’t manage? To make matters worse, most available information is filled with jargon, written for experts rather than everyday users, leaving people doubtful and reluctant to take the first step.',
       'Lumen was created to change this. As a modular all-in-one system, it makes solar power simple and approachable. Each panel contains everything needed, so installation is quick, maintenance is effortless, and expansion feels like a natural step rather than a risky leap. With Lumen, solar energy is no longer a daunting investment, but a flexible companion — one that grows with you and brings clean power seamlessly into everyday life.'],
-      projectData: 'Year: 2021'
+      projectData: 'Year: 2020'
         + '<br>'
-        + 'Photo: Réka Nyikos',
+        + 'Co-founder: Felícián Nagy',
       mainImgUrl: ['/lumen/5846/lumen_5846.webp', '/lumen/2400/lumen_2400.webp', '/lumen/1800/lumen_1800.webp', '/lumen/1200/lumen_1200.webp', '/lumen/600/lumen_600.webp', '/lumen/300/lumen_300.webp'],
       imageUrls: [['/lumen/5846/lumen_5846.webp', '/lumen/2400/lumen_2400.webp', '/lumen/1800/lumen_1800.webp', '/lumen/1200/lumen_1200.webp', '/lumen/600/lumen_600.webp', '/lumen/300/lumen_300.webp'],
         ['/lumen/5846/1_5846.webp', '/lumen/2400/1_2400.webp', '/lumen/1800/1_1800.webp', '/lumen/1200/1_1200.webp', '/lumen/600/1_600.webp', '/lumen/300/1_300.webp']]
@@ -157,11 +153,9 @@ export class ProjectService {
       shortDescription: 'Street vendors have long brought color and character to city life — Mini Market reimagines this tradition with a multifunctional vehicle that transforms from transport to stall, offering mobility, flexibility, and modern practicality.',
       longDescription: ['Street vendors have always added color and character to European cities — from medieval marketplaces to today’s Christmas stalls. They bring affordability, culture, and community into public life. Yet modern challenges such as strict regulations, unstable income, and the constant need to move and adapt make their work increasingly difficult.',
       'Mini Market was created as a flexible response to these realities. This multifunctional vehicle functions as both transport and vending platform, unfolding in simple steps to become a stall. Designed for personalization, it gives vendors a modern, practical tool to sustain their traditions while staying mobile and adaptable in today’s urban landscape.'],
-      projectData: 'Year: 2022'
+      projectData: 'Year: 2021'
         + '<br>'
-        + 'Co-designers: Virág Oszkai, Róbert Kristóffy, Mátyás Galavits'
-        + '<br>'
-        + 'Photo: Péter Oszkai',
+        + 'Co-designer: Nóra Szilágyi',
       mainImgUrl: ['/mini-market/5846/1_5846.webp', '/mini-market/2400/1_2400.webp', '/mini-market/1800/1_1800.webp', '/mini-market/1200/1_1200.webp', '/mini-market/600/1_600.webp', '/mini-market/300/1_300.webp'],
       imageUrls: [['/mini-market/5846/1_5846.webp', '/mini-market/2400/1_2400.webp', '/mini-market/1800/1_1800.webp', '/mini-market/1200/1_1200.webp', '/mini-market/600/1_600.webp', '/mini-market/300/1_300.webp'],
         ['/mini-market/5846/1_5846.webp', '/mini-market/2400/1_2400.webp', '/mini-market/1800/1_1800.webp', '/mini-market/1200/1_1200.webp', '/mini-market/600/1_600.webp', '/mini-market/300/1_300.webp'],
@@ -177,9 +171,9 @@ export class ProjectService {
       shortDescription: 'Poor posture is one of today’s quiet health challenges — Tartáska turns correction into a natural part of daily routine providing discreet support that feels effortless and natural.',
       longDescription: ['Poor posture has quietly become one of the defining side effects of modern life. Hours spent hunched over screens and phones strain the body’s natural support, leading to stiff shoulders, slouched backs, and long-term discomfort. What seems like a small habit can, over time, grow into chronic pain, reduced breathing capacity, and even a loss of confidence.',
       'Tartáska was designed as a response to this challenge. By merging a medical posture corrector with the familiar everyday object of a backpack, it transforms a stigmatized aid into something natural, wearable, and discreet. Comfortable and approachable, Tartáska integrates health support seamlessly into daily routines — helping good posture feel less like treatment and more like lifestyle.'],
-      projectData: 'Year: 2021'
+      projectData: 'Year: 2018'
         + '<br>'
-        + 'Photo: Réka Nyikos',
+        + 'Photo: Barna Berzsák',
       mainImgUrl: ['/tartáska/5846/tartáska_5846.webp', '/tartáska/2400/tartáska_2400.webp', '/tartáska/1800/tartáska_1800.webp', '/tartáska/1200/tartáska_1200.webp', '/tartáska/600/tartáska_600.webp', '/tartáska/300/tartáska_300.webp'],
       imageUrls: [['/tartáska/5846/tartáska_5846.webp', '/tartáska/2400/tartáska_2400.webp', '/tartáska/1800/tartáska_1800.webp', '/tartáska/1200/tartáska_1200.webp', '/tartáska/600/tartáska_600.webp', '/tartáska/300/tartáska_300.webp'],
         ['/tartáska/5846/1_5846.webp', '/tartáska/2400/1_2400.webp', '/tartáska/1800/1_1800.webp', '/tartáska/1200/1_1200.webp', '/tartáska/600/1_600.webp', '/tartáska/300/1_300.webp']]
