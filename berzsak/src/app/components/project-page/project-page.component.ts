@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {ProjectService} from '../../services/project.service';
 import {ProjectDetails} from '../../models/project-details';
@@ -30,12 +30,23 @@ export class ProjectPageComponent implements OnInit {
       if (slug) {
         this.project = this.projectService.getProject(slug);
       }
+      const button = document.querySelector('.see-more-btn') as HTMLElement;
+        const validSlugs = ['resq-avalanche-transmitter', 'flying-shark', 'clock', 'lumen', 'tartáska'];
+        if (slug === 'archproject-shoe-insole-system') {
+        button.style.color = '#FF6900';
+      } else if (validSlugs.includes(slug!)) {
+        button.style.color = 'white';
+      }
     },
       error => {
         console.log(error);
       }
     )
   }
+
+  @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
+
+  private hidden = false; // track if already hidden
 
   getSrcset(imageArray: string[]): string {
     return imageArray
@@ -48,10 +59,19 @@ export class ProjectPageComponent implements OnInit {
     this.windowWidth = window.innerWidth;
   }
 
+  @HostListener('window:wheel', ['$event'])
+  onWheel(event: WheelEvent) {
+    if (!this.hidden && this.seeMoreButton) {
+      this.seeMoreButton.nativeElement.style.display = 'none';
+      this.hidden = true;
+    }
+  }
+
   protected readonly window = window;
 
   scrollDown() {
     const container = document.querySelector('.project-page-container') as HTMLElement;
     container.scrollTo({ top: window.innerWidth * 0.6666, behavior: 'smooth' });
+    this.seeMoreButton.nativeElement.style.display = 'none';
   }
 }
