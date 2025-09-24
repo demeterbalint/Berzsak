@@ -346,7 +346,7 @@
 @media (orientation: portrait) {
   .grid-experience {
     --tile: 50vw;
-    grid-template-columns: repeat(2, var(--tile));
+    grid-template-columns: repeat(4, var(--tile));
     grid-auto-rows: calc(var(--tile) * 3897 / 5846);
     gap: clamp(20px, 20vw, 300px);
     padding-bottom: calc(var(--tile) * 3897 / 5846); /* Extra padding to accommodate lowered grid items */
@@ -358,7 +358,8 @@
   }
 
   /* stagger every 2nd item for checkerboard */
-  .grid-experience .grid-item:nth-child(2n+2) {
+  .grid-experience .grid-item:nth-child(4n+2),
+  .grid-experience .grid-item:nth-child(4n+4) {
     transform: translateY(calc(50% + (clamp(20px, 20vw, 300px) / 2)));
   }
 }
@@ -366,7 +367,7 @@
 @media (orientation: portrait) and (aspect-ratio < 0.68) {
   .grid-experience {
     --tile: 340px;
-    grid-template-columns: repeat(2, var(--tile));
+    grid-template-columns: repeat(4, var(--tile));
     grid-auto-rows: calc(var(--tile) * 3897 / 5846);
     gap: 30vw;
     padding-bottom: calc(var(--tile) * 3897 / 5846); /* Extra padding to accommodate lowered grid items */
@@ -378,7 +379,8 @@
   }
 
   /* stagger every 2nd item for checkerboard */
-  .grid-experience .grid-item:nth-child(2n+2) {
+  .grid-experience .grid-item:nth-child(4n+2),
+  .grid-experience .grid-item:nth-child(4n+4) {
     transform: translateY(calc(50% + (clamp(20px, 20vw, 300px) / 2)));
   }
 }
