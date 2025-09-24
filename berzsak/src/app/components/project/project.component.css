@@ -213,7 +213,6 @@
   display: flex;
   justify-content: space-between;
   z-index: 1800;
-  border: 1px solid yellow;
 }
 
 .sidebar-gallery-switch-btn button {
@@ -223,9 +222,15 @@
   height: 100%;
   justify-content: center;
   font-size: 1vw;
-  border: 1px solid white;
   cursor: pointer;
   background-color: transparent;
+  overflow: hidden;
+  border: none;
+  -webkit-tap-highlight-color: transparent; /* iOS/Chrome/Safari */
+  -webkit-user-select: none; /* prevent accidental text selection */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Add gradient overlay using ::before */
@@ -249,9 +254,12 @@
 }
 
 /* On hover, fade overlay in */
-.sidebar-gallery-switch-btn button:hover::before {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .sidebar-gallery-switch-btn button:hover::before {
+    opacity: 1;
+  }
 }
+
 
 /* Gallery inside sidebar */
 .gallery {
