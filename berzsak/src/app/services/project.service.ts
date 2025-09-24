@@ -130,10 +130,9 @@ export class ProjectService {
         + 'Co-designers: Virág Oszkai, Róbert Kristóffy, Mátyás Galavits'
         + '<br>'
         + 'Photo: Péter Oszkai',
-      mainImgUrl: ['/clock/5846/1_5846.webp', '/clock/2400/1_2400.webp', '/clock/1800/1_1800.webp', '/clock/1200/1_1200.webp', '/clock/600/1_600.webp', '/clock/300/1_300.webp'],
-      imageUrls: [['/clock/5846/1_5846.webp', '/clock/2400/1_2400.webp', '/clock/1800/1_1800.webp', '/clock/1200/1_1200.webp', '/clock/600/1_600.webp', '/clock/300/1_300.webp'],
+      mainImgUrl: ['/clock/5846/2_5846.webp', '/clock/2400/2_2400.webp', '/clock/1800/2_1800.webp', '/clock/1200/2_1200.webp', '/clock/600/2_600.webp', '/clock/300/2_300.webp'],
+      imageUrls: [['/clock/5846/2_5846.webp', '/clock/2400/2_2400.webp', '/clock/1800/2_1800.webp', '/clock/1200/2_1200.webp', '/clock/600/2_600.webp', '/clock/300/2_300.webp'],
         ['/clock/5846/1_5846.webp', '/clock/2400/1_2400.webp', '/clock/1800/1_1800.webp', '/clock/1200/1_1200.webp', '/clock/600/1_600.webp', '/clock/300/1_300.webp'],
-        ['/clock/5846/2_5846.webp', '/clock/2400/2_2400.webp', '/clock/1800/2_1800.webp', '/clock/1200/2_1200.webp', '/clock/600/2_600.webp', '/clock/300/2_300.webp'],
         ['/clock/5846/3_5846.webp', '/clock/2400/3_2400.webp', '/clock/1800/3_1800.webp', '/clock/1200/3_1200.webp', '/clock/600/3_600.webp', '/clock/300/3_300.webp'],
         ['/clock/5846/4_5846.webp', '/clock/2400/4_2400.webp', '/clock/1800/4_1800.webp', '/clock/1200/4_1200.webp', '/clock/600/4_600.webp', '/clock/300/4_300.webp'],
         ['/clock/5846/5_5846.webp', '/clock/2400/5_2400.webp', '/clock/1800/5_1800.webp', '/clock/1200/5_1200.webp', '/clock/600/5_600.webp', '/clock/300/5_300.webp'],
@@ -143,7 +142,8 @@ export class ProjectService {
       name: 'lumen',
       slug: 'lumen',
       shortDescription: 'How can we access clean energy anytime, anywhere? While solar panels can generate it, current systems are bulky and complex. Our solution: a modular, all-in-one system that’s easy to transport, simple to maintain, and ready to power life on the move.',
-      longDescription: ['How can we access clean energy anytime, anywhere? While solar panels can generate it, current systems are bulky and complex. Our solution: a modular, all-in-one system that’s easy to transport, simple to maintain, and ready to power life on the move.'],
+      longDescription: ['Solar energy holds enormous promise, yet it can still feel out of reach. Panels are often seen as costly, complicated technicalities that demand professional expertise. This uncertainty breeds hesitation: what if the system never pays off, or locks you into technology you can’t manage? To make matters worse, most available information is filled with jargon, written for experts rather than everyday users, leaving people doubtful and reluctant to take the first step.',
+      'Lumen was created to change this. As a modular all-in-one system, it makes solar power simple and approachable. Each panel contains everything needed, so installation is quick, maintenance is effortless, and expansion feels like a natural step rather than a risky leap. With Lumen, solar energy is no longer a daunting investment, but a flexible companion — one that grows with you and brings clean power seamlessly into everyday life.'],
       projectData: 'Year: 2021'
         + '<br>'
         + 'Photo: Réka Nyikos',
@@ -154,8 +154,9 @@ export class ProjectService {
     {
       name: 'mini-market',
       slug: 'mini-market',
-      shortDescription: 'Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.',
-      longDescription: ['Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.'],
+      shortDescription: 'Street vendors have long brought color and character to city life — Mini Market reimagines this tradition with a multifunctional vehicle that transforms from transport to stall, offering mobility, flexibility, and modern practicality.',
+      longDescription: ['Street vendors have always added color and character to European cities — from medieval marketplaces to today’s Christmas stalls. They bring affordability, culture, and community into public life. Yet modern challenges such as strict regulations, unstable income, and the constant need to move and adapt make their work increasingly difficult.',
+      'Mini Market was created as a flexible response to these realities. This multifunctional vehicle functions as both transport and vending platform, unfolding in simple steps to become a stall. Designed for personalization, it gives vendors a modern, practical tool to sustain their traditions while staying mobile and adaptable in today’s urban landscape.'],
       projectData: 'Year: 2022'
         + '<br>'
         + 'Co-designers: Virág Oszkai, Róbert Kristóffy, Mátyás Galavits'
@@ -173,8 +174,9 @@ export class ProjectService {
     {
       name: 'tartáska',
       slug: 'tartáska',
-      shortDescription: 'This experimental tartáska set explores how form can influence play. Inspired by Victor Vasarely and op-art, the tartáskaboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
-      longDescription: ['This experimental tartáska set explores how form can influence play. Inspired by Victor Vasarely and op-art, the tartáskaboard alters perception — subtly shaping players’ decisions and the game’s dynamics.'],
+      shortDescription: 'Poor posture is one of today’s quiet health challenges — Tartáska turns correction into a natural part of daily routine providing discreet support that feels effortless and natural.',
+      longDescription: ['Poor posture has quietly become one of the defining side effects of modern life. Hours spent hunched over screens and phones strain the body’s natural support, leading to stiff shoulders, slouched backs, and long-term discomfort. What seems like a small habit can, over time, grow into chronic pain, reduced breathing capacity, and even a loss of confidence.',
+      'Tartáska was designed as a response to this challenge. By merging a medical posture corrector with the familiar everyday object of a backpack, it transforms a stigmatized aid into something natural, wearable, and discreet. Comfortable and approachable, Tartáska integrates health support seamlessly into daily routines — helping good posture feel less like treatment and more like lifestyle.'],
       projectData: 'Year: 2021'
         + '<br>'
         + 'Photo: Réka Nyikos',
