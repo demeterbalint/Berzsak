@@ -49,4 +49,9 @@ export class ProjectPageComponent implements OnInit {
   }
 
   protected readonly window = window;
+
+  scrollDown() {
+    const container = document.querySelector('.project-page-container') as HTMLElement;
+    container.scrollTo({ top: window.innerWidth * 0.6666, behavior: 'smooth' });
+  }
 }
