@@ -90,7 +90,8 @@ export class ProjectService {
       name: 'chess',
       slug: 'chess',
       shortDescription: 'This experimental chess set explores how form can influence play. Inspired by Victor Vasarely and op-art, the chessboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
-      longDescription: ['This experimental chess set explores how form can influence play. Inspired by Victor Vasarely and op-art, the chessboard alters perception — subtly shaping players’ decisions and the game’s dynamics.'],
+      longDescription: ['For over a thousand years, chess has fascinated the world — a simple set of rules giving rise to endless complexity. From royal courts to digital platforms, it has carried the symbolism of war, intellect, and strategy, while captivating both players and spectators across generations.',
+      'Promontor reimagines this timeless duel through the lens of design. Inspired by Op Art and Victor Vasarely, its board distorts the familiar grid into an optical illusion of depth, transforming each match into both a contest of intellect and a visual spectacle. The result is a chess set that honors tradition while offering a fresh, dynamic experience for today’s players.'],
       projectData: 'Year: 2021'
         + '<br>'
         + 'Photo: Réka Nyikos',
@@ -103,7 +104,8 @@ export class ProjectService {
       name: 'flying shark',
       slug: 'flying-shark',
       shortDescription: 'Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.',
-      longDescription: ['Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.'],
+      longDescription: ['Red Bull Flugtag — German for “flight day” — is a global competition where engineering genius collides with absolute nonsense. Teams design and build human-powered flying machines, launching them off a platform into the water below. While the real spirit of the event lies in creativity, performance, and spectacle: teams are judged not only on distance but also on originality and showmanship — turning serious engineering into a comedy of wings.',
+        'After centuries of careful research, design and development we unveiled our masterpiece: a flying shark. Inspired by Jinx’s shark gun from Arcane, it was equal parts aesthetic marvel and questionable aerodynamics. Against all odds — and to everyone’s amazement — it actually did not fly.'],
       projectData: 'Year: 2022'
         + '<br>'
         + 'Co-designers: Virág Oszkai, Róbert Kristóffy, Mátyás Galavits'
@@ -120,8 +122,9 @@ export class ProjectService {
     {
       name: 'clock',
       slug: 'clock',
-      shortDescription: 'Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.',
-      longDescription: ['Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.'],
+      shortDescription: 'A wall clock that goes beyond function, serving as a decorative piece that marks not just the hour, but the essence of quality time itself — a reflection of Finnish culture and the serene beauty of its natural landscapes.',
+      longDescription: ['The wall clock has shifted from a tool of necessity to a symbol of presence. Once the heartbeat of the household, it set the rhythm of daily life. Today, when time glows from every screen, its practical role has faded — yet its meaning remains. A wall clock now carries memory, atmosphere, and identity: it reminds us of tradition, reflects on the passing of time, and enriches interiors as a quiet statement of taste.',
+      'Kuutamo was designed to carry this story forward. Inspired by Finnish nature and the midnight sun, it embraces the stillness of everyday life while celebrating the value of quality time, measured only by the slow movement of the hour hand. With its refined form and natural materials, it honors Finnish traditions and craftsmanship, transforming a familiar object into a poetic companion for modern living.'],
       projectData: 'Year: 2022'
         + '<br>'
         + 'Co-designers: Virág Oszkai, Róbert Kristóffy, Mátyás Galavits'
@@ -139,8 +142,8 @@ export class ProjectService {
     {
       name: 'lumen',
       slug: 'lumen',
-      shortDescription: 'This experimental lumen set explores how form can influence play. Inspired by Victor Vasarely and op-art, the lumenboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
-      longDescription: ['This experimental lumen set explores how form can influence play. Inspired by Victor Vasarely and op-art, the lumenboard alters perception — subtly shaping players’ decisions and the game’s dynamics.'],
+      shortDescription: 'How can we access clean energy anytime, anywhere? While solar panels can generate it, current systems are bulky and complex. Our solution: a modular, all-in-one system that’s easy to transport, simple to maintain, and ready to power life on the move.',
+      longDescription: ['How can we access clean energy anytime, anywhere? While solar panels can generate it, current systems are bulky and complex. Our solution: a modular, all-in-one system that’s easy to transport, simple to maintain, and ready to power life on the move.'],
       projectData: 'Year: 2021'
         + '<br>'
         + 'Photo: Réka Nyikos',
