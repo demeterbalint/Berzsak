@@ -1,5 +1,4 @@
 export interface ProjectDetails {
-
   name: string;
   slug: string;
   shortDescription: string;
