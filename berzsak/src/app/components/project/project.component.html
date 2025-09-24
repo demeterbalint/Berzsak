@@ -50,12 +50,8 @@
 
       <div class="sidebar-main">
         <div class="sidebar-gallery-switch-btn">
-          <button (click)="updateSelectedImage(selectedImageIndex-1)">
-            <i class='fas fa-chevron-left'></i>
-          </button>
-          <button (click)="updateSelectedImage(selectedImageIndex+1)">
-            <i class='fas fa-chevron-right'></i>
-          </button>
+          <button class="left-btn" (click)="updateSelectedImage(selectedImageIndex-1)"></button>
+          <button class="right-btn" (click)="updateSelectedImage(selectedImageIndex+1)"></button>
         </div>
         <img [src]="selectedProject.imageUrls[selectedImageIndex][4]" [alt]="selectedProject.name"
              [srcset]="getSrcset(selectedProject.imageUrls[selectedImageIndex])"
