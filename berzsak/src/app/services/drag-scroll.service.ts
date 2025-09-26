@@ -1,6 +1,6 @@
 // src/app/services/drag-scroll.service.ts
 import { Injectable } from '@angular/core';
-import { Scrollable } from '../interfaces/scrollable';
+import {Scrollable} from '../models/scrollable';
 
 @Injectable({
   providedIn: 'root'
