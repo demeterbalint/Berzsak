@@ -17,7 +17,7 @@ export class SidebarAnimationService {
 
       // Wait for Angular to render the sidebar in the DOM
       setTimeout(() => {
-        const sidebarEl = document.querySelector('.sidebar') as HTMLElement;
+        const sidebarEl = document.querySelector('.sidebar-main-wrapper') as HTMLElement;
         const container = document.querySelector('.container') as HTMLElement;
         if (!sidebarEl || !container) {
           resolve();
@@ -86,7 +86,7 @@ export class SidebarAnimationService {
   }
 
   async closeSidebar(gridImg: HTMLElement, project: ProjectDetails): Promise<void> {
-    const sidebarImg = document.querySelector(`.sidebar img[data-project-name="${project.name}"]`) as HTMLElement;
+    const sidebarImg = document.querySelector(`.sidebar-main-image img[data-project-name="${project.name}"]`) as HTMLElement;
     if (!sidebarImg || !gridImg) return;
 
     // Clone the sidebar image

@@ -1,8 +1,88 @@
-html, body {
+* {
+  font-family: "Roboto", sans-serif;
+
   margin: 0;
   padding: 0;
-  height: 100%;
+
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
+
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;     /* IE/Edge legacy */
+
+  /* Prevent default touch gestures (scrolling, pinch-zoom) */
+  touch-action: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Edge */
+}
+
+:root {
+  --primary-background: #f1f1f1;
+  --primary-font_color: black;
+  --primary-light-grey: #ccc;
+  --primary-dark-grey: #555;
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-y: auto;
+  background-color: var(--primary-background);
+}
+
+.brand-name {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 2000;
+  transform: rotateZ(180deg);
+}
+
+.brand-name:hover {
+  transform: rotateZ(0);
+}
+
+.brand-name-button {
+  color: var(--primary-font_color);
+  cursor: pointer;
+  border: none;
+  background-color: rgba(241, 241, 241, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /*Safari*/
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid var(--primary-light-grey);
+  width: 80%;
+}
+
+.contact-div {
   width: 100%;
-  overflow: hidden; /* optional if you don't want scrollbars */
-  font-family: "Roboto", sans-serif;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-div a{
+  font-size: 20px;
+  color: var(--primary-light-grey);
+  text-decoration: none;
+}
+
+.contact-div a:hover{
+  color: var(--primary-dark-grey);
 }

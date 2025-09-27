@@ -69,34 +69,11 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const gridEl = this.gridExpRef?.nativeElement;
-    const gridCol3 = this.gridCol3Ref?.nativeElement;
 
-    // Register both scrollables so animateScrollable can find them
-    // Don't enable momentum for the experience view grid
-    if (gridEl) this.dragScrollService.registerScrollable(gridEl, false);
-    if (gridCol3) this.dragScrollService.registerScrollable(gridCol3, false);
-
-    // center experience grid
     if (gridEl) {
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
     }
-
-    // Keep observing for sidebar additions
-    const observer = new MutationObserver(() => {
-      const sidebarEl = document.querySelector('.sidebar');
-      if (sidebarEl) {
-        // Remove any previous sidebar scrollable
-        this.dragScrollService.scrollables = this.dragScrollService.scrollables.filter(
-          s => !(s.el.classList && s.el.classList.contains('sidebar'))
-        );
-        // Register the new sidebar element
-        this.dragScrollService.registerScrollable(sidebarEl as HTMLElement, true);
-      }
-    });
-
-    // Start observing the document body for changes
-    observer.observe(document.body, { childList: true, subtree: true });
   }
 
   getSrcset(imageArray: string[]): string {
@@ -139,14 +116,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     // After view toggles, the other grid is created by *ngIf on next tick
     setTimeout(() => {
       const gridEl = this.gridExpRef?.nativeElement;
-      const gridCol3 = this.gridCol3Ref?.nativeElement;
       if (gridEl) {
-        // Don't enable momentum for the experience view grid
-        this.dragScrollService.registerScrollable(gridEl, false);
         gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
         gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
       }
-      if (gridCol3) this.dragScrollService.registerScrollable(gridCol3, false);
     }, 0);
   }
 
@@ -165,75 +138,15 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     this.checkSidebar();
   }
 
-  @HostListener('window:mouseup', ['$event'])
-  @HostListener('window:pointerup', ['$event'])
-  @HostListener('window:touchend', ['$event'])
-  onMouseUp(event: MouseEvent | PointerEvent | TouchEvent) {
-    const gridEl = this.gridExpRef?.nativeElement;
-    if (gridEl) this.dragScrollService.endDrag(event, gridEl);
-  }
-
-  @HostListener('window:mouseleave', ['$event'])
-  onMouseLeave(event: MouseEvent) {
-    const gridEl = this.gridExpRef?.nativeElement;
-    if (gridEl) this.dragScrollService.endDrag(event, gridEl);
-  }
-
   @HostListener('window:wheel', ['$event'])
   onWheel(event: WheelEvent) {
-    // find registered scrollables
-    const expScrollable = this.dragScrollService.scrollables.find(s => s.el === this.gridExpRef?.nativeElement);
-    const col3Scrollable = this.dragScrollService.scrollables.find(s => s.el === this.gridCol3Ref?.nativeElement);
-    const sidebarScrollable = this.dragScrollService.scrollables.find(s => s.el.classList && s.el.classList.contains('sidebar'));
 
-    // Sidebar scroll (when open)
-    if (this.selectedProject && sidebarScrollable) {
-      // Ensure the sidebar has momentum enabled
-      if (!sidebarScrollable.enableMomentum) {
-        sidebarScrollable.enableMomentum = true;
-      }
-
-      event.preventDefault();
-      sidebarScrollable.targetScrollTop = Math.max(0, Math.min(sidebarScrollable.el.scrollTop + event.deltaY, sidebarScrollable.el.scrollHeight - sidebarScrollable.el.clientHeight));
-      this.dragScrollService.animateScrollable(sidebarScrollable);
-      return;
-    }
-
-    // Experience view: intercept and animate scrolling
-    if (!this.selectedProject && this.view.status === ViewStatus.EXPERIENCE && expScrollable) {
-      event.preventDefault();
-      expScrollable.targetScrollTop = expScrollable.el.scrollTop + event.deltaY;
-      expScrollable.targetScrollLeft = expScrollable.el.scrollLeft + event.deltaX;
-      this.dragScrollService.animateScrollable(expScrollable);
-      return;
-    }
-
-    // Grid-Col3 view: animate scrolling
-    if (!this.selectedProject && this.view.status === ViewStatus.GRID && col3Scrollable) {
-      event.preventDefault();
-      col3Scrollable.targetScrollTop = col3Scrollable.el.scrollTop + event.deltaY;
-      col3Scrollable.targetScrollLeft = col3Scrollable.el.scrollLeft + event.deltaX;
-      this.dragScrollService.animateScrollable(col3Scrollable);
-      return;
-    }
   }
 
   get gridState() {
     return this.selectedProject ? 'open' : 'closed';
   }
 
-  handleExperienceInteraction(event: MouseEvent | PointerEvent | TouchEvent) {
-    if (!this.sidebarBusy && this.selectedProject) {
-      this.closeSidebar();
-    }
-    const gridEl = this.gridExpRef?.nativeElement;
-    if (gridEl) this.dragScrollService.startDrag(event, gridEl, this.selectedProject);
-  }
-
-  onExperienceDrag(event: MouseEvent | PointerEvent | TouchEvent) {
-    const gridEl = this.gridExpRef?.nativeElement;
-    if (gridEl) this.dragScrollService.onDrag(event, gridEl);
-  }
 
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
     if (this.sidebarBusy || this.dragScrollService.moved || this.selectedProject ) return;
@@ -294,36 +207,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     }
   }
 
-  handleCol3Interaction(event: MouseEvent | PointerEvent | TouchEvent) {
-    const gridCol3 = event.currentTarget as HTMLElement;
-    this.dragScrollService.startDragOnCol3(event, gridCol3, this.selectedProject);
-  }
-
-  onCol3Drag(event: MouseEvent | PointerEvent | TouchEvent) {
-    const gridCol3 = event.currentTarget as HTMLElement;
-    this.dragScrollService.onDragCol3(event, gridCol3);
-  }
-
   updateSelectedImage(index: number): void {
     if (index < 0 || index > this.selectedProject!.imageUrls.length-1) return;
     this.selectedImageIndex = index;
-  }
-
-  handleSidebarInteraction(event: MouseEvent | PointerEvent | TouchEvent) {
-    const sidebarEl = event.currentTarget as HTMLElement;
-    // Register the sidebar with momentum enabled
-    this.dragScrollService.registerScrollable(sidebarEl, true);
-    this.dragScrollService.startDrag(event, sidebarEl, this.selectedProject);
-  }
-
-  onSidebarDrag(event: MouseEvent | PointerEvent | TouchEvent) {
-    const sidebarEl = event.currentTarget as HTMLElement;
-    this.dragScrollService.onDrag(event, sidebarEl);
-  }
-
-  onSidebarDragEnd(event: MouseEvent | PointerEvent | TouchEvent) {
-    const sidebarEl = event.currentTarget as HTMLElement;
-    this.dragScrollService.endDrag(event, sidebarEl);
   }
 
   protected readonly ViewStatus = ViewStatus;
