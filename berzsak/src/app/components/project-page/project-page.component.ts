@@ -46,8 +46,6 @@ export class ProjectPageComponent implements OnInit {
 
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
 
-  private hidden = false; // track if already hidden
-
   getSrcset(imageArray: string[]): string {
     return imageArray
       .map((url, i) => `${url} ${this.imageWidths[i]}w`)
@@ -61,17 +59,19 @@ export class ProjectPageComponent implements OnInit {
 
   @HostListener('window:wheel', ['$event'])
   onWheel(event: WheelEvent) {
-    if (!this.hidden && this.seeMoreButton) {
-      this.seeMoreButton.nativeElement.style.display = 'none';
-      this.hidden = true;
+    if (this.seeMoreButton) {
+      this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
+      this.seeMoreButton.nativeElement.style.opacity = '0';
     }
   }
 
   protected readonly window = window;
 
   scrollDown() {
-    const container = document.querySelector('.project-page-container') as HTMLElement;
+    const container = document.querySelector('.container') as HTMLElement;
+    console.log(container.scrollHeight, container.clientHeight);
     container.scrollTo({ top: window.innerWidth * 0.6666, behavior: 'smooth' });
-    this.seeMoreButton.nativeElement.style.display = 'none';
+    this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
+    this.seeMoreButton.nativeElement.style.opacity = '0';
   }
 }

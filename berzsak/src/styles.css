@@ -12,13 +12,15 @@
   user-select: none;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none;     /* IE/Edge legacy */
-
-  /* Prevent default touch gestures (scrolling, pinch-zoom) */
-  touch-action: none;
 }
 
 *::-webkit-scrollbar {
   display: none;             /* Chrome, Safari, Edge */
+}
+
+html, body {
+  height: 100%;
+  overflow-y: auto;
 }
 
 :root {
@@ -31,9 +33,10 @@
 .container {
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   overflow-y: auto;
   background-color: var(--primary-background);
+  -webkit-overflow-scrolling: touch; /* enables momentum scroll on iOS */
 }
 
 .brand-name {
