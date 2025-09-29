@@ -18,11 +18,6 @@
   display: none;             /* Chrome, Safari, Edge */
 }
 
-html, body {
-  height: 100%;
-  overflow-y: auto;
-}
-
 :root {
   --primary-background: #f1f1f1;
   --primary-font_color: black;
