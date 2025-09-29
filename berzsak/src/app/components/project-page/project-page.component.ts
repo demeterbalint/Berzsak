@@ -3,6 +3,7 @@ import {ActivatedRoute, RouterLink} from '@angular/router';
 import {ProjectService} from '../../services/project.service';
 import {ProjectDetails} from '../../models/project-details';
 import {NgForOf, NgIf, SlicePipe} from '@angular/common';
+import {DragScrollService} from '../../services/drag-scroll.service';
 
 @Component({
   selector: 'app-project-page',
@@ -20,17 +21,14 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   protected project!: ProjectDetails;
   private imageWidths = [5846, 2400, 1800, 1200, 600, 300];
   protected windowWidth: number = window.innerWidth;
-  private hidden: boolean = false;
-  private targetScrollTop = 0;
-  private currentScrollTop = 0;
   private speed = 0.1;
-  private animationFrameId: number | null = null;
 
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
   @ViewChild('container') containerRef!: ElementRef<HTMLButtonElement>;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private projectService: ProjectService) {}
+              private projectService: ProjectService,
+              private dragScrollService: DragScrollService,) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
@@ -65,44 +63,14 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit() {
     const container = this.containerRef.nativeElement;
-
-    // Natív wheel esemény kezelő passzív false-szal, preventDefault engedélyezéssel
-    container.addEventListener('wheel', (event: WheelEvent) => {
-      if (!this.hidden && this.seeMoreButton) {
-        this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
-        this.seeMoreButton.nativeElement.style.opacity = '0';
-        this.hidden = true;
-      }
-
-      event.preventDefault();
-
-      this.targetScrollTop += event.deltaY;
-      this.targetScrollTop = Math.max(0, Math.min(this.targetScrollTop, container.scrollHeight - container.clientHeight));
-    }, { passive: false });
-
-    this.animateScroll();
+    this.dragScrollService.projectPageScrollInit(container, this.seeMoreButton, this.speed);
   }
 
-  private animateScroll = () => {
-    const container = this.containerRef.nativeElement;
-    this.currentScrollTop += (this.targetScrollTop - this.currentScrollTop) * this.speed;
-    container.scrollTop = this.currentScrollTop;
-
-    this.animationFrameId = requestAnimationFrame(this.animateScroll);
-  }
 
   protected readonly window = window;
 
   scrollDown() {
     const container = this.containerRef.nativeElement;
-    this.targetScrollTop = window.innerWidth * 0.6666;
-
-    this.targetScrollTop = Math.min(this.targetScrollTop, container.scrollHeight - container.clientHeight);
-
-    if (!this.hidden && this.seeMoreButton) {
-      this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
-      this.seeMoreButton.nativeElement.style.opacity = '0';
-      this.hidden = true;
-    }
+    this.dragScrollService.scrollDown(container, this.seeMoreButton);
   }
 }
