@@ -169,6 +169,22 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     return this.selectedProject ? 'open' : 'closed';
   }
 
+  private globalPointerDownHandler = (e: PointerEvent) => {
+    const sidebarEl = this.sidebarRef?.nativeElement;
+    const closeBtn = document.querySelector('.close-btn') as HTMLElement;
+    const contactDiv = document.querySelector('.contact-div-experience') as HTMLElement;
+
+    if (!sidebarEl) return;
+
+    // If the click is outside sidebar AND outside the close button
+    if (!sidebarEl.contains(e.target as Node) && !(closeBtn?.contains(e.target as Node)) && !(contactDiv?.contains(e.target as Node))) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.closeSidebar();
+    }
+  };
+
+
 
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
     if (this.sidebarBusy || /*this.dragScrollService.moved ||*/ this.selectedProject ) return;
@@ -185,6 +201,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     // set selected project so the sidebar renders, then run the animation
     this.selectedProject = project;
     await this.sidebarAnimation.flyToSidebar(event.currentTarget as HTMLElement, project);
+
+    window.addEventListener('pointerdown', this.globalPointerDownHandler, { capture: true });
 
     this.sidebarBusy = false;
     const sidebarEl = this.sidebarRef?.nativeElement;
@@ -211,6 +229,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     await this.sidebarAnimation.closeSidebar(gridImg, this.selectedProject);
     // trigger Angular remove which starts ':leave' for sidebar and 'open => closed' for grid
     this.selectedProject = undefined;
+
+    window.removeEventListener('pointerdown', this.globalPointerDownHandler, { capture: true });
 
     // wait for both Angular animations to finish before clearing busy
     await Promise.all([
