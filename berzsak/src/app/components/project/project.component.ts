@@ -37,6 +37,7 @@ import {Router, RouterLink} from '@angular/router';
 export class ProjectComponent implements OnInit, AfterViewInit {
   @ViewChild('gridExp') gridExpRef!: ElementRef<HTMLDivElement>;
   @ViewChild('gridCol3') gridCol3Ref!: ElementRef<HTMLDivElement>;
+  @ViewChild('container') containerRefRef!: ElementRef<HTMLDivElement>;
 
   protected projects: ProjectDetails[] = [];
   protected selectedProject?: ProjectDetails;
@@ -56,6 +57,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   windowWidth: number = window.innerWidth;
   sidebarDisabled: boolean = false;
 
+  private speed = 0.1;
+  private isScrollDown: boolean = false;
+
   constructor(private projectService: ProjectService,
               private dragScrollService: DragScrollService,
               private sidebarAnimation: SidebarAnimationService,
@@ -74,6 +78,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
     }
+
+    const container = this.containerRefRef.nativeElement;
+    this.dragScrollService.projectPageScrollInit(container, this.speed, this.isScrollDown);
   }
 
   getSrcset(imageArray: string[]): string {
@@ -136,11 +143,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   onResize(event: any) {
     this.windowWidth = event.target.innerWidth;
     this.checkSidebar();
-  }
-
-  @HostListener('window:wheel', ['$event'])
-  onWheel(event: WheelEvent) {
-
   }
 
   get gridState() {

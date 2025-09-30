@@ -15,14 +15,17 @@ export class DragScrollService {
 
   projectPageScrollInit(
     container: HTMLElement,
-    seeMoreButton: ElementRef<HTMLButtonElement>,
-    speed: number
+    speed: number,
+    isScrollDown: boolean,
+    seeMoreButton?: ElementRef<HTMLButtonElement>
   ) {
     container.addEventListener('wheel', (event: WheelEvent) => {
-      if (!this.seeMoreHidden && seeMoreButton) {
-        seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
-        seeMoreButton.nativeElement.style.opacity = '0';
-        this.seeMoreHidden = true;
+      if (isScrollDown) {
+        if (!this.seeMoreHidden && seeMoreButton) {
+          seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
+          seeMoreButton.nativeElement.style.opacity = '0';
+          this.seeMoreHidden = true;
+        }
       }
 
       event.preventDefault();
