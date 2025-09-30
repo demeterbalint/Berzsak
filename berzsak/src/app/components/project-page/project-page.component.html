@@ -13,7 +13,8 @@
     <img
       src="{{project.mainImgUrl[1]}}"
       [srcset]="getSrcset(project.mainImgUrl)"
-      sizes="95vw">
+      sizes="95vw"
+    draggable="false">
   </div>
 
   <button class="see-more-btn" #seeMoreBtn (click)="scrollDown()">
@@ -41,7 +42,8 @@
     <div class="project-image-gallery" *ngFor="let imageVariant of project.imageUrls | slice:1">
       <img [src]="imageVariant[1]"
            [srcset]="getSrcset(imageVariant)"
-           sizes="95vw">
+           sizes="95vw"
+           draggable="false">
     </div>
   </div>
 

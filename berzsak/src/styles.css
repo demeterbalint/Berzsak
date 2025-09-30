@@ -12,6 +12,9 @@
   user-select: none;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none;     /* IE/Edge legacy */
+
+  /* Remove tap highlight */
+  -webkit-tap-highlight-color: transparent; /* removes default blue on iOS/Chrome/Safari */
 }
 
 *::-webkit-scrollbar {
@@ -29,9 +32,10 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  overflow-y: auto;
+  overflow: hidden;
   background-color: var(--primary-background);
   -webkit-overflow-scrolling: touch; /* enables momentum scroll on iOS */
+  touch-action: none;
 }
 
 .brand-name {

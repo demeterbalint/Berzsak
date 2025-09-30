@@ -37,7 +37,7 @@ import {Router, RouterLink} from '@angular/router';
 export class ProjectComponent implements OnInit, AfterViewInit {
   @ViewChild('gridExp') gridExpRef!: ElementRef<HTMLDivElement>;
   @ViewChild('gridCol3') gridCol3Ref!: ElementRef<HTMLDivElement>;
-  @ViewChild('container') containerRefRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('sidebar') sidebarRef!: ElementRef<HTMLDivElement>;
 
   protected projects: ProjectDetails[] = [];
   protected selectedProject?: ProjectDetails;
@@ -57,9 +57,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   windowWidth: number = window.innerWidth;
   sidebarDisabled: boolean = false;
 
-  private speed = 0.1;
-  private isScrollDown: boolean = false;
-
   constructor(private projectService: ProjectService,
               private dragScrollService: DragScrollService,
               private sidebarAnimation: SidebarAnimationService,
@@ -72,15 +69,26 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const gridEl = this.gridExpRef?.nativeElement;
+    const gridEl = this.gridExpRef.nativeElement;
+    const sidebarEl = this.sidebarRef?.nativeElement;
+    const gridCol3El = this.gridCol3Ref?.nativeElement;
 
     if (gridEl) {
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
+      this.dragScrollService.setActive(gridEl, 'both');
+      this.dragScrollService.init(gridEl, 'both');
     }
 
-    const container = this.containerRefRef.nativeElement;
-    this.dragScrollService.projectPageScrollInit(container, this.speed, this.isScrollDown);
+    if (sidebarEl) {
+      sidebarEl.scrollTop = 0; // optional: start at top
+      this.dragScrollService.init(sidebarEl, 'vertical');
+    }
+
+    if (gridCol3El) {
+      gridCol3El.scrollTop = 0;
+      this.dragScrollService.init(gridCol3El, 'vertical');
+    }
   }
 
   getSrcset(imageArray: string[]): string {
@@ -116,18 +124,30 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     if (this.view.status === ViewStatus.EXPERIENCE) {
       this.view.status = ViewStatus.GRID;
       this.view.value = 'Grid view';
+
+      // wait for gridCol3 to render
+      setTimeout(() => {
+        const gridCol3El = this.gridCol3Ref?.nativeElement;
+        if (gridCol3El) {
+          gridCol3El.scrollTop = 0;
+          this.dragScrollService.setActive(gridCol3El, 'vertical');
+          this.dragScrollService.init(gridCol3El, 'vertical');
+        }
+      }, 0);
     } else {
       this.view.status = ViewStatus.EXPERIENCE;
       this.view.value = 'Experience view';
+
+      setTimeout(() => {
+        const gridEl = this.gridExpRef?.nativeElement;
+        if (gridEl) {
+          gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
+          gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
+          this.dragScrollService.setActive(gridEl, 'both');
+          this.dragScrollService.init(gridEl, 'both');
+        }
+      }, 0);
     }
-    // After view toggles, the other grid is created by *ngIf on next tick
-    setTimeout(() => {
-      const gridEl = this.gridExpRef?.nativeElement;
-      if (gridEl) {
-        gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
-        gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
-      }
-    }, 0);
   }
 
   checkSidebar() {
@@ -151,7 +171,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
 
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
-    if (this.sidebarBusy || this.dragScrollService.moved || this.selectedProject ) return;
+    if (this.sidebarBusy || /*this.dragScrollService.moved ||*/ this.selectedProject ) return;
     if (this.sidebarDisabled) {
       this.router.navigate(['/main', project.slug]);
       return;
@@ -167,6 +187,12 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     await this.sidebarAnimation.flyToSidebar(event.currentTarget as HTMLElement, project);
 
     this.sidebarBusy = false;
+    const sidebarEl = this.sidebarRef?.nativeElement;
+    if (sidebarEl) {
+      sidebarEl.scrollTop = 0;
+      this.dragScrollService.setActive(sidebarEl, 'vertical');
+      this.dragScrollService.init(sidebarEl, 'vertical');
+    }
   }
 
 
@@ -193,6 +219,11 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     ]);
 
     this.sidebarBusy = false;
+    const gridEl = this.gridExpRef?.nativeElement;
+    if (gridEl) {
+      this.dragScrollService.setActive(gridEl, 'both');
+      this.dragScrollService.init(gridEl, 'both');
+    }
   }
 
   onSidebarAnimDone(event: any) {

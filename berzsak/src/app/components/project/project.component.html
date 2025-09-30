@@ -1,4 +1,4 @@
-<div class="container" #container [class.exp-view]="view.status === ViewStatus.EXPERIENCE" [class.sidebar-open]="selectedProject">
+<div class="container" [class.exp-view]="view.status === ViewStatus.EXPERIENCE" [class.sidebar-open]="selectedProject">
 
   <!-- brand name -->
   <div class="brand-name">
@@ -32,7 +32,7 @@
   </div>
 
   <!-- Sidebar -->
-  <div class="sidebar-main-wrapper" *ngIf="selectedProject && !sidebarDisabled" [@sidebarSlide]
+  <div class="sidebar-main-wrapper" *ngIf="selectedProject && !sidebarDisabled" [@sidebarSlide] #sidebar
        (@sidebarSlide.done)="onSidebarAnimDone($event)">
     <div class="fade-div"></div>
     <div class="sidebar-scroll-wrapper"
@@ -71,23 +71,25 @@
 
 
   <!-- Grid-Experience -->
-  <div *ngIf="view.status === ViewStatus.EXPERIENCE" class="grid-experience" #gridExp [@gridSlide]="gridState"
-       (@gridSlide.done)="onGridAnimDone($event)"
-       >
-    <div *ngFor="let project of projects" class="grid-item">
-      <img [src]="project.mainImgUrl[4]"
-           [srcset]="getSrcset(project.mainImgUrl)"
-           [sizes]="gridImageSizes()"
-           [alt]="project.name"
-           [attr.data-project-name]="project.name"
-           (click)="onImageClick($event, project)" draggable="false">
+  <div class="grid-experience-wrapper" *ngIf="view.status === ViewStatus.EXPERIENCE" #gridExp>
+    <div class="grid-experience" [@gridSlide]="gridState"
+         (@gridSlide.done)="onGridAnimDone($event)"
+         >
+      <div *ngFor="let project of projects" class="grid-item">
+        <img [src]="project.mainImgUrl[4]"
+             [srcset]="getSrcset(project.mainImgUrl)"
+             [sizes]="gridImageSizes()"
+             [alt]="project.name"
+             [attr.data-project-name]="project.name"
+             (click)="onImageClick($event, project)" draggable="false">
+      </div>
     </div>
   </div>
 
   <!-- Grid-view -->
-  <div class="grid-wrapper" *ngIf="view.status === ViewStatus.GRID">
+  <div class="grid-wrapper" *ngIf="view.status === ViewStatus.GRID" #gridCol3>
     <div class="fade-div"></div>
-    <div class="grid-col3" #gridCol3>
+    <div class="grid-col3">
       <div *ngFor="let project of projects" class="grid-item">
         <div class="item-gallery"
              >

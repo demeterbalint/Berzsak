@@ -21,8 +21,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   protected project!: ProjectDetails;
   private imageWidths = [5846, 2400, 1800, 1200, 600, 300];
   protected windowWidth: number = window.innerWidth;
-  private speed = 0.1;
-  private isScrollDown: boolean = true;
 
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
   @ViewChild('container') containerRef!: ElementRef<HTMLButtonElement>;
@@ -53,7 +51,7 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit() {
     const container = this.containerRef.nativeElement;
-    this.dragScrollService.projectPageScrollInit(container, this.speed, this.isScrollDown, this.seeMoreButton);
+    this.dragScrollService.init(container, 'vertical', this.seeMoreButton);
   }
 
   getSrcset(imageArray: string[]): string {

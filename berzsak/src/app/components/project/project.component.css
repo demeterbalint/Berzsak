@@ -1,7 +1,3 @@
-.container.exp-view {
-  overflow-x: auto;
-}
-
 .brand-name:hover {
   .brand-name-button.exp-view {
     color: var(--primary-dark-grey);
@@ -116,6 +112,7 @@
   border-right: 1px solid var(--primary-font_color);
   background-color: var(--primary-background);
   z-index: 1500;
+  touch-action: none;
 }
 
 .sidebar-main-wrapper .fade-div {
@@ -130,7 +127,6 @@
 }
 
 .sidebar-scroll-wrapper {
-  min-height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -303,9 +299,16 @@
 }
 
 /* Grid */
-.grid-experience {
-  display: grid;
+.grid-experience-wrapper {
+  height: 100%;
+  width: 100%;
   overflow: auto;
+  touch-action: none;
+}
+.grid-experience {
+  min-width: max-content;
+  min-height: max-content;
+  display: grid;
   cursor: grab;
   padding: 5%;
 }
@@ -400,18 +403,17 @@
   transform: scale(1.05);
 }
 
-.container.sidebar-open .grid-experience {
-  overflow: hidden;
-}
-
 /* Grid view */
 .grid-wrapper {
   position: relative;
   width: 100%;
+  height: 100%;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  touch-action: none;
 }
 
 .grid-wrapper .fade-div {
@@ -452,6 +454,7 @@
   justify-content: flex-start;
   align-items: center;
   cursor: grab;
+  touch-action: none;
 }
 
 .item-gallery:active {

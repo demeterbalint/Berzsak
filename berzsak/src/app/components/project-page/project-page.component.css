@@ -5,6 +5,11 @@
   gap: 40px;
 }
 
+img {
+  -webkit-user-drag: none; /* Safari/Chrome */
+  pointer-events: auto;
+}
+
 .navigate-back-btn {
   position: fixed;
   top: 10px;
