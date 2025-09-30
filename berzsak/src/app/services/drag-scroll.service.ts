@@ -84,9 +84,6 @@ export class DragScrollService {
         if (this.moved) {
           e.preventDefault();
           e.stopPropagation();
-        } else {
-          const target = e.target as HTMLElement;
-          target.click();
         }
       }
 
