@@ -76,6 +76,16 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
     }
     this.dragScrollService.register(gridEl);
+
+    gridEl.addEventListener('scroll', () => {
+      const scrollable = this.dragScrollService.getScrollable(gridEl);
+      if (!scrollable) return;
+
+      if (!scrollable.isAnimating) {
+        scrollable.current = gridEl.scrollTop;
+        scrollable.target = gridEl.scrollTop;
+      }
+    });
   }
 
   getSrcset(imageArray: string[]): string {
@@ -117,6 +127,15 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         if (gridCol3El) {
           this.dragScrollService.register(gridCol3El);
         }
+        gridCol3El.addEventListener('scroll', () => {
+          const scrollable = this.dragScrollService.getScrollable(gridCol3El);
+          if (!scrollable) return;
+
+          if (!scrollable.isAnimating) {
+            scrollable.current = gridCol3El.scrollTop;
+            scrollable.target = gridCol3El.scrollTop;
+          }
+        });
       })
 
     } else {
@@ -182,6 +201,20 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     // set selected project so the sidebar renders, then run the animation
     this.selectedProject = project;
     await this.sidebarAnimation.flyToSidebar(event.currentTarget as HTMLElement, project);
+
+    const sidebarEl = this.sidebarRef?.nativeElement;
+    if (sidebarEl) {
+      this.dragScrollService.register(sidebarEl);
+    }
+    sidebarEl.addEventListener('scroll', () => {
+      const scrollable = this.dragScrollService.getScrollable(sidebarEl);
+      if (!scrollable) return;
+
+      if (!scrollable.isAnimating) {
+        scrollable.current = sidebarEl.scrollTop;
+        scrollable.target = sidebarEl.scrollTop;
+      }
+    });
 
     window.addEventListener('pointerdown', this.globalPointerDownHandler, { capture: true });
 
