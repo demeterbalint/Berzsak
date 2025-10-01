@@ -70,24 +70,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const gridEl = this.gridExpRef.nativeElement;
-    const sidebarEl = this.sidebarRef?.nativeElement;
-    const gridCol3El = this.gridCol3Ref?.nativeElement;
 
     if (gridEl) {
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
-      this.dragScrollService.setActive(gridEl, 'both');
-      this.dragScrollService.init(gridEl, 'both');
-    }
-
-    if (sidebarEl) {
-      sidebarEl.scrollTop = 0; // optional: start at top
-      this.dragScrollService.init(sidebarEl, 'vertical');
-    }
-
-    if (gridCol3El) {
-      gridCol3El.scrollTop = 0;
-      this.dragScrollService.init(gridCol3El, 'vertical');
     }
   }
 
@@ -124,29 +110,15 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     if (this.view.status === ViewStatus.EXPERIENCE) {
       this.view.status = ViewStatus.GRID;
       this.view.value = 'Grid view';
-
-      // wait for gridCol3 to render
-      setTimeout(() => {
-        const gridCol3El = this.gridCol3Ref?.nativeElement;
-        if (gridCol3El) {
-          gridCol3El.scrollTop = 0;
-          this.dragScrollService.setActive(gridCol3El, 'vertical');
-          this.dragScrollService.init(gridCol3El, 'vertical');
-        }
-      }, 0);
     } else {
       this.view.status = ViewStatus.EXPERIENCE;
       this.view.value = 'Experience view';
 
-      setTimeout(() => {
-        const gridEl = this.gridExpRef?.nativeElement;
-        if (gridEl) {
-          gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
-          gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
-          this.dragScrollService.setActive(gridEl, 'both');
-          this.dragScrollService.init(gridEl, 'both');
-        }
-      }, 0);
+      const gridEl = this.gridExpRef?.nativeElement;
+      if (gridEl) {
+        gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
+        gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
+      }
     }
   }
 
@@ -205,12 +177,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     window.addEventListener('pointerdown', this.globalPointerDownHandler, { capture: true });
 
     this.sidebarBusy = false;
-    const sidebarEl = this.sidebarRef?.nativeElement;
-    if (sidebarEl) {
-      sidebarEl.scrollTop = 0;
-      this.dragScrollService.setActive(sidebarEl, 'vertical');
-      this.dragScrollService.init(sidebarEl, 'vertical');
-    }
   }
 
 
@@ -239,11 +205,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     ]);
 
     this.sidebarBusy = false;
-    const gridEl = this.gridExpRef?.nativeElement;
-    if (gridEl) {
-      this.dragScrollService.setActive(gridEl, 'both');
-      this.dragScrollService.init(gridEl, 'both');
-    }
   }
 
   onSidebarAnimDone(event: any) {

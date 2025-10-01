@@ -1,67 +1,71 @@
 <div class="container" #container>
 
-  <div class="navigate-back-btn" *ngIf="windowWidth > 1200">
-    <a [routerLink]="['/']">Take me back</a>
-  </div>
+  <div class="project-page-wrapper">
 
-  <!-- brand name -->
-  <div class="brand-name">
-    <button class="brand-name-button" (click)="window.location.href = '/index.html'">BERZSAK.</button>
-  </div>
-
-  <div class="project-mainImage">
-    <img
-      src="{{project.mainImgUrl[1]}}"
-      [srcset]="getSrcset(project.mainImgUrl)"
-      sizes="95vw"
-    draggable="false">
-  </div>
-
-  <button class="see-more-btn" #seeMoreBtn (click)="scrollDown()">
-    See more <i class="fa fa-arrow-down"></i>
-  </button>
-
-  <div class="project-name">
-    <h1>{{ project.name }}</h1>
-  </div>
-
-  <div class="project-description-wrapper">
-    <div class="project-description">
-      <p>{{ project.longDescription[0] }}</p>
+    <div class="navigate-back-btn" *ngIf="windowWidth > 1200">
+      <a [routerLink]="['/']">Take me back</a>
     </div>
-    <div class="project-description">
-      <p>{{ project.longDescription[1] }}</p>
-    </div>
-  </div>
 
-  <div class="project-data">
-    <p [innerHTML]="project.projectData"></p>
-  </div>
+    <!-- brand name -->
+    <div class="brand-name">
+      <button class="brand-name-button" (click)="window.location.href = '/index.html'">BERZSAK.</button>
+    </div>
 
-  <div class="project-image-gallery-div">
-    <div class="project-image-gallery" *ngFor="let imageVariant of project.imageUrls | slice:1">
-      <img [src]="imageVariant[1]"
-           [srcset]="getSrcset(imageVariant)"
-           sizes="95vw"
-           draggable="false">
+    <div class="project-mainImage">
+      <img
+        src="{{project.mainImgUrl[1]}}"
+        [srcset]="getSrcset(project.mainImgUrl)"
+        sizes="95vw"
+      draggable="false">
     </div>
-  </div>
 
-  <hr>
+    <button class="see-more-btn" #seeMoreBtn (click)="scrollDown()">
+      See more <i class="fa fa-arrow-down"></i>
+    </button>
 
-  <div class="contact-div">
-    <div class="facebook">
-      <a class="fab fa-facebook" target="_blank" href="https://www.facebook.com/irishgreenbycsilla?locale=hu_HU"></a>
+    <div class="project-name">
+      <h1>{{ project.name }}</h1>
     </div>
-    <div class="instagram">
-      <a class="fab fa-instagram" target="_blank" href="https://www.instagram.com/berzsak_/"></a>
+
+    <div class="project-description-wrapper">
+      <div class="project-description">
+        <p>{{ project.longDescription[0] }}</p>
+      </div>
+      <div class="project-description">
+        <p>{{ project.longDescription[1] }}</p>
+      </div>
     </div>
-    <div class="behance">
-      <a class="fab fa-behance" target="_blank" href="https://www.behance.net/berzsak_"></a>
+
+    <div class="project-data">
+      <p [innerHTML]="project.projectData"></p>
     </div>
-    <div class="pinterest">
-      <a class="fab fa-pinterest" target="_blank" href="https://hu.pinterest.com/berzsak_"></a>
+
+    <div class="project-image-gallery-div">
+      <div class="project-image-gallery" *ngFor="let imageVariant of project.imageUrls | slice:1">
+        <img [src]="imageVariant[1]"
+             [srcset]="getSrcset(imageVariant)"
+             sizes="95vw"
+             draggable="false">
+      </div>
     </div>
+
+    <hr>
+
+    <div class="contact-div">
+      <div class="facebook">
+        <a class="fab fa-facebook" target="_blank" href="https://www.facebook.com/irishgreenbycsilla?locale=hu_HU"></a>
+      </div>
+      <div class="instagram">
+        <a class="fab fa-instagram" target="_blank" href="https://www.instagram.com/berzsak_/"></a>
+      </div>
+      <div class="behance">
+        <a class="fab fa-behance" target="_blank" href="https://www.behance.net/berzsak_"></a>
+      </div>
+      <div class="pinterest">
+        <a class="fab fa-pinterest" target="_blank" href="https://hu.pinterest.com/berzsak_"></a>
+      </div>
+    </div>
+
   </div>
 
 </div>

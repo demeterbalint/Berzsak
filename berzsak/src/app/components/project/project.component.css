@@ -112,7 +112,6 @@
   border-right: 1px solid var(--primary-font_color);
   background-color: var(--primary-background);
   z-index: 1500;
-  touch-action: none;
 }
 
 .sidebar-main-wrapper .fade-div {
@@ -303,7 +302,6 @@
   height: 100%;
   width: 100%;
   overflow: auto;
-  touch-action: none;
 }
 .grid-experience {
   min-width: max-content;
@@ -413,7 +411,6 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  touch-action: none;
 }
 
 .grid-wrapper .fade-div {
@@ -454,7 +451,6 @@
   justify-content: flex-start;
   align-items: center;
   cursor: grab;
-  touch-action: none;
 }
 
 .item-gallery:active {

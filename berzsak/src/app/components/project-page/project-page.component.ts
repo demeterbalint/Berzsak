@@ -51,7 +51,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit() {
     const container = this.containerRef.nativeElement;
-    this.dragScrollService.init(container, 'vertical', this.seeMoreButton);
   }
 
   getSrcset(imageArray: string[]): string {
@@ -69,6 +68,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
   scrollDown() {
     const container = this.containerRef.nativeElement;
-    this.dragScrollService.scrollDown(container, this.seeMoreButton);
+    // this.dragScrollService.scrollDown(container, this.seeMoreButton);
   }
 }
