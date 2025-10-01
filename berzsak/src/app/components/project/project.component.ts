@@ -75,6 +75,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
     }
+    this.dragScrollService.register(gridEl);
   }
 
   getSrcset(imageArray: string[]): string {
@@ -110,6 +111,14 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     if (this.view.status === ViewStatus.EXPERIENCE) {
       this.view.status = ViewStatus.GRID;
       this.view.value = 'Grid view';
+
+      setTimeout(() => {
+        const gridCol3El = this.gridCol3Ref?.nativeElement;
+        if (gridCol3El) {
+          this.dragScrollService.register(gridCol3El);
+        }
+      })
+
     } else {
       this.view.status = ViewStatus.EXPERIENCE;
       this.view.value = 'Experience view';

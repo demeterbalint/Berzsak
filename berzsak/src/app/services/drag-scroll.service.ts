@@ -28,6 +28,10 @@ export class DragScrollService {
     const scrollable = this.scrollables.get(el);
     if (!scrollable) return;
 
+    if (!scrollable.isAnimating) {
+      scrollable.current = scrollable.el.scrollTop;
+    }
+
     scrollable.target += e.deltaY;
     scrollable.target = Math.max(
       0,
@@ -68,5 +72,9 @@ export class DragScrollService {
       scrollable.isAnimating = true;
       this.animate(el);
     }
+  }
+
+  getScrollable(el: HTMLElement) {
+    return this.scrollables.get(el);
   }
 }

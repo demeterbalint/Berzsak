@@ -50,12 +50,20 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit() {
-    const wrapper = this.wrapperRef.nativeElement;
-    this.dragScrollService.register(wrapper);
+    const projectPageWrapper = this.wrapperRef.nativeElement;
+    this.dragScrollService.register(projectPageWrapper);
 
-    wrapper.addEventListener('scroll', (event) => {
+    projectPageWrapper.addEventListener('scroll', () => {
       this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
       this.seeMoreButton.nativeElement.style.opacity = '0';
+
+      const scrollable = this.dragScrollService.getScrollable(projectPageWrapper);
+      if (!scrollable) return;
+
+      if (!scrollable.isAnimating) {
+        scrollable.current = projectPageWrapper.scrollTop;
+        scrollable.target = projectPageWrapper.scrollTop;
+      }
     });
   }
 
