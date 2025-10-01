@@ -23,7 +23,7 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   protected windowWidth: number = window.innerWidth;
 
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
-  @ViewChild('container') containerRef!: ElementRef<HTMLButtonElement>;
+  @ViewChild('wrapper') wrapperRef!: ElementRef<HTMLDivElement>;
 
   constructor(private activatedRoute: ActivatedRoute,
               private projectService: ProjectService,
@@ -50,7 +50,13 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit() {
-    const container = this.containerRef.nativeElement;
+    const wrapper = this.wrapperRef.nativeElement;
+    this.dragScrollService.register(wrapper);
+
+    wrapper.addEventListener('scroll', (event) => {
+      this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
+      this.seeMoreButton.nativeElement.style.opacity = '0';
+    });
   }
 
   getSrcset(imageArray: string[]): string {
@@ -67,7 +73,9 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   protected readonly window = window;
 
   scrollDown() {
-    const container = this.containerRef.nativeElement;
-    // this.dragScrollService.scrollDown(container, this.seeMoreButton);
+    const wrapper = this.wrapperRef.nativeElement;
+    this.dragScrollService.scrollDown(wrapper, window.innerWidth * 0.6666);
+    this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
+    this.seeMoreButton.nativeElement.style.opacity = '0';
   }
 }
