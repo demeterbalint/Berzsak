@@ -87,8 +87,6 @@ export class DragScrollService {
     let velocity = 0; // px per frame approximation
     let frameId: number | undefined;
     let isSnapping = false;
-    const friction = 0.95; // momentum decay per frame
-    const stopThreshold = 0.15; // px/frame at which to start snapping
     const maxFrameVelocity = 60; // clamp per-frame velocity
 
     const maxScroll = () => Math.max(0, gallery.scrollWidth - gallery.clientWidth);
