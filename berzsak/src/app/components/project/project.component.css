@@ -302,13 +302,18 @@
   height: 100%;
   width: 100%;
   overflow: auto;
+  touch-action: none;
+  cursor: grab;
+}
+
+.grid-experience-wrapper:active {
+  cursor: grabbing;
 }
 
 .grid-experience {
   min-width: max-content;
   min-height: max-content;
   display: grid;
-  cursor: grab;
   padding: 5%;
 }
 
@@ -392,10 +397,6 @@
   .grid-experience .grid-item:nth-child(4n+4) {
     transform: translateY(calc(50% + (8vw / 2)));
   }
-}
-
-.grid-experience:active {
-  cursor: grabbing;
 }
 
 .container:not(.sidebar-open) .grid-experience .grid-item img:hover {

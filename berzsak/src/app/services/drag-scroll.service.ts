@@ -86,6 +86,96 @@ export class DragScrollService {
     return this.scrollables.get(el);
   }
 
+  dragExperienceView(el: HTMLElement) {
+    let isDown = false;
+    let lastX = 0;
+    let lastY = 0;
+    let targetLeft = el.scrollLeft;
+    let targetTop = el.scrollTop;
+    let currentLeft = el.scrollLeft;
+    let currentTop = el.scrollTop;
+    let frameId: number | undefined;
+    let lastFrameTime = performance.now();
+    let totalMove = 0;
+    const clickMoveThreshold = 6; // px
+
+    const tauMs = 150; // smoothing time constant (~0.15s delay)
+
+    const maxLeft = () => Math.max(0, el.scrollWidth - el.clientWidth);
+    const maxTop = () => Math.max(0, el.scrollHeight - el.clientHeight);
+
+    const animate = () => {
+      const now = performance.now();
+      const dt = Math.max(1, now - lastFrameTime);
+      lastFrameTime = now;
+      // exponential smoothing factor for time delta
+      const alpha = 1 - Math.exp(-dt / tauMs);
+
+      currentLeft += (targetLeft - currentLeft) * alpha;
+      currentTop += (targetTop - currentTop) * alpha;
+
+      el.scrollLeft = currentLeft;
+      el.scrollTop = currentTop;
+
+      const done = !isDown && Math.abs(targetLeft - currentLeft) < 0.5 && Math.abs(targetTop - currentTop) < 0.5;
+      if (!done) {
+        frameId = requestAnimationFrame(animate);
+      } else {
+        frameId = undefined;
+      }
+    };
+
+    const startAnimIfNeeded = () => {
+      if (frameId == null) {
+        lastFrameTime = performance.now();
+        frameId = requestAnimationFrame(animate);
+      }
+    };
+
+    const onDown = (e: PointerEvent) => {
+      isDown = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      targetLeft = el.scrollLeft;
+      targetTop = el.scrollTop;
+      currentLeft = el.scrollLeft;
+      currentTop = el.scrollTop;
+      totalMove = 0;
+      el.setPointerCapture(e.pointerId);
+      startAnimIfNeeded();
+    };
+
+    const onMove = (e: PointerEvent) => {
+      if (!isDown) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      totalMove += Math.abs(dx) + Math.abs(dy);
+      targetLeft = Math.max(0, Math.min(maxLeft(), targetLeft - dx));
+      targetTop = Math.max(0, Math.min(maxTop(), targetTop - dy));
+    };
+
+    const onUp = (e: PointerEvent) => {
+      if (!isDown) return;
+      isDown = false;
+      el.releasePointerCapture(e.pointerId);
+      // If movement was minimal, synthesize a click under the pointer for reliability
+      if (totalMove < clickMoveThreshold) {
+        const target = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
+        if (target) target.click();
+        return;
+      }
+      startAnimIfNeeded();
+    };
+
+    el.addEventListener('pointerdown', onDown, { passive: false });
+    el.addEventListener('pointermove', onMove, { passive: false });
+    el.addEventListener('pointerup', onUp, { passive: false });
+    el.addEventListener('pointercancel', onUp, { passive: false });
+    el.addEventListener('pointerleave', onUp, { passive: false });
+  }
+
   dragItemGallery(gallery: HTMLElement) {
     let isDown = false;
     let startX = 0;
@@ -164,7 +254,7 @@ export class DragScrollService {
     };
 
     const onDown = (e: PointerEvent) => {
-      if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
+      if (!["mouse", "pen", "touch"].includes(e.pointerType)) return;
       isDown = true;
       startX = e.clientX;
       scrollStart = gallery.scrollLeft;
