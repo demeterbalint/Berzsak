@@ -254,7 +254,7 @@ export class DragScrollService {
     };
 
     const onDown = (e: PointerEvent) => {
-      if (!["mouse", "pen", "touch"].includes(e.pointerType)) return;
+      if (!["mouse", "pen"].includes(e.pointerType)) return;
       isDown = true;
       startX = e.clientX;
       scrollStart = gallery.scrollLeft;
