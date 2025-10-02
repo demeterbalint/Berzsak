@@ -71,7 +71,8 @@
 
   <!-- Grid-Experience -->
   <div class="grid-experience-wrapper" *ngIf="view.status === ViewStatus.EXPERIENCE" #gridExp [@gridSlide]="gridState"
-       (@gridSlide.done)="onGridAnimDone($event)">
+       (@gridSlide.done)="onGridAnimDone($event)"
+        [class.sidebar-open]="selectedProject">
     <div class="grid-experience">
       <div *ngFor="let project of projects" class="grid-item">
         <img [src]="project.mainImgUrl[4]"

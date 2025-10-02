@@ -27,6 +27,14 @@ export class DragScrollService {
 
     const scrollable = this.scrollables.get(el);
     if (!scrollable) return;
+    if (scrollable.el.className.includes('grid-experience-wrapper') && scrollable.el.classList.contains('sidebar-open')) {
+      const sidebar = Array.from(this.scrollables.keys())
+        .find(el => el.classList.contains('sidebar-main-wrapper'));
+      if (sidebar) {
+        this.handleWheel(e, sidebar);
+      }
+      return;
+    }
 
     if (!scrollable.isAnimating) {
       scrollable.current = scrollable.el.scrollTop;
