@@ -198,8 +198,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     }
   };
 
-
-
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
     if (this.sidebarBusy || /*this.dragScrollService.moved ||*/ this.selectedProject ) return;
     if (this.sidebarDisabled) {
@@ -234,7 +232,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
     this.sidebarBusy = false;
   }
-
 
   async closeSidebar() {
     if (!this.selectedProject || this.sidebarBusy) return;
