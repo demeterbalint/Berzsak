@@ -77,4 +77,140 @@ export class DragScrollService {
   getScrollable(el: HTMLElement) {
     return this.scrollables.get(el);
   }
+
+  dragItemGallery(gallery: HTMLElement) {
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let velocity = 0; // px per frame approximation
+    let frameId: number | undefined;
+    let isSnapping = false;
+    const friction = 0.95; // momentum decay per frame
+    const stopThreshold = 0.15; // px/frame at which to start snapping
+    const maxFrameVelocity = 60; // clamp per-frame velocity
+
+    const maxScroll = () => Math.max(0, gallery.scrollWidth - gallery.clientWidth);
+
+    const originalSnapType = getComputedStyle(gallery).scrollSnapType;
+    const originalBehavior = getComputedStyle(gallery).scrollBehavior;
+
+    const disableCssSnap = () => {
+      gallery.style.scrollSnapType = "none";
+      gallery.style.scrollBehavior = "auto";
+    };
+    const restoreCssSnap = () => {
+      gallery.style.scrollSnapType = originalSnapType || "x mandatory";
+      gallery.style.scrollBehavior = originalBehavior || "smooth";
+    };
+
+    const getClosestSnapLeft = (left: number) => {
+      const children = Array.from(gallery.children) as HTMLElement[];
+      if (children.length === 0) return 0;
+      // current gallery center in content coordinates
+      const galleryCenter = left + gallery.clientWidth / 2;
+      let bestChildCenter = (children[0].offsetLeft + children[0].offsetWidth / 2);
+      let minDist = Math.abs(bestChildCenter - galleryCenter);
+      for (let i = 1; i < children.length; i++) {
+        const childCenter = children[i].offsetLeft + children[i].offsetWidth / 2;
+        const d = Math.abs(childCenter - galleryCenter);
+        if (d < minDist) {
+          minDist = d;
+          bestChildCenter = childCenter;
+        }
+      }
+      // target left so that child center aligns with gallery center
+      const targetLeft = bestChildCenter - gallery.clientWidth / 2;
+      return Math.max(0, Math.min(targetLeft, maxScroll()));
+    };
+
+    const animateTo = (targetLeft: number, durationMs = 400) => {
+      if (frameId) cancelAnimationFrame(frameId);
+      isSnapping = true;
+      const startLeft = gallery.scrollLeft;
+      const delta = targetLeft - startLeft;
+      const startT = performance.now();
+      const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+      const tick = () => {
+        const now = performance.now();
+        const t = Math.min(1, (now - startT) / durationMs);
+        const eased = easeOutCubic(t);
+        gallery.scrollLeft = startLeft + delta * eased;
+        if (t < 1) {
+          frameId = requestAnimationFrame(tick);
+        } else {
+          isSnapping = false;
+          restoreCssSnap();
+        }
+      };
+      frameId = requestAnimationFrame(tick);
+    };
+
+    // choose an appropriate duration using distance and release velocity
+    const computeDurationMs = (distance: number, vPerFrame: number) => {
+      const base = 350; // ms
+      const distanceFactor = Math.min(700, 140 + distance * 0.45);
+      const velocityBoost = Math.max(0, Math.min(200, Math.abs(vPerFrame) * 6));
+      const duration = Math.min(750, Math.max(220, base + distanceFactor - velocityBoost));
+      return duration;
+    };
+
+    const onDown = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
+      isDown = true;
+      startX = e.clientX;
+      scrollStart = gallery.scrollLeft;
+      lastX = startX;
+      lastTime = performance.now();
+      velocity = 0;
+      if (frameId) cancelAnimationFrame(frameId);
+      isSnapping = false;
+      gallery.setPointerCapture(e.pointerId);
+      gallery.style.cursor = "grabbing";
+      disableCssSnap();
+    };
+
+    const onMove = (e: PointerEvent) => {
+      if (!isDown) return;
+      const now = performance.now();
+      const dx = e.clientX - lastX;
+      const dt = Math.max(1, now - lastTime);
+      // update position
+      let next = gallery.scrollLeft - dx;
+      if (next < 0) next = 0;
+      if (next > maxScroll()) next = maxScroll();
+      gallery.scrollLeft = next;
+      // estimate velocity as per-frame px (clamped)
+      const vPerFrame = (dx / dt) * 16; // 16ms ~ 60fps frame
+      // simple low-pass filter to smooth velocity readings
+      velocity = velocity * 0.6 + vPerFrame * 0.4;
+      // clamp velocity to avoid excessive fling
+      if (velocity > maxFrameVelocity) velocity = maxFrameVelocity;
+      if (velocity < -maxFrameVelocity) velocity = -maxFrameVelocity;
+      lastX = e.clientX;
+      lastTime = now;
+    };
+
+    const onUp = (e: PointerEvent) => {
+      if (!isDown) return;
+      isDown = false;
+      try { gallery.releasePointerCapture(e.pointerId); } catch {}
+      gallery.style.cursor = "grab";
+      // Compute a single snap target and animate directly to it with deceleration.
+      // Bias the target by a short projection along the release velocity to respect fling direction.
+      const projectionFrames = 14; // ~230ms worth at 60fps
+      const projectedLeft = Math.max(0, Math.min(maxScroll(), gallery.scrollLeft - velocity * projectionFrames));
+      const target = getClosestSnapLeft(projectedLeft);
+      const distance = Math.abs(target - gallery.scrollLeft);
+      const duration = computeDurationMs(distance, velocity);
+      animateTo(target, duration);
+    };
+
+    gallery.addEventListener("pointerdown", onDown);
+    gallery.addEventListener("pointermove", onMove);
+    gallery.addEventListener("pointerup", onUp);
+    gallery.addEventListener("pointerleave", onUp);
+  }
 }

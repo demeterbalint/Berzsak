@@ -456,6 +456,8 @@
 }
 
 .item-gallery:active {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
   cursor: grabbing;
 }
 

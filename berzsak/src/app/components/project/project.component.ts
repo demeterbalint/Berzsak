@@ -1,4 +1,13 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {ProjectDetails} from '../../models/project-details';
 import {ProjectService} from '../../services/project.service';
 import {CommonModule} from '@angular/common';
@@ -38,6 +47,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   @ViewChild('gridExp') gridExpRef!: ElementRef<HTMLDivElement>;
   @ViewChild('gridCol3') gridCol3Ref!: ElementRef<HTMLDivElement>;
   @ViewChild('sidebar') sidebarRef!: ElementRef<HTMLDivElement>;
+  @ViewChildren('itemGallery') itemGalleryRefs!: QueryList<ElementRef<HTMLDivElement>>;
 
   protected projects: ProjectDetails[] = [];
   protected selectedProject?: ProjectDetails;
@@ -135,6 +145,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
             scrollable.current = gridCol3El.scrollTop;
             scrollable.target = gridCol3El.scrollTop;
           }
+        });
+        this.itemGalleryRefs.forEach(galleryRef => {
+          const galleryEl = galleryRef.nativeElement;
+          this.dragScrollService.dragItemGallery(galleryEl);
         });
       })
 

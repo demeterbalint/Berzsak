@@ -89,8 +89,7 @@
     <div class="fade-div"></div>
     <div class="grid-col3">
       <div *ngFor="let project of projects" class="grid-item">
-        <div class="item-gallery"
-             >
+        <div class="item-gallery" #itemGallery>
           <img *ngFor="let imgVariants of project.imageUrls"
                [src]="imgVariants[4]"
                [srcset]="getSrcset(imgVariants)"
