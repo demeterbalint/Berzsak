@@ -22,17 +22,21 @@
 }
 
 :root {
-  --primary-background: #f1f1f1;
-  --primary-font_color: black;
-  --primary-light-grey: #ccc;
-  --primary-dark-grey: #555;
+  --background: #f1f1f1;
+  --font_color: black;
+  --primary: #ccc;
+  --primary-contrast: #555;
+  --fade-color: rgba(241, 241, 241, 1);
+  --fade-color-transparent: rgba(241, 241, 241, 0);
 }
 
 .dark-mode {
-  --primary-background: #222;
-  --primary-font_color: white;
-  --primary-light-grey: #444;
-  --primary-dark-grey: #aaa;
+  --background: #222;
+  --font_color: white;
+  --primary: #444;
+  --primary-contrast: #aaa;
+  --fade-color: rgba(34, 34, 34, 1);
+  --fade-color-transparent: rgba(34, 34, 34, 0);
 }
 
 .container {
@@ -40,7 +44,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: var(--primary-background);
+  background-color: var(--background);
   -webkit-overflow-scrolling: touch; /* enables momentum scroll on iOS */
   touch-action: none;
 }
@@ -58,7 +62,7 @@
 }
 
 .brand-name-button {
-  color: var(--primary-font_color);
+  color: var(--font_color);
   cursor: pointer;
   border: none;
   background-color: rgba(241, 241, 241, 0.3);
@@ -72,7 +76,7 @@
 
 hr {
   border: none;
-  border-top: 2px solid var(--primary-light-grey);
+  border-top: 2px solid var(--primary);
   width: 80%;
 }
 
@@ -88,10 +92,10 @@ hr {
 
 .contact-div a{
   font-size: 20px;
-  color: var(--primary-light-grey);
+  color: var(--primary);
   text-decoration: none;
 }
 
 .contact-div a:hover{
-  color: var(--primary-dark-grey);
+  color: var(--primary-contrast);
 }

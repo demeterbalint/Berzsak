@@ -1,11 +1,11 @@
 .brand-name:hover {
   .brand-name-button.exp-view {
-    color: var(--primary-dark-grey);
+    color: var(--primary-contrast);
   }
 }
 
 .brand-name-button.exp-view {
-  color: var(--primary-light-grey);
+  color: var(--primary);
 }
 
 .theme-switch {
@@ -65,14 +65,14 @@
 }
 
 .view-btn {
-  background-color: var(--primary-background);
+  background-color: var(--background);
   width: 100%;
   display: flex;
   align-items: center;
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 6px;
-  border: 0.1rem solid var(--primary-dark-grey);
+  border: 0.1rem solid var(--primary-contrast);
   transition: background 0.3s, transform 0.2s;
 }
 
@@ -92,7 +92,7 @@
 .view-icon img {
   width: 15px;
   height: 15px;
-  color: var(--primary-dark-grey);
+  color: var(--primary-contrast);
   transform: rotateZ(0);
   transition: transform 0.2s;
 }
@@ -111,7 +111,7 @@
 
 .view-text {
   width: 100%;
-  color: var(--primary-dark-grey);
+  color: var(--primary-contrast);
   font-size: 0.6rem;
   font-weight: 400;
   align-self: center;
@@ -133,12 +133,12 @@
 
 .contact-div-experience a {
   font-size: 1.5rem;
-  color: var(--primary-light-grey);
+  color: var(--primary);
   text-decoration: none;
 }
 
 .contact-div-experience a:hover {
-  color: var(--primary-dark-grey);
+  color: var(--primary-contrast);
 }
 
 .sidebar-main-wrapper {
@@ -147,8 +147,8 @@
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  border-right: 1px solid var(--primary-font_color);
-  background-color: var(--primary-background);
+  border-right: 1px solid var(--font_color);
+  background-color: var(--background);
   z-index: 1500;
 }
 
@@ -159,7 +159,7 @@
   height: 30px;
   width: 39%;
   z-index: 1900;
-  background-color: var(--primary-background);
+  background-color: var(--background);
   opacity: 1;
 }
 
@@ -175,14 +175,14 @@
 .sidebar-name {
   margin-top: 40px;
   width: 85%;
-  color: var(--primary-font_color);
+  color: var(--font_color);
 }
 
 .sidebar-description {
   width: 85%;
   font-weight: 300;
   font-size: 0.8rem;
-  color: var(--primary-font_color);
+  color: var(--font_color);
 }
 
 .sidebar-main-image {
@@ -296,9 +296,9 @@
   justify-content: center;
   align-items: center;
   transform: translate(-50%, -50%);
-  border: 1px solid var(--primary-font_color);
-  background: var(--primary-background);
-  color: var(--primary-font_color);
+  border: 1px solid var(--font_color);
+  background: var(--background);
+  color: var(--font_color);
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 2000;
@@ -331,7 +331,7 @@
   text-align: right;
   width: auto;
   font-size: 1vw;
-  color: var(--primary-font_color);
+  color: var(--font_color);
   text-decoration: none;
   white-space: nowrap;
 }
@@ -461,7 +461,7 @@
 .grid-wrapper .fade-div {
   position: fixed;
   width: 100%;
-  background: linear-gradient(to bottom, rgba(241, 241, 241, 1) 40px, rgba(241, 241, 241, 0) 70px);
+  background: linear-gradient(to bottom, var(--fade-color) 40px, var(--fade-color-transparent) 70px);
   z-index: 1;
   height: 70px;
 }
@@ -479,7 +479,7 @@
   position: relative;
   width: 28vw;
   height: 28vw;
-  border: 1px solid var(--primary-font_color);
+  border: 1px solid var(--font_color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -521,7 +521,7 @@
   width: auto;
   max-width: calc(40%);
   font-size: 1vw;
-  color: var(--primary-font_color);
+  color: var(--font_color);
   text-decoration: none;
   white-space: nowrap;
 }
