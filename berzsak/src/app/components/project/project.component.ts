@@ -87,16 +87,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     }
     this.dragScrollService.register(gridEl);
     this.dragScrollService.dragExperienceView(gridEl);
-
-    gridEl.addEventListener('scroll', () => {
-      const scrollable = this.dragScrollService.getScrollable(gridEl);
-      if (!scrollable) return;
-
-      if (!scrollable.isAnimating) {
-        scrollable.current = gridEl.scrollTop;
-        scrollable.target = gridEl.scrollTop;
-      }
-    });
+    this.syncGridScroll(gridEl);
   }
 
   getSrcset(imageArray: string[]): string {
@@ -164,6 +155,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
           this.dragScrollService.dragExperienceView(gridEl);
           gridEl.style.touchAction = 'none';
           gridEl.style.cursor = 'grab';
+          this.dragScrollService.register(gridEl);
+          this.syncGridScroll(gridEl);
         }
       });
     }
@@ -286,4 +279,17 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   protected readonly ViewStatus = ViewStatus;
   protected readonly window = window;
+
+  syncGridScroll(gridEl: HTMLElement) {
+    gridEl.addEventListener('scroll', () => {
+      const scrollable = this.dragScrollService.getScrollable(gridEl);
+      if (!scrollable) return;
+      console.log(scrollable.el);
+
+      if (!scrollable.isAnimating) {
+        scrollable.current = gridEl.scrollTop;
+        scrollable.target = gridEl.scrollTop;
+      }
+    });
+  }
 }
