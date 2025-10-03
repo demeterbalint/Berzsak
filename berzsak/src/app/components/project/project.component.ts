@@ -16,6 +16,7 @@ import {ViewStatus} from '../../enum/view-status';
 import {DragScrollService} from '../../services/drag-scroll.service';
 import {SidebarAnimationService} from '../../services/sidebar-animation.service';
 import {Router, RouterLink} from '@angular/router';
+import {ThemeService} from '../../services/theme.service';
 
 @Component({
   selector: 'app-project',
@@ -67,19 +68,26 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   windowWidth: number = window.innerWidth;
   sidebarDisabled: boolean = false;
 
-  bulbOn: string = '/light-bulb/bulb-on.png';
-  bulbOff: string = '/light-bulb/bulb-off.png';
-  theme: string = this.bulbOff;
+  // Theme properties
+  isDarkMode: boolean = false;
+  themeIcon: string = '/light-bulb/bulb-off.png';
 
   constructor(private projectService: ProjectService,
               private dragScrollService: DragScrollService,
               private sidebarAnimation: SidebarAnimationService,
-              private router: Router) {
+              private router: Router,
+              private themeService: ThemeService) {
   }
 
   ngOnInit(): void {
     this.projects = this.projectService.getAllProjects();
     this.checkSidebar();
+    
+    // Subscribe to theme changes
+    this.themeService.isDarkMode$.subscribe(isDark => {
+      this.isDarkMode = isDark;
+      this.themeIcon = this.themeService.themeIcon;
+    });
   }
 
   ngAfterViewInit() {
@@ -95,7 +103,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   toggleTheme() {
-    this.theme = this.theme === this.bulbOn ? this.bulbOff : this.bulbOn;
+    this.themeService.toggleTheme();
   }
 
   getSrcset(imageArray: string[]): string {

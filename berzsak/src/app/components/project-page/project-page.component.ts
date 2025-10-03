@@ -4,6 +4,7 @@ import {ProjectService} from '../../services/project.service';
 import {ProjectDetails} from '../../models/project-details';
 import {NgForOf, NgIf, SlicePipe} from '@angular/common';
 import {DragScrollService} from '../../services/drag-scroll.service';
+import {ThemeService} from '../../services/theme.service';
 
 @Component({
   selector: 'app-project-page',
@@ -22,14 +23,25 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   private imageWidths = [5846, 2400, 1800, 1200, 600, 300];
   protected windowWidth: number = window.innerWidth;
 
+  // Theme properties
+  isDarkMode: boolean = false;
+  themeIcon: string = '/light-bulb/bulb-off.png';
+
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
   @ViewChild('wrapper') wrapperRef!: ElementRef<HTMLDivElement>;
 
   constructor(private activatedRoute: ActivatedRoute,
               private projectService: ProjectService,
-              private dragScrollService: DragScrollService,) {}
+              private dragScrollService: DragScrollService,
+              private themeService: ThemeService) {}
 
   ngOnInit(): void {
+    // Subscribe to theme changes
+    this.themeService.isDarkMode$.subscribe(isDark => {
+      this.isDarkMode = isDark;
+      this.themeIcon = this.themeService.themeIcon;
+    });
+
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       const slug = paramMap.get('slug');
       if (slug) {

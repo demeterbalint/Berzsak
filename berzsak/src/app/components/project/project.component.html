@@ -1,5 +1,5 @@
 <div class="container" [class.exp-view]="view.status === ViewStatus.EXPERIENCE" [class.sidebar-open]="selectedProject"
-     [class.dark-mode]="theme==='/light-bulb/bulb-on.png'">
+     [class.dark-mode]="isDarkMode">
 
   <!-- brand name -->
   <div class="brand-name">
@@ -7,7 +7,7 @@
   </div>
 
   <button class="theme-switch" (click)="toggleTheme()">
-    <img src="{{theme}}">
+    <img src="{{themeIcon}}">
   </button>
 
   <!-- Grid/Experience button -->
