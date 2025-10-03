@@ -97,8 +97,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         scrollable.target = gridEl.scrollTop;
       }
     });
-
-    // experience drag is initialized immediately above; no need to defer to first pointerdown
   }
 
   getSrcset(imageArray: string[]): string {
@@ -159,14 +157,15 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       this.view.status = ViewStatus.EXPERIENCE;
       this.view.value = 'Experience view';
 
-      const gridEl = this.gridExpRef?.nativeElement;
-      if (gridEl) {
-        gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
-        gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
-        setTimeout(() => this.dragScrollService.dragExperienceView(gridEl));
-        gridEl.style.touchAction = 'none';
-        gridEl.style.cursor = 'grab';
-      }
+      setTimeout(() => {const gridEl = this.gridExpRef?.nativeElement;
+        if (gridEl) {
+          gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
+          gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
+          this.dragScrollService.dragExperienceView(gridEl);
+          gridEl.style.touchAction = 'none';
+          gridEl.style.cursor = 'grab';
+        }
+      });
     }
   }
 
