@@ -289,11 +289,16 @@
 .close-btn {
   position: fixed;
   width: 33px;
+  height: 33px;
   top: 50%;
   left: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transform: translate(-50%, -50%);
   border: 1px solid var(--primary-font_color);
   background: var(--primary-background);
+  color: var(--primary-font_color);
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 2000;
