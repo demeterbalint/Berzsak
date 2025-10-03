@@ -29,10 +29,10 @@
 }
 
 .dark-mode {
-  --dark-background: #222;
-  --dark-font_color: white;
-  --dark-light-grey: #444;
-  --dark-dark-grey: #aaa;
+  --primary-background: #222;
+  --primary-font_color: white;
+  --primary-light-grey: #444;
+  --primary-dark-grey: #aaa;
 }
 
 .container {
