@@ -85,7 +85,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
       gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
     }
-    this.dragScrollService.register(gridEl);
+    this.dragScrollService.register(gridEl, 'experience-grid');
     this.dragScrollService.dragExperienceView(gridEl);
     this.syncGridScroll(gridEl);
   }
@@ -127,10 +127,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         const gridCol3El = this.gridCol3Ref?.nativeElement;
         if (gridCol3El) {
-          this.dragScrollService.register(gridCol3El);
+          this.dragScrollService.register(gridCol3El, 'grid-col-3');
         }
         gridCol3El.addEventListener('scroll', () => {
-          const scrollable = this.dragScrollService.getScrollable(gridCol3El);
+          const scrollable = this.dragScrollService.getScrollable('grid-col-3');
           if (!scrollable) return;
 
           if (!scrollable.isAnimating) {
@@ -155,7 +155,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
           this.dragScrollService.dragExperienceView(gridEl);
           gridEl.style.touchAction = 'none';
           gridEl.style.cursor = 'grab';
-          this.dragScrollService.register(gridEl);
+          this.dragScrollService.register(gridEl, 'experience-grid');
           this.syncGridScroll(gridEl);
         }
       });
@@ -214,10 +214,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
     const sidebarEl = this.sidebarRef?.nativeElement;
     if (sidebarEl) {
-      this.dragScrollService.register(sidebarEl);
+      this.dragScrollService.register(sidebarEl, 'sidebar');
     }
     sidebarEl.addEventListener('scroll', () => {
-      const scrollable = this.dragScrollService.getScrollable(sidebarEl);
+      const scrollable = this.dragScrollService.getScrollable('sidebar');
       if (!scrollable) return;
 
       if (!scrollable.isAnimating) {
@@ -282,9 +282,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   syncGridScroll(gridEl: HTMLElement) {
     gridEl.addEventListener('scroll', () => {
-      const scrollable = this.dragScrollService.getScrollable(gridEl);
+      const scrollable = this.dragScrollService.getScrollable('experience-grid');
       if (!scrollable) return;
-      console.log(scrollable.el);
 
       if (!scrollable.isAnimating) {
         scrollable.current = gridEl.scrollTop;

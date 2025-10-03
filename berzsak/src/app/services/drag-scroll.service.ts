@@ -4,34 +4,37 @@ import {Scrollable} from '../models/scrollable';
 @Injectable({ providedIn: 'root' })
 export class DragScrollService {
 
-  private scrollables: Map<HTMLElement, Scrollable> = new Map();
+  private scrollables: Map<string, Scrollable> = new Map();
   private ease: number = 0.1;
 
-  register(el: HTMLElement) {
-    if (this.scrollables.has(el)) return;
+  register(el: HTMLElement, key: string) {
+    const existing = this.scrollables.get(key);
+    if (existing) {
+      existing.el.removeEventListener("wheel", existing.onWheel as any);
+      this.scrollables.delete(key);
+    }
 
     const scrollable: Scrollable = {
       el,
       target: el.scrollTop,
       current: el.scrollTop,
       isAnimating: false,
-      onWheel: (e: WheelEvent) => this.handleWheel(e, el),
+      onWheel: (e: WheelEvent) => this.handleWheel(e, key),
     };
 
     el.addEventListener("wheel", scrollable.onWheel, { passive: false });
-    this.scrollables.set(el, scrollable);
+    this.scrollables.set(key, scrollable);
   }
 
-  private handleWheel(e: WheelEvent, el: HTMLElement) {
+  private handleWheel(e: WheelEvent, key: string) {
     e.preventDefault();
 
-    const scrollable = this.scrollables.get(el);
+    const scrollable = this.scrollables.get(key);
     if (!scrollable) return;
-    if (scrollable.el.className.includes('grid-experience-wrapper') && scrollable.el.classList.contains('sidebar-open')) {
-      const sidebar = Array.from(this.scrollables.keys())
-        .find(el => el.classList.contains('sidebar-main-wrapper'));
+    if (key === 'experience-grid' && scrollable.el.classList.contains('sidebar-open')) {
+      const sidebar = this.scrollables.get('sidebar');
       if (sidebar) {
-        this.handleWheel(e, sidebar);
+        this.handleWheel(e, 'sidebar');
       }
       return;
     }
@@ -43,32 +46,32 @@ export class DragScrollService {
     scrollable.target += e.deltaY;
     scrollable.target = Math.max(
       0,
-      Math.min(scrollable.target, el.scrollHeight - el.clientHeight)
+      Math.min(scrollable.target, scrollable.el.scrollHeight - scrollable.el.clientHeight)
     );
 
     if (!scrollable.isAnimating) {
       scrollable.isAnimating = true;
-      this.animate(el);
+      this.animate(key);
     }
   }
 
-  private animate(el: HTMLElement) {
-    const scrollable = this.scrollables.get(el);
+  private animate(key: string) {
+    const scrollable = this.scrollables.get(key);
     if (!scrollable) return;
 
     scrollable.current += (scrollable.target - scrollable.current) * this.ease;
     scrollable.el.scrollTop = scrollable.current;
 
     if (Math.abs(scrollable.target - scrollable.current) > 0.5) {
-      requestAnimationFrame(() => this.animate(el));
+      requestAnimationFrame(() => this.animate(key));
     } else {
       scrollable.el.scrollTop = scrollable.target;
       scrollable.isAnimating = false;
     }
   }
 
-  scrollDown(el: HTMLElement, offset: number) {
-    const scrollable = this.scrollables.get(el);
+  scrollDown(key: string, offset: number) {
+    const scrollable = this.scrollables.get(key);
     if (!scrollable) return;
 
     scrollable.target = Math.min(
@@ -78,12 +81,12 @@ export class DragScrollService {
 
     if (!scrollable.isAnimating) {
       scrollable.isAnimating = true;
-      this.animate(el);
+      this.animate(key);
     }
   }
 
-  getScrollable(el: HTMLElement) {
-    return this.scrollables.get(el);
+  getScrollable(key: string) {
+    return this.scrollables.get(key);
   }
 
   dragExperienceView(el: HTMLElement) {

@@ -51,13 +51,13 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit() {
     const projectPageWrapper = this.wrapperRef.nativeElement;
-    this.dragScrollService.register(projectPageWrapper);
+    this.dragScrollService.register(projectPageWrapper, 'project-page-wrapper');
 
     projectPageWrapper.addEventListener('scroll', () => {
       this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
       this.seeMoreButton.nativeElement.style.opacity = '0';
 
-      const scrollable = this.dragScrollService.getScrollable(projectPageWrapper);
+      const scrollable = this.dragScrollService.getScrollable('project-page-wrapper');
       if (!scrollable) return;
 
       if (!scrollable.isAnimating) {
@@ -81,8 +81,7 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   protected readonly window = window;
 
   scrollDown() {
-    const wrapper = this.wrapperRef.nativeElement;
-    this.dragScrollService.scrollDown(wrapper, window.innerWidth * 0.6666);
+    this.dragScrollService.scrollDown('project-page-wrapper', window.innerWidth * 0.6666);
     this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
     this.seeMoreButton.nativeElement.style.opacity = '0';
   }
