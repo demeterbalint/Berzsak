@@ -67,6 +67,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   windowWidth: number = window.innerWidth;
   sidebarDisabled: boolean = false;
 
+  bulbOn: string = '/light-bulb/bulb-on.png';
+  bulbOff: string = '/light-bulb/bulb-off.png';
+  theme: string = this.bulbOff;
+
   constructor(private projectService: ProjectService,
               private dragScrollService: DragScrollService,
               private sidebarAnimation: SidebarAnimationService,
@@ -88,6 +92,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     this.dragScrollService.register(gridEl, 'experience-grid');
     this.dragScrollService.dragExperienceView(gridEl);
     this.syncGridScroll(gridEl);
+  }
+
+  toggleTheme() {
+    this.theme = this.theme === this.bulbOn ? this.bulbOff : this.bulbOn;
   }
 
   getSrcset(imageArray: string[]): string {

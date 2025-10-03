@@ -5,6 +5,10 @@
     <button class="brand-name-button" [class.exp-view]="view.status === ViewStatus.EXPERIENCE" (click)="window.location.href = '/index.html'">BERZSAK.</button>
   </div>
 
+  <button class="theme-switch" (click)="toggleTheme()">
+    <img src="{{theme}}">
+  </button>
+
   <!-- Grid/Experience button -->
   <div class="view-button" [hidden]="selectedProject" [class.exp-view]="view.status === ViewStatus.EXPERIENCE">
     <button class="view-btn" (click)="viewChange()">

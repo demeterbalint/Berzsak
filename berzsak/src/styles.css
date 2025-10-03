@@ -28,6 +28,13 @@
   --primary-dark-grey: #555;
 }
 
+.dark-mode {
+  --dark-background: #222;
+  --dark-font_color: white;
+  --dark-light-grey: #444;
+  --dark-dark-grey: #aaa;
+}
+
 .container {
   position: relative;
   width: 100vw;

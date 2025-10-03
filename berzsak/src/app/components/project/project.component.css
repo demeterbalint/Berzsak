@@ -8,6 +8,44 @@
   color: var(--primary-light-grey);
 }
 
+.theme-switch {
+  position: fixed;
+  top: -5px;
+  right: 25vw;
+  height: 84px;
+  width: 49px;
+  z-index: 2000;
+  border: none;
+  background: transparent;
+  clip-path: polygon(
+    60% 0%,
+    60% 35%,
+    70% 35%,
+    70% 51%,
+    85% 60%,
+    92% 70%,
+    92% 80%,
+    90% 88%,
+    80% 95%,
+    70% 100%,
+    30% 100%,
+    20% 95%,
+    10% 88%,
+    8% 80%,
+    8% 70%,
+    15% 60%,
+    30% 51%,
+    30% 35%,
+    40% 35%,
+    40% 0%
+  );
+  cursor: pointer;
+}
+
+.theme-switch img {
+  width: 100%;
+}
+
 .view-button {
   position: fixed;
   top: 15px;
