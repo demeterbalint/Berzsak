@@ -8,6 +8,13 @@
   color: var(--primary);
 }
 
+.brand-name-button:not(.exp-view) {
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;/*Safari*/
+  border-radius: 0;
+}
+
 .theme-switch {
   position: fixed;
   top: -5px;
