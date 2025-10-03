@@ -82,7 +82,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.projects = this.projectService.getAllProjects();
     this.checkSidebar();
-    
+
     // Subscribe to theme changes
     this.themeService.isDarkMode$.subscribe(isDark => {
       this.isDarkMode = isDark;
@@ -179,7 +179,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   checkSidebar() {
-    if (this.windowWidth < 800) {
+    if (this.windowWidth < 800 || window.screen.orientation.type.startsWith('portrait')) {
       this.sidebarDisabled = true;
       this.closeSidebar() // close sidebar if open
     } else {
