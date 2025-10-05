@@ -3,7 +3,7 @@ import {ProjectComponent} from './components/project/project.component';
 import {ProjectPageComponent} from './components/project-page/project-page.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/main', pathMatch: 'full'},
-  {path: 'main', component: ProjectComponent},
-  {path: 'main/:slug', component: ProjectPageComponent}
+  {path: '', redirectTo: '/berzsak', pathMatch: 'full'},
+  {path: 'berzsak', component: ProjectComponent},
+  {path: 'berzsak/:slug', component: ProjectPageComponent}
 ];
