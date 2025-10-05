@@ -150,8 +150,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
           if (!scrollable) return;
 
           if (!scrollable.isAnimating) {
-            scrollable.current = gridCol3El.scrollTop;
-            scrollable.target = gridCol3El.scrollTop;
+            scrollable.currentTop = gridCol3El.scrollTop;
+            scrollable.targetTop = gridCol3El.scrollTop;
           }
         });
         this.itemGalleryRefs.forEach(galleryRef => {
@@ -237,8 +237,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       if (!scrollable) return;
 
       if (!scrollable.isAnimating) {
-        scrollable.current = sidebarEl.scrollTop;
-        scrollable.target = sidebarEl.scrollTop;
+        scrollable.currentTop = sidebarEl.scrollTop;
+        scrollable.targetTop = sidebarEl.scrollTop;
       }
     });
 
@@ -302,8 +302,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       if (!scrollable) return;
 
       if (!scrollable.isAnimating) {
-        scrollable.current = gridEl.scrollTop;
-        scrollable.target = gridEl.scrollTop;
+        scrollable.currentTop = gridEl.scrollTop;
+        scrollable.targetTop = gridEl.scrollTop;
       }
     });
   }

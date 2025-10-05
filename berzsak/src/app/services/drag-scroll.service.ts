@@ -16,8 +16,10 @@ export class DragScrollService {
 
     const scrollable: Scrollable = {
       el,
-      target: el.scrollTop,
-      current: el.scrollTop,
+      targetTop: el.scrollTop,
+      currentTop: el.scrollTop,
+      targetLeft: el.scrollLeft,
+      currentLeft: el.scrollLeft,
       isAnimating: false,
       onWheel: (e: WheelEvent) => this.handleWheel(e, key),
     };
@@ -40,14 +42,20 @@ export class DragScrollService {
     }
 
     if (!scrollable.isAnimating) {
-      scrollable.current = scrollable.el.scrollTop;
+      scrollable.currentTop = scrollable.el.scrollTop;
+      scrollable.currentLeft = scrollable.el.scrollLeft;
     }
 
-    scrollable.target += e.deltaY;
-    scrollable.target = Math.max(
+    scrollable.targetTop += e.deltaY;
+    scrollable.targetTop = Math.max(
       0,
-      Math.min(scrollable.target, scrollable.el.scrollHeight - scrollable.el.clientHeight)
+      Math.min(scrollable.targetTop, scrollable.el.scrollHeight - scrollable.el.clientHeight)
     );
+    scrollable.targetLeft += e.deltaX;
+    scrollable.targetLeft = Math.max(
+      0,
+      Math.min(scrollable.targetLeft, scrollable.el.scrollWidth - scrollable.el.clientWidth)
+    )
 
     if (!scrollable.isAnimating) {
       scrollable.isAnimating = true;
@@ -59,13 +67,16 @@ export class DragScrollService {
     const scrollable = this.scrollables.get(key);
     if (!scrollable) return;
 
-    scrollable.current += (scrollable.target - scrollable.current) * this.ease;
-    scrollable.el.scrollTop = scrollable.current;
+    scrollable.currentTop += (scrollable.targetTop - scrollable.currentTop) * this.ease;
+    scrollable.el.scrollTop = scrollable.currentTop;
+    scrollable.currentLeft += (scrollable.targetLeft - scrollable.currentLeft) * this.ease;
+    scrollable.el.scrollLeft = scrollable.currentLeft;
 
-    if (Math.abs(scrollable.target - scrollable.current) > 0.5) {
+    if (Math.abs(scrollable.targetTop - scrollable.currentTop) > 0.5 || Math.abs(scrollable.targetLeft - scrollable.currentLeft) > 0.5) {
       requestAnimationFrame(() => this.animate(key));
     } else {
-      scrollable.el.scrollTop = scrollable.target;
+      scrollable.el.scrollTop = scrollable.targetTop;
+      scrollable.el.scrollLeft = scrollable.targetLeft;
       scrollable.isAnimating = false;
     }
   }
@@ -74,9 +85,9 @@ export class DragScrollService {
     const scrollable = this.scrollables.get(key);
     if (!scrollable) return;
 
-    scrollable.target = Math.min(
+    scrollable.targetTop = Math.min(
       scrollable.el.scrollHeight - scrollable.el.clientHeight,
-      scrollable.current + offset
+      scrollable.currentTop + offset
     );
 
     if (!scrollable.isAnimating) {
