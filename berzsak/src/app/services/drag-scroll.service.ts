@@ -200,6 +200,8 @@ export class DragScrollService {
     let frameId: number | undefined;
     let isSnapping = false;
     const maxFrameVelocity = 60; // clamp per-frame velocity
+    let totalMove = 0;
+    const clickMoveThreshold = 6; // px
 
     const maxScroll = () => Math.max(0, gallery.scrollWidth - gallery.clientWidth);
 
@@ -270,6 +272,7 @@ export class DragScrollService {
     const onDown = (e: PointerEvent) => {
       if (!["mouse", "pen"].includes(e.pointerType)) return;
       isDown = true;
+      totalMove = 0;
       startX = e.clientX;
       scrollStart = gallery.scrollLeft;
       lastX = startX;
@@ -286,6 +289,7 @@ export class DragScrollService {
       if (!isDown) return;
       const now = performance.now();
       const dx = e.clientX - lastX;
+      totalMove += Math.abs(dx);
       const dt = Math.max(1, now - lastTime);
       // update position
       let next = gallery.scrollLeft - dx;
@@ -318,6 +322,19 @@ export class DragScrollService {
       animateTo(target, duration);
     };
 
+    gallery.addEventListener(
+      "click",
+      (e) => {
+        if (totalMove > clickMoveThreshold) {
+          // Dragged far enough → cancel navigation
+          e.preventDefault();
+          e.stopImmediatePropagation();
+        }
+        // reset for next interaction
+        totalMove = 0;
+      },
+      { capture: true }
+    );
     gallery.addEventListener("pointerdown", onDown);
     gallery.addEventListener("pointermove", onMove);
     gallery.addEventListener("pointerup", onUp);
