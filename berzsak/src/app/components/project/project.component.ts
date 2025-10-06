@@ -56,7 +56,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   protected view = {
     status: ViewStatus.EXPERIENCE,
-    value: 'Experience view'
+    valueExp: 'experience view',
+    valueGrid: 'grid view'
   };
 
   private sidebarBusy = false;
@@ -138,7 +139,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   viewChange() {
     if (this.view.status === ViewStatus.EXPERIENCE) {
       this.view.status = ViewStatus.GRID;
-      this.view.value = 'Grid view';
 
       setTimeout(() => {
         const gridCol3El = this.gridCol3Ref?.nativeElement;
@@ -162,7 +162,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
     } else {
       this.view.status = ViewStatus.EXPERIENCE;
-      this.view.value = 'Experience view';
 
       setTimeout(() => {const gridEl = this.gridExpRef?.nativeElement;
         if (gridEl) {

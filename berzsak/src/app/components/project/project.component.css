@@ -110,19 +110,62 @@
   transition: transform 0.2s;
 }
 
-.view-button:hover .view-icon img {
-  transform: rotateZ(45deg);
+.view-button.exp-view {
+  .view-icon img {
+    transform: rotateZ(45deg);
+  }
+
+  .view-text-exp {
+    display: block;
+  }
+  .view-text-grid {
+    display: none;
+  }
+
+  :hover {
+    .view-icon img {
+      transform: rotateZ(0);
+    }
+
+    .view-text-exp {
+      display: none;
+    }
+
+    .view-text-grid {
+      display: block;
+    }
+  }
 }
 
-.view-button.exp-view .view-icon img {
-  transform: rotateZ(45deg);
+.view-button:not(.exp-view) {
+  .view-icon img {
+    transform: rotateZ(0);
+  }
+
+  .view-text-exp {
+    display: none;
+  }
+
+  .view-text-grid {
+    display: block;
+  }
+
+  :hover {
+    .view-icon img {
+      transform: rotateZ(45deg);
+    }
+
+    .view-text-exp {
+      display: block;
+    }
+
+    .view-text-grid {
+      display: none;
+    }
+  }
 }
 
-.view-button.exp-view:hover .view-icon img {
-  transform: rotateZ(0);
-}
-
-.view-text {
+.view-text-exp, .view-text-grid {
   width: 100%;
   color: var(--primary-contrast);
   font-size: 0.6rem;

@@ -13,11 +13,12 @@
   <!-- Grid/Experience button -->
   <div class="view-button" [hidden]="selectedProject" [class.exp-view]="view.status === ViewStatus.EXPERIENCE">
     <button class="view-btn" (click)="viewChange()">
-    <span class="view-icon">
-      <!-- use a grid/list icon based on status -->
-      <img src="/view-icon/grid@600x.png" alt="grid icon">
-    </span>
-      <span class="view-text">{{ view.value }}</span>
+      <span class="view-icon">
+        <!-- use a grid/list icon based on status -->
+        <img src="/view-icon/grid@600x.png" alt="grid icon">
+      </span>
+      <span class="view-text-exp">{{ view.valueExp }}</span>
+      <span class="view-text-grid">{{ view.valueGrid }}</span>
     </button>
   </div>
 
