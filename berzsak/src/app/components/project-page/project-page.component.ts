@@ -73,8 +73,8 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
       if (!scrollable) return;
 
       if (!scrollable.isAnimating) {
-        scrollable.current = projectPageWrapper.scrollTop;
-        scrollable.target = projectPageWrapper.scrollTop;
+        scrollable.currentTop = projectPageWrapper.scrollTop;
+        scrollable.targetTop = projectPageWrapper.scrollTop;
       }
     });
   }
