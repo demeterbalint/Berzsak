@@ -48,6 +48,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   @ViewChild('gridExp') gridExpRef!: ElementRef<HTMLDivElement>;
   @ViewChild('gridCol3') gridCol3Ref!: ElementRef<HTMLDivElement>;
   @ViewChild('sidebar') sidebarRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('container') containerRef!: ElementRef<HTMLDivElement>;
   @ViewChildren('itemGallery') itemGalleryRefs!: QueryList<ElementRef<HTMLDivElement>>;
 
   protected projects: ProjectDetails[] = [];
@@ -94,10 +95,42 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     const gridEl = this.gridExpRef.nativeElement;
 
-    if (gridEl) {
-      gridEl.scrollLeft = (gridEl.scrollWidth - gridEl.clientWidth) / 2;
-      gridEl.scrollTop = (gridEl.scrollHeight - gridEl.clientHeight) / 2;
-    }
+    const container = this.containerRef.nativeElement as HTMLElement;
+    const wrapper = this.gridExpRef.nativeElement as HTMLElement;
+    const grid = wrapper.querySelector('.grid-experience') as HTMLElement;
+
+    if (!wrapper || !grid) return;
+
+    const contentWidth = grid.scrollWidth;
+    const contentHeight = grid.scrollHeight;
+    const viewportWidth = wrapper.clientWidth;
+    const viewportHeight = wrapper.clientHeight;
+
+    // Compute initial scale to fit all content
+    const scaleX = viewportWidth / contentWidth;
+    const scaleY = viewportHeight / contentHeight;
+    const initialScale = Math.min(scaleX, scaleY, 1); // don't upscale
+
+    // Apply initial scale to inner grid
+    grid.style.transformOrigin = 'center center';
+    grid.style.transform = `scale(${initialScale})`;
+    grid.style.transition = 'none';
+
+    // Scroll wrapper to center of scaled content
+    wrapper.scrollLeft = (contentWidth - viewportWidth) / 2;
+    wrapper.scrollTop = (contentHeight - viewportHeight) / 2;
+
+    // Animate zoom
+    container.style.pointerEvents = 'none';
+    setTimeout(() => {
+      grid.style.transition = `transform 1s ease-in-out`;
+      grid.style.transform = 'scale(1)';
+
+      setTimeout(() => {
+        container.style.pointerEvents = 'auto';
+      }, 1000); // match the zoom duration
+    }, 1000); // 1000ms pause at full-content view
+
     this.dragScrollService.register(gridEl, 'experience-grid');
     this.dragScrollService.dragExperienceView(gridEl);
     this.syncGridScroll(gridEl);
