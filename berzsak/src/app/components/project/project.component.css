@@ -19,31 +19,6 @@
   border-radius: 0;
 }
 
-.theme-switch {
-  position: fixed;
-  bottom: 0;
-  left: 25px;
-  height: 102px;
-  width: 88px;
-  display: flex;
-  justify-content: center;
-  z-index: 2000;
-  border: none;
-  cursor: pointer;
-  background: transparent;
-}
-
-.theme-switch:hover {
-  background-color: transparent;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px); /*Safari*/
-  border-radius: 4px;
-}
-
-.theme-switch img {
-  width: 100%;
-}
-
 .view-button {
   position: fixed;
   top: 15px;
@@ -431,7 +406,7 @@
 }
 
 .container.dark-mode {
-  .grid-experience .grid-item {
+  .grid-experience .grid-item:not(.dark-mode) {
     border: 5px solid var(--primary-contrast);
   }
 }

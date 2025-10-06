@@ -52,6 +52,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   @ViewChildren('itemGallery') itemGalleryRefs!: QueryList<ElementRef<HTMLDivElement>>;
 
   protected projects: ProjectDetails[] = [];
+  protected gridProjects: ProjectDetails[] = [];
   protected selectedProject?: ProjectDetails;
   protected selectedImageIndex: number = 0;
 
@@ -83,6 +84,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.projects = this.projectService.getAllProjects();
+    this.gridProjects = this.projectService.getAllProjects().filter(project => project.name !== 'dark-mode');
     this.checkSidebar();
 
     // Subscribe to theme changes

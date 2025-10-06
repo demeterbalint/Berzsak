@@ -6,17 +6,13 @@
     <button class="brand-name-button" [class.exp-view]="view.status === ViewStatus.EXPERIENCE" (click)="window.location.href = '/index.html'">BERZSAK.</button>
   </div>
 
-  <button class="theme-switch" (click)="toggleTheme()">
-    <img src="{{themeIcon}}">
-  </button>
-
   <!-- Grid/Experience button -->
   <div class="view-button" [hidden]="selectedProject" [class.exp-view]="view.status === ViewStatus.EXPERIENCE">
     <button class="view-btn" (click)="viewChange()">
       <span class="view-icon">
         <!-- use a grid/list icon based on status -->
-        <img class="icon-light" src="/view-icon/grid@600x.png" alt="grid icon">
-        <img class="icon-dark" src="/view-icon/grid_vilagos.png" alt="grid icon">
+        <img class="icon-light" src="/view-icon/grid-light.png" alt="grid icon">
+        <img class="icon-dark" src="/view-icon/grid-dark.png" alt="grid icon">
       </span>
       <span class="view-text-exp">{{ view.valueExp }}</span>
       <span class="view-text-grid">{{ view.valueGrid }}</span>
@@ -81,13 +77,16 @@
        (@gridSlide.done)="onGridAnimDone($event)"
         [class.sidebar-open]="selectedProject">
     <div class="grid-experience">
-      <div *ngFor="let project of projects" class="grid-item">
-        <img [src]="project.mainImgUrl[4]"
+      <div *ngFor="let project of projects" class="grid-item" [class.dark-mode]="project.name === 'dark-mode'">
+        <img *ngIf="project.name !== 'dark-mode'"
+             [src]="project.mainImgUrl[4]"
              [srcset]="getSrcset(project.mainImgUrl)"
              [sizes]="gridImageSizes()"
              [alt]="project.name"
              [attr.data-project-name]="project.name"
              (click)="onImageClick($event, project)" draggable="false">
+        <img *ngIf="project.name === 'dark-mode'"
+             [src]="themeIcon" [alt]="project.name" draggable="false" (click)="toggleTheme()">
       </div>
     </div>
   </div>
@@ -96,8 +95,8 @@
   <div class="grid-wrapper" *ngIf="view.status === ViewStatus.GRID" #gridCol3>
     <div class="fade-div"></div>
     <div class="grid-col3">
-      <div *ngFor="let project of projects" class="grid-item">
-        <div class="item-gallery" #itemGallery [routerLink]="['/berzsak', project.slug]">
+      <div *ngFor="let project of gridProjects" class="grid-item">
+        <div class="item-gallery" #itemGallery [routerLink]="['/berzsak', project.slug]" [class.dark-mode]="project.name === 'dark-mode'">
           <img *ngFor="let imgVariants of project.imageUrls"
                [src]="imgVariants[4]"
                [srcset]="getSrcset(imgVariants)"

@@ -165,6 +165,15 @@ export class ProjectService {
         ['/mini-market/5846/6_5846.webp', '/mini-market/2400/6_2400.webp', '/mini-market/1800/6_1800.webp', '/mini-market/1200/6_1200.webp', '/mini-market/600/6_600.webp', '/mini-market/300/6_300.webp']]
     },
     {
+      name: 'dark-mode',
+      slug: '',
+      shortDescription: '',
+      longDescription: [''],
+      projectData: '',
+      mainImgUrl: [],
+      imageUrls: [[]]
+    },
+    {
       name: 'tartáska',
       slug: 'tartáska',
       shortDescription: 'Poor posture is one of today’s quiet health challenges — Tartáska turns correction into a natural part of daily routine providing discreet support that feels effortless and natural.',
