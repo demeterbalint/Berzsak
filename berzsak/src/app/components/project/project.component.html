@@ -15,7 +15,8 @@
     <button class="view-btn" (click)="viewChange()">
       <span class="view-icon">
         <!-- use a grid/list icon based on status -->
-        <img src="/view-icon/grid@600x.png" alt="grid icon">
+        <img class="icon-light" src="/view-icon/grid@600x.png" alt="grid icon">
+        <img class="icon-dark" src="/view-icon/grid_vilagos.png" alt="grid icon">
       </span>
       <span class="view-text-exp">{{ view.valueExp }}</span>
       <span class="view-text-grid">{{ view.valueGrid }}</span>
@@ -68,7 +69,7 @@
         </div>
       </div>
       <div class="sidebar-navigate-btn">
-        <a [routerLink]="['/berzsak', selectedProject.slug]" draggable="false">Take me to project</a>
+        <a [routerLink]="['/berzsak', selectedProject.slug]" draggable="false">take me to project</a>
       </div>
     </div>
   </div>
@@ -104,7 +105,7 @@
                [alt]="project.name"
                draggable="false">
         </div>
-        <a class="col3-navigate-btn" [routerLink]="['/berzsak', project.slug]" draggable="false">Take me to project</a>
+        <a class="col3-navigate-btn" [routerLink]="['/berzsak', project.slug]" draggable="false">take me to project</a>
       </div>
     </div>
 

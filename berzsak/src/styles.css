@@ -24,19 +24,25 @@
 :root {
   --background: #f1f1f1;
   --font_color: black;
-  --primary: #ccc;
+  --primary: #aaa;
   --primary-contrast: #555;
   --fade-color: rgba(241, 241, 241, 1);
   --fade-color-transparent: rgba(241, 241, 241, 0);
+  --brand-name-background: rgba(241, 241, 241, 0.3);
+  --brand-name-experience: #aaa;
+  --socials-color: #ccc;
 }
 
 .dark-mode {
   --background: #222;
   --font_color: white;
-  --primary: #444;
+  --primary: #555;
   --primary-contrast: #aaa;
   --fade-color: rgba(34, 34, 34, 1);
   --fade-color-transparent: rgba(34, 34, 34, 0);
+  --brand-name-background: rgba(34, 34, 34, 0.3);
+  --brand-name-experience: #aaa;
+  --socials-color: #777;
 }
 
 .container {
@@ -65,7 +71,7 @@
   color: var(--font_color);
   cursor: pointer;
   border: none;
-  background-color: rgba(241, 241, 241, 0.3);
+  background-color: var(--brand-name-background);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px); /*Safari*/
   border-radius: 4px;
@@ -76,7 +82,7 @@
 
 hr {
   border: none;
-  border-top: 2px solid var(--primary);
+  border-top: 2px solid var(--socials-color);
   width: 80%;
 }
 
@@ -92,7 +98,7 @@ hr {
 
 .contact-div a{
   font-size: 20px;
-  color: var(--primary);
+  color: var(--socials-color);
   text-decoration: none;
 }
 
