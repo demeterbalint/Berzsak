@@ -2,8 +2,8 @@
 
   <div class="project-page-wrapper" #wrapper>
 
-    <div class="navigate-back-btn" *ngIf="windowWidth > 1200">
-      <a [routerLink]="['/berzsak']">Take me back</a>
+    <div class="navigate-back-btn" *ngIf="windowWidth > 1200 && scrollY > windowWidth * 0.66">
+      <a [routerLink]="['/berzsak']">take me back</a>
     </div>
 
     <!-- brand name -->

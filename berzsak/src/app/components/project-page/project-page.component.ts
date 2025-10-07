@@ -22,6 +22,7 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   protected project!: ProjectDetails;
   private imageWidths = [5846, 2400, 1800, 1200, 600, 300];
   protected windowWidth: number = window.innerWidth;
+  protected scrollY = 0;
 
   // Theme properties
   isDarkMode: boolean = false;
@@ -68,6 +69,8 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
     projectPageWrapper.addEventListener('scroll', () => {
       this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
       this.seeMoreButton.nativeElement.style.opacity = '0';
+
+      this.scrollY = projectPageWrapper.scrollTop;
 
       const scrollable = this.dragScrollService.getScrollable('project-page-wrapper');
       if (!scrollable) return;
