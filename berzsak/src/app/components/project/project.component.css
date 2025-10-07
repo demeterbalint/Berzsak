@@ -316,7 +316,6 @@
   }
 }
 
-/* Gallery inside sidebar */
 .gallery {
   box-sizing: border-box;
   margin-top: -7px;
@@ -447,14 +446,12 @@
   }
 }
 
-/* Ensure images stay centered and scale properly */
 .grid-experience .grid-item img {
   width: auto;
   height: 100%;
   object-fit: contain;
 }
 
-/* Portrait mode (height > width) */
 @media (orientation: portrait) {
   .grid-experience {
     --tile: 50vw;
@@ -469,7 +466,6 @@
     height: 100%;
   }
 
-  /* stagger every 2nd item for checkerboard */
   .grid-experience .grid-item:nth-child(4n+2),
   .grid-experience .grid-item:nth-child(4n+4) {
     transform: translateY(calc(50% + (clamp(20px, 20vw, 300px) / 2)));
@@ -490,14 +486,12 @@
     height: 100%;
   }
 
-  /* stagger every 2nd item for checkerboard */
   .grid-experience .grid-item:nth-child(4n+2),
   .grid-experience .grid-item:nth-child(4n+4) {
     transform: translateY(calc(50% + (clamp(20px, 20vw, 300px) / 2)));
   }
 }
 
-/* Landscape mode (width > height) */
 @media (orientation: landscape) {
   .grid-experience {
     --tile: 26vw;
@@ -512,7 +506,6 @@
     height: 100%;
   }
 
-  /* stagger 2nd and 4th items for checkerboard */
   .grid-experience .grid-item:nth-child(4n+2),
   .grid-experience .grid-item:nth-child(4n+4) {
     transform: translateY(calc(50% + (8vw / 2)));
@@ -592,7 +585,7 @@
 
 .col3-navigate-btn {
   position: absolute;
-  top: 83%;   /* adjust spacing from top */
+  top: 83%;
   right: 10%;
   text-align: right;
   width: auto;

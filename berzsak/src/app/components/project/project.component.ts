@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnDestroy,
   OnInit,
   QueryList,
   ViewChild,
@@ -15,7 +16,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ViewStatus} from '../../enum/view-status';
 import {DragScrollService} from '../../services/drag-scroll.service';
 import {SidebarAnimationService} from '../../services/sidebar-animation.service';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router, RouterLink} from '@angular/router';
 import {ThemeService} from '../../services/theme.service';
 
 @Component({
@@ -44,7 +45,7 @@ import {ThemeService} from '../../services/theme.service';
     ])
   ]
 })
-export class ProjectComponent implements OnInit, AfterViewInit {
+export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('gridExp') gridExpRef!: ElementRef<HTMLDivElement>;
   @ViewChild('gridCol3') gridCol3Ref!: ElementRef<HTMLDivElement>;
   @ViewChild('sidebar') sidebarRef!: ElementRef<HTMLDivElement>;
@@ -85,15 +86,25 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.router.events.subscribe(ev => {
+      if (ev instanceof NavigationEnd) {
+        setTimeout(() => {
+          if (this.view.status === ViewStatus.EXPERIENCE) {
+            this.initializeExperienceView();
+          } else if (this.view.status === ViewStatus.GRID) {
+            this.initializeGridView();
+          }
+        });
+      }
+    });
+
     this.route.queryParamMap.subscribe(params => {
       const view = params.get('view') as 'grid' | 'experience' | null;
       if (view === 'grid') {
         this.view.status = ViewStatus.GRID;
-        // ensure grid view mechanics are initialized after view renders
         setTimeout(() => this.initializeGridView());
       } else if (view === 'experience') {
         this.view.status = ViewStatus.EXPERIENCE;
-        // ensure experience view mechanics are initialized after view renders
         setTimeout(() => this.initializeExperienceView());
       } else {
         // Default to EXPERIENCE when no view param present
@@ -125,6 +136,13 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     } else if (this.view.status === ViewStatus.GRID) {
       this.initializeGridView();
     }
+  }
+
+  ngOnDestroy() {
+    // Ensure global listeners are cleaned up even if sidebar wasn't closed explicitly
+    try {
+      window.removeEventListener('pointerdown', this.globalPointerDownHandler as any, { capture: true } as any);
+    } catch {}
   }
 
   toggleTheme() {
@@ -206,7 +224,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   };
 
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
-    if (this.sidebarBusy || /*this.dragScrollService.moved ||*/ this.selectedProject ) return;
+    if (this.sidebarBusy || this.selectedProject ) return;
     if (this.sidebarDisabled) {
       this.router.navigate(['/main', project.slug]);
       return;
@@ -236,6 +254,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     });
 
     window.addEventListener('pointerdown', this.globalPointerDownHandler, { capture: true });
+    // Ensure no duplicated handlers
+    this.removeGlobalPointerHandlerIfAny();
+    window.addEventListener('pointerdown', this.globalPointerDownHandler, { capture: true });
 
     this.sidebarBusy = false;
   }
@@ -256,7 +277,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     // trigger Angular remove which starts ':leave' for sidebar and 'open => closed' for grid
     this.selectedProject = undefined;
 
-    window.removeEventListener('pointerdown', this.globalPointerDownHandler, { capture: true });
+    this.removeGlobalPointerHandlerIfAny();
 
     // wait for both Angular animations to finish before clearing busy
     await Promise.all([
@@ -265,6 +286,12 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     ]);
 
     this.sidebarBusy = false;
+  }
+
+  private removeGlobalPointerHandlerIfAny() {
+    try {
+      window.removeEventListener('pointerdown', this.globalPointerDownHandler as any, { capture: true } as any);
+    } catch {}
   }
 
   onSidebarAnimDone(event: any) {
@@ -313,10 +340,20 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         scrollable.targetTop = gridCol3El.scrollTop;
       }
     });
-    this.itemGalleryRefs?.forEach(galleryRef => {
-      const galleryEl = galleryRef.nativeElement;
-      this.dragScrollService.dragItemGallery(galleryEl);
-    });
+    if (this.itemGalleryRefs && this.itemGalleryRefs.length > 0) {
+      this.itemGalleryRefs.forEach(galleryRef => {
+        const galleryEl = galleryRef.nativeElement;
+        this.dragScrollService.dragItemGallery(galleryEl);
+      });
+    } else if (this.itemGalleryRefs) {
+      const sub = this.itemGalleryRefs.changes.subscribe(() => {
+        this.itemGalleryRefs.forEach(galleryRef => {
+          const galleryEl = galleryRef.nativeElement;
+          this.dragScrollService.dragItemGallery(galleryEl);
+        });
+        sub.unsubscribe();
+      });
+    }
   }
 
   private initializeExperienceView() {
@@ -344,6 +381,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     wrapper.scrollLeft = (contentWidth - viewportWidth) / 2;
     wrapper.scrollTop = (contentHeight - viewportHeight) / 2;
 
+    // Restore original zoom-in animation with pointer events toggle
     container.style.pointerEvents = 'none';
     setTimeout(() => {
       grid.style.transition = `transform 1s ease-in-out`;
@@ -355,8 +393,11 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
     this.dragScrollService.register(gridEl, 'experience-grid');
     this.dragScrollService.dragExperienceView(gridEl);
+    // Force correct interaction styles in case stale CSS remains after navigation
     gridEl.style.touchAction = 'none';
     gridEl.style.cursor = 'grab';
+    gridEl.style.pointerEvents = 'auto';
+    grid.style.pointerEvents = 'auto';
     this.syncGridScroll(gridEl);
   }
 }

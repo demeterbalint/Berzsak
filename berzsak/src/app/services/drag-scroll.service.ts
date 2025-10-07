@@ -146,7 +146,7 @@ export class DragScrollService {
       }
     };
 
-    const onDown = (e: PointerEvent) => {
+    const onDown = (e: PointerEvent) => {      
       isDown = true;
       lastX = e.clientX;
       lastY = e.clientY;
@@ -168,6 +168,8 @@ export class DragScrollService {
       totalMove += Math.abs(dx) + Math.abs(dy);
       targetLeft = Math.max(0, Math.min(maxLeft(), targetLeft - dx));
       targetTop = Math.max(0, Math.min(maxTop(), targetTop - dy));
+      // start animation loop if not already running, so move updates take effect
+      startAnimIfNeeded();
     };
 
     const onUp = (e: PointerEvent) => {
@@ -183,11 +185,20 @@ export class DragScrollService {
       startAnimIfNeeded();
     };
 
-    el.addEventListener('pointerdown', onDown, { passive: false });
-    el.addEventListener('pointermove', onMove, { passive: false });
-    el.addEventListener('pointerup', onUp, { passive: false });
-    el.addEventListener('pointercancel', onUp, { passive: false });
-    el.addEventListener('pointerleave', onUp, { passive: false });
+    // Bind in capture phase to intercept even if children stop propagation
+    // Ensure correct interaction styles
+    try {
+      el.style.touchAction = 'none';
+      el.style.cursor = 'grab';
+      el.style.pointerEvents = 'auto';
+    } catch {}
+
+    // Listen on element for pointerdown; attach move/up on window to guarantee delivery during capture
+    el.addEventListener('pointerdown', onDown, { passive: false, capture: true });
+    window.addEventListener('pointermove', onMove, { passive: false, capture: true });
+    window.addEventListener('pointerup', onUp, { passive: false, capture: true });
+    window.addEventListener('pointercancel', onUp, { passive: false, capture: true });
+    window.addEventListener('pointerleave', onUp, { passive: false, capture: true });
   }
 
   dragItemGallery(gallery: HTMLElement) {
