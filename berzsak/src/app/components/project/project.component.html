@@ -6,11 +6,18 @@
     <button class="brand-name-button" [class.exp-view]="view.status === ViewStatus.EXPERIENCE" (click)="window.location.href = '/index.html'">BERZSAK.</button>
   </div>
 
+  <div class="drag-to-explore" *ngIf="view.status === ViewStatus.EXPERIENCE" [hidden]="selectedProject">
+    <span class="view-icon">
+      <img class="drag-icon-light" src="/view-icon/drag-light.png" alt="drag icon">
+      <img class="drag-icon-dark" src="/view-icon/drag-dark.png" alt="drag icon">
+    </span>
+    <span class="drag-text">drag to explore</span>
+  </div>
+
   <!-- Grid/Experience button -->
   <div class="view-button" [hidden]="selectedProject" [class.exp-view]="view.status === ViewStatus.EXPERIENCE">
     <button class="view-btn" (click)="viewChange()">
       <span class="view-icon">
-        <!-- use a grid/list icon based on status -->
         <img class="icon-light" src="/view-icon/grid-light.png" alt="grid icon">
         <img class="icon-dark" src="/view-icon/grid-dark.png" alt="grid icon">
       </span>

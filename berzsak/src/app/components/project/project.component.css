@@ -70,20 +70,56 @@
   transition: transform 0.2s;
 }
 
-.icon-light {
+.drag-to-explore {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 5px;
+  border-radius: 6px;
+  border: 0.1rem solid var(--primary-contrast);
+  background-color: var(--background);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.drag-to-explore .drag-text {
+  display: flex;
+  justify-content: center;
+  color: var(--font_color);
+  font-size: 0.6rem;
+  font-weight: 300;
+}
+
+.drag-icon-dark,
+.drag-icon-light {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.icon-light,
+.drag-icon-light {
   display: block;
 }
 
-.icon-dark {
+.icon-dark,
+.drag-icon-dark {
   display: none;
 }
 
 .container.dark-mode {
-  .icon-light {
+  .icon-light,
+  .drag-icon-light {
     display: none;
   }
 
-  .icon-dark {
+  .icon-dark,
+  .drag-icon-dark {
     display: block;
   }
 }
