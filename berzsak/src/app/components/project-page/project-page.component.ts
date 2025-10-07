@@ -48,7 +48,7 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
         this.project = this.projectService.getProject(slug);
       }
       const button = document.querySelector('.see-more-btn') as HTMLElement;
-        const validSlugs = ['resq-avalanche-transmitter', 'flying-shark', 'clock', 'lumen', 'tartáska'];
+        const validSlugs = ['resq-avalanche-transmitter', 'flying-shark', 'clock', 'lumen', 'tartáska', 'chess'];
         if (slug === 'archproject-shoe-insole-system') {
         button.style.color = '#FF6900';
       } else if (validSlugs.includes(slug!)) {
