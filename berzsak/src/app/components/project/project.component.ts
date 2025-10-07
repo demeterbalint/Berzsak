@@ -85,35 +85,12 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.router.events.subscribe(ev => {
-      if (ev instanceof NavigationEnd) {
-        setTimeout(() => {
-          if (this.view.status === ViewStatus.EXPERIENCE) {
-            this.initializeExperienceView();
-          } else if (this.view.status === ViewStatus.GRID) {
-            this.initializeGridView();
-          }
-        });
-      }
-    });
-
     this.route.queryParamMap.subscribe(params => {
-      const view = params.get('view') as 'grid' | 'experience' | null;
-      if (view === 'grid') {
-        this.view.status = ViewStatus.GRID;
-        setTimeout(() => this.initializeGridView());
-      } else if (view === 'experience') {
-        this.view.status = ViewStatus.EXPERIENCE;
-        setTimeout(() => this.initializeExperienceView());
-      } else {
-        // Default to EXPERIENCE when no view param present
-        this.view.status = ViewStatus.EXPERIENCE;
-        this.router.navigate([], {
-          relativeTo: this.route,
-          queryParams: { view: 'experience' },
-          replaceUrl: true
-        });
-        setTimeout(() => this.initializeExperienceView());
+      const view = params.get('view');
+      const newStatus = view === 'grid' ? ViewStatus.GRID : ViewStatus.EXPERIENCE;
+      if (this.view.status !== newStatus) {
+        this.view.status = newStatus;
+        setTimeout(() => this.initializeCurrentView());
       }
     });
 
@@ -129,12 +106,7 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    // Initialize mechanics for the current view only when elements exist
-    if (this.view.status === ViewStatus.EXPERIENCE) {
-      this.initializeExperienceView();
-    } else if (this.view.status === ViewStatus.GRID) {
-      this.initializeGridView();
-    }
+    setTimeout(() => this.initializeCurrentView());
   }
 
   ngOnDestroy() {
@@ -178,14 +150,8 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   viewChange() {
-    if (this.view.status === ViewStatus.EXPERIENCE) {
-      this.view.status = ViewStatus.GRID;
-      setTimeout(() => this.initializeGridView());
-
-    } else {
-      this.view.status = ViewStatus.EXPERIENCE;
-      setTimeout(() => this.initializeExperienceView());
-    }
+    this.view.status = this.view.status === ViewStatus.EXPERIENCE ? ViewStatus.GRID : ViewStatus.EXPERIENCE;
+    setTimeout(() => this.initializeCurrentView());
   }
 
   checkSidebar() {
@@ -325,6 +291,14 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
         scrollable.targetTop = gridEl.scrollTop;
       }
     });
+  }
+
+  private initializeCurrentView() {
+    if (this.view.status === ViewStatus.EXPERIENCE) {
+      this.initializeExperienceView();
+    } else {
+      this.initializeGridView();
+    }
   }
 
   private initializeGridView() {
