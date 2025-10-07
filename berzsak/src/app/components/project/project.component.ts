@@ -395,7 +395,6 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
       }, 1000);
     }, 1000);
 
-
     // Force correct interaction styles in case stale CSS remains after navigation
     wrapper.style.touchAction = 'none';
     wrapper.style.cursor = 'grab';
