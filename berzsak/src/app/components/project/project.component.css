@@ -38,7 +38,7 @@
 }
 
 .view-btn {
-  background-color: var(--background);
+  background-color: transparent;
   width: 100%;
   display: flex;
   align-items: center;
@@ -53,7 +53,7 @@
   transform: scale(1.02);
 }
 
-.view-icon {
+.view-icon, .view-icon-dte {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,44 +62,49 @@
   margin-right: 4px;
 }
 
+.view-icon-dte {
+  margin-right: 12px;
+}
+
 .view-icon img {
   width: 15px;
   height: 15px;
-  color: var(--primary-contrast);
   transform: rotateZ(0);
   transition: transform 0.2s;
 }
 
 .drag-to-explore {
   position: fixed;
-  bottom: 15px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2000;
-  width: 100px;
+  width: 120px;
+}
+
+.dte-div {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 7px;
-  padding: 5px 5px;
+  padding: 5px 10px;
+  background-color: var(--background);
   border-radius: 6px;
   border: 0.1rem solid var(--primary-contrast);
-  background-color: var(--background);
   transition: background 0.3s, transform 0.2s;
 }
 
-.drag-to-explore .drag-text {
-  display: flex;
-  justify-content: center;
-  color: var(--font_color);
-  font-size: 0.6rem;
-  font-weight: 300;
+.view-icon-dte img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
-.drag-icon-dark,
-.drag-icon-light {
-  width: 20px !important;
-  height: 20px !important;
+.view-text-exp, .view-text-grid, .drag-text {
+  width: 100%;
+  color: var(--primary-contrast);
+  font-size: 0.6rem;
+  font-weight: 400;
+  align-self: center;
+  justify-content: center;
 }
 
 .icon-light,
@@ -177,15 +182,6 @@
       display: none;
     }
   }
-}
-
-.view-text-exp, .view-text-grid {
-  width: 100%;
-  color: var(--primary-contrast);
-  font-size: 0.6rem;
-  font-weight: 400;
-  align-self: center;
-  justify-content: center;
 }
 
 .contact-div-experience {

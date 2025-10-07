@@ -6,12 +6,14 @@
     <button class="brand-name-button" [class.exp-view]="view.status === ViewStatus.EXPERIENCE" (click)="window.location.href = '/index.html'">BERZSAK.</button>
   </div>
 
-  <div class="drag-to-explore" *ngIf="view.status === ViewStatus.EXPERIENCE" [hidden]="selectedProject">
-    <span class="view-icon">
-      <img class="drag-icon-light" src="/view-icon/drag-light.png" alt="drag icon">
-      <img class="drag-icon-dark" src="/view-icon/drag-dark.png" alt="drag icon">
-    </span>
-    <span class="drag-text">drag to explore</span>
+  <div class="drag-to-explore" [hidden]="selectedProject" *ngIf="view.status === ViewStatus.EXPERIENCE">
+    <div class="dte-div">
+      <span class="view-icon-dte">
+        <img class="drag-icon-light" src="/view-icon/drag-light.png" alt="drag icon">
+        <img class="drag-icon-dark" src="/view-icon/drag-dark.png" alt="drag icon">
+      </span>
+      <span class="drag-text">drag to explore</span>
+    </div>
   </div>
 
   <!-- Grid/Experience button -->
