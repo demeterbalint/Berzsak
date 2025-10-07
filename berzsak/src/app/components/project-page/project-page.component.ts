@@ -23,8 +23,8 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   private imageWidths = [5846, 2400, 1800, 1200, 600, 300];
   protected windowWidth: number = window.innerWidth;
   protected scrollY = 0;
+  protected cameFromView: 'grid' | 'experience' = 'experience';
 
-  // Theme properties
   isDarkMode: boolean = false;
   themeIcon: string = '/light-bulb/bulb-off.png';
 
@@ -60,6 +60,17 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
         console.log(error);
       }
     )
+
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      const view = params.get('view') as 'grid' | 'experience' | null;
+      if (view) {
+        this.cameFromView = view;
+      }
+    },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   ngAfterViewInit() {
