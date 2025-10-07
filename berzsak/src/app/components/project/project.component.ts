@@ -75,7 +75,6 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
   // Theme properties
   isDarkMode: boolean = false;
   themeIcon: string = '/light-bulb/bulb-off.png';
-  dragImage: string = '/view-icon/drag-light.png';
 
   constructor(private projectService: ProjectService,
               private dragScrollService: DragScrollService,
