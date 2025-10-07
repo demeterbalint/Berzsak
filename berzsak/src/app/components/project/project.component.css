@@ -86,9 +86,9 @@
   display: flex;
   align-items: center;
   padding: 5px 10px;
-  background-color: var(--background);
+  background-color: var(--background-dte);
   border-radius: 6px;
-  border: 0.1rem solid var(--primary-contrast);
+  border: 0.1rem solid var(--primary);
   transition: background 0.3s, transform 0.2s;
 }
 
@@ -107,24 +107,28 @@
   justify-content: center;
 }
 
+.drag-text {
+  color: var(--primary);
+}
+
 .icon-light,
-.drag-icon-light {
+.drag-icon-dark {
   display: block;
 }
 
 .icon-dark,
-.drag-icon-dark {
+.drag-icon-light {
   display: none;
 }
 
 .container.dark-mode {
   .icon-light,
-  .drag-icon-light {
+  .drag-icon-dark {
     display: none;
   }
 
   .icon-dark,
-  .drag-icon-dark {
+  .drag-icon-light {
     display: block;
   }
 }

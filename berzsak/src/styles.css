@@ -23,6 +23,7 @@
 
 :root {
   --background: #f1f1f1;
+  --background-dte: #f1f1f1;
   --font_color: black;
   --primary: #aaa;
   --primary-contrast: #555;
@@ -35,6 +36,7 @@
 
 .dark-mode {
   --background: #222;
+  --background-dte: #f1f1f1;
   --font_color: white;
   --primary: #555;
   --primary-contrast: #aaa;
