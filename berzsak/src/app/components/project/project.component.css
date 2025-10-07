@@ -38,7 +38,7 @@
 }
 
 .view-btn {
-  background-color: transparent;
+  background-color: var(--background);
   width: 100%;
   display: flex;
   align-items: center;
