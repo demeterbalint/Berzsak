@@ -356,11 +356,10 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initializeExperienceView() {
-    const gridEl = this.gridExpRef?.nativeElement;
+    const wrapper = this.gridExpRef?.nativeElement;
     const container = this.containerRef?.nativeElement as HTMLElement | undefined;
-    if (!gridEl || !container) return;
+    if (!wrapper || !container) return;
 
-    const wrapper = gridEl as HTMLElement;
     const grid = wrapper.querySelector('.grid-experience') as HTMLElement | null;
     if (!wrapper || !grid) return;
 
@@ -382,21 +381,24 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // Restore original zoom-in animation with pointer events toggle
     container.style.pointerEvents = 'none';
+    wrapper.style.pointerEvents = 'none';
+    grid.style.pointerEvents = 'none';
     setTimeout(() => {
       grid.style.transition = `transform 1s ease-in-out`;
       grid.style.transform = 'scale(1)';
       setTimeout(() => {
         container.style.pointerEvents = 'auto';
+        wrapper.style.pointerEvents = 'auto';
+        grid.style.pointerEvents = 'auto';
+        this.dragScrollService.register(wrapper, 'experience-grid');
+        this.dragScrollService.dragExperienceView(wrapper);
       }, 1000);
     }, 1000);
 
-    this.dragScrollService.register(gridEl, 'experience-grid');
-    this.dragScrollService.dragExperienceView(gridEl);
+
     // Force correct interaction styles in case stale CSS remains after navigation
-    gridEl.style.touchAction = 'none';
-    gridEl.style.cursor = 'grab';
-    gridEl.style.pointerEvents = 'auto';
-    grid.style.pointerEvents = 'auto';
-    this.syncGridScroll(gridEl);
+    wrapper.style.touchAction = 'none';
+    wrapper.style.cursor = 'grab';
+    this.syncGridScroll(wrapper);
   }
 }
