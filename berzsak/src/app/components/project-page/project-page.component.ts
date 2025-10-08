@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {ProjectService} from '../../services/project.service';
 import {ProjectDetails} from '../../models/project-details';
 import {NgForOf, NgIf, SlicePipe} from '@angular/common';
@@ -32,6 +32,7 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   @ViewChild('wrapper') wrapperRef!: ElementRef<HTMLDivElement>;
 
   constructor(private activatedRoute: ActivatedRoute,
+              private router: Router,
               private projectService: ProjectService,
               private dragScrollService: DragScrollService,
               private themeService: ThemeService) {}
@@ -110,5 +111,10 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
     this.dragScrollService.scrollDown('project-page-wrapper', window.innerWidth * 0.6666);
     this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
     this.seeMoreButton.nativeElement.style.opacity = '0';
+  }
+
+  onBrandClick() {
+    this.dragScrollService.fromView = '';
+    this.router.navigate(['/berzsak']);
   }
 }

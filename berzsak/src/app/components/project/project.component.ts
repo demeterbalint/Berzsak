@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   HostListener,
@@ -15,13 +16,13 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ViewStatus} from '../../enum/view-status';
 import {DragScrollService} from '../../services/drag-scroll.service';
 import {SidebarAnimationService} from '../../services/sidebar-animation.service';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {ThemeService} from '../../services/theme.service';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css'],
   animations: [
@@ -44,7 +45,7 @@ import {ThemeService} from '../../services/theme.service';
     ])
   ]
 })
-export class ProjectComponent implements OnInit, OnDestroy {
+export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('gridExp') gridExpRef!: ElementRef<HTMLDivElement>;
   @ViewChild('gridCol3') gridCol3Ref!: ElementRef<HTMLDivElement>;
   @ViewChild('sidebar') sidebarRef!: ElementRef<HTMLDivElement>;
@@ -83,20 +84,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const nav = this.router.getCurrentNavigation();
-    const fromProjectPage = nav?.extras.state?.['fromProjectPage'] ?? false;
-
-    const firstVisit = !sessionStorage.getItem('hasVisited');
-    const shouldZoom = firstVisit || fromProjectPage;
-
-    if (shouldZoom) {
-      setTimeout(() => this.initializeExperienceView('zoom'));
-    } else {
-      setTimeout(() => this.initializeExperienceView());
-    }
-
-    sessionStorage.setItem('hasVisited', 'true');
-
     this.projects = this.projectService.getAllProjects();
     this.gridProjects = this.projectService.getAllProjects().filter(project => project.name !== 'dark-mode');
     this.checkSidebar();
@@ -106,6 +93,17 @@ export class ProjectComponent implements OnInit, OnDestroy {
       this.isDarkMode = isDark;
       this.themeIcon = this.themeService.themeIcon;
     });
+  }
+
+  ngAfterViewInit() {
+    const fromView = this.dragScrollService.fromView;
+
+    if (fromView === 'grid') {
+      setTimeout(() => this.initializeGridView());
+    } else {
+      setTimeout(() => this.initializeExperienceView('zoom'));
+    }
+    this.dragScrollService.fromView = '';
   }
 
   ngOnDestroy() {
@@ -185,7 +183,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
     if (this.sidebarBusy || this.selectedProject ) return;
     if (this.sidebarDisabled) {
-      this.router.navigate(['/main', project.slug]);
+      this.dragScrollService.fromView = 'experience';
+      await this.router.navigate(['/berzsak', project.slug]);
       return;
     }
 
@@ -289,9 +288,11 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   viewChange() {
     if (this.view.status === ViewStatus.GRID) {
-      this.initializeExperienceView();
+      this.view.status = ViewStatus.EXPERIENCE;
+      setTimeout(() => this.initializeExperienceView());
     } else {
-      this.initializeGridView();
+      this.view.status = ViewStatus.GRID;
+      setTimeout(() => this.initializeGridView());
     }
   }
 
@@ -377,6 +378,16 @@ export class ProjectComponent implements OnInit, OnDestroy {
   }
 
   onBrandClick() {
-    this.initializeExperienceView('zoom');
+    this.dragScrollService.fromView = '';
+    this.selectedProject = undefined;
+    this.view.status = ViewStatus.EXPERIENCE;
+    setTimeout(() => {
+      this.initializeExperienceView('zoom');
+    });
+  }
+
+  onProjectClick(slug: string, view: string) {
+    this.dragScrollService.fromView = view;
+    this.router.navigate(['/berzsak', slug]);
   }
 }

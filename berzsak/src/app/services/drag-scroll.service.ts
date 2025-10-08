@@ -6,6 +6,15 @@ export class DragScrollService {
 
   private scrollables: Map<string, Scrollable> = new Map();
   private ease: number = 0.1;
+  private _fromView: string = ''; //from where was the project-page reached?
+
+  get fromView() {
+    return this._fromView;
+  }
+
+  set fromView(value: string) {
+    this._fromView = value;
+  }
 
   register(el: HTMLElement, key: string) {
     const existing = this.scrollables.get(key);
@@ -146,7 +155,7 @@ export class DragScrollService {
       }
     };
 
-    const onDown = (e: PointerEvent) => {      
+    const onDown = (e: PointerEvent) => {
       isDown = true;
       lastX = e.clientX;
       lastY = e.clientY;

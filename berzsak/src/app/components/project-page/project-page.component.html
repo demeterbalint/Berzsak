@@ -3,12 +3,12 @@
   <div class="project-page-wrapper" #wrapper>
 
     <div class="navigate-back-btn" *ngIf="windowWidth > 1200 && scrollY > windowWidth * 0.66">
-      <a [routerLink]="['/berzsak']" [state]="{fromProjectPage: true}">take me back</a>
+      <a [routerLink]="['/berzsak']">take me back</a>
     </div>
 
     <!-- brand name -->
     <div class="brand-name">
-      <button class="brand-name-button" (click)="window.location.href = '/index.html'">BERZSAK.</button>
+      <button class="brand-name-button" (click)="onBrandClick()">BERZSAK.</button>
     </div>
 
     <div class="project-mainImage">

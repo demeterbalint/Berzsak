@@ -74,7 +74,7 @@
         </div>
       </div>
       <div class="sidebar-navigate-btn">
-        <a [routerLink]="['/berzsak', selectedProject.slug]" [queryParams]="{view: 'experience'}" draggable="false">take me to project</a>
+        <a (click)="onProjectClick(selectedProject.slug, 'experience')" draggable="false">take me to project</a>
       </div>
     </div>
   </div>
@@ -105,7 +105,7 @@
     <div class="fade-div"></div>
     <div class="grid-col3">
       <div *ngFor="let project of gridProjects" class="grid-item">
-        <div class="item-gallery" #itemGallery [routerLink]="['/berzsak', project.slug]" [queryParams]="{view: 'grid'}" [class.dark-mode]="project.name === 'dark-mode'">
+        <div class="item-gallery" #itemGallery (click)="onProjectClick(project.slug, 'grid')" [class.dark-mode]="project.name === 'dark-mode'">
           <img *ngFor="let imgVariants of project.imageUrls"
                [src]="imgVariants[4]"
                [srcset]="getSrcset(imgVariants)"
@@ -113,7 +113,7 @@
                [alt]="project.name"
                draggable="false">
         </div>
-        <a class="col3-navigate-btn" [routerLink]="['/berzsak', project.slug]" [queryParams]="{view: 'grid'}" draggable="false">take me to project</a>
+        <a class="col3-navigate-btn" (click)="onProjectClick(project.slug, 'grid')" draggable="false">take me to project</a>
       </div>
     </div>
 
