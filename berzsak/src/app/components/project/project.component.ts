@@ -15,7 +15,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ViewStatus} from '../../enum/view-status';
 import {DragScrollService} from '../../services/drag-scroll.service';
 import {SidebarAnimationService} from '../../services/sidebar-animation.service';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {ThemeService} from '../../services/theme.service';
 
 @Component({
@@ -79,7 +79,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
               private dragScrollService: DragScrollService,
               private sidebarAnimation: SidebarAnimationService,
               private router: Router,
-              private route: ActivatedRoute,
               private themeService: ThemeService) {
   }
 
