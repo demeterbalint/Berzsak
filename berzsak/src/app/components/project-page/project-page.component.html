@@ -3,7 +3,7 @@
   <div class="project-page-wrapper" #wrapper>
 
     <div class="navigate-back-btn" *ngIf="windowWidth > 1200 && scrollY > windowWidth * 0.66">
-      <a [routerLink]="['/berzsak']" [queryParams]="{view: cameFromView}">take me back</a>
+      <a [routerLink]="['/berzsak']" [state]="{fromProjectPage: true}">take me back</a>
     </div>
 
     <!-- brand name -->

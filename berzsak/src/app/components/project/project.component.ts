@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   HostListener,
@@ -16,7 +15,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ViewStatus} from '../../enum/view-status';
 import {DragScrollService} from '../../services/drag-scroll.service';
 import {SidebarAnimationService} from '../../services/sidebar-animation.service';
-import {ActivatedRoute, NavigationEnd, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {ThemeService} from '../../services/theme.service';
 
 @Component({
@@ -45,7 +44,7 @@ import {ThemeService} from '../../services/theme.service';
     ])
   ]
 })
-export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ProjectComponent implements OnInit, OnDestroy {
   @ViewChild('gridExp') gridExpRef!: ElementRef<HTMLDivElement>;
   @ViewChild('gridCol3') gridCol3Ref!: ElementRef<HTMLDivElement>;
   @ViewChild('sidebar') sidebarRef!: ElementRef<HTMLDivElement>;
@@ -85,14 +84,19 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe(params => {
-      const view = params.get('view');
-      const newStatus = view === 'grid' ? ViewStatus.GRID : ViewStatus.EXPERIENCE;
-      if (this.view.status !== newStatus) {
-        this.view.status = newStatus;
-        setTimeout(() => this.initializeCurrentView());
-      }
-    });
+    const nav = this.router.getCurrentNavigation();
+    const fromProjectPage = nav?.extras.state?.['fromProjectPage'] ?? false;
+
+    const firstVisit = !sessionStorage.getItem('hasVisited');
+    const shouldZoom = firstVisit || fromProjectPage;
+
+    if (shouldZoom) {
+      setTimeout(() => this.initializeExperienceView('zoom'));
+    } else {
+      setTimeout(() => this.initializeExperienceView());
+    }
+
+    sessionStorage.setItem('hasVisited', 'true');
 
     this.projects = this.projectService.getAllProjects();
     this.gridProjects = this.projectService.getAllProjects().filter(project => project.name !== 'dark-mode');
@@ -103,10 +107,6 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
       this.isDarkMode = isDark;
       this.themeIcon = this.themeService.themeIcon;
     });
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => this.initializeCurrentView());
   }
 
   ngOnDestroy() {
@@ -147,11 +147,6 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
       // normal landscape
       return "26vw";
     }
-  }
-
-  viewChange() {
-    this.view.status = this.view.status === ViewStatus.EXPERIENCE ? ViewStatus.GRID : ViewStatus.EXPERIENCE;
-    setTimeout(() => this.initializeCurrentView());
   }
 
   checkSidebar() {
@@ -293,8 +288,8 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  private initializeCurrentView() {
-    if (this.view.status === ViewStatus.EXPERIENCE) {
+  viewChange() {
+    if (this.view.status === ViewStatus.GRID) {
       this.initializeExperienceView();
     } else {
       this.initializeGridView();
@@ -302,6 +297,7 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initializeGridView() {
+    this.view.status = ViewStatus.GRID;
     const gridCol3El = this.gridCol3Ref?.nativeElement;
     if (!gridCol3El) return;
     this.dragScrollService.register(gridCol3El, 'grid-col-3');
@@ -329,13 +325,12 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private initializeExperienceView() {
+  private initializeExperienceView(zoom?: string) {
+    this.view.status = ViewStatus.EXPERIENCE;
     const wrapper = this.gridExpRef?.nativeElement;
     const container = this.containerRef?.nativeElement as HTMLElement | undefined;
-    if (!wrapper || !container) return;
-
     const grid = wrapper.querySelector('.grid-experience') as HTMLElement | null;
-    if (!wrapper || !grid) return;
+    if (!wrapper || !container || !grid) return;
 
     const contentWidth = grid.scrollWidth;
     const contentHeight = grid.scrollHeight;
@@ -347,31 +342,42 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
     const initialScale = Math.min(scaleX, scaleY, 1);
 
     grid.style.transformOrigin = 'center center';
-    grid.style.transform = `scale(${initialScale})`;
     grid.style.transition = 'none';
 
     wrapper.scrollLeft = (contentWidth - viewportWidth) / 2;
     wrapper.scrollTop = (contentHeight - viewportHeight) / 2;
 
-    // Restore original zoom-in animation with pointer events toggle
-    container.style.pointerEvents = 'none';
-    wrapper.style.pointerEvents = 'none';
-    grid.style.pointerEvents = 'none';
-    setTimeout(() => {
-      grid.style.transition = `transform 1s ease-in-out`;
-      grid.style.transform = 'scale(1)';
-      setTimeout(() => {
-        container.style.pointerEvents = 'auto';
-        wrapper.style.pointerEvents = 'auto';
-        grid.style.pointerEvents = 'auto';
-        this.dragScrollService.register(wrapper, 'experience-grid');
-        this.dragScrollService.dragExperienceView(wrapper);
-      }, 1000);
-    }, 1000);
+    if (zoom) {
+      grid.style.transform = `scale(${initialScale})`;
+      container.style.pointerEvents = 'none';
+      wrapper.style.pointerEvents = 'none';
+      grid.style.pointerEvents = 'none';
 
-    // Force correct interaction styles in case stale CSS remains after navigation
-    wrapper.style.touchAction = 'none';
+      setTimeout(() => {
+        grid.style.transition = `transform 1s ease-in-out`;
+        grid.style.transform = 'scale(1)';
+        setTimeout(() => {
+          container.style.pointerEvents = 'auto';
+          wrapper.style.pointerEvents = 'auto';
+          grid.style.pointerEvents = 'auto';
+          this.dragScrollService.register(wrapper, 'experience-grid');
+          this.dragScrollService.dragExperienceView(wrapper);
+        }, 1000);
+      }, 1000);
+    } else {
+      container.style.pointerEvents = 'auto';
+      wrapper.style.pointerEvents = 'auto';
+      grid.style.pointerEvents = 'auto';
+      this.dragScrollService.register(wrapper, 'experience-grid');
+      this.dragScrollService.dragExperienceView(wrapper);
+    }
+
+    // wrapper.style.touchAction = 'none';
     wrapper.style.cursor = 'grab';
     this.syncGridScroll(wrapper);
+  }
+
+  onBrandClick() {
+    this.initializeExperienceView('zoom');
   }
 }
