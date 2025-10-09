@@ -94,7 +94,7 @@
              [alt]="project.name"
              [attr.data-project-name]="project.name"
              (click)="onImageClick($event, project)" draggable="false">
-        <img *ngIf="project.name === 'dark-mode'"
+        <img *ngIf="project.name === 'dark-mode'" class="dark-mode-project"
              [src]="themeIcon" [alt]="project.name" draggable="false" (click)="toggleTheme()">
       </div>
     </div>

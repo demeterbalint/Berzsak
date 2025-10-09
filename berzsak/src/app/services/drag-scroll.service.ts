@@ -188,7 +188,9 @@ export class DragScrollService {
       // If movement was minimal, synthesize a click under the pointer for reliability
       if (totalMove < clickMoveThreshold) {
         const target = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
-        if (target) target.click();
+        if (target && !target.classList.contains('dark-mode-project')) {
+          target.click();
+        }
         return;
       }
       startAnimIfNeeded();
