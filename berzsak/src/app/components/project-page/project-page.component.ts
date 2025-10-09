@@ -30,6 +30,9 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
   @ViewChild('wrapper') wrapperRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('mainImage') projectImageRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('navigateBackArrow') navigateArrowRef!: ElementRef<HTMLElement>;
+  arrowTop: number = 0;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -91,7 +94,10 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
         scrollable.currentTop = projectPageWrapper.scrollTop;
         scrollable.targetTop = projectPageWrapper.scrollTop;
       }
+
+      this.updateArrowPosition();
     });
+    setTimeout(() => this.updateArrowPosition(), 0);
   }
 
   getSrcset(imageArray: string[]): string {
@@ -116,5 +122,29 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   onBrandClick() {
     this.dragScrollService.fromView = '';
     this.router.navigate(['/berzsak']);
+  }
+
+  updateArrowPosition() {
+    const arrow = this.navigateArrowRef?.nativeElement;
+    const mainImage = this.projectImageRef?.nativeElement;
+
+    if (!arrow || !mainImage) return;
+
+    // Distance from top of page to bottom of main image
+    const imageBottom = mainImage.getBoundingClientRect().bottom + window.scrollY;
+
+    // Choose the greater of (50vh) or (image bottom + 20px)
+    const preferredTop = Math.max(window.innerHeight / 2, window.innerWidth * 0.6666 + 20);
+
+    // How far we've scrolled
+    const scrollY = this.wrapperRef.nativeElement.scrollTop;
+
+    // Arrow should move up until it reaches 50vh
+    const targetTop = Math.max(window.innerHeight / 2, Math.max(preferredTop - scrollY, window.innerHeight / 2));
+
+    arrow.style.position = 'fixed';
+    arrow.style.left = '20px';
+    arrow.style.top = `${targetTop}px`;
+    arrow.style.zIndex = '10';
   }
 }

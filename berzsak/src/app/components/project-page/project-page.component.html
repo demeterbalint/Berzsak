@@ -11,12 +11,18 @@
       <button class="brand-name-button" (click)="onBrandClick()">BERZSAK.</button>
     </div>
 
-    <div class="project-mainImage">
+    <div class="project-mainImage" #mainImage>
       <img
         src="{{project.mainImgUrl[1]}}"
         [srcset]="getSrcset(project.mainImgUrl)"
         sizes="95vw"
       draggable="false">
+    </div>
+
+    <div class="navigate-back-arrow" *ngIf="windowWidth <= 1200" #navigateBackArrow>
+      <a [routerLink]="['/berzsak']">
+        <i class="fa fa-arrow-left"></i>
+      </a>
     </div>
 
     <button class="see-more-btn" #seeMoreBtn (click)="scrollDown()">
