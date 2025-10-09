@@ -39,9 +39,4 @@ export class ThemeService {
   get themeIcon(): string {
     return this.isDarkMode ? this.BULB_ON : this.BULB_OFF;
   }
-
-  setDarkMode(isDark: boolean): void {
-    this.isDarkModeSubject.next(isDark);
-    localStorage.setItem(this.THEME_KEY, isDark ? 'dark' : 'light');
-  }
 }
