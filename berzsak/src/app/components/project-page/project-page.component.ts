@@ -32,7 +32,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   @ViewChild('wrapper') wrapperRef!: ElementRef<HTMLDivElement>;
   @ViewChild('mainImage') projectImageRef!: ElementRef<HTMLDivElement>;
   @ViewChild('navigateBackArrow') navigateArrowRef!: ElementRef<HTMLElement>;
-  arrowTop: number = 0;
   private scrolling = false;
 
   constructor(private activatedRoute: ActivatedRoute,
