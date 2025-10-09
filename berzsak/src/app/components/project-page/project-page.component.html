@@ -19,12 +19,6 @@
       draggable="false">
     </div>
 
-    <div class="navigate-back-arrow" *ngIf="windowWidth <= 1200" #navigateBackArrow>
-      <a [routerLink]="['/berzsak']">
-        <i class="fa fa-arrow-left"></i>
-      </a>
-    </div>
-
     <button class="see-more-btn" #seeMoreBtn (click)="scrollDown()">
       See more <i class="fa fa-arrow-down"></i>
     </button>
@@ -53,6 +47,12 @@
              sizes="95vw"
              draggable="false">
       </div>
+    </div>
+
+    <div class="another-project">
+      <span (click)="anotherProject()">
+        click for another project
+      </span>
     </div>
 
     <hr>

@@ -30,9 +30,9 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
   @ViewChild('wrapper') wrapperRef!: ElementRef<HTMLDivElement>;
-  @ViewChild('mainImage') projectImageRef!: ElementRef<HTMLDivElement>;
+  /*@ViewChild('mainImage') projectImageRef!: ElementRef<HTMLDivElement>;
   @ViewChild('navigateBackArrow') navigateArrowRef!: ElementRef<HTMLElement>;
-  private scrolling = false;
+  private scrolling = false;*/
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -87,14 +87,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
       this.scrollY = projectPageWrapper.scrollTop;
 
-      if (!this.scrolling) {
-        this.scrolling = true;
-        requestAnimationFrame(() => {
-          this.updateArrowPosition();
-          this.scrolling = false;
-        });
-      }
-
       const scrollable = this.dragScrollService.getScrollable('project-page-wrapper');
       if (!scrollable) return;
 
@@ -103,7 +95,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
         scrollable.targetTop = projectPageWrapper.scrollTop;
       }
     });
-    setTimeout(() => this.updateArrowPosition(), 0);
   }
 
   getSrcset(imageArray: string[]): string {
@@ -128,24 +119,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   onBrandClick() {
     this.dragScrollService.fromView = '';
     this.router.navigate(['/berzsak']);
-  }
-
-  updateArrowPosition() {
-    const arrow = this.navigateArrowRef?.nativeElement;
-    const mainImage = this.projectImageRef?.nativeElement;
-
-    if (!arrow || !mainImage) return;
-
-    // Choose the greater of (50vh) or (image bottom + 20px)
-    const preferredTop = Math.max(window.innerHeight / 2, window.innerWidth * 0.6666 + 20);
-
-    // How far we've scrolled
-    const scrollY = this.wrapperRef.nativeElement.scrollTop;
-
-    // Arrow should move up until it reaches 50vh
-    const targetTop = Math.max(window.innerHeight / 2, Math.max(preferredTop - scrollY, window.innerHeight / 2));
-
-    arrow.style.top = `${targetTop}px`;
   }
 
   openMail() {
@@ -174,5 +147,9 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
         window.open(gmailLink, '_blank');
       }
     }, delay);
+  }
+
+  anotherProject() {
+    this.router.navigate(['/berzsak', this.projectService.randomProjectSlug()]);
   }
 }

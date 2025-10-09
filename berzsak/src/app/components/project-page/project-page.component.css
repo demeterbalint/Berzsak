@@ -21,24 +21,13 @@ img {
   z-index: 10;
 }
 
-.navigate-back-arrow {
-  position: fixed;
-  left: 5vw;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.navigate-back-btn a, .navigate-back-arrow a {
+.navigate-back-btn a{
   text-decoration: none;
   color: var(--font_color);
 }
 
-.navigate-back-btn a:hover, .navigate-back-arrow a:hover {
+.navigate-back-btn a:hover {
   font-weight: bold;
-}
-
-.navigate-back-arrow i {
-  font-size: 1.5rem;
 }
 
 .project-mainImage {
@@ -135,4 +124,18 @@ img {
 .project-image-gallery img {
   width: 100%;
   height: auto;
+}
+
+.another-project {
+  width: 80%;
+  text-align: left;
+  color: var(--font_color);
+}
+
+.another-project span {
+  cursor: pointer;
+}
+
+.another-project span:hover {
+  font-weight: bold;
 }

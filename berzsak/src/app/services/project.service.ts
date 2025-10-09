@@ -198,4 +198,10 @@ export class ProjectService {
 
   constructor() {
   }
+
+  randomProjectSlug() {
+    const randomProjectList = this.projectList.filter((p) => p.name !== 'dark-mode');
+    const randomIndex = Math.floor(Math.random() * randomProjectList.length);
+    return randomProjectList[randomIndex].slug;
+  }
 }
