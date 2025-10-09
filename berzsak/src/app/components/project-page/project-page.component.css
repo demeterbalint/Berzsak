@@ -22,7 +22,10 @@ img {
 }
 
 .navigate-back-arrow {
-  border: yellow solid 1px;
+  position: fixed;
+  left: 5vw;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 
 .navigate-back-btn a, .navigate-back-arrow a {
