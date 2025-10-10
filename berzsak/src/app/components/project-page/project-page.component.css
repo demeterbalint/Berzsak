@@ -63,6 +63,10 @@ img {
   z-index: 21;
 }
 
+.see-more-btn:hover {
+  font-weight: bold;
+}
+
 @media (orientation: landscape) and (aspect-ratio < 1.45){
   .see-more-btn {
     display: block;

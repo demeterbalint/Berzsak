@@ -15,10 +15,15 @@
 
   /* Remove tap highlight */
   -webkit-tap-highlight-color: transparent; /* removes default blue on iOS/Chrome/Safari */
+  -webkit-touch-callout: none; /* prevent long-press menu */
+
+  ::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Edge */
+  }
 }
 
-*::-webkit-scrollbar {
-  display: none;             /* Chrome, Safari, Edge */
+.no-hover *:hover {
+  all: revert;
 }
 
 :root {
