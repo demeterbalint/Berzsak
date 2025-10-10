@@ -128,7 +128,9 @@ img {
 
 .another-project {
   width: 80%;
-  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: right;
   color: var(--font_color);
 }
 
