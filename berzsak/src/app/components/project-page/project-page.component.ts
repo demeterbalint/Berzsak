@@ -27,6 +27,7 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
   isDarkMode: boolean = false;
   themeIcon: string = '/light-bulb/bulb-off.png';
+  private suppressScrollFade = false;
 
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
   @ViewChild('wrapper') wrapperRef!: ElementRef<HTMLDivElement>;
@@ -47,6 +48,10 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
       const slug = paramMap.get('slug');
       if (slug) {
         this.project = this.projectService.getProject(slug);
+        setTimeout(() => {
+          const projectPageWrapper = this.wrapperRef.nativeElement;
+          this.resetPage(projectPageWrapper)
+        });
       }
       const button = document.querySelector('.see-more-btn') as HTMLElement;
         const validSlugs = ['resq-avalanche-transmitter', 'flying-shark', 'clock', 'lumen', 'tartáska', 'chess'];
@@ -78,6 +83,8 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
     this.dragScrollService.register(projectPageWrapper, 'project-page-wrapper');
 
     projectPageWrapper.addEventListener('scroll', () => {
+      if (this.suppressScrollFade) return;
+
       this.seeMoreButton.nativeElement.style.transition = 'opacity 0.3s linear';
       this.seeMoreButton.nativeElement.style.opacity = '0';
 
@@ -91,6 +98,20 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
         scrollable.targetTop = projectPageWrapper.scrollTop;
       }
     });
+  }
+
+  private resetPage(projectPageWrapper: HTMLElement) {
+    this.suppressScrollFade = true;
+
+    projectPageWrapper.scrollTop = 0;
+    const scrollable = this.dragScrollService.getScrollable('project-page-wrapper');
+    if (scrollable) {
+      scrollable.currentTop = 0;
+      scrollable.targetTop = 0;
+    }
+    this.scrollY = 0;
+    this.seeMoreButton.nativeElement.style.opacity = '1';
+    setTimeout(() => this.suppressScrollFade = false, 100);
   }
 
   getSrcset(imageArray: string[]): string {
