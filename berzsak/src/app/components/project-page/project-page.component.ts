@@ -30,9 +30,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
   @ViewChild('wrapper') wrapperRef!: ElementRef<HTMLDivElement>;
-  /*@ViewChild('mainImage') projectImageRef!: ElementRef<HTMLDivElement>;
-  @ViewChild('navigateBackArrow') navigateArrowRef!: ElementRef<HTMLElement>;
-  private scrolling = false;*/
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -41,7 +38,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
               private themeService: ThemeService) {}
 
   ngOnInit(): void {
-    // Subscribe to theme changes
     this.themeService.isDarkMode$.subscribe(isDark => {
       this.isDarkMode = isDark;
       this.themeIcon = this.themeService.themeIcon;
