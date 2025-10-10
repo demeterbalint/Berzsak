@@ -54,11 +54,13 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
         });
       }
       const button = document.querySelector('.see-more-btn') as HTMLElement;
-        const validSlugs = ['resq-avalanche-transmitter', 'flying-shark', 'clock', 'lumen', 'tartáska', 'chess'];
-        if (slug === 'archproject-shoe-insole-system') {
+      const validSlugs = ['resq-avalanche-transmitter', 'flying-shark', 'clock', 'lumen', 'tartáska', 'chess'];
+      if (slug === 'archproject-shoe-insole-system') {
         button.style.color = '#FF6900';
       } else if (validSlugs.includes(slug!)) {
-        button.style.color = 'white';
+        button.style.color = '#ffffff';
+      } else {
+        button.style.color = '#000000';
       }
     },
       error => {
