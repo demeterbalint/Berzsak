@@ -38,10 +38,17 @@ export class DragScrollService {
   }
 
   private handleWheel(e: WheelEvent, key: string) {
-    e.preventDefault();
-
     const scrollable = this.scrollables.get(key);
     if (!scrollable) return;
+
+    const gallery = (e.target as HTMLElement).closest('.item-gallery');
+    if (gallery) {
+      // Let the browser handle horizontal scroll naturally
+      return;
+    }
+
+    e.preventDefault();
+
     if (key === 'experience-grid' && scrollable.el.classList.contains('sidebar-open')) {
       const sidebar = this.scrollables.get('sidebar');
       if (sidebar) {
