@@ -190,6 +190,8 @@ export class DragScrollService {
         const target = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
         if (target && !target.classList.contains('dark-mode-project')) {
           target.click();
+        } else if (target && target.classList.contains('dark-mode-project') && e.pointerType === 'mouse') {
+          target.click();
         }
         return;
       }
