@@ -403,6 +403,7 @@
   color: var(--font_color);
   text-decoration: none;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .sidebar-navigate-btn a:hover {
@@ -593,6 +594,7 @@
   color: var(--primary-contrast);
   text-decoration: none;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .col3-navigate-btn:hover {
