@@ -107,6 +107,7 @@ hr {
   font-size: 20px;
   color: var(--socials-color);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .contact-div a:hover{
