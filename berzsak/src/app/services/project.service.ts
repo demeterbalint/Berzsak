@@ -184,7 +184,10 @@ export class ProjectService {
         + 'Photo: Barna Berzsák',
       mainImgUrl: ['/tartáska/5846/tartáska_5846.webp', '/tartáska/2400/tartáska_2400.webp', '/tartáska/1800/tartáska_1800.webp', '/tartáska/1200/tartáska_1200.webp', '/tartáska/600/tartáska_600.webp', '/tartáska/300/tartáska_300.webp'],
       imageUrls: [['/tartáska/5846/tartáska_5846.webp', '/tartáska/2400/tartáska_2400.webp', '/tartáska/1800/tartáska_1800.webp', '/tartáska/1200/tartáska_1200.webp', '/tartáska/600/tartáska_600.webp', '/tartáska/300/tartáska_300.webp'],
-        ['/tartáska/5846/1_5846.webp', '/tartáska/2400/1_2400.webp', '/tartáska/1800/1_1800.webp', '/tartáska/1200/1_1200.webp', '/tartáska/600/1_600.webp', '/tartáska/300/1_300.webp']]
+        ['/tartáska/5846/1_5846.webp', '/tartáska/2400/1_2400.webp', '/tartáska/1800/1_1800.webp', '/tartáska/1200/1_1200.webp', '/tartáska/600/1_600.webp', '/tartáska/300/1_300.webp'],
+        ['/tartáska/5846/2_5846.webp', '/tartáska/2400/2_2400.webp', '/tartáska/1800/2_1800.webp', '/tartáska/1200/2_1200.webp', '/tartáska/600/2_600.webp', '/tartáska/300/2_300.webp'],
+        ['/tartáska/5846/3_5846.webp', '/tartáska/2400/3_2400.webp', '/tartáska/1800/3_1800.webp', '/tartáska/1200/3_1200.webp', '/tartáska/600/3_600.webp', '/tartáska/300/3_300.webp'],
+        ['/tartáska/5846/4_5846.webp', '/tartáska/2400/4_2400.webp', '/tartáska/1800/4_1800.webp', '/tartáska/1200/4_1200.webp', '/tartáska/600/4_600.webp', '/tartáska/300/4_300.webp']]
     }
   ];
 
