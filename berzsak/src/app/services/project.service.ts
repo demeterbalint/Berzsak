@@ -171,7 +171,8 @@ export class ProjectService {
       longDescription: [''],
       projectData: '',
       mainImgUrl: [],
-      imageUrls: [[]]
+      imageUrls: [['/light-bulb/5846/bulb-off-5846.webp', '/light-bulb/2400/bulb-off-2400.webp', '/light-bulb/1800/bulb-off-1800.webp', '/light-bulb/1200/bulb-off-1200.webp', '/light-bulb/600/bulb-off-600.webp', '/light-bulb/300/bulb-off-300.webp'],
+      ['/light-bulb/5846/bulb-on-5846.webp', '/light-bulb/2400/bulb-on-2400.webp', '/light-bulb/1800/bulb-on-1800.webp', '/light-bulb/1200/bulb-on-1200.webp', '/light-bulb/600/bulb-on-600.webp', '/light-bulb/300/bulb-on-300.webp']]
     },
     {
       name: 'tartáska',
