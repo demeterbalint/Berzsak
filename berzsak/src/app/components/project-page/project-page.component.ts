@@ -26,7 +26,7 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   protected cameFromView: 'grid' | 'experience' = 'experience';
 
   isDarkMode: boolean = false;
-  themeIcon: string = '/light-bulb/bulb-off.jpg';
+  themeIcon: number = 0;
   private suppressScrollFade = false;
 
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;

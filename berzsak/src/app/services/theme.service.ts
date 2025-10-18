@@ -6,8 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ThemeService {
   private readonly THEME_KEY = 'berzsak-theme';
-  private readonly BULB_ON = '/light-bulb/bulb-on.jpg';
-  private readonly BULB_OFF = '/light-bulb/bulb-off.jpg';
 
   private isDarkModeSubject = new BehaviorSubject<boolean>(this.getInitialTheme());
   public isDarkMode$ = this.isDarkModeSubject.asObservable();
@@ -36,7 +34,7 @@ export class ThemeService {
     return this.isDarkModeSubject.value;
   }
 
-  get themeIcon(): string {
-    return this.isDarkMode ? this.BULB_ON : this.BULB_OFF;
+  get themeIcon(): number {
+    return this.isDarkMode ? 1 : 0;
   }
 }

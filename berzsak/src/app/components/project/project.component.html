@@ -97,7 +97,11 @@
              [attr.data-project-name]="project.name"
              (click)="onImageClick($event, project)" draggable="false">
         <img *ngIf="project.name === 'dark-mode'" class="dark-mode-project"
-             [src]="themeIcon" [alt]="project.name" draggable="false" (click)="toggleTheme()">
+             [src]="project.imageUrls[themeIcon][4]"
+             [srcset]="getSrcset(project.imageUrls[themeIcon])"
+             [sizes]="gridImageSizes()"
+             [alt]="project.name"
+             draggable="false" (click)="toggleTheme()">
       </div>
     </div>
   </div>
