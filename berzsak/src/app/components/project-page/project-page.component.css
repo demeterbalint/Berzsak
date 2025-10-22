@@ -102,7 +102,7 @@ img {
 @media (max-width: 750px) {
   .project-description-wrapper {
     flex-direction: column;
-    gap: 0;
+    gap: 20px;
   }
 }
 
