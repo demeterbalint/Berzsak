@@ -69,7 +69,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   imageWidths = [5846, 2400, 1800, 1200, 600, 300];
 
-  windowWidth: number = window.innerWidth;
+  windowWidth: number = window.screen.width;
   sidebarDisabled: boolean = false;
 
   // Theme properties
@@ -131,7 +131,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   gridImageSizes(): string {
-    const w = window.innerWidth;
+    const w = window.screen.width;
     const h = window.innerHeight;
 
     if (w < h) {
@@ -157,7 +157,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.windowWidth = event.target.innerWidth;
+    this.windowWidth = event.target.screen.width;
     this.checkSidebar();
   }
 
