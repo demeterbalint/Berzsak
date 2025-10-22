@@ -51,7 +51,7 @@
 .container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   background-color: var(--background);
   touch-action: none;
