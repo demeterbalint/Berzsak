@@ -297,7 +297,15 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private initializeGridView() {
-    this.view.status = ViewStatus.GRID;
+    if (this.view.status !== ViewStatus.GRID) {
+      this.view.status = ViewStatus.GRID;
+      setTimeout(() => this.finishGridInit());
+      return;
+    }
+    this.finishGridInit();
+  }
+
+  private finishGridInit() {
     const gridCol3El = this.gridCol3Ref?.nativeElement;
     if (!gridCol3El) return;
     this.dragScrollService.register(gridCol3El, 'grid-col-3');
