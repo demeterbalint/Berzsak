@@ -555,6 +555,13 @@
   align-items: center;
 }
 
+.swipe-gallery {
+  position: absolute;
+  top: 15%;
+  text-align: center;
+  color: var(--primary-contrast);
+}
+
 .item-gallery {
   position: absolute;
   display: flex;
