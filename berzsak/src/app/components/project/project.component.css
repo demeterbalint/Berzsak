@@ -82,13 +82,25 @@
   width: 120px;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .drag-to-explore {
+    display: block;
+  }
+}
+
+@media (hover: none) or (pointer: coarse) {
+  .drag-to-explore {
+    display: none;
+  }
+}
+
 .dte-div {
   display: flex;
   align-items: center;
   padding: 5px 10px;
-  background-color: var(--background-dte);
+  /*background-color: var(--background-dte);
   border-radius: 6px;
-  border: 0.1rem solid var(--primary);
+  border: 0.1rem solid var(--primary);*/
   transition: background 0.3s, transform 0.2s;
 }
 
@@ -108,27 +120,27 @@
 }
 
 .drag-text {
-  color: var(--primary);
+  color: var(--primary-contrast);
 }
 
 .icon-light,
-.drag-icon-dark {
+.drag-icon-light {
   display: block;
 }
 
 .icon-dark,
-.drag-icon-light {
+.drag-icon-dark {
   display: none;
 }
 
 .container.dark-mode {
   .icon-light,
-  .drag-icon-dark {
+  .drag-icon-light {
     display: none;
   }
 
   .icon-dark,
-  .drag-icon-light {
+  .drag-icon-dark {
     display: block;
   }
 }
