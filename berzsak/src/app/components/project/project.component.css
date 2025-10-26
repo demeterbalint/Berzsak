@@ -5,18 +5,17 @@
 }
 
 .brand-name-button.exp-view {
-    color: var(--brand-name-experience);
+    color: var(--primary-contrast);
 }
 
 .brand-name-button.exp-view:hover {
-  color: var(--primary-contrast);
+  color: var(--font_color);
 }
 
 .brand-name-button:not(.exp-view) {
   background-color: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;/*Safari*/
-  border-radius: 0;
 }
 
 .view-button {
@@ -114,10 +113,6 @@
   font-weight: 400;
   align-self: center;
   justify-content: center;
-}
-
-.drag-text {
-  color: var(--primary-contrast);
 }
 
 .icon-light,
@@ -233,12 +228,12 @@
 
 .contact-div-experience a {
   font-size: 1.5rem;
-  color: var(--primary);
+  color: var(--primary-contrast);
   text-decoration: none;
 }
 
 .contact-div-experience a:hover {
-  color: var(--primary-contrast);
+  color: var(--font_color);
 }
 
 .sidebar-main-wrapper {
