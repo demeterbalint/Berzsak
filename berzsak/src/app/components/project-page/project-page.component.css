@@ -146,7 +146,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: right;
-  color: var(--font_color);
+  color: var(--socials-color);
+  font-weight: bold;
 }
 
 .another-project span {
@@ -154,5 +155,5 @@ img {
 }
 
 .another-project span:hover {
-  font-weight: bold;
+  color: var(--font_color);
 }
