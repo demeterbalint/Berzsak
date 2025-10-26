@@ -267,8 +267,14 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateSelectedImage(index: number): void {
-    if (index < 0 || index > this.selectedProject!.imageUrls.length-1) return;
-    this.selectedImageIndex = index;
+    if (!this.selectedProject) return;
+    if (index < 0 ) {
+      this.selectedImageIndex = this.selectedProject?.imageUrls.length-1;
+    } else if (index === this.selectedProject?.imageUrls.length) {
+      this.selectedImageIndex = 0;
+    } else {
+      this.selectedImageIndex = index;
+    }
   }
 
   protected readonly ViewStatus = ViewStatus;
