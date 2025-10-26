@@ -55,21 +55,18 @@ export class ProjectService {
         ['/archproject-shoe-insole-system/5846/3_5846.webp', '/archproject-shoe-insole-system/2400/3_2400.webp', '/archproject-shoe-insole-system/1800/3_1800.webp', '/archproject-shoe-insole-system/1200/3_1200.webp', "/archproject-shoe-insole-system/600/3_600.webp", '/archproject-shoe-insole-system/300/3_300.webp']]
     },
     {
-      name: 'depresszó coffee glass set',
-      slug: 'depresszó-coffee-glass-set',
-      shortDescription: 'The dePresszó coffee set transforms Hungarian sarcasm and pessimism into design — a playful blend of tradition, humor and function where the glasses, like the outlook, are always half empty — or half full…',
-      longDescription: ['Coffee is more than just a drink — it’s a cultural statement. Many nations have their own coffee specialties, from Café Cubano to Irish Coffee, each reflecting tradition and even national stereotypes. In Hungary, coffee arrived during the Turkish occupation, first tied to the ominous phrase “feketeleves” (“the black soup”). Over time, it became a symbol of cultural and intellectual life, with legendary cafés like the New York Café shaping history.',
-        'This project reimagines that story through a fictional Hungarian coffee: the dePresszó — a darkly humorous mix of espresso and Unicum that playfully embraces Hungarian pessimism. Its name nods to the classic question: “Half full or half empty?” — which, for Hungarians, is naturally half empty. The resulting 12-piece glass coffee set embodies this idea: one glass in each pair always stands upside down, so the set can never be completely full. Minimal yet expressive, it blends humor, functionality, and cultural commentary in a single design.'],
-      projectData: 'Year: 2024'
+      name: 'chess',
+      slug: 'chess',
+      shortDescription: 'This experimental chess set explores how form can influence play. Inspired by Victor Vasarely and op-art, the chessboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
+      longDescription: ['For over a thousand years, chess has fascinated the world — a simple set of rules giving rise to endless complexity. From royal courts to digital platforms, it has carried the symbolism of war, intellect, and strategy, while captivating both players and spectators across generations.',
+        'Promontor reimagines this timeless duel through the lens of design. Inspired by Op Art and Victor Vasarely, its board distorts the familiar grid into an optical illusion of depth, transforming each match into both a contest of intellect and a visual spectacle. The result is a chess set that honors tradition while offering a fresh, dynamic experience for today’s players.'],
+      projectData: 'Year: 2021'
         + '<br>'
-        + 'Photo: Barna Berzsák, Milán Rácmolnár',
-      mainImgUrl: ['/depresszó-coffee-glass-set/5846/depresszo_5846.webp', '/depresszó-coffee-glass-set/2400/depresszo_2400.webp', '/depresszó-coffee-glass-set/1800/depresszo_1800.webp', '/depresszó-coffee-glass-set/1200/depresszo_1200.webp', '/depresszó-coffee-glass-set/600/depresszo_600.webp', '/depresszó-coffee-glass-set/300/depresszo_300.webp'],
-      imageUrls: [['/depresszó-coffee-glass-set/5846/depresszo_5846.webp', '/depresszó-coffee-glass-set/2400/depresszo_2400.webp', '/depresszó-coffee-glass-set/1800/depresszo_1800.webp', '/depresszó-coffee-glass-set/1200/depresszo_1200.webp', '/depresszó-coffee-glass-set/600/depresszo_600.webp', '/depresszó-coffee-glass-set/300/depresszo_300.webp'],
-        ['/depresszó-coffee-glass-set/5846/1_5846.webp', '/depresszó-coffee-glass-set/2400/1_2400.webp', '/depresszó-coffee-glass-set/1800/1_1800.webp', '/depresszó-coffee-glass-set/1200/1_1200.webp', "/depresszó-coffee-glass-set/600/1_600.webp", '/depresszó-coffee-glass-set/300/1_300.webp'],
-        ['/depresszó-coffee-glass-set/5846/2_5846.webp', '/depresszó-coffee-glass-set/2400/2_2400.webp', '/depresszó-coffee-glass-set/1800/2_1800.webp', '/depresszó-coffee-glass-set/1200/2_1200.webp', "/depresszó-coffee-glass-set/600/2_600.webp", '/depresszó-coffee-glass-set/300/2_300.webp'],
-        ['/depresszó-coffee-glass-set/5846/3_5846.webp', '/depresszó-coffee-glass-set/2400/3_2400.webp', '/depresszó-coffee-glass-set/1800/3_1800.webp', '/depresszó-coffee-glass-set/1200/3_1200.webp', "/depresszó-coffee-glass-set/600/3_600.webp", '/depresszó-coffee-glass-set/300/3_300.webp'],
-        ['/depresszó-coffee-glass-set/5846/4_5846.webp', '/depresszó-coffee-glass-set/2400/4_2400.webp', '/depresszó-coffee-glass-set/1800/4_1800.webp', '/depresszó-coffee-glass-set/1200/4_1200.webp', "/depresszó-coffee-glass-set/600/4_600.webp", '/depresszó-coffee-glass-set/300/4_300.webp'],
-        ['/depresszó-coffee-glass-set/5846/5_5846.webp', '/depresszó-coffee-glass-set/2400/5_2400.webp', '/depresszó-coffee-glass-set/1800/5_1800.webp', '/depresszó-coffee-glass-set/1200/5_1200.webp', "/depresszó-coffee-glass-set/600/5_600.webp", '/depresszó-coffee-glass-set/300/5_300.webp']]
+        + 'Photo: Réka Nyikos',
+      mainImgUrl: ['/chess/5846/chess_5846.webp', '/chess/2400/chess_2400.webp', '/chess/1800/chess_1800.webp', '/chess/1200/chess_1200.webp', '/chess/600/chess_600.webp', '/chess/300/chess_300.webp'],
+      imageUrls: [['/chess/5846/chess_5846.webp', '/chess/2400/chess_2400.webp', '/chess/1800/chess_1800.webp', '/chess/1200/chess_1200.webp', '/chess/600/chess_600.webp', '/chess/300/chess_300.webp'],
+        ['/chess/5846/1_5846.webp', '/chess/2400/1_2400.webp', '/chess/1800/1_1800.webp', '/chess/1200/1_1200.webp', '/chess/600/1_600.webp', '/chess/300/1_300.webp'],
+        ['/chess/5846/2_5846.webp', '/chess/2400/2_2400.webp', '/chess/1800/2_1800.webp', '/chess/1200/2_1200.webp', '/chess/600/2_600.webp', '/chess/300/2_300.webp']]
     },
     {
       name: 'resq avalanche transmitter',
@@ -87,18 +84,21 @@ export class ProjectService {
         ['/resq-avalanche-transmitter/5846/5_5846.webp', '/resq-avalanche-transmitter/2400/5_2400.webp', '/resq-avalanche-transmitter/1800/5_1800.webp', '/resq-avalanche-transmitter/1200/5_1200.webp', "/resq-avalanche-transmitter/600/5_600.webp", '/resq-avalanche-transmitter/300/5_300.webp']]
     },
     {
-      name: 'chess',
-      slug: 'chess',
-      shortDescription: 'This experimental chess set explores how form can influence play. Inspired by Victor Vasarely and op-art, the chessboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
-      longDescription: ['For over a thousand years, chess has fascinated the world — a simple set of rules giving rise to endless complexity. From royal courts to digital platforms, it has carried the symbolism of war, intellect, and strategy, while captivating both players and spectators across generations.',
-      'Promontor reimagines this timeless duel through the lens of design. Inspired by Op Art and Victor Vasarely, its board distorts the familiar grid into an optical illusion of depth, transforming each match into both a contest of intellect and a visual spectacle. The result is a chess set that honors tradition while offering a fresh, dynamic experience for today’s players.'],
-      projectData: 'Year: 2021'
+      name: 'depresszó coffee glass set',
+      slug: 'depresszó-coffee-glass-set',
+      shortDescription: 'The dePresszó coffee set transforms Hungarian sarcasm and pessimism into design — a playful blend of tradition, humor and function where the glasses, like the outlook, are always half empty — or half full…',
+      longDescription: ['Coffee is more than just a drink — it’s a cultural statement. Many nations have their own coffee specialties, from Café Cubano to Irish Coffee, each reflecting tradition and even national stereotypes. In Hungary, coffee arrived during the Turkish occupation, first tied to the ominous phrase “feketeleves” (“the black soup”). Over time, it became a symbol of cultural and intellectual life, with legendary cafés like the New York Café shaping history.',
+        'This project reimagines that story through a fictional Hungarian coffee: the dePresszó — a darkly humorous mix of espresso and Unicum that playfully embraces Hungarian pessimism. Its name nods to the classic question: “Half full or half empty?” — which, for Hungarians, is naturally half empty. The resulting 12-piece glass coffee set embodies this idea: one glass in each pair always stands upside down, so the set can never be completely full. Minimal yet expressive, it blends humor, functionality, and cultural commentary in a single design.'],
+      projectData: 'Year: 2024'
         + '<br>'
-        + 'Photo: Réka Nyikos',
-      mainImgUrl: ['/chess/5846/chess_5846.webp', '/chess/2400/chess_2400.webp', '/chess/1800/chess_1800.webp', '/chess/1200/chess_1200.webp', '/chess/600/chess_600.webp', '/chess/300/chess_300.webp'],
-      imageUrls: [['/chess/5846/chess_5846.webp', '/chess/2400/chess_2400.webp', '/chess/1800/chess_1800.webp', '/chess/1200/chess_1200.webp', '/chess/600/chess_600.webp', '/chess/300/chess_300.webp'],
-        ['/chess/5846/1_5846.webp', '/chess/2400/1_2400.webp', '/chess/1800/1_1800.webp', '/chess/1200/1_1200.webp', '/chess/600/1_600.webp', '/chess/300/1_300.webp'],
-        ['/chess/5846/2_5846.webp', '/chess/2400/2_2400.webp', '/chess/1800/2_1800.webp', '/chess/1200/2_1200.webp', '/chess/600/2_600.webp', '/chess/300/2_300.webp']]
+        + 'Photo: Barna Berzsák, Milán Rácmolnár',
+      mainImgUrl: ['/depresszó-coffee-glass-set/5846/depresszo_5846.webp', '/depresszó-coffee-glass-set/2400/depresszo_2400.webp', '/depresszó-coffee-glass-set/1800/depresszo_1800.webp', '/depresszó-coffee-glass-set/1200/depresszo_1200.webp', '/depresszó-coffee-glass-set/600/depresszo_600.webp', '/depresszó-coffee-glass-set/300/depresszo_300.webp'],
+      imageUrls: [['/depresszó-coffee-glass-set/5846/depresszo_5846.webp', '/depresszó-coffee-glass-set/2400/depresszo_2400.webp', '/depresszó-coffee-glass-set/1800/depresszo_1800.webp', '/depresszó-coffee-glass-set/1200/depresszo_1200.webp', '/depresszó-coffee-glass-set/600/depresszo_600.webp', '/depresszó-coffee-glass-set/300/depresszo_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/1_5846.webp', '/depresszó-coffee-glass-set/2400/1_2400.webp', '/depresszó-coffee-glass-set/1800/1_1800.webp', '/depresszó-coffee-glass-set/1200/1_1200.webp', "/depresszó-coffee-glass-set/600/1_600.webp", '/depresszó-coffee-glass-set/300/1_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/2_5846.webp', '/depresszó-coffee-glass-set/2400/2_2400.webp', '/depresszó-coffee-glass-set/1800/2_1800.webp', '/depresszó-coffee-glass-set/1200/2_1200.webp', "/depresszó-coffee-glass-set/600/2_600.webp", '/depresszó-coffee-glass-set/300/2_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/3_5846.webp', '/depresszó-coffee-glass-set/2400/3_2400.webp', '/depresszó-coffee-glass-set/1800/3_1800.webp', '/depresszó-coffee-glass-set/1200/3_1200.webp', "/depresszó-coffee-glass-set/600/3_600.webp", '/depresszó-coffee-glass-set/300/3_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/4_5846.webp', '/depresszó-coffee-glass-set/2400/4_2400.webp', '/depresszó-coffee-glass-set/1800/4_1800.webp', '/depresszó-coffee-glass-set/1200/4_1200.webp', "/depresszó-coffee-glass-set/600/4_600.webp", '/depresszó-coffee-glass-set/300/4_300.webp'],
+        ['/depresszó-coffee-glass-set/5846/5_5846.webp', '/depresszó-coffee-glass-set/2400/5_2400.webp', '/depresszó-coffee-glass-set/1800/5_1800.webp', '/depresszó-coffee-glass-set/1200/5_1200.webp', "/depresszó-coffee-glass-set/600/5_600.webp", '/depresszó-coffee-glass-set/300/5_300.webp']]
     },
     {
       name: 'flying shark',
@@ -120,21 +120,6 @@ export class ProjectService {
         ['/flying-shark/5846/5_5846.webp', '/flying-shark/2400/5_2400.webp', '/flying-shark/1800/5_1800.webp', '/flying-shark/1200/5_1200.webp', '/flying-shark/600/5_600.webp', '/flying-shark/300/5_300.webp']]
     },
     {
-      name: 'clock',
-      slug: 'clock',
-      shortDescription: 'A wall clock that goes beyond function, serving as a decorative piece that marks not just the hour, but the essence of quality time itself — a reflection of Finnish culture and the serene beauty of its natural landscapes.',
-      longDescription: ['The wall clock has shifted from a tool of necessity to a symbol of presence. Once the heartbeat of the household, it set the rhythm of daily life. Today, when time glows from every screen, its practical role has faded — yet its meaning remains. A wall clock now carries memory, atmosphere, and identity: it reminds us of tradition, reflects on the passing of time, and enriches interiors as a quiet statement of taste.',
-      'Kuutamo was designed to carry this story forward. Inspired by Finnish nature and the midnight sun, it embraces the stillness of everyday life while celebrating the value of quality time, measured only by the slow movement of the hour hand. With its refined form and natural materials, it honors Finnish traditions and craftsmanship, transforming a familiar object into a poetic companion for modern living.'],
-      projectData: 'Year: 2020',
-      mainImgUrl: ['/clock/5846/2_5846.webp', '/clock/2400/2_2400.webp', '/clock/1800/2_1800.webp', '/clock/1200/2_1200.webp', '/clock/600/2_600.webp', '/clock/300/2_300.webp'],
-      imageUrls: [['/clock/5846/2_5846.webp', '/clock/2400/2_2400.webp', '/clock/1800/2_1800.webp', '/clock/1200/2_1200.webp', '/clock/600/2_600.webp', '/clock/300/2_300.webp'],
-        ['/clock/5846/1_5846.webp', '/clock/2400/1_2400.webp', '/clock/1800/1_1800.webp', '/clock/1200/1_1200.webp', '/clock/600/1_600.webp', '/clock/300/1_300.webp'],
-        ['/clock/5846/3_5846.webp', '/clock/2400/3_2400.webp', '/clock/1800/3_1800.webp', '/clock/1200/3_1200.webp', '/clock/600/3_600.webp', '/clock/300/3_300.webp'],
-        ['/clock/5846/4_5846.webp', '/clock/2400/4_2400.webp', '/clock/1800/4_1800.webp', '/clock/1200/4_1200.webp', '/clock/600/4_600.webp', '/clock/300/4_300.webp'],
-        ['/clock/5846/5_5846.webp', '/clock/2400/5_2400.webp', '/clock/1800/5_1800.webp', '/clock/1200/5_1200.webp', '/clock/600/5_600.webp', '/clock/300/5_300.webp'],
-        ['/clock/5846/6_5846.webp', '/clock/2400/6_2400.webp', '/clock/1800/6_1800.webp', '/clock/1200/6_1200.webp', '/clock/600/6_600.webp', '/clock/300/6_300.webp']]
-    },
-    {
       name: 'lumen',
       slug: 'lumen',
       shortDescription: 'How can we access clean energy anytime, anywhere? While solar panels can generate it, current systems are bulky and complex. Our solution: a modular, all-in-one system that’s easy to transport, simple to maintain, and ready to power life on the move.',
@@ -146,6 +131,21 @@ export class ProjectService {
       mainImgUrl: ['/lumen/5846/lumen_5846.webp', '/lumen/2400/lumen_2400.webp', '/lumen/1800/lumen_1800.webp', '/lumen/1200/lumen_1200.webp', '/lumen/600/lumen_600.webp', '/lumen/300/lumen_300.webp'],
       imageUrls: [['/lumen/5846/lumen_5846.webp', '/lumen/2400/lumen_2400.webp', '/lumen/1800/lumen_1800.webp', '/lumen/1200/lumen_1200.webp', '/lumen/600/lumen_600.webp', '/lumen/300/lumen_300.webp'],
         ['/lumen/5846/1_5846.webp', '/lumen/2400/1_2400.webp', '/lumen/1800/1_1800.webp', '/lumen/1200/1_1200.webp', '/lumen/600/1_600.webp', '/lumen/300/1_300.webp']]
+    },
+    {
+      name: 'clock',
+      slug: 'clock',
+      shortDescription: 'A wall clock that goes beyond function, serving as a decorative piece that marks not just the hour, but the essence of quality time itself — a reflection of Finnish culture and the serene beauty of its natural landscapes.',
+      longDescription: ['The wall clock has shifted from a tool of necessity to a symbol of presence. Once the heartbeat of the household, it set the rhythm of daily life. Today, when time glows from every screen, its practical role has faded — yet its meaning remains. A wall clock now carries memory, atmosphere, and identity: it reminds us of tradition, reflects on the passing of time, and enriches interiors as a quiet statement of taste.',
+        'Kuutamo was designed to carry this story forward. Inspired by Finnish nature and the midnight sun, it embraces the stillness of everyday life while celebrating the value of quality time, measured only by the slow movement of the hour hand. With its refined form and natural materials, it honors Finnish traditions and craftsmanship, transforming a familiar object into a poetic companion for modern living.'],
+      projectData: 'Year: 2020',
+      mainImgUrl: ['/clock/5846/2_5846.webp', '/clock/2400/2_2400.webp', '/clock/1800/2_1800.webp', '/clock/1200/2_1200.webp', '/clock/600/2_600.webp', '/clock/300/2_300.webp'],
+      imageUrls: [['/clock/5846/2_5846.webp', '/clock/2400/2_2400.webp', '/clock/1800/2_1800.webp', '/clock/1200/2_1200.webp', '/clock/600/2_600.webp', '/clock/300/2_300.webp'],
+        ['/clock/5846/1_5846.webp', '/clock/2400/1_2400.webp', '/clock/1800/1_1800.webp', '/clock/1200/1_1200.webp', '/clock/600/1_600.webp', '/clock/300/1_300.webp'],
+        ['/clock/5846/3_5846.webp', '/clock/2400/3_2400.webp', '/clock/1800/3_1800.webp', '/clock/1200/3_1200.webp', '/clock/600/3_600.webp', '/clock/300/3_300.webp'],
+        ['/clock/5846/4_5846.webp', '/clock/2400/4_2400.webp', '/clock/1800/4_1800.webp', '/clock/1200/4_1200.webp', '/clock/600/4_600.webp', '/clock/300/4_300.webp'],
+        ['/clock/5846/5_5846.webp', '/clock/2400/5_2400.webp', '/clock/1800/5_1800.webp', '/clock/1200/5_1200.webp', '/clock/600/5_600.webp', '/clock/300/5_300.webp'],
+        ['/clock/5846/6_5846.webp', '/clock/2400/6_2400.webp', '/clock/1800/6_1800.webp', '/clock/1200/6_1200.webp', '/clock/600/6_600.webp', '/clock/300/6_300.webp']]
     },
     {
       name: 'mini-market',
