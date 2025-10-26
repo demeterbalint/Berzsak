@@ -462,13 +462,6 @@
   align-self: start;
   margin-top: 0;
   border-radius: 7%;
-  border: 5px solid transparent;
-}
-
-.container.dark-mode {
-  .grid-experience .grid-item:not(.dark-mode) {
-    border: 5px solid var(--primary-contrast);
-  }
 }
 
 .grid-experience .grid-item img {
