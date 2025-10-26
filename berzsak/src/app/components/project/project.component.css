@@ -213,6 +213,27 @@
   z-index: 999;
 }
 
+@media (max-width: 500px) and (orientation: portrait){
+  .contact-div-experience {
+    bottom: 20px;
+    width: 50%;
+    right: 50%;
+    transform: translateX(50%);
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape){
+  .contact-div-experience {
+    bottom: 50%;
+    height: 50%;
+    right: 20px;
+    transform: translateY(50%);
+    justify-content: space-between;
+  }
+}
+
 .contact-div-experience a {
   font-size: 1.5rem;
   color: var(--primary);
