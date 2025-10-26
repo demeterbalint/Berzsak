@@ -380,7 +380,6 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
       this.dragScrollService.dragExperienceView(wrapper);
     }
 
-    // wrapper.style.touchAction = 'none';
     wrapper.style.cursor = 'grab';
     this.syncGridScroll(wrapper);
   }

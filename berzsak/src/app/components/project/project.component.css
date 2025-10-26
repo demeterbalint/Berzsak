@@ -98,9 +98,6 @@
   display: flex;
   align-items: center;
   padding: 5px 10px;
-  /*background-color: var(--background-dte);
-  border-radius: 6px;
-  border: 0.1rem solid var(--primary);*/
   transition: background 0.3s, transform 0.2s;
 }
 
