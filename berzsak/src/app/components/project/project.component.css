@@ -462,6 +462,7 @@
   align-self: start;
   margin-top: 0;
   border-radius: 7%;
+  cursor: pointer;
 }
 
 .grid-experience .grid-item img {
