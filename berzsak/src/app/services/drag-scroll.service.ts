@@ -177,8 +177,13 @@ export class DragScrollService {
 
     const onMove = (e: PointerEvent) => {
       if (!isDown) return;
-      const dx = e.clientX - lastX;
-      const dy = e.clientY - lastY;
+      let dx = e.clientX - lastX;
+      let dy = e.clientY - lastY;
+      if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+        dx *= 1.5;
+        dy *= 1.5;
+      }
+
       lastX = e.clientX;
       lastY = e.clientY;
       totalMove += Math.abs(dx) + Math.abs(dy);
