@@ -3,6 +3,7 @@ import {DragScrollService} from '../../services/drag-scroll.service';
 import {Router, RouterLink} from '@angular/router';
 import {ProjectService} from '../../services/project.service';
 import {ThemeService} from '../../services/theme.service';
+import {ProjectDetails} from '../../models/project-details';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +16,8 @@ import {ThemeService} from '../../services/theme.service';
 export class ProfileComponent implements OnInit{
 
   isDarkMode: boolean = false;
+  project!: ProjectDetails;
+  imageWidths = [5846, 2400, 1800, 1200, 600, 300];
 
   constructor(private dragScrollService: DragScrollService,
               private router: Router,
@@ -25,6 +28,7 @@ export class ProfileComponent implements OnInit{
     this.themeService.isDarkMode$.subscribe(isDark => {
       this.isDarkMode = isDark;
     })
+    this.project = this.projectService.getProject('profile');
   }
 
   onBrandClick() {
@@ -44,4 +48,10 @@ export class ProfileComponent implements OnInit{
     '\n' +
     'Beyond my professional work, I also create limited-edition design objects that reveal their stories through use and interaction.\n' +
     'If you’d like to explore these, feel free to visit my shop — or let’s collaborate to bring something new to life.'
+
+  getSrcset(imageArray: string[]): string {
+    return imageArray
+      .map((url, i) => `${url} ${this.imageWidths[i]}w`)
+      .join(', ');
+  }
 }
