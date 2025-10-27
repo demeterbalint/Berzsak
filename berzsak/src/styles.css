@@ -128,3 +128,7 @@ hr {
 .navigate-back-btn a:hover {
   font-weight: bold;
 }
+
+.bold {
+  font-weight: 600;
+}

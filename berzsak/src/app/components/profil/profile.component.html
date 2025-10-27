@@ -10,7 +10,7 @@
   <div class="profile-grid">
     <div class="profile-description">
       <h1>hello,</h1>
-      <p>{{ aboutMe }}</p>
+      <p [innerHTML]="aboutMe"></p>
     </div>
     <div class="profile-pic">
       <img src="{{ project.imageUrls[0][4] }}"

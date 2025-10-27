@@ -40,14 +40,13 @@ export class ProfileComponent implements OnInit{
     this.projectService.openMail();
   }
 
-  protected aboutMe: string ='I’m Bulcsú, a 24-year-old industrial and product designer with a Master’s degree from Moholy-Nagy University of Art and Design. I’ve gained experience working with startups, architecture studios, and industrial design studios in Belgium and Hungary.\n' +
+  protected aboutMe: string ='I’m <span class="bold">Bulcsú</span>, a 24-year-old industrial and product designer with a Master’s degree from <span class="bold">Moholy-Nagy University of Art and Design</span>. I’ve gained experience working with startups, architecture studios, and industrial design studios in Belgium and Hungary.\n' +
     '\n' +
-    'My passion lies in creating timeless, refined designs — where clarity, functionality, and manufacturability come together seamlessly. I believe that the soul of design lives in the details, and that the ultimate goal is to create objects that bring quiet satisfaction and joy to their users.\n' +
+    'My passion lies in creating <span class="bold">timeless, refined designs</span> — where <span class="bold">clarity, functionality, and manufacturability</span> come together seamlessly. I believe that <span class="bold">the soul of design lives in the details</span>, and that the ultimate goal is to create objects that bring quiet satisfaction and joy to their users.\n' +
     '\n' +
-    'To discover something truly original, I like to see the world from unexpected angles — and sometimes turn it upside down.\n' +
+    'To discover something truly original, I like to <span class="bold">see the world from unexpected angles</span> — and sometimes <span class="bold">turn it upside down</span>.\n' +
     '\n' +
-    'Beyond my professional work, I also create limited-edition design objects that reveal their stories through use and interaction.\n' +
-    'If you’d like to explore these, feel free to visit my shop — or let’s collaborate to bring something new to life.'
+    'Beyond my professional work, I also create <span class="bold">limited-edition design objects</span> that reveal their stories through use and interaction. <span class="bold">Let’s collaborate</span> to bring something new to life.'
 
   getSrcset(imageArray: string[]): string {
     return imageArray

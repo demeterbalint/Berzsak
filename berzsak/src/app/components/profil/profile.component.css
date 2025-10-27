@@ -1,6 +1,7 @@
 .profile-grid {
   margin-top: 80px;
   width: 80%;
+  height: 65%;
   justify-self: center;
   display: flex;
   justify-content: space-between;
@@ -22,15 +23,15 @@
 }
 
 .profile-pic {
-  width: 40%;
+  height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
 }
 
 .profile-pic img {
-  width: 100%;
-  height: auto;
+  height: 100%;
+  width: auto;
 }
 
 hr {
