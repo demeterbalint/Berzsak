@@ -169,6 +169,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   }
 
   anotherProject() {
-    this.router.navigate(['/berzsak', this.projectService.randomProjectSlug()]);
+    this.router.navigate(['/berzsak/projects', this.projectService.randomProjectSlug()]);
   }
 }

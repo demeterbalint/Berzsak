@@ -184,7 +184,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.sidebarBusy || this.selectedProject ) return;
     if (this.sidebarDisabled) {
       this.dragScrollService.fromView = 'experience';
-      await this.router.navigate(['/berzsak', project.slug]);
+      await this.router.navigate(['/berzsak/projects', project.slug]);
       return;
     }
 
@@ -401,7 +401,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onProjectClick(slug: string, view: string) {
     this.dragScrollService.fromView = view;
-    this.router.navigate(['/berzsak', slug]);
+    this.router.navigate(['/berzsak/projects', slug]);
   }
 
   openMail() {
