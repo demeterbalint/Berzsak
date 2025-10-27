@@ -165,14 +165,13 @@ export class ProjectService {
         ['/mini-market/5846/6_5846.webp', '/mini-market/2400/6_2400.webp', '/mini-market/1800/6_1800.webp', '/mini-market/1200/6_1200.webp', '/mini-market/600/6_600.webp', '/mini-market/300/6_300.webp']]
     },
     {
-      name: 'dark-mode',
-      slug: '',
+      name: 'profile',
+      slug: 'profile',
       shortDescription: '',
       longDescription: [''],
       projectData: '',
-      mainImgUrl: [],
-      imageUrls: [['/light-bulb/5846/bulb-off-5846.webp', '/light-bulb/2400/bulb-off-2400.webp', '/light-bulb/1800/bulb-off-1800.webp', '/light-bulb/1200/bulb-off-1200.webp', '/light-bulb/600/bulb-off-600.webp', '/light-bulb/300/bulb-off-300.webp'],
-      ['/light-bulb/5846/bulb-on-5846.webp', '/light-bulb/2400/bulb-on-2400.webp', '/light-bulb/1800/bulb-on-1800.webp', '/light-bulb/1200/bulb-on-1200.webp', '/light-bulb/600/bulb-on-600.webp', '/light-bulb/300/bulb-on-300.webp']]
+      mainImgUrl: ['/profile/5846/profil-5846.webp', '/profile/2400/profil-2400.webp', '/profile/1800/profil-1800.webp', '/profile/1200/profil-1200.webp', '/profile/600/profil-600.webp', '/profile/300/profil-300.webp'],
+      imageUrls: [['/profile/5846/bulcsu-5846.webp', '/profile/2400/bulcsu-2400.webp', '/profile/1800/bulcsu-1800.webp', '/profile/1200/bulcsu-1200.webp', '/profile/600/bulcsu-600.webp', '/profile/300/bulcsu-300.webp']]
     },
     {
       name: 'tartáska',
@@ -191,13 +190,14 @@ export class ProjectService {
         ['/tartáska/5846/4_5846.webp', '/tartáska/2400/4_2400.webp', '/tartáska/1800/4_1800.webp', '/tartáska/1200/4_1200.webp', '/tartáska/600/4_600.webp', '/tartáska/300/4_300.webp']]
     },
     {
-      name: 'profile',
-      slug: 'profile',
+      name: 'dark-mode',
+      slug: '',
       shortDescription: '',
       longDescription: [''],
       projectData: '',
-      mainImgUrl: ['/profile/5846/profil-5846.webp', '/profile/2400/profil-2400.webp', '/profile/1800/profil-1800.webp', '/profile/1200/profil-1200.webp', '/profile/600/profil-600.webp', '/profile/300/profil-300.webp'],
-      imageUrls: [['/profile/5846/bulcsu-5846.webp', '/profile/2400/bulcsu-2400.webp', '/profile/1800/bulcsu-1800.webp', '/profile/1200/bulcsu-1200.webp', '/profile/600/bulcsu-600.webp', '/profile/300/bulcsu-300.webp']]
+      mainImgUrl: [],
+      imageUrls: [['/light-bulb/5846/bulb-off-5846.webp', '/light-bulb/2400/bulb-off-2400.webp', '/light-bulb/1800/bulb-off-1800.webp', '/light-bulb/1200/bulb-off-1200.webp', '/light-bulb/600/bulb-off-600.webp', '/light-bulb/300/bulb-off-300.webp'],
+        ['/light-bulb/5846/bulb-on-5846.webp', '/light-bulb/2400/bulb-on-2400.webp', '/light-bulb/1800/bulb-on-1800.webp', '/light-bulb/1200/bulb-on-1200.webp', '/light-bulb/600/bulb-on-600.webp', '/light-bulb/300/bulb-on-300.webp']]
     }
   ];
 
