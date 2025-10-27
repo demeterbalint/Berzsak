@@ -1,26 +1,24 @@
-hr {
-  justify-self: center;
-  padding-bottom: 20px;
-}
-
 .profile-grid {
   margin-top: 80px;
   width: 80%;
   justify-self: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding-bottom: 20px;
+  padding-bottom: 50px;
 }
 
 .profile-description {
-  width: 60%;
+  width: 35%;
   color: var(--font_color);
 }
 
 .profile-description p {
   margin-top: 20px;
   white-space: pre-line;
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-align: justify;
 }
 
 .profile-pic {
@@ -31,6 +29,11 @@ hr {
 }
 
 .profile-pic img {
-  width: 80%;
+  width: 100%;
   height: auto;
+}
+
+hr {
+  justify-self: center;
+  padding-bottom: 20px;
 }

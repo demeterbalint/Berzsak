@@ -189,6 +189,15 @@ export class ProjectService {
         ['/tartáska/5846/2_5846.webp', '/tartáska/2400/2_2400.webp', '/tartáska/1800/2_1800.webp', '/tartáska/1200/2_1200.webp', '/tartáska/600/2_600.webp', '/tartáska/300/2_300.webp'],
         ['/tartáska/5846/3_5846.webp', '/tartáska/2400/3_2400.webp', '/tartáska/1800/3_1800.webp', '/tartáska/1200/3_1200.webp', '/tartáska/600/3_600.webp', '/tartáska/300/3_300.webp'],
         ['/tartáska/5846/4_5846.webp', '/tartáska/2400/4_2400.webp', '/tartáska/1800/4_1800.webp', '/tartáska/1200/4_1200.webp', '/tartáska/600/4_600.webp', '/tartáska/300/4_300.webp']]
+    },
+    {
+      name: 'profile',
+      slug: 'profile',
+      shortDescription: '',
+      longDescription: [''],
+      projectData: '',
+      mainImgUrl: ['/profile/5846/profil-5846.webp', '/profile/2400/profil-2400.webp', '/profile/1800/profil-1800.webp', '/profile/1200/profil-1200.webp', '/profile/600/profil-600.webp', '/profile/300/profil-300.webp'],
+      imageUrls: [['/profile/5846/bulcsu-5846.webp', '/profile/2400/bulcsu-2400.webp', '/profile/1800/bulcsu-1800.webp', '/profile/1200/bulcsu-1200.webp', '/profile/600/bulcsu-600.webp', '/profile/300/bulcsu-300.webp']]
     }
   ];
 

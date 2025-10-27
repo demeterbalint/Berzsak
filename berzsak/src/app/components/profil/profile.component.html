@@ -9,11 +9,14 @@
 
   <div class="profile-grid">
     <div class="profile-description">
-      <h1>Hello,</h1>
+      <h1>hello,</h1>
       <p>{{ aboutMe }}</p>
     </div>
     <div class="profile-pic">
-      <img src="/tartáska/5846/tartáska_5846.webp" alt="profile pic">
+      <img src="{{ project.imageUrls[0][4] }}"
+           srcset="{{ getSrcset(project.imageUrls[0]) }}"
+           sizes=window.innerWidth*0.8*0.4
+           alt="profile pic">
     </div>
   </div>
 
