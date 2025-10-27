@@ -182,6 +182,9 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   async onImageClick(event: MouseEvent, project: ProjectDetails) {
     if (this.sidebarBusy || this.selectedProject ) return;
+    if (project.name === 'profile') {
+      await this.router.navigate(['/berzsak/profile']);
+    }
     if (this.sidebarDisabled) {
       this.dragScrollService.fromView = 'experience';
       await this.router.navigate(['/berzsak/projects', project.slug]);
