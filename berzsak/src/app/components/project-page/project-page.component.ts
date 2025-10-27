@@ -26,7 +26,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   protected cameFromView: 'grid' | 'experience' = 'experience';
 
   isDarkMode: boolean = false;
-  themeIcon: number = 0;
   private suppressScrollFade = false;
 
   @ViewChild('seeMoreBtn') seeMoreButton!: ElementRef<HTMLButtonElement>;
@@ -41,7 +40,6 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.themeService.isDarkMode$.subscribe(isDark => {
       this.isDarkMode = isDark;
-      this.themeIcon = this.themeService.themeIcon;
     });
 
     this.activatedRoute.paramMap.subscribe((paramMap) => {

@@ -15,6 +15,7 @@ hr {
 
 .profile-description {
   width: 60%;
+  color: var(--font_color);
 }
 
 .profile-description p {

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DragScrollService} from '../../services/drag-scroll.service';
 import {Router, RouterLink} from '@angular/router';
 import {ProjectService} from '../../services/project.service';
+import {ThemeService} from '../../services/theme.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,9 +12,20 @@ import {ProjectService} from '../../services/project.service';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
 
-  constructor(private dragScrollService: DragScrollService, private router: Router, private projectService: ProjectService) {}
+  isDarkMode: boolean = false;
+
+  constructor(private dragScrollService: DragScrollService,
+              private router: Router,
+              private projectService: ProjectService,
+              private themeService: ThemeService) {}
+
+  ngOnInit() {
+    this.themeService.isDarkMode$.subscribe(isDark => {
+      this.isDarkMode = isDark;
+    })
+  }
 
   onBrandClick() {
     this.dragScrollService.fromView = '';
