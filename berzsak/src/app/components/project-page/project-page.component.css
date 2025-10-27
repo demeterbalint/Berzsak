@@ -14,22 +14,6 @@ img {
   pointer-events: auto;
 }
 
-.navigate-back-btn {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 15;
-}
-
-.navigate-back-btn a{
-  text-decoration: none;
-  color: var(--font_color);
-}
-
-.navigate-back-btn a:hover {
-  font-weight: bold;
-}
-
 .project-mainImage {
   width: 100%;
   height: auto;

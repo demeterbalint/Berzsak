@@ -1,1 +1,35 @@
+hr {
+  justify-self: center;
+  padding-bottom: 20px;
+}
 
+.profile-grid {
+  margin-top: 80px;
+  width: 80%;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.profile-description {
+  width: 60%;
+}
+
+.profile-description p {
+  margin-top: 20px;
+  white-space: pre-line;
+}
+
+.profile-pic {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic img {
+  width: 80%;
+  height: auto;
+}

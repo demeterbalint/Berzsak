@@ -141,31 +141,7 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   }
 
   openMail() {
-    const email = 'berzsak.bulcsu@gmail.com';
-    const mailtoLink = `mailto:${email}`;
-    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
-
-    let opened = false;
-
-    // Detect if page becomes hidden (user switched to mail app)
-    const handleVisibilityChange = () => {
-      opened = true;
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    // Try to open default mail app
-    window.location.href = mailtoLink;
-
-    // Dynamically calculate fallback delay (50-500ms depending on device)
-    const delay = Math.min(Math.max(50, 300), 500);
-
-    setTimeout(() => {
-      if (!opened) {
-        window.open(gmailLink, '_blank');
-      }
-    }, delay);
+    this.projectService.openMail();
   }
 
   anotherProject() {
