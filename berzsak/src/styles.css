@@ -71,8 +71,14 @@
   transform: rotateZ(180deg);
 }
 
-.brand-name:hover {
+.brand-name:active {
   transform: rotateZ(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .brand-name:hover {
+    transform: rotateZ(0);
+  }
 }
 
 .brand-name-button {
@@ -112,7 +118,13 @@ hr {
   cursor: pointer;
 }
 
-.contact-div a:hover{
+@media (hover: hover) and (pointer: fine) {
+  .contact-div a:hover{
+    color: var(--primary-contrast);
+  }
+}
+
+.contact-div a:active{
   color: var(--primary-contrast);
 }
 
@@ -128,7 +140,13 @@ hr {
   color: var(--font_color);
 }
 
-.navigate-back-btn a:hover {
+@media (hover: hover) and (pointer: fine) {
+  .navigate-back-btn a:hover {
+    font-weight: bold;
+  }
+}
+
+.navigate-back-btn a:active {
   font-weight: bold;
 }
 

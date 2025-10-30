@@ -47,7 +47,13 @@ img {
   z-index: 21;
 }
 
-.see-more-btn:hover {
+@media (hover: hover) and (pointer: fine) {
+  .see-more-btn:hover {
+    font-weight: bold;
+  }
+}
+
+.see-more-btn:active {
   font-weight: bold;
 }
 
@@ -138,6 +144,12 @@ img {
   cursor: pointer;
 }
 
-.another-project span:hover {
+@media (hover: hover) and (pointer: fine) {
+  .another-project span:hover {
+    color: var(--font_color);
+  }
+}
+
+.another-project span:active {
   color: var(--font_color);
 }

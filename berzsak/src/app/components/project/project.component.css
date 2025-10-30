@@ -8,7 +8,13 @@
     color: var(--primary-contrast);
 }
 
-.brand-name-button.exp-view:hover {
+@media (hover: hover) and (pointer: fine) {
+  .brand-name-button.exp-view:hover {
+    color: var(--font_color);
+  }
+}
+
+.brand-name-button.exp-view:active {
   color: var(--font_color);
 }
 
@@ -48,7 +54,13 @@
   transition: background 0.3s, transform 0.2s;
 }
 
-.view-btn:hover {
+@media (hover: hover) and (pointer: fine) {
+  .view-btn:hover {
+    transform: scale(1.02);
+  }
+}
+
+.view-btn:active {
   transform: scale(1.02);
 }
 
@@ -149,7 +161,23 @@
     display: none;
   }
 
-  :hover {
+  @media (hover: hover) and (pointer: fine) {
+    :hover {
+      .view-icon img {
+        transform: rotateZ(0);
+      }
+
+      .view-text-exp {
+        display: none;
+      }
+
+      .view-text-grid {
+        display: block;
+      }
+    }
+  }
+
+  :active {
     .view-icon img {
       transform: rotateZ(0);
     }
@@ -177,7 +205,23 @@
     display: block;
   }
 
-  :hover {
+  @media (hover: hover) and (pointer: fine) {
+    :hover {
+      .view-icon img {
+        transform: rotateZ(45deg);
+      }
+
+      .view-text-exp {
+        display: block;
+      }
+
+      .view-text-grid {
+        display: none;
+      }
+    }
+  }
+
+  :active {
     .view-icon img {
       transform: rotateZ(45deg);
     }
@@ -232,7 +276,14 @@
   text-decoration: none;
 }
 
-.contact-div-experience a:hover {
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-div-experience a:hover {
+    color: var(--font_color);
+  }
+}
+
+.contact-div-experience a:active {
   color: var(--font_color);
 }
 
@@ -373,7 +424,13 @@
   min-width: 0;
 }
 
-.gallery-box:hover {
+@media (hover: hover) and (pointer: fine) {
+  .gallery-box:hover {
+    transform: scale(1.025);
+  }
+}
+
+.gallery-box:active {
   transform: scale(1.025);
 }
 
@@ -433,7 +490,13 @@
   cursor: pointer;
 }
 
-.sidebar-navigate-btn a:hover {
+@media (hover: hover) and (pointer: fine) {
+  .sidebar-navigate-btn a:hover {
+    font-weight: bold;
+  }
+}
+
+.sidebar-navigate-btn a:active {
   font-weight: bold;
 }
 
@@ -533,7 +596,13 @@
   }
 }
 
-.container:not(.sidebar-open) .grid-experience .grid-item img:hover {
+@media (hover: hover) and (pointer: fine) {
+  .container:not(.sidebar-open) .grid-experience .grid-item img:hover {
+    transform: scale(1.05);
+  }
+}
+
+.container:not(.sidebar-open) .grid-experience .grid-item img:active {
   transform: scale(1.05);
 }
 
@@ -625,7 +694,13 @@
   cursor: pointer;
 }
 
-.col3-navigate-btn:hover {
+@media (hover: hover) and (pointer: fine) {
+  .col3-navigate-btn:hover {
+    font-weight: bold;
+  }
+}
+
+.col3-navigate-btn:active {
   font-weight: bold;
 }
 

@@ -25,13 +25,3 @@ window.addEventListener('keydown', (e) => {
     e.preventDefault();
   }
 });
-
-document.addEventListener('pointerdown', (e: PointerEvent) => {
-  if (e.pointerType === 'touch' || e.pointerType === 'pen') {
-    document.body.classList.add('no-hover');
-  }
-});
-
-document.addEventListener('pointerup', () => {
-  document.body.classList.remove('no-hover');
-});
