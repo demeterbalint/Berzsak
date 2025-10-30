@@ -1,16 +1,20 @@
-.profile-grid {
-  margin-top: 80px;
-  width: 80%;
-  height: 65%;
-  justify-self: center;
+.container {
+  overflow-y: auto;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding-bottom: 50px;
+  touch-action: auto;
+}
+
+.profile-grid {
+  margin-top: 5rem;
+  width: 80%;
+  height: auto;
+  justify-self: center;
+  padding-bottom: 40px;
 }
 
 .profile-description {
-  width: 35%;
   color: var(--font_color);
 }
 
@@ -22,16 +26,20 @@
   text-align: justify;
 }
 
-.profile-pic {
-  height: 100%;
-  display: flex;
-  justify-content: right;
-  align-items: center;
+.profile-grid img {
+  float: right;
+  margin: 0 0 1rem clamp(2rem, calc(0.2133 * 100vw - 9.33rem), 8rem);
+  width: 50%;
+  height: auto;
 }
 
-.profile-pic img {
-  height: 100%;
-  width: auto;
+@media (orientation: portrait) {
+  .profile-grid img {
+    float: none;
+    margin: 0 auto 2rem auto;
+    width: 100%;
+  }
+
 }
 
 hr {

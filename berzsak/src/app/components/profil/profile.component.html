@@ -8,15 +8,13 @@
   </div>
 
   <div class="profile-grid">
+    <img src="{{ project.imageUrls[0][4] }}"
+         srcset="{{ getSrcset(project.imageUrls[0]) }}"
+         sizes=window.innerWidth*0.8*0.4
+         alt="profile pic">
     <div class="profile-description">
       <h1>hello,</h1>
       <p [innerHTML]="aboutMe"></p>
-    </div>
-    <div class="profile-pic">
-      <img src="{{ project.imageUrls[0][4] }}"
-           srcset="{{ getSrcset(project.imageUrls[0]) }}"
-           sizes=window.innerWidth*0.8*0.4
-           alt="profile pic">
     </div>
   </div>
 
