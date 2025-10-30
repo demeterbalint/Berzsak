@@ -390,6 +390,8 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
       this.dragScrollService.dragExperienceView(wrapper);
     }
 
+    this.enablePinchZoom(wrapper, grid);
+
     wrapper.style.cursor = 'grab';
     this.syncGridScroll(wrapper);
   }
@@ -411,4 +413,49 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   openMail() {
     this.projectService.openMail();
   }
+
+  private enablePinchZoom(container: HTMLElement, content: HTMLElement) {
+    let pinchScale = 1;
+    let initialPinchDistance = 0;
+    let initialPinchScale = 1;
+    const zoomSpeed = 1; // adjust >1 for faster zoom
+
+    const getDistance = (touches: TouchList) => {
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        initialPinchDistance = getDistance(e.touches);
+        initialPinchScale = pinchScale;
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        const currentDistance = getDistance(e.touches);
+        const scaleFactor = (currentDistance / initialPinchDistance) ** zoomSpeed;
+        pinchScale = Math.max(0.5, Math.min(3, initialPinchScale * scaleFactor));
+        content.style.transition = 'none'; // instant zoom
+        content.style.transform = `scale(${pinchScale})`;
+      }
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (e.touches.length < 2) {
+        initialPinchDistance = 0;
+        initialPinchScale = pinchScale;
+      }
+    };
+
+    container.addEventListener('touchstart', onTouchStart, { passive: false });
+    container.addEventListener('touchmove', onTouchMove, { passive: false });
+    container.addEventListener('touchend', onTouchEnd);
+    container.addEventListener('touchcancel', onTouchEnd);
+  }
+
 }
