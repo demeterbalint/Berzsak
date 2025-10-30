@@ -20,6 +20,9 @@
   ::-webkit-scrollbar {
     display: none;  /* Chrome, Safari, Edge */
   }
+
+  -webkit-text-size-adjust: 100%; /* Safari / Chrome */
+  text-size-adjust: 100%;         /* Firefox / other browsers */
 }
 
 :root {
