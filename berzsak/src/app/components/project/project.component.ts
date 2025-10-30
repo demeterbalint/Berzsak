@@ -184,6 +184,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.sidebarBusy || this.selectedProject ) return;
     if (project.name === 'profile') {
       await this.router.navigate(['/berzsak/profile']);
+      return;
     }
     if (this.sidebarDisabled) {
       this.dragScrollService.fromView = 'experience';
