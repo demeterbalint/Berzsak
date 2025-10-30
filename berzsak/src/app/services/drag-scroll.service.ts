@@ -163,6 +163,7 @@ export class DragScrollService {
     };
 
     const onDown = (e: PointerEvent) => {
+      if (!["mouse", "pen"].includes(e.pointerType)) return;
       isDown = true;
       lastX = e.clientX;
       lastY = e.clientY;
@@ -179,7 +180,7 @@ export class DragScrollService {
       if (!isDown) return;
       let dx = e.clientX - lastX;
       let dy = e.clientY - lastY;
-      if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+      if (e.pointerType === 'pen') {
         dx *= 1.5;
         dy *= 1.5;
       }
@@ -213,7 +214,7 @@ export class DragScrollService {
     // Bind in capture phase to intercept even if children stop propagation
     // Ensure correct interaction styles
     try {
-      el.style.touchAction = 'none';
+      el.style.touchAction = 'auto';
       el.style.cursor = 'grab';
       el.style.pointerEvents = 'auto';
     } catch {}
