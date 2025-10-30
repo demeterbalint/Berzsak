@@ -85,7 +85,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.projects = this.projectService.getAllProjects();
-    this.gridProjects = this.projectService.getAllProjects().filter(project => project.name !== 'dark-mode');
+    this.gridProjects = this.projectService.getAllProjects().filter(project => project.name !== 'dark-mode' && project.name !== 'profile');
     this.checkSidebar();
 
     // Subscribe to theme changes

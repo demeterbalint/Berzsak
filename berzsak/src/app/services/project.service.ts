@@ -213,7 +213,7 @@ export class ProjectService {
   }
 
   randomProjectSlug() {
-    const randomProjectList = this.projectList.filter((p) => p.name !== 'dark-mode');
+    const randomProjectList = this.projectList.filter((p) => p.name !== 'dark-mode' && p.name !== 'profile');
     const randomIndex = Math.floor(Math.random() * randomProjectList.length);
     return randomProjectList[randomIndex].slug;
   }
