@@ -39,7 +39,18 @@
     margin: 0 auto 2rem auto;
     width: 100%;
   }
+}
 
+@media (orientation: portrait) and (width > 700px) {
+  .container {
+    justify-content: center;
+  }
+}
+
+@media (orientation: landscape) and (width > 1000px) {
+  .container {
+    justify-content: center;
+  }
 }
 
 hr {
