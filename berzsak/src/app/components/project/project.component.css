@@ -542,7 +542,7 @@
     grid-template-columns: repeat(4, var(--tile));
     grid-auto-rows: calc(var(--tile) * 3897 / 5846);
     gap: clamp(20px, 20vw, 300px);
-    padding-bottom: calc(var(--tile) * 3897 / 5846); /* Extra padding to accommodate lowered grid items */
+    /*padding-bottom: calc(var(--tile) * 3897 / 5846); !* Extra padding to accommodate lowered grid items *!*/
   }
 
   .grid-experience .grid-item {
@@ -562,7 +562,7 @@
     grid-template-columns: repeat(4, var(--tile));
     grid-auto-rows: calc(var(--tile) * 3897 / 5846);
     gap: 30vw;
-    padding-bottom: calc(var(--tile) * 3897 / 5846); /* Extra padding to accommodate lowered grid items */
+    /*padding-bottom: calc(var(--tile) * 3897 / 5846); !* Extra padding to accommodate lowered grid items *!*/
   }
 
   .grid-experience .grid-item {
@@ -582,7 +582,7 @@
     grid-template-columns: repeat(4, var(--tile));
     grid-auto-rows: calc(var(--tile) * 3897 / 5846);
     gap: 8vw;
-    padding-bottom: calc(var(--tile) * 3897 / 5846); /* Extra padding to accommodate lowered grid items */
+    /*padding-bottom: calc(var(--tile) * 3897 / 5846); !* Extra padding to accommodate lowered grid items *!*/
   }
 
   .grid-experience .grid-item {
