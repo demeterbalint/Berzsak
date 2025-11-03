@@ -239,6 +239,7 @@ export class DragScrollService {
     const maxFrameVelocity = 60; // clamp per-frame velocity
     let totalMove = 0;
     const clickMoveThreshold = 6; // px
+    let scrollTimeout: number | undefined;
 
     const dots = gallery.parentElement?.querySelectorAll<HTMLParagraphElement>('.col3-dot') ?? [];
     const images = Array.from(gallery.querySelectorAll('img')) as HTMLImageElement[];
@@ -387,6 +388,16 @@ export class DragScrollService {
       },
       { capture: true }
     );
+
+    gallery.addEventListener("scroll", () => {
+      updateDots();
+
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(() => {
+        updateDots();
+      } ,100);
+    })
+
     gallery.addEventListener("pointerdown", onDown);
     gallery.addEventListener("pointermove", onMove);
     gallery.addEventListener("pointerup", onUp);
