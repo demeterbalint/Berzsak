@@ -654,7 +654,7 @@
   scroll-behavior: smooth;
   gap: 2vw;
   width: 80%;
-  height: 80%;
+  height: auto;
   justify-content: flex-start;
   align-items: center;
   cursor: grab;
@@ -687,9 +687,30 @@
   cursor: pointer;
 }
 
+.col3-dots {
+  position: absolute;
+  top: 81%;
+  left: 10%;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.5rem;
+  gap: 0.2rem;
+  color: var(--primary);
+}
+
+.col3-dot.active {
+  color: var(--primary-contrast);
+}
+
 @media (hover: none) and (pointer: coarse) {
   .col3-navigate-btn {
     display: none;
+  }
+
+  .col3-dots {
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
   }
 }
 

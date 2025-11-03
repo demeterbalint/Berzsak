@@ -120,6 +120,9 @@
                draggable="false">
         </div>
         <a class="col3-navigate-btn" (click)="onProjectClick(project.slug, 'grid')" draggable="false">take me to project</a>
+        <div class="col3-dots">
+          <p *ngFor="let image of project.imageUrls" class="col3-dot">&bull;</p>
+        </div>
       </div>
     </div>
 

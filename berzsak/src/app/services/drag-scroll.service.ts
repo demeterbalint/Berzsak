@@ -240,6 +240,9 @@ export class DragScrollService {
     let totalMove = 0;
     const clickMoveThreshold = 6; // px
 
+    const dots = gallery.parentElement?.querySelectorAll<HTMLParagraphElement>('.col3-dot') ?? [];
+    const images = Array.from(gallery.children) as HTMLElement[];
+
     const maxScroll = () => Math.max(0, gallery.scrollWidth - gallery.clientWidth);
 
     const originalSnapType = getComputedStyle(gallery).scrollSnapType;
@@ -274,6 +277,13 @@ export class DragScrollService {
       return Math.max(0, Math.min(targetLeft, maxScroll()));
     };
 
+    const updateDots = () => {
+      if (images.length === 0) return;
+      const imageWidth = images[0].offsetWidth + parseFloat(getComputedStyle(gallery).gap || '0');
+      const index = Math.round(gallery.scrollLeft / imageWidth);
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    };
+
     const animateTo = (targetLeft: number, durationMs = 400) => {
       if (frameId) cancelAnimationFrame(frameId);
       isSnapping = true;
@@ -287,11 +297,13 @@ export class DragScrollService {
         const t = Math.min(1, (now - startT) / durationMs);
         const eased = easeOutCubic(t);
         gallery.scrollLeft = startLeft + delta * eased;
+        updateDots();
         if (t < 1) {
           frameId = requestAnimationFrame(tick);
         } else {
           isSnapping = false;
           restoreCssSnap();
+          updateDots();
         }
       };
       frameId = requestAnimationFrame(tick);
@@ -307,7 +319,7 @@ export class DragScrollService {
     };
 
     const onDown = (e: PointerEvent) => {
-      if (!["mouse", "pen"].includes(e.pointerType)) return;
+      // if (!["mouse", "pen"].includes(e.pointerType)) return;
       isDown = true;
       totalMove = 0;
       startX = e.clientX;
@@ -333,6 +345,9 @@ export class DragScrollService {
       if (next < 0) next = 0;
       if (next > maxScroll()) next = maxScroll();
       gallery.scrollLeft = next;
+
+      updateDots();
+
       // estimate velocity as per-frame px (clamped)
       const vPerFrame = (dx / dt) * 16; // 16ms ~ 60fps frame
       // simple low-pass filter to smooth velocity readings
@@ -376,5 +391,7 @@ export class DragScrollService {
     gallery.addEventListener("pointermove", onMove);
     gallery.addEventListener("pointerup", onUp);
     gallery.addEventListener("pointerleave", onUp);
+
+    updateDots();
   }
 }
