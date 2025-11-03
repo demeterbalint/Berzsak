@@ -241,7 +241,7 @@ export class DragScrollService {
     const clickMoveThreshold = 6; // px
 
     const dots = gallery.parentElement?.querySelectorAll<HTMLParagraphElement>('.col3-dot') ?? [];
-    const images = Array.from(gallery.children) as HTMLElement[];
+    const images = Array.from(gallery.querySelectorAll('img')) as HTMLImageElement[];
 
     const maxScroll = () => Math.max(0, gallery.scrollWidth - gallery.clientWidth);
 
@@ -392,6 +392,27 @@ export class DragScrollService {
     gallery.addEventListener("pointerup", onUp);
     gallery.addEventListener("pointerleave", onUp);
 
-    updateDots();
+    const onAllImagesReady = () => {
+      gallery.scrollLeft = 0;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === 0));
+    };
+
+    let remaining = images.length;
+
+    images.forEach(img => {
+      if (img.complete && img.offsetWidth > 0) {
+        remaining--;
+      } else {
+        img.onload = img.onerror = () => {
+          if (--remaining <= 0) {
+            onAllImagesReady();
+          }
+        };
+      }
+    });
+
+    if (remaining <= 0) {
+      onAllImagesReady();
+    }
   }
 }
