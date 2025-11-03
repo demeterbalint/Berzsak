@@ -687,6 +687,12 @@
   cursor: pointer;
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .col3-navigate-btn {
+    display: none;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .col3-navigate-btn:hover {
     font-weight: bold;
