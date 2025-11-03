@@ -317,7 +317,6 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private finishGridInit() {
     const gridCol3El = this.gridCol3Ref?.nativeElement;
-    console.log('gridCol3El: ', gridCol3El?.className);
     if (!gridCol3El) {
       setTimeout(() => this.finishGridInit());
       return;
@@ -334,14 +333,12 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.itemGalleryRefs && this.itemGalleryRefs.length > 0) {
       this.itemGalleryRefs.forEach(galleryRef => {
         const galleryEl = galleryRef.nativeElement;
-        console.log('galleryEl: ', galleryEl?.className, this.itemGalleryRefs.length);
         this.dragScrollService.dragItemGallery(galleryEl);
       });
     } else if (this.itemGalleryRefs) {
       const sub = this.itemGalleryRefs.changes.subscribe(() => {
         this.itemGalleryRefs.forEach(galleryRef => {
           const galleryEl = galleryRef.nativeElement;
-          console.log('galleryEl: ', galleryEl?.className, this.itemGalleryRefs.length);
           this.dragScrollService.dragItemGallery(galleryEl);
         });
         sub.unsubscribe();
@@ -353,8 +350,28 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     this.view.status = ViewStatus.EXPERIENCE;
     const wrapper = this.gridExpRef?.nativeElement;
     const container = this.containerRef?.nativeElement as HTMLElement | undefined;
+
+    if (!wrapper || !container) {
+      if (zoom) {
+        setTimeout(() => this.initializeExperienceView(zoom));
+        return;
+      } else {
+        setTimeout(() => this.initializeExperienceView());
+        return;
+      }
+    }
+
     const grid = wrapper.querySelector('.grid-experience') as HTMLElement | null;
-    if (!wrapper || !container || !grid) return;
+
+    if (!grid) {
+      if (zoom) {
+        setTimeout(() => this.initializeExperienceView(zoom));
+        return;
+      } else {
+        setTimeout(() => this.initializeExperienceView());
+        return;
+      }
+    }
 
     const contentWidth = grid.scrollWidth;
     const contentHeight = grid.scrollHeight;
