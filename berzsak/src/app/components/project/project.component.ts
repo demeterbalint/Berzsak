@@ -317,7 +317,11 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private finishGridInit() {
     const gridCol3El = this.gridCol3Ref?.nativeElement;
-    if (!gridCol3El) return;
+    console.log('gridCol3El: ', gridCol3El?.className);
+    if (!gridCol3El) {
+      setTimeout(() => this.finishGridInit());
+      return;
+    }
     this.dragScrollService.register(gridCol3El, 'grid-col-3');
     gridCol3El.addEventListener('scroll', () => {
       const scrollable = this.dragScrollService.getScrollable('grid-col-3');
@@ -330,12 +334,14 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.itemGalleryRefs && this.itemGalleryRefs.length > 0) {
       this.itemGalleryRefs.forEach(galleryRef => {
         const galleryEl = galleryRef.nativeElement;
+        console.log('galleryEl: ', galleryEl?.className, this.itemGalleryRefs.length);
         this.dragScrollService.dragItemGallery(galleryEl);
       });
     } else if (this.itemGalleryRefs) {
       const sub = this.itemGalleryRefs.changes.subscribe(() => {
         this.itemGalleryRefs.forEach(galleryRef => {
           const galleryEl = galleryRef.nativeElement;
+          console.log('galleryEl: ', galleryEl?.className, this.itemGalleryRefs.length);
           this.dragScrollService.dragItemGallery(galleryEl);
         });
         sub.unsubscribe();
