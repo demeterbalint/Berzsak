@@ -382,21 +382,26 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     const scaleY = viewportHeight / contentHeight;
     const initialScale = Math.min(scaleX, scaleY, 1);
 
-    grid.style.transformOrigin = 'center center';
-    grid.style.transition = 'none';
+    const scaleLayer = wrapper.querySelector('.grid-scale-layer') as HTMLElement;
+    scaleLayer.style.transformOrigin = 'center center';
+    scaleLayer.style.transition = 'none';
+    scaleLayer.style.transform = `scale(${initialScale})`;
 
     wrapper.scrollLeft = (contentWidth - viewportWidth) / 2;
     wrapper.scrollTop = (contentHeight - viewportHeight) / 2;
 
+    console.log(contentWidth, "-", viewportWidth, '=', wrapper.scrollLeft * 2);
+
     if (zoom) {
-      grid.style.transform = `scale(${initialScale})`;
+
+      console.log(contentWidth, '-', viewportWidth, '=', wrapper.scrollLeft * 2);
       container.style.pointerEvents = 'none';
       wrapper.style.pointerEvents = 'none';
       grid.style.pointerEvents = 'none';
 
       setTimeout(() => {
-        grid.style.transition = `transform 1s ease-in-out`;
-        grid.style.transform = 'scale(1)';
+        scaleLayer.style.transition = `transform 1s ease-in-out`;
+        scaleLayer.style.transform = 'scale(1)';
         setTimeout(() => {
           container.style.pointerEvents = 'auto';
           wrapper.style.pointerEvents = 'auto';

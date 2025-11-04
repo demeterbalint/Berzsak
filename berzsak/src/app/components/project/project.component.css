@@ -508,6 +508,15 @@
   cursor: grab;
 }
 
+.grid-scale-layer {
+  display: inline-block;        /* shrink-wrap */
+  box-sizing: border-box;
+  width: max-content;           /* or fit-content if supported */
+  height: max-content;
+  transform-origin: center center;
+  will-change: transform;
+}
+
 .grid-experience-wrapper:active {
   cursor: grabbing;
 }

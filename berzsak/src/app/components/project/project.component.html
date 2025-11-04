@@ -87,21 +87,23 @@
   <div class="grid-experience-wrapper" *ngIf="view.status === ViewStatus.EXPERIENCE" #gridExp [@gridSlide]="gridState"
        (@gridSlide.done)="onGridAnimDone($event)"
         [class.sidebar-open]="selectedProject">
-    <div class="grid-experience">
-      <div *ngFor="let project of projects" class="grid-item" [class.dark-mode]="project.name === 'dark-mode'">
-        <img *ngIf="project.name !== 'dark-mode'"
-             [src]="project.mainImgUrl[4]"
-             [srcset]="getSrcset(project.mainImgUrl)"
-             [sizes]="gridImageSizes()"
-             [alt]="project.name"
-             [attr.data-project-name]="project.name"
-             (click)="onImageClick($event, project)" draggable="false">
-        <img *ngIf="project.name === 'dark-mode'" class="dark-mode-project"
-             [src]="project.imageUrls[themeIcon][4]"
-             [srcset]="getSrcset(project.imageUrls[themeIcon])"
-             [sizes]="gridImageSizes()"
-             [alt]="project.name"
-             draggable="false" (click)="toggleTheme()">
+    <div class="grid-scale-layer">
+      <div class="grid-experience">
+        <div *ngFor="let project of projects" class="grid-item" [class.dark-mode]="project.name === 'dark-mode'">
+          <img *ngIf="project.name !== 'dark-mode'"
+               [src]="project.mainImgUrl[4]"
+               [srcset]="getSrcset(project.mainImgUrl)"
+               [sizes]="gridImageSizes()"
+               [alt]="project.name"
+               [attr.data-project-name]="project.name"
+               (click)="onImageClick($event, project)" draggable="false">
+          <img *ngIf="project.name === 'dark-mode'" class="dark-mode-project"
+               [src]="project.imageUrls[themeIcon][4]"
+               [srcset]="getSrcset(project.imageUrls[themeIcon])"
+               [sizes]="gridImageSizes()"
+               [alt]="project.name"
+               draggable="false" (click)="toggleTheme()">
+        </div>
       </div>
     </div>
   </div>
