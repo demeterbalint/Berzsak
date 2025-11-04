@@ -8,6 +8,11 @@ export class DragScrollService {
   private ease: number = 0.1;
   private _fromView: string = ''; //from where was the project-page reached?
 
+  private zoomLevels: Map<string, number> = new Map();
+  private readonly zoomStep = 0.1;
+  private readonly minZoom = 0.5;
+  private readonly maxZoom = 2;
+
   get fromView() {
     return this._fromView;
   }
@@ -35,6 +40,8 @@ export class DragScrollService {
 
     el.addEventListener("wheel", scrollable.onWheel, { passive: false });
     this.scrollables.set(key, scrollable);
+
+    this.zoomLevels.set(key, 1);
   }
 
   private handleWheel(e: WheelEvent, key: string) {
@@ -54,6 +61,29 @@ export class DragScrollService {
       if (sidebar) {
         this.handleWheel(e, 'sidebar');
       }
+      return;
+    }
+
+    if (e.ctrlKey) {
+      let zoomTarget: HTMLElement;
+
+      if (key === 'experience-grid') {
+        zoomTarget = scrollable.el.querySelector('.grid-experience') as HTMLElement;
+      }/* else if (key === 'grid-col-3') {
+        zoomTarget = scrollable.el.querySelector('.grid-col3') as HTMLElement;
+      }*/ else return;
+
+      let zoom = this.zoomLevels.get(key) ?? 1;
+
+      if (e.deltaY < 0) zoom = Math.min(zoom + this.zoomStep, this.maxZoom);
+      else zoom = Math.max(zoom - this.zoomStep, this.minZoom);
+
+      this.zoomLevels.set(key, zoom);
+
+      // Apply zoom using CSS transform
+      zoomTarget.style.transformOrigin = 'center center';
+      zoomTarget.style.transform = `scale(${zoom})`;
+      zoomTarget.style.transition = 'transform 0.1s ease-out';
       return;
     }
 
