@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit{
       this.isDarkMode = isDark;
     })
     this.project = this.projectService.getProject('profile');
+    this.dragScrollService.register(document.querySelector('.container') as HTMLElement, 'profile-wrapper');
   }
 
   onBrandClick() {
