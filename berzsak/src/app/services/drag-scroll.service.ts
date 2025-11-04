@@ -62,9 +62,7 @@ export class DragScrollService {
         this.handleWheel(e, 'sidebar');
       }
       return;
-    }
-
-    if (e.ctrlKey) {
+    } else if (key === 'experience-grid') {
       let zoomTarget: HTMLElement;
 
       if (key === 'experience-grid') {
@@ -83,7 +81,7 @@ export class DragScrollService {
       // Apply zoom using CSS transform
       zoomTarget.style.transformOrigin = 'center center';
       zoomTarget.style.transform = `scale(${zoom})`;
-      zoomTarget.style.transition = 'transform 0.1s ease-out';
+      zoomTarget.style.transition = 'transform 0.2s ease-out';
       return;
     }
 
