@@ -8,8 +8,8 @@ export class ProjectService {
 
   private projectList: ProjectDetails[] = [
     {
-      name: 'qt tea set system',
-      slug: 'qt-tea-set-system',
+      name: 'qt tea set',
+      slug: 'tea set',
       shortDescription: 'The tea set reimagines herbal tea for the modern, health-conscious generation, transforming a traditional ritual into a refined, intuitive, and contemporary experience.',
       longDescription: ['Herbal tea doesn’t have to feel old-fashioned. Regular consumption of herbs is one of the simplest ways to support the harmony of body and mind — so why not make it exciting, fresh, and easy to enjoy every day? This project set out to reimagine herbal tea for a younger, health-conscious generation. The QT tea set is a contemporary system that brings new life to the ritual of tea drinking. It respects the cultural roots of herbs while turning them into a modern, intuitive experience that fits seamlessly into today’s fast-paced lifestyle.',
       'Beyond home use, the design also aims to elevate the way tea is served and enjoyed in hotels, restaurants, and other hospitality spaces, making the act of drinking tea more engaging and memorable. With its clean, minimal form, QT transforms tea preparation into a small ritual of pleasure and presence — turning herbal tea from a rare indulgence into a mindful moment, an inspiring part of everyday life.'],
@@ -26,7 +26,7 @@ export class ProjectService {
     },
     {
       name: 'demeter mixer grinder',
-      slug: 'demeter-mixer-grinder',
+      slug: 'mixer grinder',
       shortDescription: 'Meet Demeter 2310 — the all-in-one blender and scale that brings style, simplicity, and precision to your kitchen. No more confusing buttons, messy counters, or oversized jars — just effortless smoothies and meals, tailored to you.',
       longDescription: ['Let us paint you a picture. It’s Friday afternoon, and you want to make a smoothie, but you are fed up with not knowing which button on your blender does what. You are tired of the mess you keep making in the kitchen with all the dishes, scales, and ingredients. Your blender jar is too big for one serving, so you decide sadly in the end not to make a smoothie at all.',
         'That does sound pretty bad, right? All your struggles come to an end with our revolutionary product. Introducing Demeter 2310, the solution to your problems, your companion in the kitchen, now no more confusing knobs, the scale and the blender are two in one. Choose the jar size that fits the purpose. Style, elegance, convenience, Demeter.'],
@@ -42,8 +42,8 @@ export class ProjectService {
         ['/demeter-mixer-grinder/5846/5_5846.webp', '/demeter-mixer-grinder/2400/5_2400.webp', '/demeter-mixer-grinder/1800/5_1800.webp', '/demeter-mixer-grinder/1200/5_1200.webp', "/demeter-mixer-grinder/600/5_600.webp", '/demeter-mixer-grinder/300/5_300.webp']]
     },
     {
-      name: 'archproject shoe insole system',
-      slug: 'archproject-shoe-insole-system',
+      name: 'archproject shoe insole',
+      slug: 'shoe insole',
       shortDescription: 'The Archproject insole kit brings innovation to every step — combining smart sensors and adaptive design to evolve with your feet, turning orthopedic care into a sleek, empowering path to comfort, posture, and long-term well-being.',
       longDescription: ['Foot health is often overlooked — until pain starts getting in the way of everyday life. Sedentary lifestyles, hard urban surfaces, and unsupportive shoes have made flat feet and posture problems more common than ever, and when left untreated they can lead to serious complications. Archproject reimagines orthopedic care as something smart, sleek, and stigma-free.',
       'This adaptive insole kit uses pressure sensors, IoT technology, and a shape-shifting design to keep up with the natural changes in your feet — ensuring lasting comfort and proper support over time. With its refined, modular design, Archproject turns foot health into a simple, empowering, and even engaging part of daily life — promoting better posture, comfort, and long-term well-being.'],
@@ -70,7 +70,7 @@ export class ProjectService {
     },
     {
       name: 'resq avalanche transmitter',
-      slug: 'resq-avalanche-transmitter',
+      slug: 'avalanche transmitter',
       shortDescription: 'ResQ makes avalanche rescue fast, intuitive, and optimal — turning chaos into confident action when every second counts.',
       longDescription: ['Avalanches happen fast — and survival depends on quick, calm action. For freeriders, the best chance of rescue is not waiting for professionals but acting within their own group — yet panic, poor visibility, and confusing equipment can cost precious minutes. ResQ was designed to change that. This smart avalanche transmitter turns life-saving gear into something intuitive, stylish, and rider-friendly.',
         'Its compass-like form and 360° LED ring guide rescuers toward victims with clear visual feedback, while GPS alerts, fall detection, and built-in tutorials keep users prepared and informed in every situation. With its sleek iris-lock strap system, ResQ stays secure but always within reach, making it easy to grab and use when every second counts. By combining technology, ergonomics, and freerider style, ResQ transforms avalanche rescue from panic into confident, coordinated action.'],
@@ -85,7 +85,7 @@ export class ProjectService {
     },
     {
       name: 'depresszó coffee glass set',
-      slug: 'depresszó-coffee-glass-set',
+      slug: 'coffee glass set',
       shortDescription: 'The dePresszó coffee set transforms Hungarian sarcasm and pessimism into design — a playful blend of tradition, humor and function where the glasses, like the outlook, are always half empty — or half full…',
       longDescription: ['Coffee is more than just a drink — it’s a cultural statement. Many nations have their own coffee specialties, from Café Cubano to Irish Coffee, each reflecting tradition and even national stereotypes. In Hungary, coffee arrived during the Turkish occupation, first tied to the ominous phrase “feketeleves” (“the black soup”). Over time, it became a symbol of cultural and intellectual life, with legendary cafés like the New York Café shaping history.',
         'This project reimagines that story through a fictional Hungarian coffee: the dePresszó — a darkly humorous mix of espresso and Unicum that playfully embraces Hungarian pessimism. Its name nods to the classic question: “Half full or half empty?” — which, for Hungarians, is naturally half empty. The resulting 12-piece glass coffee set embodies this idea: one glass in each pair always stands upside down, so the set can never be completely full. Minimal yet expressive, it blends humor, functionality, and cultural commentary in a single design.'],
@@ -102,7 +102,7 @@ export class ProjectService {
     },
     {
       name: 'flying shark',
-      slug: 'flying-shark',
+      slug: 'flying shark',
       shortDescription: 'Red Bull Flugtag challenges teams to design, build, and launch flying machines over water. Inspired by the hit series Arcane, our creation soared — carrying the pilot an impressive 15 meters through the air.',
       longDescription: ['Red Bull Flugtag — German for “flight day” — is a global competition where engineering genius collides with absolute nonsense. Teams design and build human-powered flying machines, launching them off a platform into the water below. While the real spirit of the event lies in creativity, performance, and spectacle: teams are judged not only on distance but also on originality and showmanship — turning serious engineering into a comedy of wings.',
         'After centuries of careful research, design and development we unveiled our masterpiece: a flying shark. Inspired by Jinx’s shark gun from Arcane, it was equal parts aesthetic marvel and questionable aerodynamics. Against all odds — and to everyone’s amazement — it actually did not fly.'],
@@ -120,8 +120,8 @@ export class ProjectService {
         ['/flying-shark/5846/5_5846.webp', '/flying-shark/2400/5_2400.webp', '/flying-shark/1800/5_1800.webp', '/flying-shark/1200/5_1200.webp', '/flying-shark/600/5_600.webp', '/flying-shark/300/5_300.webp']]
     },
     {
-      name: 'lumen',
-      slug: 'lumen',
+      name: 'lumen solar panel',
+      slug: 'solar panel',
       shortDescription: 'How can we access clean energy anytime, anywhere? While solar panels can generate it, current systems are bulky and complex. Our solution: a modular, all-in-one system that’s easy to transport, simple to maintain, and ready to power life on the move.',
       longDescription: ['Solar energy holds enormous promise, yet it can still feel out of reach. Panels are often seen as costly, complicated technicalities that demand professional expertise. This uncertainty breeds hesitation: what if the system never pays off, or locks you into technology you can’t manage? To make matters worse, most available information is filled with jargon, written for experts rather than everyday users, leaving people doubtful and reluctant to take the first step.',
       'Lumen was created to change this. As a modular all-in-one system, it makes solar power simple and approachable. Each panel contains everything needed, so installation is quick, maintenance is effortless, and expansion feels like a natural step rather than a risky leap. With Lumen, solar energy is no longer a daunting investment, but a flexible companion — one that grows with you and brings clean power seamlessly into everyday life.'],
@@ -148,8 +148,8 @@ export class ProjectService {
         ['/clock/5846/6_5846.webp', '/clock/2400/6_2400.webp', '/clock/1800/6_1800.webp', '/clock/1200/6_1200.webp', '/clock/600/6_600.webp', '/clock/300/6_300.webp']]
     },
     {
-      name: 'mini-market',
-      slug: 'mini-market',
+      name: 'mini-market vending machine',
+      slug: 'vending machine',
       shortDescription: 'Street vendors have long brought color and character to city life — Mini Market reimagines this tradition with a multifunctional vehicle that transforms from transport to stall, offering mobility, flexibility, and modern practicality.',
       longDescription: ['Street vendors have always added color and character to European cities — from medieval marketplaces to today’s Christmas stalls. They bring affordability, culture, and community into public life. Yet modern challenges such as strict regulations, unstable income, and the constant need to move and adapt make their work increasingly difficult.',
       'Mini Market was created as a flexible response to these realities. This multifunctional vehicle functions as both transport and vending platform, unfolding in simple steps to become a stall. Designed for personalization, it gives vendors a modern, practical tool to sustain their traditions while staying mobile and adaptable in today’s urban landscape.'],
@@ -174,8 +174,8 @@ export class ProjectService {
       imageUrls: [['/profile/5846/bulcsu-5846.webp', '/profile/2400/bulcsu-2400.webp', '/profile/1800/bulcsu-1800.webp', '/profile/1200/bulcsu-1200.webp', '/profile/600/bulcsu-600.webp', '/profile/300/bulcsu-300.webp']]
     },
     {
-      name: 'tartáska',
-      slug: 'tartáska',
+      name: 'posture corrector backpack',
+      slug: 'posture corrector backpack',
       shortDescription: 'Poor posture is one of today’s quiet health challenges — Tartáska turns correction into a natural part of daily routine providing discreet support that feels effortless and natural.',
       longDescription: ['Poor posture has quietly become one of the defining side effects of modern life. Hours spent hunched over screens and phones strain the body’s natural support, leading to stiff shoulders, slouched backs, and long-term discomfort. What seems like a small habit can, over time, grow into chronic pain, reduced breathing capacity, and even a loss of confidence.',
       'Tartáska was designed as a response to this challenge. By merging a medical posture corrector with the familiar everyday object of a backpack, it transforms a stigmatized aid into something natural, wearable, and discreet. Comfortable and approachable, Tartáska integrates health support seamlessly into daily routines — helping good posture feel less like treatment and more like lifestyle.'],
