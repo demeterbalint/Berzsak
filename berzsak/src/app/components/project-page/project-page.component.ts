@@ -52,8 +52,8 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
         });
       }
       const button = document.querySelector('.see-more-btn') as HTMLElement;
-      const validSlugs = ['resq-avalanche-transmitter', 'flying-shark', 'clock', 'lumen', 'tartáska', 'chess'];
-      if (slug === 'archproject-shoe-insole-system') {
+      const validSlugs = ['avalanche transmitter', 'flying shark', 'clock', 'solar panel', 'posture corrector backpack', 'chess'];
+      if (slug === 'shoe insole') {
         button.style.color = '#FF6900';
       } else if (validSlugs.includes(slug!)) {
         button.style.color = '#ffffff';
