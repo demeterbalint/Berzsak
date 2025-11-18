@@ -1,10 +1,15 @@
 <div class="container" [class.exp-view]="view.status === ViewStatus.EXPERIENCE" [class.sidebar-open]="selectedProject"
      [class.dark-mode]="isDarkMode" #container>
 
-  <!-- brand name -->
+  <!--<div class="container-fade-div"></div>-->
+
   <div class="brand-name">
     <button class="brand-name-button" [class.exp-view]="view.status === ViewStatus.EXPERIENCE" (click)="onBrandClick()">BERZSAK.</button>
   </div>
+
+  <!--<div class="about-me">
+    <button class="about-me-button" [class.exp-view]="view.status === ViewStatus.EXPERIENCE" (click)="onAboutMeClick()">about me</button>
+  </div>-->
 
   <div class="drag-to-explore" [hidden]="selectedProject" *ngIf="view.status === ViewStatus.EXPERIENCE">
     <div class="dte-div">
@@ -113,7 +118,7 @@
     <div class="fade-div"></div>
     <div class="grid-col3">
       <div *ngFor="let project of gridProjects" class="grid-item">
-        <div class="grid-project-name">{{ project.name }}</div>
+        <div class="grid-project-name">{{ project.slug }}</div>
         <div class="item-gallery" #itemGallery (click)="onProjectClick(project.slug, 'grid')" [class.dark-mode]="project.name === 'dark-mode'">
           <img *ngFor="let imgVariants of project.imageUrls"
                [src]="imgVariants[4]"
