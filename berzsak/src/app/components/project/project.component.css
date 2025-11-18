@@ -677,7 +677,6 @@
 
   .container:not(.sidebar-open).dark-mode .grid-experience .grid-item:hover:not(.dark-mode) .exp-project-label {
     display: block;
-    font-weight: normal;
   }
 }
 
@@ -695,7 +694,6 @@
 
 .container:not(.sidebar-open).dark-mode .grid-experience .grid-item:active:not(.dark-mode) .exp-project-label {
   display: block;
-  font-weight: normal;
 }
 
 /* Grid view */
