@@ -579,6 +579,8 @@
 }
 
 .grid-experience .grid-item {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -611,11 +613,6 @@
     /*padding-bottom: calc(var(--tile) * 3897 / 5846); !* Extra padding to accommodate lowered grid items *!*/
   }
 
-  .grid-experience .grid-item {
-    width: 100%;
-    height: 100%;
-  }
-
   .grid-experience .grid-item:nth-child(4n+2),
   .grid-experience .grid-item:nth-child(4n+4) {
     transform: translateY(calc(50% + (clamp(20px, 20vw, 300px) / 2)));
@@ -631,11 +628,6 @@
     /*padding-bottom: calc(var(--tile) * 3897 / 5846); !* Extra padding to accommodate lowered grid items *!*/
   }
 
-  .grid-experience .grid-item {
-    width: 100%;
-    height: 100%;
-  }
-
   .grid-experience .grid-item:nth-child(4n+2),
   .grid-experience .grid-item:nth-child(4n+4) {
     transform: translateY(calc(50% + (clamp(20px, 20vw, 300px) / 2)));
@@ -649,11 +641,6 @@
     grid-auto-rows: calc(var(--tile) * 3897 / 5846);
     gap: 8vw;
     /*padding-bottom: calc(var(--tile) * 3897 / 5846); !* Extra padding to accommodate lowered grid items *!*/
-  }
-
-  .grid-experience .grid-item {
-    width: 100%;
-    height: 100%;
   }
 
   .grid-experience .grid-item:nth-child(4n+2),
