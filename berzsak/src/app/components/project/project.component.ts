@@ -85,7 +85,8 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.projects = this.projectService.getAllProjects();
-    this.gridProjects = this.projectService.getAllProjects().filter(project => project.name !== 'dark-mode' && project.name !== 'profile');
+    this.gridProjects.push(this.projectService.getProject('profile'));
+    this.gridProjects.push(...this.projectService.getAllProjects().filter(project => project.name !== 'dark-mode' && project.name !== 'profile'));
     this.checkSidebar();
 
     // Subscribe to theme changes
@@ -482,4 +483,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
     container.addEventListener('touchcancel', onTouchEnd);
   }
 
+  protected onAboutMeClick() {
+    this.router.navigate(['/berzsak/profile']);
+  }
 }
