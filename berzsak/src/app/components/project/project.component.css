@@ -597,8 +597,9 @@
 
 .exp-project-label {
   position: absolute;
-  color: var(--primary-contrast);
+  color: var(--experience-hover-name);
   display: none;
+  font-weight: bold;
 }
 
 @media (orientation: portrait) {
@@ -662,21 +663,39 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .container:not(.sidebar-open) .grid-experience .grid-item img:hover {
+  .container:not(.sidebar-open) .grid-experience .grid-item:not(.dark-mode) img:hover {
     opacity: 0.2;
   }
 
-  .container:not(.sidebar-open) .grid-experience .grid-item:hover .exp-project-label {
+  .container:not(.sidebar-open).dark-mode .grid-experience .grid-item:not(.dark-mode) img:hover {
+    opacity: 0.1;
+  }
+
+  .container:not(.sidebar-open) .grid-experience .grid-item:hover:not(.dark-mode) .exp-project-label {
     display: block;
+  }
+
+  .container:not(.sidebar-open).dark-mode .grid-experience .grid-item:hover:not(.dark-mode) .exp-project-label {
+    display: block;
+    font-weight: normal;
   }
 }
 
-.container:not(.sidebar-open) .grid-experience .grid-item img:active {
+.container:not(.sidebar-open) .grid-experience .grid-item:not(.dark-mode) img:active {
   opacity: 0.2;
 }
 
-.container:not(.sidebar-open) .grid-experience .grid-item:active .exp-project-label {
+.container:not(.sidebar-open).dark-mode .grid-experience .grid-item:not(.dark-mode) img:active {
+  opacity: 0.1;
+}
+
+.container:not(.sidebar-open) .grid-experience .grid-item:active:not(.dark-mode) .exp-project-label {
   display: block;
+}
+
+.container:not(.sidebar-open).dark-mode .grid-experience .grid-item:active:not(.dark-mode) .exp-project-label {
+  display: block;
+  font-weight: normal;
 }
 
 /* Grid view */

@@ -36,6 +36,7 @@
   --brand-name-background: rgba(241, 241, 241, 0.3);
   --brand-name-experience: #aaa;
   --socials-color: #ccc;
+  --experience-hover-name: #222
 }
 
 .dark-mode {
@@ -49,6 +50,7 @@
   --brand-name-background: rgba(34, 34, 34, 0.3);
   --brand-name-experience: #aaa;
   --socials-color: #777;
+  --experience-hover-name: #aaa
 }
 
 .container {
