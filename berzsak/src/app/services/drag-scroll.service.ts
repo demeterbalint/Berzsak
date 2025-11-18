@@ -106,8 +106,11 @@ export class DragScrollService {
 
         let zoom = this.zoomLevels.get(key) ?? 1;
 
-        if (e.deltaY < 0) zoom = Math.min(zoom + this.zoomStep, this.maxZoom);
-        else zoom = Math.max(zoom - this.zoomStep, this.minZoom);
+        if (e.deltaY < 0) {
+          zoom = Math.min(zoom + this.zoomStep, this.maxZoom);
+        } else {
+          zoom = Math.max(zoom - this.zoomStep, this.minZoom);
+        }
 
         this.zoomLevels.set(key, zoom);
 
@@ -124,6 +127,8 @@ export class DragScrollService {
     if (!scrollable.isAnimating) {
       scrollable.currentTop = scrollable.el.scrollTop;
       scrollable.currentLeft = scrollable.el.scrollLeft;
+      scrollable.targetTop = scrollable.el.scrollTop;
+      scrollable.targetLeft = scrollable.el.scrollLeft;
     }
 
     scrollable.targetTop += e.deltaY;
