@@ -369,8 +369,11 @@
 
 .sidebar-name {
   margin-top: 40px;
-  width: 85%;
+  margin-left: 7.5%;
+  align-self: start;
+  width: auto;
   color: var(--font_color);
+  cursor: pointer;
 }
 
 .sidebar-description {
