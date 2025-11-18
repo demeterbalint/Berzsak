@@ -738,9 +738,10 @@
 .grid-project-name,
 .col3-navigate-btn {
   position: absolute;
-  width: 100%;
+  width: auto;
   color: var(--primary-contrast);
   font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .col3-navigate-btn {
@@ -749,7 +750,6 @@
   text-align: right;
   text-decoration: none;
   white-space: nowrap;
-  cursor: pointer;
 }
 
 .col3-dots {
@@ -780,12 +780,14 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .col3-navigate-btn:hover {
+  .col3-navigate-btn:hover,
+  .grid-project-name:hover {
     font-weight: bold;
   }
 }
 
-.col3-navigate-btn:active {
+.col3-navigate-btn:active,
+.grid-project-name:active {
   font-weight: bold;
 }
 
