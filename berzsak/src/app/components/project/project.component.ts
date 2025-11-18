@@ -431,6 +431,11 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onProjectClick(slug: string, view: string) {
+    if (slug === 'profile') {
+      this.dragScrollService.fromView = view;
+      this.router.navigate(['/berzsak/profile']);
+      return;
+    }
     this.dragScrollService.fromView = view;
     this.router.navigate(['/berzsak/projects', slug]);
   }
@@ -484,6 +489,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   protected onAboutMeClick() {
+    this.dragScrollService.fromView = 'grid';
     this.router.navigate(['/berzsak/profile']);
   }
 }

@@ -118,16 +118,23 @@
     <div class="fade-div"></div>
     <div class="grid-col3">
       <div *ngFor="let project of gridProjects" class="grid-item">
-        <div class="grid-project-name">{{ project.slug }}</div>
+        <div class="grid-project-name" [hidden]="project.name === 'profile'">{{ project.slug }}</div>
         <div class="item-gallery" #itemGallery (click)="onProjectClick(project.slug, 'grid')" [class.dark-mode]="project.name === 'dark-mode'">
-          <img *ngFor="let imgVariants of project.imageUrls"
+          <img [hidden]="project.name === 'profile'" *ngFor="let imgVariants of project.imageUrls"
                [src]="imgVariants[4]"
                [srcset]="getSrcset(imgVariants)"
                sizes="(max-width: 400px) 90vw, (max-width: 700px) 40vw, 28vw"
                [alt]="project.name"
                draggable="false">
+          <img *ngIf="project.slug === 'profile'"
+               [src]="project.mainImgUrl[4]"
+               [srcset]="getSrcset(project.mainImgUrl)"
+               sizes="(max-width: 400px) 90vw, (max-width: 700px) 40vw, 28vw"
+               [alt]="project.name"
+               draggable="false">
         </div>
-        <a class="col3-navigate-btn" (click)="onProjectClick(project.slug, 'grid')" draggable="false">take me to project</a>
+        <a class="col3-navigate-btn" (click)="onProjectClick(project.slug, 'grid')" draggable="false" [hidden]="project.name === 'profile'">take me to project</a>
+        <a class="col3-navigate-btn" (click)="onAboutMeClick()" draggable="false" [hidden]="project.name !== 'profile'">about me</a>
         <div class="col3-dots">
           <p *ngFor="let image of project.imageUrls" class="col3-dot">&bull;</p>
         </div>
