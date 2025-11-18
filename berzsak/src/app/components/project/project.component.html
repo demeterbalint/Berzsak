@@ -95,6 +95,7 @@
     <div class="grid-scale-layer">
       <div class="grid-experience">
         <div *ngFor="let project of projects" class="grid-item" [class.dark-mode]="project.name === 'dark-mode'">
+          <span *ngIf="project.name !== 'dark-mode'" class="exp-project-label">{{ project.slug }}</span>
           <img *ngIf="project.name !== 'dark-mode'"
                [src]="project.mainImgUrl[4]"
                [srcset]="getSrcset(project.mainImgUrl)"
@@ -126,7 +127,7 @@
                sizes="(max-width: 400px) 90vw, (max-width: 700px) 40vw, 28vw"
                [alt]="project.name"
                draggable="false">
-          <img *ngIf="project.slug === 'profile'"
+          <img *ngIf="project.slug === 'about me'"
                [src]="project.mainImgUrl[4]"
                [srcset]="getSrcset(project.mainImgUrl)"
                sizes="(max-width: 400px) 90vw, (max-width: 700px) 40vw, 28vw"

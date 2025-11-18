@@ -85,7 +85,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.projects = this.projectService.getAllProjects();
-    this.gridProjects.push(this.projectService.getProject('profile'));
+    this.gridProjects.push(this.projectService.getProject('about me'));
     this.gridProjects.push(...this.projectService.getAllProjects().filter(project => project.name !== 'dark-mode' && project.name !== 'profile'));
     this.checkSidebar();
 
@@ -431,7 +431,7 @@ export class ProjectComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onProjectClick(slug: string, view: string) {
-    if (slug === 'profile') {
+    if (slug === 'about me') {
       this.dragScrollService.fromView = view;
       this.router.navigate(['/berzsak/profile']);
       return;

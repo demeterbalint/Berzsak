@@ -595,6 +595,12 @@
   object-fit: contain;
 }
 
+.exp-project-label {
+  position: absolute;
+  color: var(--primary-contrast);
+  display: none;
+}
+
 @media (orientation: portrait) {
   .grid-experience {
     --tile: 50vw;
@@ -657,12 +663,20 @@
 
 @media (hover: hover) and (pointer: fine) {
   .container:not(.sidebar-open) .grid-experience .grid-item img:hover {
-    transform: scale(1.05);
+    opacity: 0.2;
+  }
+
+  .container:not(.sidebar-open) .grid-experience .grid-item:hover .exp-project-label {
+    display: block;
   }
 }
 
 .container:not(.sidebar-open) .grid-experience .grid-item img:active {
-  transform: scale(1.05);
+  opacity: 0.2;
+}
+
+.container:not(.sidebar-open) .grid-experience .grid-item:active .exp-project-label {
+  display: block;
 }
 
 /* Grid view */

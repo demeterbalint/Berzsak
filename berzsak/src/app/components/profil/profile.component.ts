@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit{
     this.themeService.isDarkMode$.subscribe(isDark => {
       this.isDarkMode = isDark;
     })
-    this.project = this.projectService.getProject('profile');
+    this.project = this.projectService.getProject('about me');
     this.dragScrollService.register(document.querySelector('.container') as HTMLElement, 'profile-wrapper');
   }
 

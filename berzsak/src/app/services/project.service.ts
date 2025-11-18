@@ -166,7 +166,7 @@ export class ProjectService {
     },
     {
       name: 'profile',
-      slug: 'profile',
+      slug: 'about me',
       shortDescription: '',
       longDescription: [''],
       projectData: '',
