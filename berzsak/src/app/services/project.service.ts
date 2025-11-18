@@ -55,7 +55,7 @@ export class ProjectService {
         ['/archproject-shoe-insole-system/5846/3_5846.webp', '/archproject-shoe-insole-system/2400/3_2400.webp', '/archproject-shoe-insole-system/1800/3_1800.webp', '/archproject-shoe-insole-system/1200/3_1200.webp', "/archproject-shoe-insole-system/600/3_600.webp", '/archproject-shoe-insole-system/300/3_300.webp']]
     },
     {
-      name: 'chess',
+      name: 'op-art chess',
       slug: 'chess',
       shortDescription: 'This experimental chess set explores how form can influence play. Inspired by Victor Vasarely and op-art, the chessboard alters perception — subtly shaping players’ decisions and the game’s dynamics.',
       longDescription: ['For over a thousand years, chess has fascinated the world — a simple set of rules giving rise to endless complexity. From royal courts to digital platforms, it has carried the symbolism of war, intellect, and strategy, while captivating both players and spectators across generations.',
@@ -133,7 +133,7 @@ export class ProjectService {
         ['/lumen/5846/1_5846.webp', '/lumen/2400/1_2400.webp', '/lumen/1800/1_1800.webp', '/lumen/1200/1_1200.webp', '/lumen/600/1_600.webp', '/lumen/300/1_300.webp']]
     },
     {
-      name: 'clock',
+      name: 'kuutamo decorative clock',
       slug: 'clock',
       shortDescription: 'A wall clock that goes beyond function, serving as a decorative piece that marks not just the hour, but the essence of quality time itself — a reflection of Finnish culture and the serene beauty of its natural landscapes.',
       longDescription: ['The wall clock has shifted from a tool of necessity to a symbol of presence. Once the heartbeat of the household, it set the rhythm of daily life. Today, when time glows from every screen, its practical role has faded — yet its meaning remains. A wall clock now carries memory, atmosphere, and identity: it reminds us of tradition, reflects on the passing of time, and enriches interiors as a quiet statement of taste.',
@@ -148,8 +148,8 @@ export class ProjectService {
         ['/clock/5846/6_5846.webp', '/clock/2400/6_2400.webp', '/clock/1800/6_1800.webp', '/clock/1200/6_1200.webp', '/clock/600/6_600.webp', '/clock/300/6_300.webp']]
     },
     {
-      name: 'mini-market vending machine',
-      slug: 'vending machine',
+      name: 'mini-market vending vehicle',
+      slug: 'vending vehicle',
       shortDescription: 'Street vendors have long brought color and character to city life — Mini Market reimagines this tradition with a multifunctional vehicle that transforms from transport to stall, offering mobility, flexibility, and modern practicality.',
       longDescription: ['Street vendors have always added color and character to European cities — from medieval marketplaces to today’s Christmas stalls. They bring affordability, culture, and community into public life. Yet modern challenges such as strict regulations, unstable income, and the constant need to move and adapt make their work increasingly difficult.',
       'Mini Market was created as a flexible response to these realities. This multifunctional vehicle functions as both transport and vending platform, unfolding in simple steps to become a stall. Designed for personalization, it gives vendors a modern, practical tool to sustain their traditions while staying mobile and adaptable in today’s urban landscape.'],
