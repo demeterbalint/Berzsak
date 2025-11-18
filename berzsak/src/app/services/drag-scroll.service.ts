@@ -44,6 +44,34 @@ export class DragScrollService {
     this.zoomLevels.set(key, 1);
   }
 
+  private decideWheelIntent(e: WheelEvent): 'zoom' | 'scroll' {
+    // 1) Touchpad PINCH:
+    // A legtöbb modern böngészőben pinch esetén ctrlKey === true lesz a wheel eventben.
+    if ((e as any).ctrlKey === true) {
+      return 'zoom';
+    }
+
+    const absDeltaY = Math.abs(e.deltaY);
+
+    // deltaMode:
+    // 0 = pixel (touchpad / high-res wheel)
+    // 1 = line (klasszikus egér)
+    // 2 = page
+    const deltaMode = e.deltaMode;
+
+    // Klasszikus egérgörgő tipikusan line mode, vagy nagy deltaY
+    const looksLikeMouseWheel =
+      deltaMode === WheelEvent.DOM_DELTA_LINE ||
+      absDeltaY >= 80; // ez a küszöb tetszőlegesen állítható
+
+    if (looksLikeMouseWheel) {
+      return 'zoom';
+    }
+
+    // Egyéb eset: nagy valószínűséggel touchpad kétujjas scroll
+    return 'scroll';
+  }
+
   private handleWheel(e: WheelEvent, key: string) {
     const scrollable = this.scrollables.get(key);
     if (!scrollable) return;
@@ -54,36 +82,44 @@ export class DragScrollService {
       return;
     }
 
-    e.preventDefault();
+    const isExperienceGrid = key === 'experience-grid';
+    // Csak az experience-grid esetén kell eldönteni: zoom vagy scroll?
+    const intent: 'zoom' | 'scroll' = isExperienceGrid ? this.decideWheelIntent(e) : 'scroll';
 
-    if (key === 'experience-grid' && scrollable.el.classList.contains('sidebar-open')) {
-      const sidebar = this.scrollables.get('sidebar');
-      if (sidebar) {
-        this.handleWheel(e, 'sidebar');
-      }
-      return;
-    } else if (key === 'experience-grid') {
-      let zoomTarget: HTMLElement;
+    if (intent === 'zoom' && isExperienceGrid) {
+      e.preventDefault();
 
-      if (key === 'experience-grid') {
-        zoomTarget = scrollable.el.querySelector('.grid-experience') as HTMLElement;
-      }/* else if (key === 'grid-col-3') {
+      if (key === 'experience-grid' && scrollable.el.classList.contains('sidebar-open')) {
+        const sidebar = this.scrollables.get('sidebar');
+        if (sidebar) {
+          this.handleWheel(e, 'sidebar');
+        }
+        return;
+      } else if (key === 'experience-grid') {
+        let zoomTarget: HTMLElement;
+
+        if (key === 'experience-grid') {
+          zoomTarget = scrollable.el.querySelector('.grid-experience') as HTMLElement;
+        }/* else if (key === 'grid-col-3') {
         zoomTarget = scrollable.el.querySelector('.grid-col3') as HTMLElement;
       }*/ else return;
 
-      let zoom = this.zoomLevels.get(key) ?? 1;
+        let zoom = this.zoomLevels.get(key) ?? 1;
 
-      if (e.deltaY < 0) zoom = Math.min(zoom + this.zoomStep, this.maxZoom);
-      else zoom = Math.max(zoom - this.zoomStep, this.minZoom);
+        if (e.deltaY < 0) zoom = Math.min(zoom + this.zoomStep, this.maxZoom);
+        else zoom = Math.max(zoom - this.zoomStep, this.minZoom);
 
-      this.zoomLevels.set(key, zoom);
+        this.zoomLevels.set(key, zoom);
 
-      // Apply zoom using CSS transform
-      zoomTarget.style.transformOrigin = 'center center';
-      zoomTarget.style.transform = `scale(${zoom})`;
-      zoomTarget.style.transition = 'transform 0.2s ease-out';
-      return;
+        // Apply zoom using CSS transform
+        zoomTarget.style.transformOrigin = 'center center';
+        zoomTarget.style.transform = `scale(${zoom})`;
+        zoomTarget.style.transition = 'transform 0.2s ease-out';
+        return;
+      }
     }
+
+    e.preventDefault();
 
     if (!scrollable.isAnimating) {
       scrollable.currentTop = scrollable.el.scrollTop;
