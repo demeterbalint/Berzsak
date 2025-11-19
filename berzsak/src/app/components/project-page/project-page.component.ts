@@ -24,6 +24,8 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
   protected windowWidth: number = window.innerWidth;
   protected scrollY = 0;
   protected cameFromView: 'grid' | 'experience' = 'experience';
+  protected showGallery: boolean = false;
+  protected galleryIndex: number = 0;
 
   isDarkMode: boolean = false;
   private suppressScrollFade = false;
@@ -144,5 +146,10 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
 
   anotherProject() {
     this.router.navigate(['/berzsak/projects', this.projectService.randomProjectSlug()]);
+  }
+
+  protected openGallery(number: number) {
+    this.galleryIndex = number;
+    this.showGallery = true;
   }
 }

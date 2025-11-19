@@ -43,7 +43,7 @@
     </div>
 
     <div class="project-image-gallery-div">
-      <div class="project-image-gallery" *ngFor="let imageVariant of project.imageUrls | slice:1">
+      <div class="project-image-gallery" *ngFor="let imageVariant of project.imageUrls | slice:1" (click)="openGallery(project.imageUrls.indexOf(imageVariant))">
         <img [src]="imageVariant[1]"
              [srcset]="getSrcset(imageVariant)"
              sizes="95vw"
@@ -77,6 +77,28 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="project-page-gallery-wrapper" *ngIf="showGallery">
+    <div class="project-page-gallery">
+      <div class="project-page-gallery-close">
+        <span (click)="showGallery = false">×</span>
+      </div>
+      <div class="project-page-gallery-switch-left">
+        <span (click)="galleryIndex = galleryIndex - 1" [class.hide]="galleryIndex < 1">‹</span>
+      </div>
+      <div class="project-page-gallery-images">
+        <img
+          src="{{project.imageUrls[galleryIndex][1]}}"
+          [srcset]="getSrcset(project.imageUrls[galleryIndex])"
+          sizes="80vw"
+          [alt]="project.name"
+        draggable="false">
+      </div>
+      <div class="project-page-gallery-switch-right">
+        <span (click)="galleryIndex = galleryIndex + 1" [class.hide]="galleryIndex > project.imageUrls.length - 2">›</span>
+      </div>
+    </div>
   </div>
 
 </div>
