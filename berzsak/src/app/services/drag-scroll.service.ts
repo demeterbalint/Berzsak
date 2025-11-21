@@ -349,9 +349,31 @@ export class DragScrollService {
 
     const updateDots = () => {
       if (images.length === 0) return;
-      const imageWidth = images[0].offsetWidth + parseFloat(getComputedStyle(gallery).gap || '0');
-      const index = Math.round(gallery.scrollLeft / imageWidth);
+      const gapVal = parseFloat(getComputedStyle(gallery).gap || '0');
+      const baseW = images[0].offsetWidth;
+      const imageWidth = baseW + (isNaN(gapVal) ? 0 : gapVal);
+      const index = imageWidth > 0 ? Math.round(gallery.scrollLeft / imageWidth) : 0;
       dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+      const leftArrow = gallery.parentElement?.querySelector('.grid-gallery-switch-left') as HTMLElement | null;
+      const rightArrow = gallery.parentElement?.querySelector('.grid-gallery-switch-right') as HTMLElement | null;
+      if (leftArrow && rightArrow) {
+        if (images.length > 1) {
+          console.log(images.length)
+          if (index === 0) {
+            leftArrow.classList.add('disabled');
+          } else {
+            leftArrow.classList.remove('disabled');
+          }
+          if (index === images.length - 1) {
+            rightArrow.classList.add('disabled');
+          } else {
+            rightArrow.classList.remove('disabled');
+          }
+        } else {
+          leftArrow.style.display = 'none';
+          rightArrow.style.display = 'none';
+        }
+      }
     };
 
     const animateTo = (targetLeft: number, durationMs = 400) => {
@@ -472,9 +494,56 @@ export class DragScrollService {
     gallery.addEventListener("pointerup", onUp);
     gallery.addEventListener("pointerleave", onUp);
 
+    // Arrow click support (grid view left/right arrows)
+    // These elements exist as siblings of the gallery inside the same grid item.
+    const leftArrow = gallery.parentElement?.querySelector('.grid-gallery-switch-left') as HTMLElement | null;
+    const rightArrow = gallery.parentElement?.querySelector('.grid-gallery-switch-right') as HTMLElement | null;
+
+    // Helper: compute targetLeft that centers the image at index
+    const getTargetLeftByIndex = (idx: number) => {
+      if (images.length === 0) return 0;
+      const clamped = Math.max(0, Math.min(idx, images.length - 1));
+      const img = images[clamped] as HTMLElement;
+      const childCenter = img.offsetLeft + img.offsetWidth / 2;
+      const targetLeft = childCenter - gallery.clientWidth / 2;
+      return Math.max(0, Math.min(targetLeft, maxScroll()));
+    };
+
+    // Helper: go to next/prev by delta (+1 right, -1 left)
+    const stepGallery = (delta: number) => {
+      if (images.length === 0) return;
+      // Estimate current index similarly to updateDots
+      const gap = parseFloat(getComputedStyle(gallery).gap || '0');
+      const imgW = images[0].offsetWidth + gap;
+      let currentIdx = imgW > 0 ? Math.round(gallery.scrollLeft / imgW) : 0;
+      currentIdx = Math.max(0, Math.min(currentIdx, images.length - 1));
+      const nextIdx = Math.max(0, Math.min(currentIdx + delta, images.length - 1));
+      if (nextIdx === currentIdx) return;
+      const targetLeft = getTargetLeftByIndex(nextIdx);
+      // Use same animation utilities for consistency
+      const distance = Math.abs(targetLeft - gallery.scrollLeft);
+      // Treat as a gentle swipe (no extra velocity boost)
+      disableCssSnap();
+      animateTo(targetLeft, computeDurationMs(distance, 0));
+    };
+
+    // Attach listeners if arrows present
+    leftArrow?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      stepGallery(-1);
+    });
+    rightArrow?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      stepGallery(1);
+    });
+
     const onAllImagesReady = () => {
       gallery.scrollLeft = 0;
       dots.forEach((dot, i) => dot.classList.toggle('active', i === 0));
+      // Ensure arrows reflect the initial position (first image)
+      updateDots();
     };
 
     let remaining = images.length;
@@ -494,5 +563,9 @@ export class DragScrollService {
     if (remaining <= 0) {
       onAllImagesReady();
     }
+
+    // Also schedule a microtask/frame update as a fallback in case images are cached
+    // but offsetWidth is not yet measured when this runs.
+    requestAnimationFrame(() => updateDots());
   }
 }

@@ -127,12 +127,14 @@
         </div>
         <div class="grid-project-name" [hidden]="project.name === 'profile'" (click)="onProjectClick(project.slug, 'grid')">{{ project.slug }}</div>
         <div class="item-gallery" #itemGallery (click)="onProjectClick(project.slug, 'grid')" [class.dark-mode]="project.name === 'dark-mode'">
-          <img [hidden]="project.name === 'profile'" *ngFor="let imgVariants of project.imageUrls"
-               [src]="imgVariants[4]"
-               [srcset]="getSrcset(imgVariants)"
-               sizes="(max-width: 400px) 90vw, (max-width: 700px) 40vw, 28vw"
-               [alt]="project.name"
-               draggable="false">
+          <ng-container *ngIf="project.name !== 'profile'">
+            <img *ngFor="let imgVariants of project.imageUrls"
+                 [src]="imgVariants[4]"
+                 [srcset]="getSrcset(imgVariants)"
+                 sizes="(max-width: 400px) 90vw, (max-width: 700px) 40vw, 28vw"
+                 [alt]="project.name"
+                 draggable="false">
+          </ng-container>
           <img *ngIf="project.slug === 'about me'"
                [src]="project.mainImgUrl[4]"
                [srcset]="getSrcset(project.mainImgUrl)"
