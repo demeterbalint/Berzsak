@@ -85,18 +85,27 @@
         <span (click)="showGallery = false">×</span>
       </div>
       <div class="project-page-gallery-switch-left">
-        <span (click)="galleryIndex = galleryIndex - 1" [class.hide]="galleryIndex < 1">‹</span>
+        <span (click)="prevImage()" [class.hide]="galleryIndex < 1">‹</span>
       </div>
-      <div class="project-page-gallery-images">
+      <div class="project-page-gallery-images" #galleryImages
+           (wheel)="onGalleryWheel($event)"
+           (pointerdown)="onPointerDown($event)"
+           (pointermove)="onPointerMove($event)"
+           (pointerup)="onPointerUp($event)"
+           (pointercancel)="onPointerUp($event)"
+           (pointerleave)="onPointerUp($event)">
         <img
           src="{{project.imageUrls[galleryIndex][1]}}"
           [srcset]="getSrcset(project.imageUrls[galleryIndex])"
           sizes="80vw"
           [alt]="project.name"
+          [style.transform]="galleryTransform"
+          [style.transition]="imgTransition"
+          [style.cursor]="cursorStyle"
         draggable="false">
       </div>
       <div class="project-page-gallery-switch-right">
-        <span (click)="galleryIndex = galleryIndex + 1" [class.hide]="galleryIndex > project.imageUrls.length - 2">›</span>
+        <span (click)="nextImage()" [class.hide]="galleryIndex > project.imageUrls.length - 2">›</span>
       </div>
     </div>
   </div>

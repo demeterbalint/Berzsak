@@ -219,10 +219,20 @@ img {
 .project-page-gallery-images {
   max-height: 90%;
   aspect-ratio: 5846/3898;
+  /* Enable custom pinch-zoom/pan logic */
+  touch-action: none; /* allow pointer events to deliver pinch/pan to JS */
+  overflow: hidden; /* hide overflow when panning */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .project-page-gallery-images img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  transform-origin: center center;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-drag: none;
 }
