@@ -123,6 +123,7 @@ export class ProjectPageComponent implements OnInit, AfterViewInit{
     if (this.galleryScale <= 1) return 'default';
     return this.isPanning ? 'grabbing' : 'grab';
   }
+  protected isHighResLoaded = false;
 
   private activePointers = new Map<number, {x: number, y: number}>();
   private lastPan?: {x: number, y: number};

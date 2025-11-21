@@ -103,6 +103,15 @@
           [style.transition]="imgTransition"
           [style.cursor]="cursorStyle"
         draggable="false">
+        <img *ngIf="galleryScale > 2"
+             [src]="project.imageUrls[galleryIndex][0]"
+             class="high-res-image"
+             [class.loaded]="isHighResLoaded"
+             (load)="isHighResLoaded = true"
+             [alt]="project.name"
+             [style.transform]="galleryTransform"
+             [style.transition]="imgTransition"
+             draggable="false">
       </div>
       <div class="project-page-gallery-switch-right">
         <span (click)="nextImage()" [class.hide]="galleryIndex > project.imageUrls.length - 2">›</span>

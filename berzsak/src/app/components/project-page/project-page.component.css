@@ -217,6 +217,7 @@ img {
 }
 
 .project-page-gallery-images {
+  position: relative;
   max-height: 90%;
   aspect-ratio: 5846/3898;
   /* Enable custom pinch-zoom/pan logic */
@@ -235,4 +236,17 @@ img {
   will-change: transform;
   user-select: none;
   -webkit-user-drag: none;
+}
+
+.high-res-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  pointer-events: none;
+}
+
+.high-res-image.loaded {
+  opacity: 1;
 }
