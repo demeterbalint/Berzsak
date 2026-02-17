@@ -25,11 +25,11 @@
       See more <i class="fa fa-arrow-down"></i>
     </button>
 
-    <div class="project-name">
+    <div class="selectable project-name">
       <h1>{{ project.name }}</h1>
     </div>
 
-    <div class="project-description-wrapper">
+    <div class="selectable project-description-wrapper">
       <div class="project-description">
         <p>{{ project.longDescription[0] }}</p>
       </div>
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="project-data">
+    <div class="selectable project-data">
       <p [innerHTML]="project.projectData"></p>
     </div>
 

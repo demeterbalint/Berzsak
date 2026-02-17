@@ -8,10 +8,10 @@
   scrollbar-width: none;
   -ms-overflow-style: none; /* IE and Edge */
 
-  /* Prevent text selection */
-  /*user-select: none;
-  -webkit-user-select: none; !* Safari *!
-  -ms-user-select: none;     !* IE/Edge legacy *!*/
+  /* Disable text selection */
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;     /* IE/Edge legacy */
 
   /* Remove tap highlight */
   -webkit-tap-highlight-color: transparent; /* removes default blue on iOS/Chrome/Safari */
@@ -23,6 +23,14 @@
 
   -webkit-text-size-adjust: 100%; /* Safari / Chrome */
   text-size-adjust: 100%;         /* Firefox / other browsers */
+}
+
+/* Allow text selection where needed */
+.selectable,
+.selectable * {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -ms-user-select: text !important;
 }
 
 :root {
