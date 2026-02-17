@@ -9,9 +9,9 @@
   -ms-overflow-style: none; /* IE and Edge */
 
   /* Prevent text selection */
-  user-select: none;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none;     /* IE/Edge legacy */
+  /*user-select: none;
+  -webkit-user-select: none; !* Safari *!
+  -ms-user-select: none;     !* IE/Edge legacy *!*/
 
   /* Remove tap highlight */
   -webkit-tap-highlight-color: transparent; /* removes default blue on iOS/Chrome/Safari */
