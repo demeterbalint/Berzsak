@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit{
     this.projectService.openMail();
   }
 
-  protected aboutMe: string ='I’m <span class="bold">Bulcsú</span>, a 24-year-old industrial and product designer with a Master’s degree from <span class="bold">Moholy-Nagy University of Art and Design</span>. I’ve gained experience working with startups, architecture studios, and industrial design studios in Belgium and Hungary.\n' +
+  protected aboutMe: string ='I’m <span class="bold">Bulcsú</span>, a 25-year-old industrial and product designer with a Master’s degree from <span class="bold">Moholy-Nagy University of Art and Design</span>. I’ve gained experience working with startups, architecture studios, and industrial design studios in Belgium and Hungary.\n' +
     '\n' +
     'My passion lies in creating <span class="bold">timeless, refined designs</span> — where <span class="bold">clarity, functionality, and manufacturability</span> come together seamlessly. I believe that <span class="bold">the soul of design lives in the details</span>, and that the ultimate goal is to create objects that bring quiet satisfaction and joy to their users.\n' +
     '\n' +
